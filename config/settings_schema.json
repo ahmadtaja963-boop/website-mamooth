@@ -1,0 +1,83 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "DIAZ Luxe",
+    "theme_version": "1.0.0",
+    "theme_author": "DIAZ",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent color",
+        "default": "#c87941"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "select",
+        "id": "heading_font",
+        "label": "Heading font",
+        "options": [
+          { "value": "Playfair Display", "label": "Playfair Display" },
+          { "value": "Cormorant Garamond", "label": "Cormorant Garamond" },
+          { "value": "EB Garamond", "label": "EB Garamond" },
+          { "value": "Georgia", "label": "Georgia (system)" }
+        ],
+        "default": "Playfair Display"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram_url",
+        "label": "Instagram URL",
+        "placeholder": "https://instagram.com/..."
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_url",
+        "label": "Facebook URL",
+        "placeholder": "https://facebook.com/..."
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_url",
+        "label": "Twitter / X URL",
+        "placeholder": "https://twitter.com/..."
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_url",
+        "label": "YouTube URL",
+        "placeholder": "https://youtube.com/..."
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image"
+      }
+    ]
+  }
+]

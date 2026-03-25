@@ -1,0 +1,48 @@
+<div class="inner-page">
+  <div class="container">
+    <h1>{{ 'search.title' | t }}</h1>
+
+    <form action="{{ routes.search_url }}" method="get" class="search-form" role="search">
+      <input
+        type="search"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ 'search.placeholder' | t }}"
+        aria-label="{{ 'search.title' | t }}"
+        autocomplete="off"
+      >
+      <button type="submit">{{ 'search.submit' | t }}</button>
+    </form>
+
+    {%- if search.performed -%}
+      {%- if search.results_count == 0 -%}
+        <p style="color:var(--color-text-muted);">{{ 'search.no_results' | t: terms: search.terms }}</p>
+      {%- else -%}
+        <p style="margin-bottom:2rem;color:var(--color-text-muted);">
+          {{ search.results_count }} result{% if search.results_count != 1 %}s{% endif %} for &ldquo;{{ search.terms | escape }}&rdquo;
+        </p>
+        <div class="collection-grid">
+          {%- for result in search.results -%}
+            {%- if result.object_type == 'product' -%}
+              {%- render 'product-card', product: result -%}
+            {%- else -%}
+              <div>
+                <a href="{{ result.url }}" style="font-weight:500;">{{ result.title }}</a>
+                {%- if result.description != blank -%}
+                  <p style="font-size:.875rem;color:var(--color-text-muted);margin-top:.25rem;">{{ result.description | strip_html | truncate: 120 }}</p>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Search",
+  "tag": "div"
+}
+{% endschema %}

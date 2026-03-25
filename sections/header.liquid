@@ -1,0 +1,135 @@
+<header class="site-header" id="SiteHeader">
+  <div class="container header-inner">
+
+    {%- comment -%} Left nav (desktop) {%- endcomment -%}
+    <nav class="header-left" aria-label="Main navigation">
+      <a href="/pages/about">About</a>
+      <a href="/pages/stores">Stores</a>
+      <a href="/pages/b2b">B2B Trading</a>
+    </nav>
+
+    {%- comment -%} Center logo {%- endcomment -%}
+    {%- assign logo_width = section.settings.logo_width | default: 120 -%}
+    <a class="header-logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+      {%- if section.settings.logo != blank -%}
+        <img
+          src="{{ section.settings.logo | image_url: width: logo_width }}"
+          alt="{{ shop.name }}"
+          style="width: {{ logo_width }}px; height: auto;"
+          loading="eager"
+        >
+      {%- else -%}
+        <img
+          src="{{ 'diaz_brand-3.png' | asset_url }}"
+          alt="{{ shop.name }}"
+          style="width: {{ logo_width }}px; height: auto;"
+          loading="eager"
+        >
+      {%- endif -%}
+    </a>
+
+    {%- comment -%} Right icons {%- endcomment -%}
+    <div class="header-right">
+      <a href="{{ routes.search_url }}" class="btn-ghost btn-icon" aria-label="{{ 'accessibility.skip_to_content' | t }}">
+        {%- render 'icon-search' -%}
+      </a>
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{{ routes.account_url }}" class="btn-ghost btn-icon" aria-label="Account">
+          {%- render 'icon-user' -%}
+        </a>
+      {%- endif -%}
+      <button
+        class="btn-ghost btn-icon cart-icon-wrapper"
+        id="CartToggle"
+        aria-label="{{ 'accessibility.open_cart' | t }}"
+        aria-expanded="false"
+        aria-controls="CartDrawer"
+      >
+        {%- render 'icon-cart' -%}
+        <span class="cart-count-badge" id="CartCount" aria-hidden="true">
+          {{- cart.item_count -}}
+        </span>
+      </button>
+
+      <button
+        class="mobile-menu-toggle btn-ghost btn-icon"
+        id="MobileMenuToggle"
+        aria-label="{{ 'accessibility.open_menu' | t }}"
+        aria-expanded="false"
+        aria-controls="MobileNav"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6"  x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+{%- comment -%} Collection nav (sticky below header) {%- endcomment -%}
+{%- if template.name == 'index' or template.name == 'collection' -%}
+<nav class="collection-nav" aria-label="Collection navigation">
+  <div class="collection-nav-inner">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'collection_link' -%}
+        <a
+          href="/collections/{{ block.settings.collection_handle }}"
+          class="collection-nav-link"
+          {{ block.shopify_attributes }}
+        >
+          {{- block.settings.label -}}
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</nav>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "div",
+  "class": "header-group",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 200,
+      "step": 10,
+      "default": 120,
+      "unit": "px",
+      "label": "Logo width"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_link",
+      "name": "Collection link",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "collection_handle",
+          "label": "Collection handle",
+          "default": "all"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

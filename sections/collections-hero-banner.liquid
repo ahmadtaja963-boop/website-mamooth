@@ -1,0 +1,55 @@
+<div class="collections-hero-banner">
+  <div class="collections-hero-inner">
+    {%- if section.settings.image != blank -%}
+      <img
+        src="{{ section.settings.image | image_url: width: 1920 }}"
+        alt="{{ section.settings.heading | escape }}"
+        loading="lazy"
+        width="1920" height="600"
+      >
+    {%- else -%}
+      <img
+        src="{{ 'chinese-model-leather.jpg' | asset_url }}"
+        alt="Premium Leather Collection"
+        loading="lazy"
+        width="1920" height="600"
+      >
+    {%- endif -%}
+    <div class="collections-hero-overlay">
+      <div class="collections-hero-text">
+        <h3>{{ section.settings.heading | default: 'Premium Leather Craftsmanship' }}</h3>
+        <p>{{ section.settings.subheading | default: 'Experience the finest quality leather accessories designed for the modern professional' }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collections Hero Banner",
+  "tag": "div",
+  "class": "collections-hero-banner-wrapper",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Banner image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Premium Leather Craftsmanship"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Experience the finest quality leather accessories designed for the modern professional"
+    }
+  ],
+  "presets": [
+    { "name": "Collections Hero Banner" }
+  ]
+}
+{% endschema %}

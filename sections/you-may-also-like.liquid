@@ -1,0 +1,291 @@
+{%- comment -%}
+  You May Also Like — Standalone section
+  Add up to 3 products. Grid auto-centers based on product count.
+{%- endcomment -%}
+
+{%- liquid
+  assign p1 = section.settings.product_1
+  assign p2 = section.settings.product_2
+  assign p3 = section.settings.product_3
+  assign product_count = 0
+  if p1 != blank
+    assign product_count = product_count | plus: 1
+  endif
+  if p2 != blank
+    assign product_count = product_count | plus: 1
+  endif
+  if p3 != blank
+    assign product_count = product_count | plus: 1
+  endif
+-%}
+
+{%- if product_count > 0 -%}
+<div class="ymal-section">
+  <div class="ymal-container">
+    <h2 class="ymal-heading">{{ section.settings.heading | default: 'You May Also Like' }}</h2>
+    <div class="ymal-grid ymal-count-{{ product_count }}">
+
+      {%- if p1 != blank -%}
+        {%- assign featured_image = p1.featured_media.preview_image -%}
+        {%- assign second_image = p1.media[1].preview_image -%}
+        {%- assign first_variant = p1.first_available_variant | default: p1.variants.first -%}
+        <div class="ymal-card">
+          <a href="{{ p1.url }}" class="ymal-card-link" aria-label="{{ p1.title | escape }}">
+            <div class="ymal-card-image">
+              {%- if featured_image -%}
+                <img src="{{ featured_image | image_url: width: 800 }}" alt="{{ featured_image.alt | default: p1.title | escape }}" width="{{ featured_image.width }}" height="{{ featured_image.height }}" loading="lazy" class="ymal-img-primary">
+                {%- if second_image -%}
+                  <img src="{{ second_image | image_url: width: 800 }}" alt="{{ second_image.alt | default: p1.title | escape }}" width="{{ second_image.width }}" height="{{ second_image.height }}" loading="lazy" class="ymal-img-secondary">
+                {%- endif -%}
+              {%- else -%}
+                <div class="ymal-placeholder"></div>
+              {%- endif -%}
+              {%- if first_variant -%}
+                <button class="ymal-add-btn" data-variant-id="{{ first_variant.id }}" aria-label="Add {{ p1.title | escape }} to cart" onclick="event.preventDefault();event.stopPropagation();window.DiazTheme.addToCart('{{ first_variant.id }}', 1, this);">
+                  {%- if first_variant.available -%}Add to Cart{%- else -%}Sold Out{%- endif -%}
+                </button>
+              {%- endif -%}
+            </div>
+          </a>
+          <div class="ymal-card-info">
+            <a href="{{ p1.url }}"><p class="ymal-card-title">{{ p1.title }}</p></a>
+            <p class="ymal-card-price">
+              {%- if p1.compare_at_price > p1.price -%}<s class="ymal-compare-price">{{ p1.compare_at_price | money }}</s>{%- endif -%}
+              {{ p1.price | money }}
+            </p>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if p2 != blank -%}
+        {%- assign featured_image = p2.featured_media.preview_image -%}
+        {%- assign second_image = p2.media[1].preview_image -%}
+        {%- assign first_variant = p2.first_available_variant | default: p2.variants.first -%}
+        <div class="ymal-card">
+          <a href="{{ p2.url }}" class="ymal-card-link" aria-label="{{ p2.title | escape }}">
+            <div class="ymal-card-image">
+              {%- if featured_image -%}
+                <img src="{{ featured_image | image_url: width: 800 }}" alt="{{ featured_image.alt | default: p2.title | escape }}" width="{{ featured_image.width }}" height="{{ featured_image.height }}" loading="lazy" class="ymal-img-primary">
+                {%- if second_image -%}
+                  <img src="{{ second_image | image_url: width: 800 }}" alt="{{ second_image.alt | default: p2.title | escape }}" width="{{ second_image.width }}" height="{{ second_image.height }}" loading="lazy" class="ymal-img-secondary">
+                {%- endif -%}
+              {%- else -%}
+                <div class="ymal-placeholder"></div>
+              {%- endif -%}
+              {%- if first_variant -%}
+                <button class="ymal-add-btn" data-variant-id="{{ first_variant.id }}" aria-label="Add {{ p2.title | escape }} to cart" onclick="event.preventDefault();event.stopPropagation();window.DiazTheme.addToCart('{{ first_variant.id }}', 1, this);">
+                  {%- if first_variant.available -%}Add to Cart{%- else -%}Sold Out{%- endif -%}
+                </button>
+              {%- endif -%}
+            </div>
+          </a>
+          <div class="ymal-card-info">
+            <a href="{{ p2.url }}"><p class="ymal-card-title">{{ p2.title }}</p></a>
+            <p class="ymal-card-price">
+              {%- if p2.compare_at_price > p2.price -%}<s class="ymal-compare-price">{{ p2.compare_at_price | money }}</s>{%- endif -%}
+              {{ p2.price | money }}
+            </p>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if p3 != blank -%}
+        {%- assign featured_image = p3.featured_media.preview_image -%}
+        {%- assign second_image = p3.media[1].preview_image -%}
+        {%- assign first_variant = p3.first_available_variant | default: p3.variants.first -%}
+        <div class="ymal-card">
+          <a href="{{ p3.url }}" class="ymal-card-link" aria-label="{{ p3.title | escape }}">
+            <div class="ymal-card-image">
+              {%- if featured_image -%}
+                <img src="{{ featured_image | image_url: width: 800 }}" alt="{{ featured_image.alt | default: p3.title | escape }}" width="{{ featured_image.width }}" height="{{ featured_image.height }}" loading="lazy" class="ymal-img-primary">
+                {%- if second_image -%}
+                  <img src="{{ second_image | image_url: width: 800 }}" alt="{{ second_image.alt | default: p3.title | escape }}" width="{{ second_image.width }}" height="{{ second_image.height }}" loading="lazy" class="ymal-img-secondary">
+                {%- endif -%}
+              {%- else -%}
+                <div class="ymal-placeholder"></div>
+              {%- endif -%}
+              {%- if first_variant -%}
+                <button class="ymal-add-btn" data-variant-id="{{ first_variant.id }}" aria-label="Add {{ p3.title | escape }} to cart" onclick="event.preventDefault();event.stopPropagation();window.DiazTheme.addToCart('{{ first_variant.id }}', 1, this);">
+                  {%- if first_variant.available -%}Add to Cart{%- else -%}Sold Out{%- endif -%}
+                </button>
+              {%- endif -%}
+            </div>
+          </a>
+          <div class="ymal-card-info">
+            <a href="{{ p3.url }}"><p class="ymal-card-title">{{ p3.title }}</p></a>
+            <p class="ymal-card-price">
+              {%- if p3.compare_at_price > p3.price -%}<s class="ymal-compare-price">{{ p3.compare_at_price | money }}</s>{%- endif -%}
+              {{ p3.price | money }}
+            </p>
+          </div>
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</div>
+{%- endif -%}
+
+<style>
+  .ymal-section {
+    padding: 3rem 0 4rem;
+    background: #ffffff;
+  }
+  .ymal-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .ymal-heading {
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--color-text);
+  }
+
+  /* ── Grid — centers based on count ── */
+  .ymal-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .ymal-card {
+    width: 100%;
+    max-width: 360px;
+  }
+  /* 1 product */
+  .ymal-count-1 .ymal-card { max-width: 400px; }
+  /* 2 products */
+  .ymal-count-2 .ymal-card { max-width: 380px; }
+  /* 3 products */
+  .ymal-count-3 .ymal-card { max-width: 360px; }
+
+  @media (min-width: 768px) {
+    .ymal-grid { flex-wrap: nowrap; }
+    .ymal-count-1 .ymal-card { max-width: 440px; }
+    .ymal-count-2 .ymal-card { flex: 0 1 380px; }
+    .ymal-count-3 .ymal-card { flex: 0 1 360px; }
+  }
+
+  /* ── Card ── */
+  .ymal-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .ymal-card-image {
+    position: relative;
+    aspect-ratio: 1;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  .ymal-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+  }
+  .ymal-img-secondary {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .ymal-card:hover .ymal-img-primary {
+    opacity: 0;
+  }
+  .ymal-card:hover .ymal-img-secondary {
+    opacity: 1;
+  }
+  .ymal-card:hover .ymal-card-image img {
+    transform: scale(1.04);
+  }
+  .ymal-placeholder {
+    aspect-ratio: 1;
+    background: var(--color-secondary-bg, #f5f5f5);
+  }
+
+  /* ── Add to Cart button ── */
+  .ymal-add-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--color-black, #111);
+    color: var(--color-white, #fff);
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 0 0 12px 12px;
+  }
+  .ymal-card:hover .ymal-add-btn {
+    opacity: 1;
+  }
+
+  /* ── Card Info ── */
+  .ymal-card-info {
+    padding: 0 0.25rem;
+  }
+  .ymal-card-title {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--color-text);
+  }
+  .ymal-card-price {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+  }
+  .ymal-compare-price {
+    color: var(--color-text-muted);
+    margin-right: 0.35rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "You May Also Like",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "You May Also Like"
+    },
+    {
+      "type": "product",
+      "id": "product_1",
+      "label": "Product 1"
+    },
+    {
+      "type": "product",
+      "id": "product_2",
+      "label": "Product 2"
+    },
+    {
+      "type": "product",
+      "id": "product_3",
+      "label": "Product 3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "You May Also Like"
+    }
+  ]
+}
+{% endschema %}

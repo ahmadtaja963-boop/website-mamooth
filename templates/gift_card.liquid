@@ -1,0 +1,16 @@
+{% layout 'theme' %}
+
+<div class="gift-card-page pt-nav">
+  <div class="gift-card-content">
+    <h1>Gift Card</h1>
+    <p style="color:var(--color-text-muted);margin-bottom:1rem;">Your gift card code:</p>
+    <p style="font-size:1.5rem;font-weight:700;letter-spacing:0.1em;margin-bottom:2rem;">{{ gift_card.code | format_code }}</p>
+    <p style="margin-bottom:0.5rem;">Balance: <strong>{{ gift_card.balance | money }}</strong></p>
+    {%- if gift_card.enabled == false or gift_card.expired -%}
+      <p style="color:red;margin-top:0.5rem;">This gift card has expired.</p>
+    {%- endif -%}
+    <div style="margin-top:2rem;">
+      <a href="{{ shop.url }}" class="btn btn-primary">Continue Shopping</a>
+    </div>
+  </div>
+</div>

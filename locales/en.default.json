@@ -1,0 +1,87 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Tagged with {{ tags }}",
+      "page": "Page {{ page }}"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Shopping Cart",
+      "empty": "Your cart is empty",
+      "checkout": "Proceed to Checkout",
+      "subtotal": "Subtotal",
+      "continue_shopping": "Continue Shopping",
+      "remove": "Remove",
+      "item_count": {
+        "one": "{{ count }} item",
+        "other": "{{ count }} items"
+      }
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "description": "Description",
+      "view_product": "View Product",
+      "new": "New"
+    }
+  },
+  "collections": {
+    "general": {
+      "no_matches": "No products found"
+    }
+  },
+  "customer": {
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign In",
+      "forgot_password": "Forgot your password?",
+      "create_account": "Create account"
+    },
+    "register": {
+      "title": "Create Account",
+      "submit": "Create Account"
+    },
+    "account": {
+      "title": "My Account",
+      "orders": "Order History",
+      "logout": "Log Out"
+    },
+    "addresses": {
+      "title": "My Addresses",
+      "add": "Add a new address",
+      "edit": "Edit address",
+      "delete": "Delete"
+    }
+  },
+  "404": {
+    "title": "404",
+    "subtext": "The page you're looking for doesn't exist.",
+    "link": "Continue shopping"
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search products...",
+    "submit": "Search",
+    "no_results": "No results for \"{{ terms }}\""
+  },
+  "newsletter": {
+    "label": "Email address",
+    "placeholder": "Email address",
+    "submit": "Subscribe",
+    "success": "Thank you for subscribing."
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to content",
+    "close_menu": "Close menu",
+    "open_menu": "Open menu",
+    "open_cart": "Open cart",
+    "close_cart": "Close cart"
+  }
+}

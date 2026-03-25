@@ -1,0 +1,99 @@
+<div class="brand-sections">
+  {%- for block in section.blocks -%}
+    <a
+      class="brand-panel"
+      href="{{ block.settings.link | default: '#' }}"
+      {{ block.shopify_attributes }}
+    >
+      {%- if block.settings.image != blank -%}
+        <img
+          src="{{ block.settings.image | image_url: width: 1000 }}"
+          alt="{{ block.settings.heading | escape }}"
+          loading="lazy"
+          width="1000" height="600"
+        >
+      {%- else -%}
+        {%- assign default_img = block.settings.default_image | default: 'stores-section.jpg' -%}
+        <img
+          src="{{ default_img | asset_url }}"
+          alt="{{ block.settings.heading | escape }}"
+          loading="lazy"
+          width="1000" height="600"
+        >
+      {%- endif -%}
+
+      <div class="brand-panel-overlay">
+        <div class="brand-panel-content">
+          <h3>{{ block.settings.heading }}</h3>
+          {%- if block.settings.subtext != blank -%}
+            <p>{{ block.settings.subtext }}</p>
+          {%- endif -%}
+          {%- if block.settings.button_label != blank -%}
+            <span class="btn btn-white btn-sm">{{ block.settings.button_label }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+    </a>
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Brand Sections",
+  "tag": "div",
+  "blocks": [
+    {
+      "type": "panel",
+      "name": "Panel",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background image"
+        },
+        {
+          "type": "select",
+          "id": "default_image",
+          "label": "Default image",
+          "options": [
+            { "value": "stores-section.jpg",   "label": "Stores" },
+            { "value": "inside-diaz.jpg",      "label": "Inside DIAZ" }
+          ],
+          "default": "stores-section.jpg"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "STORES"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Subtext"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Discover"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Sections",
+      "blocks": [
+        { "type": "panel", "settings": { "heading": "STORES", "default_image": "stores-section.jpg", "button_label": "Discover", "link": "/pages/stores" } },
+        { "type": "panel", "settings": { "heading": "INSIDE DIAZ", "default_image": "inside-diaz.jpg", "button_label": "Explore", "link": "/pages/inside-diaz" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

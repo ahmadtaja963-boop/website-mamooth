@@ -1,0 +1,71 @@
+<section class="banner-section">
+  {%- if section.settings.image != blank -%}
+    <img
+      src="{{ section.settings.image | image_url: width: 1920 }}"
+      alt="{{ section.settings.heading | escape }}"
+      loading="lazy"
+      width="1920" height="500"
+    >
+  {%- else -%}
+    <img
+      src="{{ 'store-interior.jpg' | asset_url }}"
+      alt="{{ section.settings.heading | escape }}"
+      loading="lazy"
+      width="1920" height="500"
+    >
+  {%- endif -%}
+
+  <div class="banner-overlay">
+    <div class="banner-content">
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.subheading != blank -%}
+        <p>{{ section.settings.subheading }}</p>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_url | default: '/pages/b2b' }}" class="btn btn-white">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "B2B Banner",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "WHOLESALE TRADING"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Partner with DIAZ for premium leather goods at wholesale pricing"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    { "name": "B2B Banner" }
+  ]
+}
+{% endschema %}

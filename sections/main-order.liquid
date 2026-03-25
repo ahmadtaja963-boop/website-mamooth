@@ -1,0 +1,48 @@
+<div class="customer-page pt-nav">
+  <div class="container">
+    <a href="{{ routes.account_url }}" style="font-size:.875rem;color:var(--color-text-muted);display:inline-flex;align-items:center;gap:.25rem;margin-bottom:1.5rem;">
+      &larr; Back to Account
+    </a>
+    <h1>Order {{ order.name }}</h1>
+    <p style="color:var(--color-text-muted);margin-bottom:2rem;">Placed on {{ order.created_at | date: '%B %d, %Y' }}</p>
+
+    <div style="border:1px solid var(--color-border);margin-bottom:2rem;">
+      {%- for line_item in order.line_items -%}
+        <div style="display:flex;gap:1rem;padding:1rem;border-bottom:1px solid var(--color-border);">
+          {%- if line_item.image -%}
+            <img src="{{ line_item.image | image_url: width: 80 }}" alt="{{ line_item.title }}" width="80" height="80" style="object-fit:contain;">
+          {%- endif -%}
+          <div style="flex:1;">
+            <p style="font-weight:500;">{{ line_item.product.title }}</p>
+            {%- unless line_item.variant_title == 'Default Title' -%}
+              <p style="font-size:.875rem;color:var(--color-text-muted);">{{ line_item.variant_title }}</p>
+            {%- endunless -%}
+            <p style="font-size:.875rem;color:var(--color-text-muted);">Qty: {{ line_item.quantity }}</p>
+          </div>
+          <p style="font-weight:600;">{{ line_item.line_price | money }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div style="max-width:300px;margin-left:auto;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:.5rem;">
+        <span>Subtotal</span><span>{{ order.subtotal_price | money }}</span>
+      </div>
+      {%- for shipping_method in order.shipping_methods -%}
+        <div style="display:flex;justify-content:space-between;margin-bottom:.5rem;">
+          <span>Shipping</span><span>{{ shipping_method.price | money }}</span>
+        </div>
+      {%- endfor -%}
+      <div style="display:flex;justify-content:space-between;font-weight:600;border-top:1px solid var(--color-border);padding-top:.75rem;margin-top:.5rem;">
+        <span>Total</span><span>{{ order.total_price | money }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Order",
+  "tag": "div"
+}
+{% endschema %}

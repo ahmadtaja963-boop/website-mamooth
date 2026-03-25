@@ -1,0 +1,207 @@
+<div class="page-craftsmanship pt-nav">
+
+  {%- comment -%} Hero {%- endcomment -%}
+  <div style="position:relative;height:40vh;min-height:300px;overflow:hidden;">
+    <img
+      src="{{ 'craftsmanship-hero.jpg' | asset_url }}"
+      alt="Craftsmanship"
+      style="width:100%;height:100%;object-fit:cover;"
+    >
+    <div style="position:absolute;inset:0;background:rgba(0,0,0,0.5);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;">
+      <h1 style="font-family:var(--font-heading);font-size:clamp(2.5rem,6vw,4.5rem);color:#fff;margin-bottom:1rem;letter-spacing:0.05em;">Craftsmanship</h1>
+      <p style="font-size:1.1rem;color:rgba(255,255,255,0.85);max-width:500px;">The art of creating lasting beauty</p>
+    </div>
+  </div>
+
+  {%- comment -%} Intro {%- endcomment -%}
+  <section style="padding:5rem 0;background:#fff;">
+    <div class="container" style="max-width:1100px;margin:0 auto;">
+      <h2 style="font-family:var(--font-heading);font-size:clamp(2rem,4vw,3.5rem);margin-bottom:1.5rem;text-align:center;">From Hide to Heritage</h2>
+      <p style="color:var(--color-text-muted);text-align:center;max-width:700px;margin:0 auto 5rem;font-size:1.05rem;line-height:1.8;">
+        Witness the extraordinary journey of genuine cowhide leather as it transforms from raw material into timeless luxury goods. Each step in our workshop is a testament to dedication, skill, and centuries-old craftsmanship.
+      </p>
+
+      {%- comment -%} Steps {%- endcomment -%}
+      <div style="display:flex;flex-direction:column;gap:6rem;">
+
+        {%- comment -%} Step 1 {%- endcomment -%}
+        <div class="craft-step">
+          <div class="craft-step-text">
+            <h3 style="font-family:var(--font-heading);font-size:1.75rem;margin-bottom:1.25rem;">1. Raw Hide Inspection &amp; Selection</h3>
+            <p style="color:var(--color-text-muted);margin-bottom:1rem;line-height:1.8;">
+              Our journey begins at the source. Master craftsmen inspect each cowhide with meticulous attention, examining every inch for natural imperfections, grain quality, and thickness consistency. Only the finest hides—those with uniform texture and minimal scarring—are selected for DIAZ products.
+            </p>
+            <p style="color:var(--color-text-muted);line-height:1.8;">
+              We source exclusively from certified European tanneries where hides undergo vegetable tanning, a traditional process that takes 6–8 weeks but results in leather that develops a beautiful patina over time.
+            </p>
+          </div>
+          <div class="craft-step-media">
+            <video style="width:100%;height:100%;object-fit:cover;" autoplay muted loop playsinline>
+              <source src="{{ 'leather.mp4' | asset_url }}" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        {%- comment -%} Step 2 {%- endcomment -%}
+        <div class="craft-step craft-step-reverse">
+          <div class="craft-step-text">
+            <h3 style="font-family:var(--font-heading);font-size:1.75rem;margin-bottom:1.25rem;">2. Conditioning &amp; Preparation</h3>
+            <p style="color:var(--color-text-muted);margin-bottom:1rem;line-height:1.8;">
+              Once selected, the leather is carefully conditioned in our climate-controlled workshop. Natural oils are applied by hand to restore moisture and flexibility lost during the tanning process. This crucial step ensures the leather will be supple yet durable.
+            </p>
+            <p style="color:var(--color-text-muted);line-height:1.8;">
+              Our artisans then hand-grade each section of the hide, identifying the optimal areas for different product components. Premium sections go to wallet fronts and bag panels, while denser areas are reserved for belts and straps.
+            </p>
+          </div>
+          <div class="craft-step-media">
+            <img src="{{ 'leather-detail.jpg' | asset_url }}" alt="Leather conditioning" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+        </div>
+
+        {%- comment -%} Step 3 {%- endcomment -%}
+        <div class="craft-step">
+          <div class="craft-step-text">
+            <h3 style="font-family:var(--font-heading);font-size:1.75rem;margin-bottom:1.25rem;">3. Precision Pattern Cutting</h3>
+            <p style="color:var(--color-text-muted);margin-bottom:1rem;line-height:1.8;">
+              Using templates perfected over decades, our craftsmen cut each component by hand. This traditional approach allows us to work with the natural grain of the leather, ensuring every piece showcases the hide's unique character while maximizing material efficiency.
+            </p>
+            <p style="color:var(--color-text-muted);line-height:1.8;">
+              Sharp rotary knives glide through the leather with practiced precision, creating clean edges that will later be finished to perfection. No two pieces are identical—each bears the subtle variations that mark genuine craftsmanship.
+            </p>
+          </div>
+          <div class="craft-step-media">
+            <img src="{{ 'craftsmanship-hero.jpg' | asset_url }}" alt="Pattern cutting" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+        </div>
+
+        {%- comment -%} Step 4 {%- endcomment -%}
+        <div class="craft-step craft-step-reverse">
+          <div class="craft-step-text">
+            <h3 style="font-family:var(--font-heading);font-size:1.75rem;margin-bottom:1.25rem;">4. Edge Beveling &amp; Preparation</h3>
+            <p style="color:var(--color-text-muted);margin-bottom:1rem;line-height:1.8;">
+              Before assembly, every edge is carefully beveled using specialized tools. This process removes the sharp 90-degree angle, creating a smooth transition that feels refined to the touch. The bevel also prepares the edge for burnishing, ensuring a professional finish.
+            </p>
+            <p style="color:var(--color-text-muted);line-height:1.8;">
+              Our artisans work methodically, maintaining consistent pressure and angle on every edge. This attention to detail separates handcrafted luxury from mass production—it's the difference you can feel.
+            </p>
+          </div>
+          <div class="craft-step-media">
+            <video style="width:100%;height:100%;object-fit:cover;" autoplay muted loop playsinline>
+              <source src="{{ 'new_diaz.mp4' | asset_url }}" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        {%- comment -%} Step 5 {%- endcomment -%}
+        <div class="craft-step">
+          <div class="craft-step-text">
+            <h3 style="font-family:var(--font-heading);font-size:1.75rem;margin-bottom:1.25rem;">5. Saddle Stitching by Hand</h3>
+            <p style="color:var(--color-text-muted);margin-bottom:1rem;line-height:1.8;">
+              Watch as skilled hands perform the ancient art of saddle stitching—a technique that creates seams stronger than any machine stitch. Two needles work simultaneously from opposite sides, interlocking waxed thread in a manner that ensures if one stitch breaks, the entire seam won't unravel.
+            </p>
+            <p style="color:var(--color-text-muted);line-height:1.8;">
+              Each stitch is pulled with precisely calibrated tension, creating uniform holes that become part of the aesthetic. Our craftsmen complete 7–8 stitches per inch, a rhythm perfected through years of practice. A single wallet can take 3 hours to stitch completely.
+            </p>
+          </div>
+          <div class="craft-step-media">
+            <img src="{{ 'patina-feature.jpeg' | asset_url }}" alt="Hand stitching" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+        </div>
+
+        {%- comment -%} Step 6 {%- endcomment -%}
+        <div class="craft-step craft-step-reverse">
+          <div class="craft-step-text">
+            <h3 style="font-family:var(--font-heading);font-size:1.75rem;margin-bottom:1.25rem;">6. Edge Burnishing &amp; Finishing</h3>
+            <p style="color:var(--color-text-muted);margin-bottom:1rem;line-height:1.8;">
+              The art of edge finishing transforms raw cut leather into glass-smooth perfection. Using a combination of gum tragacanth (a natural tree resin), water, and intense friction, our artisans burnish each edge until it achieves a polished, sealed surface.
+            </p>
+            <p style="color:var(--color-text-muted);line-height:1.8;">
+              This process compresses the leather fibers, creating a finish that's not only beautiful but also protective—preventing fraying and moisture penetration. Multiple passes create the signature DIAZ edge that rivals painted finishes in appearance but surpasses them in durability.
+            </p>
+          </div>
+          <div class="craft-step-media">
+            <img src="{{ 'slim-design-feature.png' | asset_url }}" alt="Edge burnishing" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+        </div>
+
+        {%- comment -%} Step 7 {%- endcomment -%}
+        <div class="craft-step">
+          <div class="craft-step-text">
+            <h3 style="font-family:var(--font-heading);font-size:1.75rem;margin-bottom:1.25rem;">7. Hardware Installation</h3>
+            <p style="color:var(--color-text-muted);margin-bottom:1rem;line-height:1.8;">
+              Premium solid brass hardware is carefully installed, with each rivet set by hand to ensure perfect alignment and permanent attachment. Holes are precisely marked and punched to accommodate snaps, buckles, and decorative elements without compromising the leather's integrity.
+            </p>
+            <p style="color:var(--color-text-muted);line-height:1.8;">
+              The brass will develop its own patina over time, aging gracefully alongside the leather.
+            </p>
+          </div>
+          <div class="craft-step-media">
+            <img src="{{ 'snap-on-feature.jpg' | asset_url }}" alt="Hardware installation" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+        </div>
+
+        {%- comment -%} Step 8 {%- endcomment -%}
+        <div class="craft-step craft-step-reverse">
+          <div class="craft-step-text">
+            <h3 style="font-family:var(--font-heading);font-size:1.75rem;margin-bottom:1.25rem;">8. Quality Inspection &amp; Finishing</h3>
+            <p style="color:var(--color-text-muted);margin-bottom:1rem;line-height:1.8;">
+              Before any piece leaves our workshop, it undergoes rigorous inspection. Every stitch is examined, every edge is tested, and the overall construction is evaluated against our exacting standards. Products that don't meet our criteria are rejected—no exceptions.
+            </p>
+            <p style="color:var(--color-text-muted);line-height:1.8;">
+              Approved pieces receive a final conditioning treatment, are carefully packaged, and embossed with the DIAZ maker's mark—your guarantee of authenticity and quality. This mark represents not just a product, but a promise of craftsmanship that will serve you for decades.
+            </p>
+          </div>
+          <div class="craft-step-media">
+            <img src="{{ 'inside-diaz.jpg' | asset_url }}" alt="Quality inspection" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Closing banner {%- endcomment -%}
+  <section style="padding:5rem 0;background:#f5f0ea;text-align:center;">
+    <div class="container" style="max-width:800px;margin:0 auto;">
+      <h2 style="font-family:var(--font-heading);font-size:2rem;margin-bottom:1.5rem;">Time-Honored Techniques</h2>
+      <p style="color:var(--color-text-muted);margin-bottom:1.5rem;line-height:1.8;">
+        Our workshops maintain traditional leather working methods passed down through generations. Each craftsman undergoes years of apprenticeship, mastering the subtle art of working with leather.
+      </p>
+      <p style="color:var(--color-text-muted);line-height:1.8;">
+        The result is not just a product, but a work of art that will develop its own unique character over time, becoming more beautiful with age and use.
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<style>
+.craft-step {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.craft-step-reverse .craft-step-text { order: 2; }
+.craft-step-reverse .craft-step-media { order: 1; }
+.craft-step-media {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+@media (max-width: 767px) {
+  .craft-step,
+  .craft-step-reverse .craft-step-text,
+  .craft-step-reverse .craft-step-media {
+    grid-template-columns: 1fr !important;
+    display: block !important;
+  }
+  .craft-step-media { margin-top: 1.5rem; }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Craftsmanship Page",
+  "tag": "div"
+}
+{% endschema %}

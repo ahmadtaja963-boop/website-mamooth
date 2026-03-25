@@ -1,0 +1,91 @@
+{%- assign col = collection -%}
+
+<div class="pt-nav">
+  {%- comment -%} Collection Hero {%- endcomment -%}
+  <div class="collection-hero">
+    {%- if col.image != blank -%}
+      <img
+        src="{{ col.image | image_url: width: 1920 }}"
+        alt="{{ col.title | escape }}"
+        loading="eager"
+        width="1920" height="600"
+      >
+    {%- elsif section.settings.fallback_image != blank -%}
+      <img
+        src="{{ section.settings.fallback_image | image_url: width: 1920 }}"
+        alt="{{ col.title | escape }}"
+        loading="eager"
+        width="1920" height="600"
+      >
+    {%- else -%}
+      <div style="width:100%;height:100%;background:#111;"></div>
+    {%- endif -%}
+    <div class="collection-hero-overlay">
+      <h1>{{ col.title }}</h1>
+    </div>
+  </div>
+
+  {%- comment -%} Products {%- endcomment -%}
+  <div class="collection-products">
+    <div class="container">
+      {%- if col.description != blank -%}
+        <p style="max-width:700px;margin-bottom:2rem;color:var(--color-text-muted);">{{ col.description }}</p>
+      {%- endif -%}
+
+      {%- paginate col.products by section.settings.products_per_page -%}
+        {%- if col.products.size > 0 -%}
+          <div class="collection-grid">
+            {%- for product in col.products -%}
+              {%- render 'product-card', product: product -%}
+            {%- endfor -%}
+          </div>
+
+          {%- if paginate.pages > 1 -%}
+            <div style="display:flex;justify-content:center;gap:0.5rem;margin-top:3rem;">
+              {%- if paginate.previous -%}
+                <a href="{{ paginate.previous.url }}" class="btn btn-outline btn-sm">&larr; Previous</a>
+              {%- endif -%}
+              {%- for part in paginate.parts -%}
+                {%- if part.is_link -%}
+                  <a href="{{ part.url }}" class="btn btn-outline btn-sm">{{ part.title }}</a>
+                {%- else -%}
+                  <span class="btn btn-primary btn-sm">{{ part.title }}</span>
+                {%- endif -%}
+              {%- endfor -%}
+              {%- if paginate.next -%}
+                <a href="{{ paginate.next.url }}" class="btn btn-outline btn-sm">Next &rarr;</a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- else -%}
+          <p style="text-align:center;padding:4rem 0;color:var(--color-text-muted);">
+            {{ 'collections.general.no_matches' | t }}
+          </p>
+        {%- endif -%}
+      {%- endpaginate -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "fallback_image",
+      "label": "Fallback hero image (if collection has no image)"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 12,
+      "max": 48,
+      "step": 4,
+      "default": 24,
+      "label": "Products per page"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,376 @@
+{{ 'bundle-deals.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .bundle-deals-{{ section.id }} .bundle-deals__media {
+    grid-template-columns: repeat({{ section.blocks.size }}, minmax(0, 1fr));
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding" style="background:{{ section.settings.background_color }};">
+  <div class="container">
+
+    {%- unless section.settings.title == blank -%}
+      <h2 class="bundle-deals__heading" style="text-align:{{ section.settings.text_align }};margin-bottom:2rem;font-size:2rem;letter-spacing:0.05em;text-transform:uppercase;">
+        {{ section.settings.title }}
+      </h2>
+    {%- endunless -%}
+
+    {%- assign total_pct_left = 100.0 | minus: section.settings.percentage_discount | divided_by: 100.0 -%}
+    {%- assign total_fixed    = section.settings.fixed_amount_discount | times: 100.0 -%}
+
+    <bundle-deals
+      id="bundle-deals-{{ section.id }}"
+      class="bundle-deals bundle-deals-{{ section.id }} bundle-deals-{{ section.settings.layout }}"
+      data-section="{{ section.id }}"
+      data-skip-non-existent="true"
+      data-skip-unavailable="{{ section.settings.skip_unavailable }}"
+      data-percentage-left="{{ total_pct_left }}"
+      data-fixed-discount="{{ total_fixed }}"
+      data-currency-symbol="{{ cart.currency.symbol }}"
+      data-update-prices="{{ section.settings.enable_price_changes }}"
+    >
+
+      {%- comment -%} ── Product images row ── {%- endcomment -%}
+      <div class="bundle-deals__media">
+        {%- for block in section.blocks -%}
+          {%- assign product = block.settings.product -%}
+          <div class="bundle-deals__media-item">
+            {%- if product != blank and product.featured_image != blank -%}
+              <a href="{{ product.url }}"
+                 class="bundle-deals__media-item-container bundle-deals__media-item-container-js">
+                <img
+                  src="{{ product.featured_image | image_url: width: 400 }}"
+                  alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                  loading="lazy"
+                  width="400"
+                  height="400"
+                  class="bundle-deals__media-item-img bundle-deals__media-item-img-js"
+                >
+              </a>
+            {%- else -%}
+              <div class="bundle-deals__media-item-container bundle-deals__media-item-container-js"
+                   style="background:#f5f0eb;aspect-ratio:1;border-radius:0.5rem;"></div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- comment -%} ── Product rows ── {%- endcomment -%}
+      <div class="bundle-deals__center">
+        {%- assign items_count       = 0 -%}
+        {%- assign total_compare     = 0 -%}
+        {%- assign total_price_calc  = 0 -%}
+
+        {%- for block in section.blocks -%}
+          {%- assign product = block.settings.product -%}
+
+          {%- if product != blank -%}
+            {%- assign items_count = items_count | plus: 1 -%}
+            {%- assign blk_pct_left = 100.0 | minus: block.settings.percentage_discount | divided_by: 100.0 -%}
+            {%- assign blk_fixed    = block.settings.fixed_amount_discount | times: 100.0 -%}
+            {%- assign variant      = product.selected_or_first_available_variant -%}
+            {%- assign price        = variant.price | times: blk_pct_left | minus: blk_fixed | round -%}
+
+            {%- if variant.compare_at_price > variant.price -%}
+              {%- assign cmp_price = variant.compare_at_price -%}
+            {%- else -%}
+              {%- assign cmp_price = variant.price -%}
+            {%- endif -%}
+
+            {%- assign total_price_calc = total_price_calc | plus: price -%}
+            {%- assign total_compare    = total_compare    | plus: cmp_price -%}
+
+            <div class="bundle-deals__product bundle-deals__product-js">
+              <div class="bundle-deals__checkbox-container{% if product.has_only_default_variant %} bundle-deals__checkbox-container--price-under{% endif %}">
+
+                <input
+                  type="checkbox"
+                  class="bundle-deals__checkbox bundle-deals__checkbox-js visually-hidden"
+                  id="checkbox-{{ forloop.index0 }}-{{ section.id }}"
+                  data-id="{{ variant.id }}"
+                  data-price="{{ price }}"
+                  data-compare-price="{{ cmp_price }}"
+                  data-index="{{ forloop.index0 }}"
+                  data-checked="true"
+                  {% unless block.settings.required == false %}checked{% endunless %}
+                >
+
+                <label for="checkbox-{{ forloop.index0 }}-{{ section.id }}"
+                       class="bundle-deals__checkbox-label{% if block.settings.required %} pointer-events--none{% endif %}">
+                  <svg class="checkmark-checked" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+                    <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                  </svg>
+                  <svg class="checkmark-unchecked" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+                    <path d="M384 80c8.8 0 16 7.2 16 16V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V96c0-8.8 7.2-16 16-16H384zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"/>
+                  </svg>
+                  <p class="bundle-deals__title">{{ product.title }}</p>
+                </label>
+
+                <div class="bundle-deals__prices">
+                  <span class="bundle-deals__price bundle-deals__price-js">{{ price | money }}</span>
+                  {%- if cmp_price > price -%}
+                    <span class="bundle-deals__compare-price bundle-deals__compare-price-js">{{ cmp_price | money }}</span>
+                  {%- else -%}
+                    <span class="bundle-deals__compare-price bundle-deals__compare-price-js"></span>
+                  {%- endif -%}
+                </div>
+
+              </div>
+
+              {%- comment -%} Variant picker (only if product has variants) {%- endcomment -%}
+              {%- if product.has_only_default_variant == false -%}
+                <div
+                  class="bundle-deals__variant-selects bundle-deals__variant-selects-js"
+                  data-index="{{ forloop.index0 }}"
+                  data-id-index="id_{{ forloop.index0 }}"
+                  data-percentage-left="{{ blk_pct_left }}"
+                  data-fixed-discount="{{ blk_fixed }}"
+                >
+                  {%- for option in product.options_with_values -%}
+                    <div class="select">
+                      <select>
+                        {%- for value in option.values -%}
+                          {%- liquid
+                            assign vars_avail   = product.variants | map: 'available'
+                            assign vars_opt1    = product.variants | map: 'option1'
+                            assign vars_opt2    = product.variants | map: 'option2'
+                            assign vars_opt3    = product.variants | map: 'option3'
+                            assign opt_disabled = true
+                            assign opt_exists   = false
+
+                            for opt1 in vars_opt1
+                              case option.position
+                                when 1
+                                  if vars_opt1[forloop.index0] == value
+                                    assign opt_exists = true
+                                    if vars_avail[forloop.index0]
+                                      assign opt_disabled = false
+                                    endif
+                                  endif
+                                when 2
+                                  if opt1 == product.first_available_variant.option1 and vars_opt2[forloop.index0] == value
+                                    assign opt_exists = true
+                                    if vars_avail[forloop.index0]
+                                      assign opt_disabled = false
+                                    endif
+                                  endif
+                                when 3
+                                  if opt1 == product.first_available_variant.option1 and vars_opt2[forloop.index0] == product.first_available_variant.option2 and vars_opt3[forloop.index0] == value
+                                    assign opt_exists = true
+                                    if vars_avail[forloop.index0]
+                                      assign opt_disabled = false
+                                    endif
+                                  endif
+                              endcase
+                            endfor
+                          -%}
+                          {%- if opt_exists -%}
+                            <option value="{{ value | escape }}"{% if opt_disabled %} disabled{% endif %}>
+                              {%- if opt_disabled -%}{{ value }} (sold out){%- else -%}{{ value }}{%- endif -%}
+                            </option>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </select>
+                      {%- render 'icon-caret' -%}
+                    </div>
+                  {%- endfor -%}
+                  <script type="application/json">{{ product.variants | json }}</script>
+                </div>
+              {%- endif -%}
+
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- comment -%} ── Total + CTA ── {%- endcomment -%}
+      <div class="bundle-deals__button">
+        {%- if items_count == section.blocks.size -%}
+          {%- assign display_total     = total_price_calc | times: total_pct_left | minus: total_fixed | round -%}
+          <p class="bundle-deals__total-price-container">
+            <span>{{ section.settings.total_price_label }}</span>
+            <span>
+              {%- if total_compare > display_total -%}
+                <span class="bundle-deals__total-compare-price bundle-deals__total-compare-price-js">{{ total_compare | money }}</span>
+              {%- else -%}
+                <span class="bundle-deals__total-compare-price bundle-deals__total-compare-price-js"></span>
+              {%- endif -%}
+              <span class="bundle-deals__total-price bundle-deals__total-price-js">{{ display_total | money }}</span>
+            </span>
+          </p>
+          <button
+            type="button"
+            class="bundle-deals__btn"
+            data-label="{{ section.settings.btn_label }}"
+          >
+            {{ section.settings.btn_label }}
+          </button>
+          <p class="bundle-deals__error" role="alert"></p>
+        {%- else -%}
+          <button class="bundle-deals__btn" disabled>Add a product to every slot</button>
+        {%- endif -%}
+      </div>
+
+      <div class="bundle-deals__empty"></div>
+
+    </bundle-deals>
+  </div>
+</div>
+
+<script src="{{ 'bundle-deals.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Bundle deals",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "BUILD YOUR BUNDLE"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Heading alignment",
+      "options": [
+        { "value": "left",   "label": "Left"   },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Desktop layout",
+      "options": [
+        { "value": "",                        "label": "Vertical"               },
+        { "value": "horizontal-images-left",  "label": "Horizontal – Images left"  },
+        { "value": "horizontal-images-right", "label": "Horizontal – Images right" }
+      ],
+      "default": "horizontal-images-left"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_price_changes",
+      "label": "Enable live price updates",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "skip_unavailable",
+      "label": "Hide sold-out variants",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "total_price_label",
+      "label": "Total price label",
+      "default": "Total:"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button label",
+      "default": "ADD BUNDLE TO CART"
+    },
+    {
+      "type": "header",
+      "content": "Bundle-level discount"
+    },
+    {
+      "type": "text",
+      "id": "percentage_discount",
+      "label": "Percentage discount (no % symbol)",
+      "default": "0",
+      "info": "E.g. enter 25 for 25% off the entire bundle total."
+    },
+    {
+      "type": "text",
+      "id": "fixed_amount_discount",
+      "label": "Fixed discount (no currency symbol)",
+      "default": "0",
+      "info": "E.g. enter 10 to subtract $10 from the total."
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0, "max": 100, "step": 4, "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0, "max": 100, "step": 4, "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "percentage_discount",
+          "label": "Percentage discount for this product",
+          "default": "0"
+        },
+        {
+          "type": "text",
+          "id": "fixed_amount_discount",
+          "label": "Fixed discount for this product",
+          "default": "0"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Lock checkbox (cannot be unchecked)",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundle deals",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}

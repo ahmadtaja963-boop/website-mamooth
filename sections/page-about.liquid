@@ -1,0 +1,562 @@
+<div class="page-about pt-nav">
+
+  {%- comment -%} ── 1. HERO ── {%- endcomment -%}
+  <div class="about-hero">
+    {%- if section.settings.hero_image != blank -%}
+      <img
+        src="{{ section.settings.hero_image | image_url: width: 2400 }}"
+        alt="DIAZ — Our Story"
+        class="about-hero__img"
+        loading="eager"
+      >
+    {%- else -%}
+      <div class="about-hero__placeholder">[ Photo: Wide shot of tannery or Ecuadorian landscape ]</div>
+    {%- endif -%}
+    <div class="about-hero__overlay">
+      <span class="about-eyebrow">Est. 1989 · Ecuador</span>
+      <h1 class="about-hero__title">Our Story</h1>
+      <p class="about-hero__sub">From a rented room in Ecuador to your hands.</p>
+    </div>
+  </div>
+
+  {%- comment -%} ── 2. THE ORIGIN — Patricio ── {%- endcomment -%}
+  <section class="about-section about-section--white">
+    <div class="container">
+      <div class="about-split">
+        <div class="about-split__text">
+          <span class="about-eyebrow about-eyebrow--dark">1989</span>
+          <h2 class="about-heading">A Man, a Dream,<br>and a Rented Room</h2>
+          <p class="about-body">In a small town in Ecuador, a man named Patricio Díaz started a tannery with nothing but his hands and a dream.</p>
+          <p class="about-body">He came from a humble family — no investors, no connections, no safety net. Just a rented room, a suitcase, and his wife by his side. Patricio was a chemist by trade, and he had one extraordinary gift: he knew how to turn raw hide into leather of exceptional quality. Not factory leather. Not synthetic leather. <em>Real</em> leather.</p>
+          <p class="about-body">Over three decades, Patricio built Tenería Díaz into the <strong>third-largest tannery in Ecuador.</strong> At its peak, eighty people worked the floor. Every piece of leather that left the plant carried his expertise — years of refining formulas, selecting the finest hides, perfecting the craft that most of the world has forgotten.</p>
+        </div>
+        <div class="about-split__media">
+          {%- if section.settings.photo_patricio != blank -%}
+            <img
+              src="{{ section.settings.photo_patricio | image_url: width: 900 }}"
+              alt="Patricio Díaz — Founder"
+              class="about-split__img"
+              loading="lazy"
+            >
+            <p class="about-caption">Patricio Díaz, Founder — Tenería Díaz, 1989</p>
+          {%- else -%}
+            <div class="about-photo-placeholder">
+              <span>📷 Photo: Patricio Díaz — founder portrait<br>or early tannery days</span>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ── 3. STATS BAR ── {%- endcomment -%}
+  <section class="about-stats">
+    <div class="container">
+      <div class="about-stats__grid">
+        <div class="about-stat">
+          <span class="about-stat__num">36</span>
+          <span class="about-stat__label">Years of expertise</span>
+        </div>
+        <div class="about-stat about-stat--divider">
+          <span class="about-stat__num">3rd</span>
+          <span class="about-stat__label">Largest tannery in Ecuador</span>
+        </div>
+        <div class="about-stat about-stat--divider">
+          <span class="about-stat__num">80</span>
+          <span class="about-stat__label">Workers at its peak</span>
+        </div>
+        <div class="about-stat about-stat--divider">
+          <span class="about-stat__num">1</span>
+          <span class="about-stat__label">Family. Our family.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ── 4. THE STRUGGLE — photo + text ── {%- endcomment -%}
+  <section class="about-section about-section--beige">
+    <div class="container">
+      <div class="about-split about-split--reverse">
+        <div class="about-split__media">
+          {%- if section.settings.photo_tannery != blank -%}
+            <img
+              src="{{ section.settings.photo_tannery | image_url: width: 900 }}"
+              alt="Tenería Díaz — tannery floor"
+              class="about-split__img"
+              loading="lazy"
+            >
+            <p class="about-caption">Tenería Díaz, Ecuador</p>
+          {%- else -%}
+            <div class="about-photo-placeholder">
+              <span>📷 Photo: Tannery floor, workers,<br>leather processing</span>
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="about-split__text">
+          <span class="about-eyebrow about-eyebrow--dark">The test</span>
+          <h2 class="about-heading">He Could Have<br>Closed the Doors</h2>
+          <p class="about-body">Then the market shifted. Cheap synthetic shoes flooded the country. Plastic replaced leather. Then COVID hit, and sales collapsed. The tannery went from sixty workers to twenty. There were months of loss, years of struggle.</p>
+          <p class="about-body">Patricio thought about closing the doors more than once. It would have been the easy choice.</p>
+          <blockquote class="about-quote">
+            "But he couldn't leave his people behind. So he kept going."
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ── 5. NEXT GENERATION — Sebastián ── {%- endcomment -%}
+  <section class="about-section about-section--white">
+    <div class="container">
+      <div class="about-split">
+        <div class="about-split__text">
+          <span class="about-eyebrow about-eyebrow--dark">The next generation</span>
+          <h2 class="about-heading">We Started in a Corner<br>of a Room</h2>
+          <p class="about-body">I'm Sebastián Díaz, Patricio's son. When I saw the tannery struggling, I saw something else too: an opportunity. We had decades of expertise. We had the leather. We had the craft. What we didn't have was a direct connection to the people who would actually <em>use</em> what we make.</p>
+          <p class="about-body">So my wife and I started DIAZ.</p>
+          <p class="about-body">We began in less than two meters by two meters. One sewing machine. No employees. We worked until dawn, every night, cutting and stitching wallets by hand. The smell of leather filled the room. Our hands ached. People who promised to help disappeared. But we didn't stop.</p>
+          <p class="about-body">Slowly, we grew. First the two of us. Then three. Then five. Today, we design and craft every DIAZ product ourselves, using leather made in our own family tannery, and ship directly to the United States.</p>
+        </div>
+        <div class="about-split__media">
+          {%- if section.settings.photo_sebastian != blank -%}
+            <img
+              src="{{ section.settings.photo_sebastian | image_url: width: 900 }}"
+              alt="Sebastián Díaz — Co-Founder"
+              class="about-split__img"
+              loading="lazy"
+            >
+            <p class="about-caption">Sebastián & wife — the first workshop</p>
+          {%- else -%}
+            <div class="about-photo-placeholder">
+              <span>📷 Photo: Sebastián + wife in first workshop,<br>sewing machine, early products</span>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ── 6. THE TRUTH — dark section ── {%- endcomment -%}
+  <section class="about-section about-section--dark">
+    <div class="container about-truth">
+      <span class="about-eyebrow">The truth</span>
+      <h2 class="about-heading about-heading--light">The Leather Goods Market<br>Is Full of Lies</h2>
+      <p class="about-body about-body--light">Brands that call plastic "vegan leather" and charge premium prices. Wallets that peel in three months. "Genuine leather" labels slapped on the lowest grade material money can buy. Fake reviews. Fake stories. Fake everything.</p>
+
+      <div class="about-truth__grid">
+        <div class="about-truth__card">
+          <h3>Chinese PU Leather</h3>
+          <p>Basically plastic disguised as leather. Sold at impossibly low prices. Peels in months. Destroys consumer trust.</p>
+        </div>
+        <div class="about-truth__card about-truth__card--highlight">
+          <h3>DIAZ — Full Grain<br>Andean Cowhide</h3>
+          <p>Real leather from real Andean cattle. Cold climate. Fewer scars. Dense grain. Ages with elegance, not deterioration.</p>
+        </div>
+        <div class="about-truth__card">
+          <h3>Indian Buffalo Leather</h3>
+          <p>Coarse, stiff grain. Tropical parasites leave hides covered in scars. Sold "distressed" to hide imperfections — not for style.</p>
+        </div>
+      </div>
+
+      <p class="about-truth__kicker">Our leather doesn't need to hide anything.<br>What you see is what you get.</p>
+    </div>
+  </section>
+
+  {%- comment -%} ── 7. THE LEATHER — quality deep dive ── {%- endcomment -%}
+  <section class="about-section about-section--beige">
+    <div class="container">
+      <div class="about-split about-split--reverse">
+        <div class="about-split__media">
+          {%- if section.settings.photo_leather != blank -%}
+            <img
+              src="{{ section.settings.photo_leather | image_url: width: 900 }}"
+              alt="Full grain Andean leather — DIAZ"
+              class="about-split__img"
+              loading="lazy"
+            >
+            <p class="about-caption">Full grain Andean cowhide — Tenería Díaz</p>
+          {%- else -%}
+            <div class="about-photo-placeholder">
+              <span>📷 Photo: Close-up of leather texture,<br>grain detail, natural surface</span>
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="about-split__text">
+          <span class="about-eyebrow about-eyebrow--dark">The leather</span>
+          <h2 class="about-heading">Full Grain. Andean Cattle.<br>36 Years of Expertise.</h2>
+          <p class="about-body"><strong>Full grain</strong> means the complete outer surface of the hide, with all its natural fiber structure intact. No sanding. No correcting. No plastic coating on top. This separates us from 90% of "leather" products on the market.</p>
+          <p class="about-body">Our leather comes from <strong>Andean cattle</strong> — a breed that has adapted to high altitude and cold climate over 500+ years. Cold climate means fewer parasites, fewer ticks, fewer scars. The result is a naturally cleaner, smoother hide that doesn't need artificial treatment to look beautiful.</p>
+          <p class="about-body">In towns like Cotacachi, indigenous families have kept ancestral tanning traditions alive for over a century. We work within that tradition, selecting the finest hides and processing them with decades of chemical expertise passed down in our family.</p>
+          <p class="about-body">It ages beautifully. It develops a patina that tells <em>your</em> story. It doesn't peel. It doesn't crack. It lasts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ── 8. CLOSING — Real Leather. Real Story. Real Value. ── {%- endcomment -%}
+  <section class="about-closing">
+    {%- if section.settings.photo_closing != blank -%}
+      <img
+        src="{{ section.settings.photo_closing | image_url: width: 2400 }}"
+        alt="DIAZ — Real Leather"
+        class="about-closing__img"
+        loading="lazy"
+      >
+    {%- else -%}
+      <div class="about-closing__placeholder">[ Photo: Products laid out, team, or tannery — wide shot ]</div>
+    {%- endif -%}
+    <div class="about-closing__overlay">
+      <p class="about-closing__tagline">Real Leather. Real Story. Real Value.</p>
+      <p class="about-closing__body">The name DIAZ is my father's name. It represents everything he built, every sacrifice he made, every worker he refused to let go. When you hold a DIAZ product, you're holding a piece of that legacy.</p>
+      <p class="about-closing__sig">— Sebastián Díaz, Founder</p>
+      <a href="/collections/all" class="btn about-closing__btn">Shop the Collection</a>
+    </div>
+  </section>
+
+</div>
+
+<style>
+/* ── About page base ── */
+.page-about { color: var(--color-text); }
+
+/* Hero */
+.about-hero {
+  position: relative;
+  height: 40vh;
+  min-height: 280px;
+  overflow: hidden;
+}
+.about-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.about-hero__placeholder {
+  width: 100%;
+  height: 100%;
+  background: #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.875rem;
+  text-align: center;
+}
+.about-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+.about-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 7vw, 6rem);
+  color: #fff;
+  margin: 0.5rem 0;
+  letter-spacing: 0.06em;
+  font-weight: 400;
+}
+.about-hero__sub {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Eyebrow label */
+.about-eyebrow {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1rem;
+}
+.about-eyebrow--dark {
+  color: var(--color-text-muted);
+}
+
+/* Sections */
+.about-section { padding: 5rem 0; }
+.about-section--white { background: #fff; }
+.about-section--beige { background: #f5f0ea; }
+.about-section--dark { background: #111; color: #fff; }
+
+/* Split layout */
+.about-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.about-split--reverse { direction: rtl; }
+.about-split--reverse > * { direction: ltr; }
+
+/* Text */
+.about-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0 0 1.5rem;
+}
+.about-heading--light { color: #fff; }
+.about-body {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+}
+.about-body--light { color: rgba(255,255,255,0.75); }
+.about-quote {
+  border-left: 3px solid var(--color-text);
+  margin: 2rem 0 0;
+  padding-left: 1.25rem;
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+/* Photo */
+.about-split__img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  display: block;
+}
+.about-photo-placeholder {
+  width: 100%;
+  height: 520px;
+  background: #e8e0d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #999;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  border: 2px dashed #ccc;
+}
+.about-caption {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+/* Stats bar */
+.about-stats {
+  background: #1a1a1a;
+  padding: 3rem 0;
+}
+.about-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.about-stat { padding: 1rem 2rem; }
+.about-stat--divider { border-left: 1px solid rgba(255,255,255,0.15); }
+.about-stat__num {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: #fff;
+  letter-spacing: 0.04em;
+}
+.about-stat__label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-top: 0.4rem;
+}
+
+/* Truth section */
+.about-truth { max-width: 1000px; margin: 0 auto; text-align: center; }
+.about-truth__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  margin: 3rem 0;
+  text-align: left;
+}
+.about-truth__card {
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 2rem;
+  border-radius: 2px;
+}
+.about-truth__card h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: rgba(255,255,255,0.55);
+  margin: 0 0 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.about-truth__card p {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.5);
+  margin: 0;
+}
+.about-truth__card--highlight {
+  border-color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.04);
+}
+.about-truth__card--highlight h3 { color: #fff; }
+.about-truth__card--highlight p { color: rgba(255,255,255,0.8); }
+.about-truth__kicker {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Closing */
+.about-closing {
+  position: relative;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-closing__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.about-closing__placeholder {
+  position: absolute;
+  inset: 0;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.3);
+  font-size: 0.875rem;
+}
+.about-closing__overlay {
+  position: relative;
+  z-index: 1;
+  background: rgba(0,0,0,0.6);
+  padding: 4rem 3rem;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.about-closing__tagline {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  color: #fff;
+  letter-spacing: 0.06em;
+  margin: 0 0 1.5rem;
+}
+.about-closing__body {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 1rem;
+}
+.about-closing__sig {
+  font-style: italic;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+.about-closing__btn {
+  background: #fff;
+  color: #111;
+  border-color: #fff;
+}
+.about-closing__btn:hover {
+  background: transparent;
+  color: #fff;
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .about-split {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .about-split--reverse { direction: ltr; }
+  .about-split__img,
+  .about-photo-placeholder { height: 320px; }
+  .about-stats__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .about-stat--divider:nth-child(3) { border-left: none; border-top: 1px solid rgba(255,255,255,0.15); }
+  .about-stat--divider:nth-child(4) { border-left: 1px solid rgba(255,255,255,0.15); border-top: 1px solid rgba(255,255,255,0.15); }
+  .about-truth__grid { grid-template-columns: 1fr; }
+  .about-closing__overlay { padding: 2.5rem 1.5rem; }
+}
+</style>
+
+{% schema %}
+{
+  "name": "About Page",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image",
+      "info": "Wide shot — tannery exterior, Ecuadorian landscape, or team photo. Recommended: 2400×1400px."
+    },
+    {
+      "type": "header",
+      "content": "Section photos"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo_patricio",
+      "label": "Photo: Patricio Díaz",
+      "info": "Portrait of Patricio, or early tannery days. Recommended: portrait orientation."
+    },
+    {
+      "type": "image_picker",
+      "id": "photo_tannery",
+      "label": "Photo: Tannery floor",
+      "info": "Workers, machines, leather processing inside the tannery."
+    },
+    {
+      "type": "image_picker",
+      "id": "photo_sebastian",
+      "label": "Photo: Sebastián & first workshop",
+      "info": "Sebastián and wife in the first workspace, sewing machine, early products."
+    },
+    {
+      "type": "image_picker",
+      "id": "photo_leather",
+      "label": "Photo: Leather texture close-up",
+      "info": "Macro shot of full grain leather — grain detail, natural surface, color."
+    },
+    {
+      "type": "image_picker",
+      "id": "photo_closing",
+      "label": "Photo: Closing image",
+      "info": "Products laid out, team photo, or wide tannery shot. Full-width."
+    }
+  ]
+}
+{% endschema %}

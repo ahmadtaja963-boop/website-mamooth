@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#000000">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  {%- if settings.favicon != blank -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {%- endif -%}
+
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
+    {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {{ content_for_header }}
+
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  <meta name="google-site-verification" content="nVkdAMdfQK_8kMkHPnkDZOLPuiDy_A7fSogVc5d3bNU" />
+</head>
+
+<body>
+  <a class="sr-only" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
+
+  {% section 'header' %}
+
+  <main id="MainContent" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  {%- render 'cart-drawer' -%}
+
+  <div class="cart-overlay" id="CartOverlay" aria-hidden="true"></div>
+
+  <div class="toast" id="Toast" role="status" aria-live="polite"></div>
+
+  <div class="mobile-nav" id="MobileNav" aria-hidden="true">
+    <a href="/collections/magsafe-wallets">MagSafe Wallets</a>
+    <a href="/collections/bags">Bags</a>
+    <a href="/collections/portfolio">Portfolios</a>
+    <a href="/collections/accessories">Accessories</a>
+    <a href="/collections/belts-1">Belts</a>
+    <a href="/collections/backpack">Backpacks</a>
+    <a href="/collections/travel">Duffels</a>
+    <a href="/collections/gift-set">Gift Sets</a>
+    <hr style="border-color:rgba(255,255,255,0.1);margin:1rem 0">
+    <a href="/pages/about">About</a>
+    <a href="/pages/stores">Stores</a>
+    <a href="/pages/b2b">B2B Trading</a>
+  </div>
+
+  {{ 'theme.js' | asset_url | script_tag }}
+
+</body>
+</html>

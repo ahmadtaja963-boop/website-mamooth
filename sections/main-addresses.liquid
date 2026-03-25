@@ -1,0 +1,42 @@
+<div class="customer-page pt-nav">
+  <div class="container">
+    <h1>{{ 'customer.addresses.title' | t }}</h1>
+
+    {%- form 'customer_address', customer.new_address, class: 'customer-form' -%}
+      <h2 style="font-size:1.25rem;margin-bottom:1rem;">{{ 'customer.addresses.add' | t }}</h2>
+      {{ form.errors | default_errors }}
+      <div class="form-field"><label>First name</label><input type="text" name="address[first_name]"></div>
+      <div class="form-field"><label>Last name</label><input type="text" name="address[last_name]"></div>
+      <div class="form-field"><label>Address</label><input type="text" name="address[address1]"></div>
+      <div class="form-field"><label>City</label><input type="text" name="address[city]"></div>
+      <div class="form-field"><label>ZIP / Postal code</label><input type="text" name="address[zip]"></div>
+      <div class="form-field"><label>Country</label>{{ form.country_select 'address[country]', nil, 'Select country' }}</div>
+      <button type="submit" class="btn btn-primary">Save Address</button>
+    {%- endform -%}
+
+    {%- if customer.addresses.size > 0 -%}
+      <h2 style="font-size:1.25rem;margin:3rem 0 1rem;">Your Addresses</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;">
+        {%- for address in customer.addresses -%}
+          <div style="border:1px solid var(--color-border);padding:1.5rem;">
+            <p>{{ address.first_name }} {{ address.last_name }}</p>
+            <p>{{ address.address1 }}</p>
+            <p>{{ address.city }}, {{ address.zip }}</p>
+            <p>{{ address.country }}</p>
+            <div style="margin-top:1rem;display:flex;gap:.75rem;">
+              <a href="#" onclick="Shopify.CustomerAddress.toggleForm('{{ address.id }}');return false;" style="font-size:.875rem;text-decoration:underline;">Edit</a>
+              <a href="#" onclick="Shopify.CustomerAddress.destroy('{{ address.id }}','{{ 'customer.addresses.delete' | t | escape }}');return false;" style="font-size:.875rem;text-decoration:underline;color:red;">Delete</a>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Addresses",
+  "tag": "div"
+}
+{% endschema %}

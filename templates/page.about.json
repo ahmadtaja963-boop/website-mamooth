@@ -1,0 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page-about",
+      "settings": {
+        "hero_image": "shopify://shop_images/A_cinematic_wideangle_team_photograph_of_1520_leat_delpmaspu_1.jpg",
+        "photo_patricio": "shopify://shop_images/Man_standing_in_tannery_da42d66f46.jpg",
+        "photo_tannery": "shopify://shop_images/Untitled.png",
+        "photo_sebastian": "shopify://shop_images/Couple_working_in_workshop_1b02e10d84.jpg",
+        "photo_leather": "shopify://shop_images/Redraw_this_3850032a0f.jpg",
+        "photo_closing": "shopify://shop_images/Collection_of_bags_with_diaz_401ab97565.jpg"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,18 @@
+<div class="customer-page pt-nav">
+  <div class="container">
+    <h1>Activate Account</h1>
+    {%- form 'activate_customer_password', class: 'customer-form' -%}
+      {{ form.errors | default_errors }}
+      <div class="form-field"><label>Password</label><input type="password" name="customer[password]" autocomplete="new-password" required></div>
+      <div class="form-field"><label>Confirm password</label><input type="password" name="customer[password_confirmation]" autocomplete="new-password" required></div>
+      <button type="submit" class="btn btn-primary">Activate Account</button>
+    {%- endform -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Activate Account",
+  "tag": "div"
+}
+{% endschema %}

@@ -1,0 +1,113 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "video_hero_8HmeeF": {
+          "type": "video_hero",
+          "settings": {
+            "shopify_video": "shopify://files/videos/leather brand.mp4",
+            "video_url": "",
+            "subtitle": "Quality. Character. Tradition.",
+            "title": "Full-Grain Leather",
+            "overlay_opacity": 50
+          }
+        },
+        "more_info_tabs_main": {
+          "type": "more_info_tabs",
+          "disabled": true,
+          "settings": {
+            "title_1": "Design",
+            "content_1": "<ul><li>Full-grain Andean cowhide leather</li><li>Expandable elastic band</li><li>Holds up to 10 cards + cash</li><li>Built-in phone stand</li><li>RFID blocking lining</li></ul>",
+            "title_2": "Dimensions",
+            "content_2": "<ul><li>98mm × 64mm × 5mm</li><li>45g</li></ul>",
+            "title_3": "Compatibility",
+            "content_3": "<ul><li>iPhone 17, Pro, Plus, Pro Max</li><li>iPhone 16, Pro, Plus, Pro Max</li><li>iPhone 15, Pro, Plus, Pro Max</li><li>iPhone 14, Pro, Plus, Pro Max</li><li>iPhone 13, Pro, Mini, Pro Max</li><li>iPhone 12, Pro, Mini, Pro Max</li><li>Any MagSafe-compatible case</li></ul>",
+            "title_4": "",
+            "content_4": ""
+          }
+        },
+        "faq_section_main": {
+          "type": "faq_section",
+          "disabled": true,
+          "settings": {
+            "q1": "How many cards can it hold?",
+            "a1": "<p>Up to 10 cards plus cash. The expandable elastic band stretches to accommodate your essentials while keeping a slim profile.</p>",
+            "q2": "Is the leather real?",
+            "a2": "<p>Yes. Our wallet is made from full-grain Andean cowhide by a tannery with over 35 years of experience in Ecuador. No PU, no vegan leather, no synthetic materials.</p>",
+            "q3": "Will the leather change over time?",
+            "a3": "<p>Yes, and that’s a good thing. Full-grain leather develops a unique patina with daily use, becoming more beautiful and uniquely yours over time. Unlike faux leather, it won’t peel or crack.</p>",
+            "q4": "Does it work as a phone stand?",
+            "a4": "<p>Yes. The wallet doubles as a phone stand for hands-free viewing.</p>",
+            "q5": "Does it have RFID blocking?",
+            "a5": "<p>Yes. The built-in RFID blocking lining protects your cards from unauthorized scanning.</p>",
+            "q6": "How should I care for my leather?",
+            "a6": "<p>Wipe with a soft dry cloth. For deeper care, apply a quality leather conditioner every few months. Avoid prolonged exposure to water or direct sunlight.</p>",
+            "q7": "What cases does it work with?",
+            "a7": "<p>Our wallet works with any case that supports MagSafe. It magnetically snaps onto your iPhone and stays securely attached throughout the day.</p>",
+            "q8": "Will the magnets demagnetize my cards?",
+            "a8": "<p>No. The MagSafe array will not demagnetize or interfere with your credit cards, debit cards, or IDs.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "video_hero_8HmeeF",
+        "more_info_tabs_main",
+        "faq_section_main"
+      ],
+      "settings": {
+        "show_judgeme_badge": true,
+        "social_proof_text": "500+ UNITS SOLD",
+        "shipping_text": "",
+        "show_delivery_estimate": true,
+        "delivery_business_days": 4,
+        "show_payment_icons": true,
+        "show_upsell": true,
+        "upsell_product": "",
+        "upsell_product_2": "",
+        "upsell_heading": "Others Like You Also Bought:"
+      }
+    },
+    "you_may_also_like": {
+      "type": "you-may-also-like",
+      "settings": {
+        "heading": "Customers Also Viewed",
+        "product_1": "bifold-kate",
+        "product_2": "stand-money-clip",
+        "product_3": "ultra-slim-smart-gps-card-tracker-universal-wallet-luggage-finder-ios-android-compatible"
+      }
+    },
+    "17718579745a501a09": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_LhfWfN": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 900,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_LhfWfN"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "you_may_also_like",
+    "17718579745a501a09"
+  ]
+}

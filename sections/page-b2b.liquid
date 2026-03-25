@@ -1,0 +1,232 @@
+<div class="page-b2b pt-nav">
+
+  <section style="padding:5rem 0;background:#fff;">
+    <div class="container">
+
+      <div style="text-align:center;margin-bottom:3rem;">
+        <h1 style="font-family:var(--font-heading);font-size:clamp(2rem,5vw,3.5rem);margin-bottom:1rem;">B2B Wholesale Trading</h1>
+        <p style="font-size:1.05rem;color:var(--color-text-muted);max-width:700px;margin:0 auto 2rem;line-height:1.8;">
+          Bulk orders with exclusive discounts. Minimum order: 25 pieces per product. Maximum: 1,000 pieces.
+        </p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:750px;margin:0 auto;background:#f5f0ea;padding:1.5rem;">
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;text-align:left;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;color:var(--color-accent);margin-top:2px;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            <div>
+              <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.25rem;">Production Timeline</h3>
+              <p style="font-size:0.875rem;color:var(--color-text-muted);margin:0;">Manufacturing takes 30–40 days from order confirmation</p>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;text-align:left;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;color:var(--color-accent);margin-top:2px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 15a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 4.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 11.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 18.09z"/></svg>
+            <div>
+              <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.25rem;">Track Your Production</h3>
+              <p style="font-size:0.875rem;color:var(--color-text-muted);margin:0;">Contact CEO: <a href="tel:+17867148605" style="color:var(--color-accent);">+1 786 714 8605</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {%- comment -%} Discount Tiers {%- endcomment -%}
+      <div style="margin-bottom:3rem;padding:1.5rem;background:#f9f6f2;">
+        <h3 style="font-size:1.1rem;font-weight:600;margin-bottom:1rem;">Discount Tiers</h3>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:0.75rem;">
+          <div style="text-align:center;padding:0.75rem;background:#fff;">
+            <div style="font-size:1.25rem;font-weight:700;color:var(--color-accent);">15%</div>
+            <div style="font-size:0.75rem;color:var(--color-text-muted);">25–100 pcs</div>
+          </div>
+          <div style="text-align:center;padding:0.75rem;background:#fff;">
+            <div style="font-size:1.25rem;font-weight:700;color:var(--color-accent);">25%</div>
+            <div style="font-size:0.75rem;color:var(--color-text-muted);">101–300 pcs</div>
+          </div>
+          <div style="text-align:center;padding:0.75rem;background:#fff;">
+            <div style="font-size:1.25rem;font-weight:700;color:var(--color-accent);">35%</div>
+            <div style="font-size:0.75rem;color:var(--color-text-muted);">301–500 pcs</div>
+          </div>
+          <div style="text-align:center;padding:0.75rem;background:#fff;">
+            <div style="font-size:1.25rem;font-weight:700;color:var(--color-accent);">45%</div>
+            <div style="font-size:0.75rem;color:var(--color-text-muted);">501–800 pcs</div>
+          </div>
+          <div style="text-align:center;padding:0.75rem;background:#fff;">
+            <div style="font-size:1.25rem;font-weight:700;color:var(--color-accent);">50%</div>
+            <div style="font-size:0.75rem;color:var(--color-text-muted);">801–1000 pcs</div>
+          </div>
+          <div style="text-align:center;padding:0.75rem;background:#f0e8d8;">
+            <div style="font-size:1.25rem;font-weight:700;color:var(--color-accent);">65%</div>
+            <div style="font-size:0.75rem;color:var(--color-text-muted);">3+ products, 300+ pcs each</div>
+          </div>
+        </div>
+      </div>
+
+      {%- comment -%} Product Grid with Quantity Inputs {%- endcomment -%}
+      <div id="B2BProductGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.25rem;margin-bottom:3rem;">
+        {%- for product in collections.all.products limit: 50 -%}
+          {%- assign variant = product.first_available_variant | default: product.variants.first -%}
+          {%- if variant -%}
+            <div class="b2b-product-card" data-price="{{ variant.price | divided_by: 100.0 }}" data-variant-id="{{ variant.id }}">
+              <div style="aspect-ratio:1;overflow:hidden;background:#f5f5f5;">
+                {%- if product.featured_media -%}
+                  <img src="{{ product.featured_media | image_url: width: 400 }}" alt="{{ product.title | escape }}" style="width:100%;height:100%;object-fit:contain;">
+                {%- endif -%}
+              </div>
+              <div style="padding:0.875rem;">
+                <h3 style="font-size:0.875rem;font-weight:600;margin-bottom:0.5rem;line-height:1.3;">{{ product.title }}</h3>
+                <p style="font-size:0.8rem;color:var(--color-text-muted);margin-bottom:0.75rem;">Unit: {{ variant.price | money }}</p>
+                <div>
+                  <label style="font-size:0.75rem;font-weight:500;display:block;margin-bottom:0.25rem;">Qty (25–1000)</label>
+                  <input
+                    type="number"
+                    min="0"
+                    max="1000"
+                    placeholder="Enter qty"
+                    class="b2b-qty-input"
+                    style="width:100%;padding:0.4rem 0.5rem;border:1px solid #ddd;font-size:0.875rem;"
+                  >
+                </div>
+                <div class="b2b-subtotal" style="display:none;margin-top:0.75rem;padding:0.5rem;background:#f9f6f2;font-size:0.8rem;">
+                  <div style="display:flex;justify-content:space-between;color:var(--color-text-muted);">
+                    <span>Subtotal:</span><span class="b2b-subtotal-original" style="text-decoration:line-through;"></span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;color:var(--color-accent);font-weight:600;">
+                    <span class="b2b-discount-label">Discount:</span><span class="b2b-subtotal-discounted"></span>
+                  </div>
+                </div>
+                <p class="b2b-min-warn" style="display:none;color:#c00;font-size:0.75rem;margin-top:0.5rem;">Minimum: 25 pieces</p>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- comment -%} Order Summary (sticky) {%- endcomment -%}
+      <div id="B2BSummary" style="display:none;position:sticky;bottom:1.5rem;max-width:600px;margin:0 auto;background:#fff;border:2px solid var(--color-accent);padding:1.5rem;box-shadow:0 8px 40px rgba(0,0,0,0.15);">
+        <h3 style="font-size:1.1rem;font-weight:600;margin-bottom:1rem;">Order Summary</h3>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1rem;">
+          <div style="display:flex;justify-content:space-between;font-size:0.9rem;">
+            <span>Different Products:</span><span id="B2BSummaryProducts" style="font-weight:600;"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:0.9rem;color:var(--color-text-muted);">
+            <span>Subtotal:</span><span id="B2BSummarySubtotal" style="text-decoration:line-through;"></span>
+          </div>
+          <div id="B2BSpecialRow" style="display:none;font-size:0.9rem;font-weight:600;color:var(--color-accent);">
+            <span>Special Discount (65%): Applied!</span>
+          </div>
+          <div id="B2BUnlockHint" style="display:none;font-size:0.8rem;color:var(--color-text-muted);font-style:italic;"></div>
+          <div style="display:flex;justify-content:space-between;font-size:1.25rem;font-weight:700;border-top:1px solid #eee;padding-top:0.75rem;margin-top:0.25rem;">
+            <span>Total:</span><span id="B2BSummaryTotal" style="color:var(--color-accent);"></span>
+          </div>
+        </div>
+        <a
+          href="https://wa.me/17867148605?text=Hello%2C%20I%20would%20like%20to%20request%20a%20wholesale%20quote"
+          target="_blank"
+          rel="noopener"
+          style="display:block;width:100%;padding:0.875rem;background:var(--color-accent);color:#fff;text-align:center;font-weight:600;text-decoration:none;font-size:0.95rem;"
+        >
+          Contact for Quote via WhatsApp
+        </a>
+        <p style="text-align:center;font-size:0.75rem;color:var(--color-text-muted);margin-top:0.75rem;margin-bottom:0;">CEO direct: +1 786 714 8605</p>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<style>
+@media (max-width: 767px) {
+  .page-b2b [style*="grid-template-columns:repeat(6"] {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .page-b2b [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
+
+<script>
+(function() {
+  function calcDiscount(qty) {
+    if (qty < 25) return 0;
+    if (qty <= 100) return 15;
+    if (qty <= 300) return 25;
+    if (qty <= 500) return 35;
+    if (qty <= 800) return 45;
+    return 50;
+  }
+
+  function fmt(n) {
+    return '$' + n.toFixed(2);
+  }
+
+  function updateSummary() {
+    var cards = document.querySelectorAll('.b2b-product-card');
+    var validOrders = [];
+
+    cards.forEach(function(card) {
+      var input = card.querySelector('.b2b-qty-input');
+      var subtotalEl = card.querySelector('.b2b-subtotal');
+      var origEl = card.querySelector('.b2b-subtotal-original');
+      var discEl = card.querySelector('.b2b-subtotal-discounted');
+      var labelEl = card.querySelector('.b2b-discount-label');
+      var warnEl = card.querySelector('.b2b-min-warn');
+      var price = parseFloat(card.dataset.price);
+      var qty = parseInt(input.value) || 0;
+
+      if (qty > 0 && qty < 25) {
+        warnEl.style.display = 'block';
+        subtotalEl.style.display = 'none';
+      } else if (qty >= 25) {
+        warnEl.style.display = 'none';
+        var discount = calcDiscount(qty);
+        var subtotal = price * qty;
+        var discounted = subtotal * (1 - discount / 100);
+        origEl.textContent = fmt(subtotal);
+        labelEl.textContent = 'Discount (' + discount + '%):';
+        discEl.textContent = fmt(discounted);
+        subtotalEl.style.display = 'block';
+        validOrders.push({ qty: qty, subtotal: subtotal, discounted: discounted });
+      } else {
+        warnEl.style.display = 'none';
+        subtotalEl.style.display = 'none';
+      }
+    });
+
+    var summaryEl = document.getElementById('B2BSummary');
+    if (validOrders.length === 0) {
+      summaryEl.style.display = 'none';
+      return;
+    }
+    summaryEl.style.display = 'block';
+
+    var allHave300Plus = validOrders.every(function(o) { return o.qty >= 300; });
+    var qualifiesSpecial = validOrders.length > 3 && allHave300Plus;
+    var totalSubtotal = validOrders.reduce(function(acc, o) { return acc + o.subtotal; }, 0);
+    var totalDiscounted = validOrders.reduce(function(acc, o) { return acc + o.discounted; }, 0);
+    if (qualifiesSpecial) totalDiscounted = totalSubtotal * 0.35;
+
+    document.getElementById('B2BSummaryProducts').textContent = validOrders.length;
+    document.getElementById('B2BSummarySubtotal').textContent = fmt(totalSubtotal);
+    document.getElementById('B2BSummaryTotal').textContent = fmt(totalDiscounted);
+    document.getElementById('B2BSpecialRow').style.display = qualifiesSpecial ? 'block' : 'none';
+
+    var hintEl = document.getElementById('B2BUnlockHint');
+    if (validOrders.length > 3 && !qualifiesSpecial) {
+      hintEl.style.display = 'block';
+      hintEl.textContent = 'Order 300+ pieces on each product to unlock the 65% discount';
+    } else {
+      hintEl.style.display = 'none';
+    }
+  }
+
+  document.querySelectorAll('.b2b-qty-input').forEach(function(input) {
+    input.addEventListener('input', updateSummary);
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "B2B Page",
+  "tag": "div"
+}
+{% endschema %}

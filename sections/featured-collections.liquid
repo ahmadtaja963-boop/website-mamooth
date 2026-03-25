@@ -1,0 +1,115 @@
+<section id="products" class="featured-collections">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+
+    <div class="collections-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'collection_card' -%}
+          {%- assign col = block.settings.collection -%}
+          <a
+            class="collection-card"
+            href="/collections/{{ col.handle | default: block.settings.collection_handle }}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="collection-card-image">
+              {%- if block.settings.image != blank -%}
+                <img
+                  src="{{ block.settings.image | image_url: width: 600 }}"
+                  alt="{{ block.settings.label | escape }}"
+                  width="600" height="600"
+                  loading="lazy"
+                >
+              {%- elsif col != blank and col.image != blank -%}
+                <img
+                  src="{{ col.image | image_url: width: 600 }}"
+                  alt="{{ col.title | escape }}"
+                  width="600" height="600"
+                  loading="lazy"
+                >
+              {%- else -%}
+                <div style="aspect-ratio:1/1;background:#ffffff;"></div>
+              {%- endif -%}
+            </div>
+            <p class="collection-card-title">{{ block.settings.label | default: col.title }}</p>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collections",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Explore Our Collections"
+    },
+    {
+      "type": "header",
+      "content": "Full-width image below grid"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_model_image",
+      "label": "Show default model image",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "full_width_image",
+      "label": "Custom full-width image (overrides default)"
+    },
+    {
+      "type": "text",
+      "id": "full_width_heading",
+      "label": "Full-width image heading",
+      "default": "Premium Leather Craftsmanship"
+    },
+    {
+      "type": "text",
+      "id": "full_width_subheading",
+      "label": "Full-width image subheading",
+      "default": "Experience the finest quality leather accessories designed for the modern professional"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Collection card",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Override image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label (overrides collection title)"
+        },
+        {
+          "type": "text",
+          "id": "collection_handle",
+          "label": "Collection handle (if not selecting above)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Featured Collections" }
+  ]
+}
+{% endschema %}

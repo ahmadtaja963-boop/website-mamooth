@@ -1,0 +1,47 @@
+<div class="customer-page pt-nav">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;">
+      <h1>{{ 'customer.account.title' | t }}</h1>
+      <a href="{{ routes.account_logout_url }}" class="btn btn-outline btn-sm">{{ 'customer.account.logout' | t }}</a>
+    </div>
+
+    <p style="margin-bottom:2rem;">Hello, {{ customer.first_name }}!</p>
+
+    <h2 style="font-size:1.25rem;margin-bottom:1rem;">{{ 'customer.account.orders' | t }}</h2>
+
+    {%- if customer.orders.size > 0 -%}
+      <table style="width:100%;border-collapse:collapse;font-size:.9375rem;">
+        <thead>
+          <tr style="border-bottom:2px solid var(--color-border);">
+            <th style="text-align:left;padding:.75rem 0;">Order</th>
+            <th style="text-align:left;padding:.75rem 0;">Date</th>
+            <th style="text-align:left;padding:.75rem 0;">Status</th>
+            <th style="text-align:right;padding:.75rem 0;">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for order in customer.orders -%}
+            <tr style="border-bottom:1px solid var(--color-border);">
+              <td style="padding:.75rem 0;">
+                <a href="{{ order.customer_url }}" style="text-decoration:underline;">{{ order.name }}</a>
+              </td>
+              <td style="padding:.75rem 0;color:var(--color-text-muted);">{{ order.created_at | date: '%B %d, %Y' }}</td>
+              <td style="padding:.75rem 0;">{{ order.fulfillment_status_label }}</td>
+              <td style="padding:.75rem 0;text-align:right;font-weight:600;">{{ order.total_price | money }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    {%- else -%}
+      <p style="color:var(--color-text-muted);">You haven't placed any orders yet.</p>
+      <a href="/collections/all" class="btn btn-primary" style="margin-top:1rem;display:inline-block;">Start Shopping</a>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Account",
+  "tag": "div"
+}
+{% endschema %}

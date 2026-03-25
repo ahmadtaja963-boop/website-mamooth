@@ -1,0 +1,46 @@
+{%- if section.settings.show_hero and section.settings.hero_image != blank -%}
+  <div class="page-hero pt-nav">
+    <img
+      src="{{ section.settings.hero_image | image_url: width: 1920 }}"
+      alt="{{ page.title | escape }}"
+      loading="eager"
+      width="1920" height="600"
+    >
+    <div class="page-hero-overlay">
+      <h1>{{ page.title }}</h1>
+    </div>
+  </div>
+{%- else -%}
+  <div style="padding-top:var(--nav-height);"></div>
+{%- endif -%}
+
+<div class="page-content">
+  <div class="container">
+    {%- unless section.settings.show_hero and section.settings.hero_image != blank -%}
+      <h1 style="font-size:clamp(2rem,5vw,3rem);margin-bottom:2rem;">{{ page.title }}</h1>
+    {%- endunless -%}
+    <div class="page-content-body">
+      {{ page.content }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Page",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_hero",
+      "label": "Show hero image",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    }
+  ]
+}
+{% endschema %}

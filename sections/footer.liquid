@@ -1,0 +1,99 @@
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-grid">
+
+      {%- comment -%} Newsletter {%- endcomment -%}
+      <div class="footer-newsletter">
+        <h3>Stay Connected</h3>
+        <p>Subscribe to receive updates on new arrivals, exclusive events, and more.</p>
+        {%- form 'customer', id: 'FooterNewsletter' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="footer-newsletter-form">
+            <input
+              type="email"
+              name="contact[email]"
+              id="NewsletterEmail"
+              placeholder="{{ 'newsletter.placeholder' | t }}"
+              aria-label="{{ 'newsletter.label' | t }}"
+              autocomplete="email"
+              required
+            >
+            <button type="submit" class="btn btn-white btn-sm">
+              {{ 'newsletter.submit' | t }}
+            </button>
+          </div>
+          {%- if form.posted_successfully? -%}
+            <p style="color:rgba(255,255,255,0.7);font-size:.875rem;margin-top:.5rem;">
+              {{ 'newsletter.success' | t }}
+            </p>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+
+      {%- comment -%} Customer Service {%- endcomment -%}
+      <div class="footer-col">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="/pages/contact">Contact Us</a></li>
+          <li><a href="/pages/shipping">Shipping & Delivery</a></li>
+          <li><a href="/pages/returns">Returns & Exchanges</a></li>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/product-care">Product Care</a></li>
+        </ul>
+      </div>
+
+      {%- comment -%} The House {%- endcomment -%}
+      <div class="footer-col">
+        <h4>The House</h4>
+        <ul>
+          <li><a href="/pages/about">About DIAZ</a></li>
+          <li><a href="/pages/craftsmanship">Craftsmanship</a></li>
+          <li><a href="/pages/stores">Store Locator</a></li>
+          <li><a href="/pages/sustainability">Sustainability</a></li>
+        </ul>
+      </div>
+
+      {%- comment -%} Legal {%- endcomment -%}
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/pages/terms">Terms of Use</a></li>
+          <li><a href="/pages/privacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    {%- comment -%} Bottom bar {%- endcomment -%}
+    <div class="footer-bottom">
+      <div class="footer-social">
+        <span>Follow Us</span>
+        <div class="footer-social-links">
+          <a href="https://www.instagram.com/diazleather/" class="footer-social-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/people/DI%C4%80Z-Leather/61587812880646/" class="footer-social-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@sdiazleather" class="footer-social-link" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-copyright">
+        <p>&copy; {{ 'now' | date: '%Y' }} Diaz Trading Company LLC d/b/a DIAZ. All rights reserved.</p>
+        <p>Crafted with excellence since 2024</p>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "div",
+  "class": "footer-wrapper"
+}
+{% endschema %}

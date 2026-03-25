@@ -1,0 +1,160 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "funnel_image_wNrJFx": {
+          "type": "funnel_image",
+          "name": "ez tracking ",
+          "settings": {
+            "desktop_image": "shopify://shop_images/card_5.webp",
+            "mobile_image": "shopify://shop_images/card_m5.webp",
+            "funnel_color": "",
+            "funnel_alt": ""
+          }
+        },
+        "funnel_image_K3YhQD": {
+          "type": "funnel_image",
+          "name": "never miss",
+          "settings": {
+            "desktop_image": "shopify://shop_images/card_4.webp",
+            "mobile_image": "shopify://shop_images/card_m4.webp",
+            "funnel_color": "",
+            "funnel_alt": ""
+          }
+        },
+        "funnel_image_CyhyrV": {
+          "type": "funnel_image",
+          "name": "charging ",
+          "settings": {
+            "desktop_image": "shopify://shop_images/card_2.webp",
+            "mobile_image": "shopify://shop_images/card_2.webp",
+            "funnel_color": "",
+            "funnel_alt": ""
+          }
+        },
+        "funnel_image_qiQGbw": {
+          "type": "funnel_image",
+          "name": "slim",
+          "settings": {
+            "desktop_image": "shopify://shop_images/card.webp",
+            "mobile_image": "shopify://shop_images/card_m.webp",
+            "funnel_color": "",
+            "funnel_alt": ""
+          }
+        },
+        "funnel_image_fdyKmt": {
+          "type": "funnel_image",
+          "name": "find it",
+          "settings": {
+            "desktop_image": "shopify://shop_images/card_3.webp",
+            "mobile_image": "shopify://shop_images/card_m3.webp",
+            "funnel_color": "",
+            "funnel_alt": ""
+          }
+        },
+        "funnel_image_AkzeQU": {
+          "type": "funnel_image",
+          "name": "water proof",
+          "settings": {
+            "desktop_image": "shopify://shop_images/card_1.webp",
+            "mobile_image": "shopify://shop_images/card_m1.webp",
+            "funnel_color": "",
+            "funnel_alt": ""
+          }
+        },
+        "more_info_group_T7kfY4": {
+          "type": "more_info_group",
+          "settings": {
+            "info_title": "Compatibility",
+            "info_content": "<p>Iphone</p>"
+          }
+        },
+        "more_info_group_mJNkPy": {
+          "type": "more_info_group",
+          "settings": {
+            "info_title": "Dimensions",
+            "info_content": ""
+          }
+        },
+        "more_info_group_pYLkht": {
+          "type": "more_info_group",
+          "settings": {
+            "info_title": "Design",
+            "info_content": ""
+          }
+        },
+        "faq_item_weryGg": {
+          "type": "faq_item",
+          "settings": {
+            "faq_question": "Question 1",
+            "faq_answer": "<p>Answer 1</p>"
+          }
+        }
+      },
+      "block_order": [
+        "funnel_image_wNrJFx",
+        "funnel_image_K3YhQD",
+        "funnel_image_CyhyrV",
+        "funnel_image_qiQGbw",
+        "funnel_image_fdyKmt",
+        "funnel_image_AkzeQU",
+        "more_info_group_T7kfY4",
+        "more_info_group_mJNkPy",
+        "more_info_group_pYLkht",
+        "faq_item_weryGg"
+      ],
+      "settings": {
+        "show_related": true,
+        "show_judgeme_badge": true,
+        "social_proof_text": "100+ UNITS SOLD",
+        "shipping_text": "Shipping is free on all US orders 🇺🇸",
+        "show_delivery_estimate": false,
+        "delivery_business_days": 5,
+        "show_payment_icons": true,
+        "show_upsell": true,
+        "upsell_product": "stand-elastic",
+        "upsell_product_2": "bifold-kate",
+        "upsell_heading": "Others Like You Also Bought:"
+      }
+    },
+    "you_may_also_like": {
+      "type": "you-may-also-like",
+      "settings": {
+        "heading": "You May Also Like"
+      }
+    },
+    "17718579745a501a09": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_LhfWfN": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 900,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_LhfWfN"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "you_may_also_like",
+    "17718579745a501a09"
+  ]
+}

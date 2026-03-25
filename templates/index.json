@@ -1,0 +1,184 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "Timeless Craftsmanship",
+        "subheading": "Discover the art of exceptional leather goods, handcrafted with meticulous attention to detail",
+        "button_label": "Explore Collection"
+      }
+    },
+    "featured-collections": {
+      "type": "featured-collections",
+      "blocks": {
+        "magsafe": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "magsafe-wallets",
+            "image": "shopify://shop_images/image_1.png",
+            "label": "MagSafe Wallets",
+            "collection_handle": "magsafe-wallets"
+          }
+        },
+        "bags": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "bags",
+            "label": "Bags",
+            "collection_handle": "bags"
+          }
+        },
+        "portfolios": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "portfolio",
+            "label": "Portfolios",
+            "collection_handle": "portfolio"
+          }
+        },
+        "accessories": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "accessories",
+            "label": "Accessories",
+            "collection_handle": "accessories"
+          }
+        },
+        "belts": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "belts-1",
+            "label": "Belts",
+            "collection_handle": "belts-1"
+          }
+        },
+        "backpacks": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "backpack",
+            "label": "Backpacks",
+            "collection_handle": "backpack"
+          }
+        },
+        "duffels": {
+          "type": "collection_card",
+          "disabled": true,
+          "settings": {
+            "collection": "travel",
+            "label": "Duffels",
+            "collection_handle": "travel"
+          }
+        },
+        "giftsets": {
+          "type": "collection_card",
+          "disabled": true,
+          "settings": {
+            "collection": "gift-set",
+            "label": "Gift Sets",
+            "collection_handle": "gift-set"
+          }
+        }
+      },
+      "block_order": [
+        "magsafe",
+        "bags",
+        "portfolios",
+        "accessories",
+        "belts",
+        "backpacks",
+        "duffels",
+        "giftsets"
+      ],
+      "settings": {
+        "heading": "Explore Our Collections",
+        "show_model_image": true,
+        "full_width_heading": "Premium Leather Craftsmanship",
+        "full_width_subheading": "Experience the finest quality leather accessories designed for the modern professional"
+      }
+    },
+    "collections-hero-banner": {
+      "type": "collections-hero-banner",
+      "settings": {
+        "heading": "Premium Leather Craftsmanship",
+        "subheading": "Experience the finest quality leather accessories designed for the modern professional"
+      }
+    },
+    "craftsmanship-banner": {
+      "type": "craftsmanship-banner",
+      "settings": {
+        "heading": "FROM HIDE TO HERITAGE",
+        "subheading": "",
+        "button_label": "See The Process",
+        "button_url": "/pages/craftsmanship"
+      }
+    },
+    "b2b-banner": {
+      "type": "b2b-banner",
+      "settings": {
+        "heading": "WHOLESALE TRADING",
+        "subheading": "Partner with DIAZ for premium leather goods at wholesale pricing",
+        "button_label": "Learn More",
+        "button_url": "/pages/b2b"
+      }
+    },
+    "top-picks": {
+      "type": "top-picks",
+      "settings": {
+        "heading": "Top Picks",
+        "collection": "",
+        "collection_handle": "",
+        "products_to_show": 10,
+        "button_label": "View All Products",
+        "button_url": "/collections/all"
+      }
+    },
+    "brand-sections": {
+      "type": "brand-sections",
+      "blocks": {
+        "stores": {
+          "type": "panel",
+          "settings": {
+            "default_image": "stores-section.jpg",
+            "heading": "STORES",
+            "subtext": "",
+            "button_label": "Discover",
+            "link": "/pages/stores"
+          }
+        },
+        "inside": {
+          "type": "panel",
+          "settings": {
+            "default_image": "inside-diaz.jpg",
+            "heading": "INSIDE DIAZ",
+            "subtext": "",
+            "button_label": "Explore",
+            "link": "/pages/inside-diaz"
+          }
+        }
+      },
+      "block_order": [
+        "stores",
+        "inside"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "featured-collections",
+    "collections-hero-banner",
+    "craftsmanship-banner",
+    "b2b-banner",
+    "top-picks",
+    "brand-sections"
+  ]
+}

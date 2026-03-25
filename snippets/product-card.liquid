@@ -1,0 +1,75 @@
+{%- comment -%}
+  Renders a product card.
+  Usage: {% render 'product-card', product: product, show_badge: true %}
+{%- endcomment -%}
+
+{%- liquid
+  assign featured_image = product.featured_media.preview_image
+  assign second_image = product.media[1].preview_image
+  assign product_url = product.url
+  assign first_variant = product.first_available_variant | default: product.variants.first
+-%}
+
+<div class="product-card" data-product-id="{{ product.id }}">
+  <a href="{{ product_url }}" aria-label="{{ product.title | escape }}" class="product-card-link" style="display:block;">
+    <div class="product-card-image">
+      {%- if featured_image -%}
+        <img
+          src="{{ featured_image | image_url: width: 600 }}"
+          alt="{{ featured_image.alt | default: product.title | escape }}"
+          width="{{ featured_image.width }}"
+          height="{{ featured_image.height }}"
+          loading="lazy"
+          class="product-card-img-primary"
+        >
+        {%- if second_image -%}
+          <img
+            src="{{ second_image | image_url: width: 600 }}"
+            alt="{{ second_image.alt | default: product.title | escape }}"
+            width="{{ second_image.width }}"
+            height="{{ second_image.height }}"
+            loading="lazy"
+            class="product-card-img-secondary"
+            style="position:absolute;inset:0;opacity:0;transition:opacity 0.3s;"
+          >
+        {%- endif -%}
+      {%- else -%}
+        <div style="aspect-ratio:1;background:var(--color-secondary-bg);"></div>
+      {%- endif -%}
+
+      {%- if show_badge -%}
+        <span class="product-card-badge">New</span>
+      {%- endif -%}
+
+      {%- if first_variant -%}
+        <button
+          class="product-card-btn"
+          data-variant-id="{{ first_variant.id }}"
+          data-product-title="{{ product.title | escape }}"
+          data-product-image="{{ featured_image | image_url: width: 200 }}"
+          data-product-price="{{ first_variant.price | money }}"
+          aria-label="Add {{ product.title | escape }} to cart"
+          onclick="event.preventDefault();window.DiazTheme.addToCart('{{ first_variant.id }}', 1, this);"
+        >
+          {%- if first_variant.available -%}
+            Add to Cart
+          {%- else -%}
+            Sold Out
+          {%- endif -%}
+        </button>
+      {%- endif -%}
+    </div>
+  </a>
+
+  <div>
+    <a href="{{ product_url }}">
+      <p class="product-card-title">{{ product.title }}</p>
+    </a>
+    <p class="product-card-price">
+      {%- if product.compare_at_price > product.price -%}
+        <s style="color:var(--color-text-muted);margin-right:.25rem;">{{ product.compare_at_price | money }}</s>
+      {%- endif -%}
+      {{ product.price | money }}
+    </p>
+  </div>
+</div>

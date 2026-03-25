@@ -1,0 +1,2093 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign info_blocks = section.blocks | where: 'type', 'more_info_group' -%}
+{%- assign faq_blocks = section.blocks | where: 'type', 'faq_item' -%}
+{%- assign funnel_blocks = section.blocks | where: 'type', 'funnel_image' -%}
+{%- assign bundle_blocks     = section.blocks | where: 'type', 'bundle_deals' -%}
+{%- assign info_tabs_blocks  = section.blocks | where: 'type', 'more_info_tabs' -%}
+{%- assign faq_section_blocks = section.blocks | where: 'type', 'faq_section' -%}
+{%- assign video_hero_blocks = section.blocks | where: 'type', 'video_hero' -%}
+{%- if bundle_blocks.size > 0 -%}
+  {{ 'bundle-deals.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+<div class="product-page" style="padding-bottom:0;">
+  <div class="container">
+
+    {%- comment -%} Breadcrumb {%- endcomment -%}
+    <nav class="product-breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">Home</a>
+      {%- if collection -%}
+        &nbsp;/&nbsp;<a href="{{ collection.url }}">{{ collection.title }}</a>
+      {%- endif -%}
+      &nbsp;/&nbsp;<span>{{ product.title }}</span>
+    </nav>
+
+    <div class="product-layout">
+
+      {%- comment -%} ── Gallery ── {%- endcomment -%}
+      <div class="product-gallery">
+        <div class="product-main-image">
+          <img
+            id="ProductMainImage"
+            src="{{ product.featured_media | image_url: width: 900 }}"
+            alt="{{ product.featured_media.alt | default: product.title | escape }}"
+            width="900" height="900"
+            loading="eager"
+            fetchpriority="high"
+          >
+          {%- if product.media.size > 1 -%}
+            <div class="gallery-nav">
+              <button class="gallery-nav-btn" data-gallery-prev aria-label="Previous image">
+                {%- render 'icon-arrow-left' -%}
+              </button>
+              <button class="gallery-nav-btn" data-gallery-next aria-label="Next image" style="transform:rotate(180deg);">
+                {%- render 'icon-arrow-left' -%}
+              </button>
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- if product.media.size > 1 -%}
+          {%- assign default_color = current_variant.option1 | downcase | strip -%}
+          {%- assign has_color_option = false -%}
+          {%- for opt in product.options_with_values -%}
+            {%- assign opt_lower = opt.name | downcase -%}
+            {%- if opt_lower == 'color' or opt_lower == 'colour' or opt_lower == 'colore' or opt_lower == 'couleur' -%}
+              {%- assign has_color_option = true -%}
+            {%- endif -%}
+          {%- endfor -%}
+          <div class="product-thumbnails" id="ProductThumbnails">
+            {%- for media in product.media -%}
+              {%- assign media_color = media.alt | downcase | strip -%}
+              {%- assign is_default = false -%}
+              {%- if has_color_option == false or forloop.first -%}
+                {%- assign is_default = true -%}
+              {%- elsif default_color != '' and media_color contains default_color -%}
+                {%- assign is_default = true -%}
+              {%- elsif default_color != '' and default_color contains media_color and media_color != '' -%}
+                {%- assign is_default = true -%}
+              {%- endif -%}
+              <div
+                class="product-thumbnail{% if forloop.first %} active{% endif %}"
+                data-src="{{ media | image_url: width: 900 }}"
+                data-color="{{ media.alt | downcase | strip | escape }}"
+                data-index="{{ forloop.index0 }}"
+                {% unless is_default %}style="display:none;"{% endunless %}
+                aria-label="Product image {{ forloop.index }}"
+                role="button"
+                tabindex="0"
+              >
+                <img
+                  {% if is_default %}src="{{ media | image_url: width: 160 }}"{% else %}data-thumb-src="{{ media | image_url: width: 160 }}"{% endif %}
+                  alt="{{ media.alt | default: product.title | escape }}"
+                  width="80" height="80"
+                  loading="lazy"
+                >
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} ── Product Info ── {%- endcomment -%}
+      <div class="product-info">
+
+        {%- comment -%} 1. Judge.me Review Badge {%- endcomment -%}
+        {%- if section.settings.show_judgeme_badge -%}
+          <div class="product-review-badge" id="ProductReviewBadge">
+            <!-- Start of Judge.me code -->
+            <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'>
+              {{ product.metafields.judgeme.badge }}
+            </div>
+            <!-- End of Judge.me code -->
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} 2. Social Proof {%- endcomment -%}
+        {%- if section.settings.social_proof_text != blank -%}
+          <p class="product-social-proof">{{ section.settings.social_proof_text }}</p>
+        {%- endif -%}
+
+        {%- comment -%} 3. Product Title {%- endcomment -%}
+        <h1 class="product-title">{{ product.title }}</h1>
+
+        {%- comment -%} 4. Product Price {%- endcomment -%}
+        <p class="product-price" id="ProductPrice">
+          {%- if current_variant.compare_at_price > current_variant.price -%}
+            <s style="color:var(--color-text-muted);margin-right:.5rem;font-size:1rem;">
+              {{ current_variant.compare_at_price | money }}
+            </s>
+          {%- endif -%}
+          {{ current_variant.price | money }}
+        </p>
+
+        {%- comment -%} 5. Free Shipping Text {%- endcomment -%}
+        {%- unless section.settings.shipping_text == blank -%}
+          <p class="product-shipping-text">{{ section.settings.shipping_text }}</p>
+        {%- endunless -%}
+
+        {%- comment -%} 5b. Shop Pay Installments {%- endcomment -%}
+        <div class="product-payment-terms">
+          {%- form 'product', product, id: 'ProductPaymentTerms' -%}
+            <input type="hidden" name="id" value="{{ current_variant.id }}">
+            {{ form | payment_terms }}
+          {%- endform -%}
+        </div>
+
+        {%- comment -%} 6. Product Description (moved up) {%- endcomment -%}
+        {%- if product.description != blank -%}
+          <div class="product-description">
+            {{ product.description }}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} 7. Variant Form {%- endcomment -%}
+        <script id="ProductVariantImages" type="application/json">
+          {
+            {%- for variant in product.variants -%}
+              "{{ variant.id }}": {
+                "price": {{ variant.price }},
+                "available": {{ variant.available }},
+                "image_src": "{{ variant.featured_image | image_url: width: 900 }}",
+                "image_color": "{{ variant.featured_image.alt | downcase | strip | escape }}",
+                "inventory_quantity": {{ variant.inventory_quantity | default: 0 }}
+              }{% unless forloop.last %},{% endunless %}
+            {%- endfor -%}
+          }
+        </script>
+
+        {%- assign product_variants_json = product.variants | json -%}
+        {%- form 'product', product, id: 'ProductForm',
+            data-variants: product_variants_json,
+            data-option1: product.options[0],
+            data-option2: product.options[1],
+            data-option3: product.options[2]
+        -%}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+
+          {%- unless product.has_only_default_variant -%}
+            <div class="product-options">
+              {%- for option in product.options_with_values -%}
+                {%- assign is_color = false -%}
+                {%- assign option_lower = option.name | downcase -%}
+                {%- if option_lower == 'color' or option_lower == 'colour' or option_lower == 'colore' or option_lower == 'couleur' -%}
+                  {%- assign is_color = true -%}
+                {%- endif -%}
+                <div style="margin-bottom:1.5rem;">
+                  <div class="option-label-row">
+                    <span class="option-label">{% if is_color %}Color: <span id="SelectedColorLabel">{{ option.selected_value }}</span>{% else %}{{ option.name }}{% endif %}</span>
+                    {%- if is_color -%}
+                      {%- assign inv = current_variant.inventory_quantity | default: 0 -%}
+                      <span class="product-stock-badge" id="ProductStockBadge">
+                        {%- if inv < 15 -%}<span class="product-stock-badge__dot product-stock-badge__dot--red"></span><span class="product-stock-badge__text">Only {{ inv }} left</span>
+                        {%- elsif inv < 50 -%}<span class="product-stock-badge__dot product-stock-badge__dot--amber"></span><span class="product-stock-badge__text">Low stock</span>
+                        {%- else -%}<span class="product-stock-badge__dot product-stock-badge__dot--green"></span><span class="product-stock-badge__text">In stock</span>
+                        {%- endif -%}
+                      </span>
+                    {%- endif -%}
+                  </div>
+                  <div class="option-values{% if is_color %} option-values--color{% endif %}">
+                    {%- for value in option.values -%}
+                      {%- if is_color -%}
+                        <button
+                          type="button"
+                          class="option-btn option-btn--color{% if option.selected_value == value %} active{% endif %}"
+                          data-option="{{ option.name }}"
+                          data-value="{{ value }}"
+                          data-is-color="true"
+                          aria-label="{{ option.name }}: {{ value }}"
+                          title="{{ value }}"
+                        >
+                          {%- if value.swatch.image -%}
+                            <img src="{{ value.swatch.image | image_url: width: 120 }}" alt="{{ value | escape }}" width="60" height="60" loading="lazy" class="color-swatch-img">
+                          {%- elsif value.swatch.color -%}
+                            <span class="color-swatch-img" style="background-color: {{ value.swatch.color }};"></span>
+                          {%- else -%}
+                            <span class="color-swatch-img color-swatch-img--fallback">{{ value | slice: 0, 2 }}</span>
+                          {%- endif -%}
+                        </button>
+                      {%- else -%}
+                        <button
+                          type="button"
+                          class="option-btn{% if option.selected_value == value %} active{% endif %}"
+                          data-option="{{ option.name }}"
+                          data-value="{{ value }}"
+                          data-is-color="false"
+                          aria-label="{{ option.name }}: {{ value }}"
+                        >
+                          {{ value }}
+                        </button>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endunless -%}
+
+          {%- comment -%} 8. Add to Cart {%- endcomment -%}
+          <div class="product-atc">
+            <button
+              type="submit"
+              class="product-atc-btn"
+              data-variant-id="{{ current_variant.id }}"
+              {% unless current_variant.available %}disabled{% endunless %}
+            >
+              {%- if current_variant.available -%}
+                {{ 'products.product.add_to_cart' | t }}
+              {%- else -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- endif -%}
+            </button>
+          </div>
+        {%- endform -%}
+
+        {%- comment -%} 9. Delivery Estimate {%- endcomment -%}
+        {%- if section.settings.show_delivery_estimate -%}
+          <div class="product-delivery-estimate" id="ProductDeliveryEstimate"
+               data-business-days="{{ section.settings.delivery_business_days }}">
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} 10. Payment Icons {%- endcomment -%}
+        {%- if section.settings.show_payment_icons -%}
+          <div class="product-payment-icons">
+            {%- for type in shop.enabled_payment_types -%}
+              {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} 10b. Trust Badges {%- endcomment -%}
+        <div class="product-trust-badges">
+          <div class="product-trust-badge">
+            <img src="https://cdn.shopify.com/s/files/1/0674/0636/4749/files/2088741_430x.png?v=1773561823" alt="Full-Grain Leather" width="28" height="28" style="width:28px;height:28px;object-fit:contain;">
+            <span>Full-Grain<br>Leather</span>
+          </div>
+          <div class="product-trust-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="0"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <span>Free US<br>Shipping</span>
+          </div>
+          <div class="product-trust-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            <span>30-Day<br>Returns</span>
+          </div>
+          <div class="product-trust-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Manufacturer<br>Warranty</span>
+          </div>
+        </div>
+
+        {%- comment -%} 10c. Bundle Deals {%- endcomment -%}
+        {%- assign bundle_blocks = section.blocks | where: 'type', 'bundle_deals' -%}
+        {%- if bundle_blocks.size > 0 -%}
+          <div class="product-bundle-deals">
+            {%- for block in bundle_blocks -%}
+              {%- assign bd = block.settings -%}
+              {%- assign bd_p2 = bd.product_2 -%}
+              {%- assign bd_p3 = bd.product_3 -%}
+              {%- assign bd_p4 = bd.product_4 -%}
+
+              {%- comment -%} Bundle price overrides (in cents) — set in block settings as dollars e.g. "24.00" {%- endcomment -%}
+              {%- assign bd_bp1_cents = bd.bundle_price_1 | times: 100 | round -%}
+              {%- assign bd_bp2_cents = bd.bundle_price_2 | times: 100 | round -%}
+              {%- assign bd_bp3_cents = bd.bundle_price_3 | times: 100 | round -%}
+              {%- assign bd_bp4_cents = bd.bundle_price_4 | times: 100 | round -%}
+
+              {%- comment -%} Pre-calculate totals — use bundle price override if set {%- endcomment -%}
+              {%- if bd_bp1_cents > 0 -%}
+                {%- assign bd_total = bd_bp1_cents -%}
+                {%- assign bd_compare = current_variant.price -%}
+              {%- else -%}
+                {%- assign bd_total = current_variant.price -%}
+                {%- if current_variant.compare_at_price > current_variant.price -%}
+                  {%- assign bd_compare = current_variant.compare_at_price -%}
+                {%- else -%}
+                  {%- assign bd_compare = current_variant.price -%}
+                {%- endif -%}
+              {%- endif -%}
+              {%- if bd_p2 != blank -%}
+                {%- if bd_bp2_cents > 0 -%}
+                  {%- assign bd_total = bd_total | plus: bd_bp2_cents -%}
+                  {%- assign bd_compare = bd_compare | plus: bd_p2.price -%}
+                {%- else -%}
+                  {%- assign bd_total = bd_total | plus: bd_p2.price -%}
+                  {%- if bd_p2.compare_at_price > bd_p2.price -%}
+                    {%- assign bd_compare = bd_compare | plus: bd_p2.compare_at_price -%}
+                  {%- else -%}
+                    {%- assign bd_compare = bd_compare | plus: bd_p2.price -%}
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endif -%}
+              {%- if bd_p3 != blank -%}
+                {%- if bd_bp3_cents > 0 -%}
+                  {%- assign bd_total = bd_total | plus: bd_bp3_cents -%}
+                  {%- assign bd_compare = bd_compare | plus: bd_p3.price -%}
+                {%- else -%}
+                  {%- assign bd_total = bd_total | plus: bd_p3.price -%}
+                  {%- if bd_p3.compare_at_price > bd_p3.price -%}
+                    {%- assign bd_compare = bd_compare | plus: bd_p3.compare_at_price -%}
+                  {%- else -%}
+                    {%- assign bd_compare = bd_compare | plus: bd_p3.price -%}
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endif -%}
+              {%- if bd_p4 != blank -%}
+                {%- if bd_bp4_cents > 0 -%}
+                  {%- assign bd_total = bd_total | plus: bd_bp4_cents -%}
+                  {%- assign bd_compare = bd_compare | plus: bd_p4.price -%}
+                {%- else -%}
+                  {%- assign bd_total = bd_total | plus: bd_p4.price -%}
+                  {%- if bd_p4.compare_at_price > bd_p4.price -%}
+                    {%- assign bd_compare = bd_compare | plus: bd_p4.compare_at_price -%}
+                  {%- else -%}
+                    {%- assign bd_compare = bd_compare | plus: bd_p4.price -%}
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endif -%}
+
+              <bundle-deals class="bundle-deals" {{ block.shopify_attributes }}>
+                <p class="product-bundle-deals__heading">{{ bd.heading | default: 'Build Your Bundle' }}</p>
+
+                {%- comment -%} Thumbnails row {%- endcomment -%}
+                <div class="bundle-deals__media">
+                  <div class="bundle-deals__media-item" data-media-index="0" id="bd-thumb-{{ block.id }}-0">
+                    {%- if current_variant.featured_media -%}
+                      <img src="{{ current_variant.featured_media | image_url: width: 144 }}" alt="{{ product.title | escape }}" width="72" height="72" loading="lazy">
+                    {%- elsif product.featured_media -%}
+                      <img src="{{ product.featured_media | image_url: width: 144 }}" alt="{{ product.title | escape }}" width="72" height="72" loading="lazy">
+                    {%- endif -%}
+                  </div>
+                  {%- if bd_p2 != blank -%}
+                    <div class="bundle-deals__media-item" data-media-index="1">
+                      {%- if bd_p2.featured_media -%}
+                        <img src="{{ bd_p2.featured_media | image_url: width: 144 }}" alt="{{ bd_p2.title | escape }}" width="72" height="72" loading="lazy">
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                  {%- if bd_p3 != blank -%}
+                    <div class="bundle-deals__media-item" data-media-index="2">
+                      {%- if bd_p3.featured_media -%}
+                        <img src="{{ bd_p3.featured_media | image_url: width: 144 }}" alt="{{ bd_p3.title | escape }}" width="72" height="72" loading="lazy">
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                  {%- if bd_p4 != blank -%}
+                    <div class="bundle-deals__media-item" data-media-index="3">
+                      {%- if bd_p4.featured_media -%}
+                        <img src="{{ bd_p4.featured_media | image_url: width: 144 }}" alt="{{ bd_p4.title | escape }}" width="72" height="72" loading="lazy">
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                </div>
+
+                {%- comment -%} WAS / TODAY summary {%- endcomment -%}
+                {%- if bd_compare > bd_total -%}
+                  <p class="bundle-deals__summary">
+                    <span class="bundle-deals__summary-was">WAS: {{ bd_compare | money }}</span>
+                    <span class="bundle-deals__summary-today">TODAY: {{ bd_total | money }}</span>
+                  </p>
+                {%- endif -%}
+
+                {%- comment -%} Product rows — first item always = current page product {%- endcomment -%}
+                <div class="bundle-deals__product" data-product-index="0">
+                  <div class="bundle-deals__checkbox-container">
+                    <input type="checkbox" class="bundle-deals__checkbox" id="bd-check-{{ block.id }}-0"
+                      data-variant-id="{{ current_variant.id }}"
+                      data-price="{% if bd_bp1_cents > 0 %}{{ bd_bp1_cents }}{% else %}{{ current_variant.price }}{% endif %}"
+                      data-compare-price="{{ current_variant.price }}"
+                      checked disabled>
+                    <label class="bundle-deals__checkbox-label" for="bd-check-{{ block.id }}-0">
+                      <svg viewBox="0 0 20 20" class="checkmark-checked" aria-hidden="true"><path fill="currentColor" d="M2 10a8 8 0 1 1 16 0A8 8 0 0 1 2 10zm11.78-2.97a.75.75 0 0 0-1.06-1.06L9 9.69 7.28 7.97a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.06 0l4.25-4.25z"/></svg>
+                      <svg viewBox="0 0 20 20" class="checkmark-unchecked" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2z"/></svg>
+                      <p class="bundle-deals__title">{{ product.title }}</p>
+                    </label>
+                    <div class="bundle-deals__prices">
+                      {%- if bd_bp1_cents > 0 -%}
+                        <span class="bundle-deals__compare-price" id="bd-cprice-{{ block.id }}-0">{{ current_variant.price | money }}</span>
+                        <span class="bundle-deals__price" id="bd-price-{{ block.id }}-0">{{ bd_bp1_cents | money }}</span>
+                      {%- else -%}
+                        {%- if current_variant.compare_at_price > current_variant.price -%}
+                          <span class="bundle-deals__compare-price" id="bd-cprice-{{ block.id }}-0">{{ current_variant.compare_at_price | money }}</span>
+                        {%- else -%}
+                          <span class="bundle-deals__compare-price" id="bd-cprice-{{ block.id }}-0" style="display:none"></span>
+                        {%- endif -%}
+                        <span class="bundle-deals__price" id="bd-price-{{ block.id }}-0">{{ current_variant.price | money }}</span>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                </div>
+                {%- if bd_p2 != blank -%}
+                  {%- assign bp_variant = bd_p2.selected_or_first_available_variant -%}
+                  <div class="bundle-deals__product" data-product-index="1">
+                    <div class="bundle-deals__checkbox-container">
+                      <input type="checkbox" class="bundle-deals__checkbox" id="bd-check-{{ block.id }}-1" data-variant-id="{{ bp_variant.id }}" data-price="{% if bd_bp2_cents > 0 %}{{ bd_bp2_cents }}{% else %}{{ bp_variant.price }}{% endif %}" data-compare-price="{{ bp_variant.price }}" checked>
+                      <label class="bundle-deals__checkbox-label" for="bd-check-{{ block.id }}-1">
+                        <svg viewBox="0 0 20 20" class="checkmark-checked" aria-hidden="true"><path fill="currentColor" d="M2 10a8 8 0 1 1 16 0A8 8 0 0 1 2 10zm11.78-2.97a.75.75 0 0 0-1.06-1.06L9 9.69 7.28 7.97a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.06 0l4.25-4.25z"/></svg>
+                        <svg viewBox="0 0 20 20" class="checkmark-unchecked" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2z"/></svg>
+                        <p class="bundle-deals__title">{{ bd_p2.title }}</p>
+                      </label>
+                      <div class="bundle-deals__prices">
+                        {%- if bd_bp2_cents > 0 -%}
+                          <span class="bundle-deals__compare-price">{{ bp_variant.price | money }}</span>
+                          <span class="bundle-deals__price">{{ bd_bp2_cents | money }}</span>
+                        {%- else -%}
+                          {%- if bp_variant.compare_at_price > bp_variant.price -%}<span class="bundle-deals__compare-price">{{ bp_variant.compare_at_price | money }}</span>{%- endif -%}
+                          <span class="bundle-deals__price">{{ bp_variant.price | money }}</span>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                    {%- if bd_p2.variants.size > 1 -%}
+                      <div class="bundle-deals__variant-selects">
+                        {%- for option in bd_p2.options_with_values -%}
+                          <div class="select"><select data-product-index="1" data-option-index="{{ forloop.index0 }}" aria-label="{{ option.name }}">{%- for value in option.values -%}<option value="{{ value | escape }}"{% if option.selected_value == value %} selected{% endif %}>{{ value }}</option>{%- endfor -%}</select><svg class="icon-caret" viewBox="0 0 10 6" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M1 1l4 4 4-4"/></svg></div>
+                        {%- endfor -%}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+                {%- if bd_p3 != blank -%}
+                  {%- assign bp_variant = bd_p3.selected_or_first_available_variant -%}
+                  <div class="bundle-deals__product" data-product-index="2">
+                    <div class="bundle-deals__checkbox-container">
+                      <input type="checkbox" class="bundle-deals__checkbox" id="bd-check-{{ block.id }}-2" data-variant-id="{{ bp_variant.id }}" data-price="{% if bd_bp3_cents > 0 %}{{ bd_bp3_cents }}{% else %}{{ bp_variant.price }}{% endif %}" data-compare-price="{{ bp_variant.price }}" checked>
+                      <label class="bundle-deals__checkbox-label" for="bd-check-{{ block.id }}-2">
+                        <svg viewBox="0 0 20 20" class="checkmark-checked" aria-hidden="true"><path fill="currentColor" d="M2 10a8 8 0 1 1 16 0A8 8 0 0 1 2 10zm11.78-2.97a.75.75 0 0 0-1.06-1.06L9 9.69 7.28 7.97a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.06 0l4.25-4.25z"/></svg>
+                        <svg viewBox="0 0 20 20" class="checkmark-unchecked" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2z"/></svg>
+                        <p class="bundle-deals__title">{{ bd_p3.title }}</p>
+                      </label>
+                      <div class="bundle-deals__prices">
+                        {%- if bd_bp3_cents > 0 -%}
+                          <span class="bundle-deals__compare-price">{{ bp_variant.price | money }}</span>
+                          <span class="bundle-deals__price">{{ bd_bp3_cents | money }}</span>
+                        {%- else -%}
+                          {%- if bp_variant.compare_at_price > bp_variant.price -%}<span class="bundle-deals__compare-price">{{ bp_variant.compare_at_price | money }}</span>{%- endif -%}
+                          <span class="bundle-deals__price">{{ bp_variant.price | money }}</span>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                    {%- if bd_p3.variants.size > 1 -%}
+                      <div class="bundle-deals__variant-selects">
+                        {%- for option in bd_p3.options_with_values -%}
+                          <div class="select"><select data-product-index="2" data-option-index="{{ forloop.index0 }}" aria-label="{{ option.name }}">{%- for value in option.values -%}<option value="{{ value | escape }}"{% if option.selected_value == value %} selected{% endif %}>{{ value }}</option>{%- endfor -%}</select><svg class="icon-caret" viewBox="0 0 10 6" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M1 1l4 4 4-4"/></svg></div>
+                        {%- endfor -%}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+                {%- if bd_p4 != blank -%}
+                  {%- assign bp_variant = bd_p4.selected_or_first_available_variant -%}
+                  <div class="bundle-deals__product" data-product-index="3">
+                    <div class="bundle-deals__checkbox-container">
+                      <input type="checkbox" class="bundle-deals__checkbox" id="bd-check-{{ block.id }}-3" data-variant-id="{{ bp_variant.id }}" data-price="{% if bd_bp4_cents > 0 %}{{ bd_bp4_cents }}{% else %}{{ bp_variant.price }}{% endif %}" data-compare-price="{{ bp_variant.price }}" checked>
+                      <label class="bundle-deals__checkbox-label" for="bd-check-{{ block.id }}-3">
+                        <svg viewBox="0 0 20 20" class="checkmark-checked" aria-hidden="true"><path fill="currentColor" d="M2 10a8 8 0 1 1 16 0A8 8 0 0 1 2 10zm11.78-2.97a.75.75 0 0 0-1.06-1.06L9 9.69 7.28 7.97a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.06 0l4.25-4.25z"/></svg>
+                        <svg viewBox="0 0 20 20" class="checkmark-unchecked" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2z"/></svg>
+                        <p class="bundle-deals__title">{{ bd_p4.title }}</p>
+                      </label>
+                      <div class="bundle-deals__prices">
+                        {%- if bd_bp4_cents > 0 -%}
+                          <span class="bundle-deals__compare-price">{{ bp_variant.price | money }}</span>
+                          <span class="bundle-deals__price">{{ bd_bp4_cents | money }}</span>
+                        {%- else -%}
+                          {%- if bp_variant.compare_at_price > bp_variant.price -%}<span class="bundle-deals__compare-price">{{ bp_variant.compare_at_price | money }}</span>{%- endif -%}
+                          <span class="bundle-deals__price">{{ bp_variant.price | money }}</span>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                    {%- if bd_p4.variants.size > 1 -%}
+                      <div class="bundle-deals__variant-selects">
+                        {%- for option in bd_p4.options_with_values -%}
+                          <div class="select"><select data-product-index="3" data-option-index="{{ forloop.index0 }}" aria-label="{{ option.name }}">{%- for value in option.values -%}<option value="{{ value | escape }}"{% if option.selected_value == value %} selected{% endif %}>{{ value }}</option>{%- endfor -%}</select><svg class="icon-caret" viewBox="0 0 10 6" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M1 1l4 4 4-4"/></svg></div>
+                        {%- endfor -%}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+
+                <div class="bundle-deals__divider"></div>
+
+                <button type="button" class="bundle-deals__btn" data-bundle-block-id="{{ block.id }}"{% if bd.discount_code != blank %} data-discount-code="{{ bd.discount_code | escape }}"{% endif %}>
+                  {{ bd.button_label | default: 'Add Bundle to Cart' }}
+                </button>
+                <p class="bundle-deals__error" id="bd-error-{{ block.id }}"></p>
+
+              </bundle-deals>
+            {%- endfor -%}
+          </div>
+
+          <script>
+          (function() {
+            var form    = document.getElementById('ProductForm');
+            var addBtn  = form && form.querySelector('.product-atc-btn');
+            if (!addBtn) return;
+
+            var variants = JSON.parse(form.dataset.variants || '[]');
+
+            function fmtMoney(cents) {
+              var fmt = (window.Shopify && window.Shopify.money_format) || '${{amount}}';
+              return fmt.replace('{{amount}}', (cents / 100).toFixed(2))
+                        .replace('{{amount_no_decimals}}', Math.round(cents / 100))
+                        .replace('{{amount_with_comma_separator}}', (cents / 100).toFixed(2).replace('.', ','));
+            }
+
+            function syncBundle(variant) {
+              document.querySelectorAll('.bundle-deals').forEach(function(bundle) {
+                var blockId = bundle.querySelector('.bundle-deals__btn').dataset.bundleBlockId;
+
+                // Update first checkbox data
+                var cb0 = bundle.querySelector('[data-product-index="0"] .bundle-deals__checkbox');
+                if (cb0) {
+                  cb0.dataset.variantId    = variant.id;
+                  cb0.dataset.price        = variant.price;
+                  cb0.dataset.comparePrice = variant.compare_at_price > variant.price ? variant.compare_at_price : variant.price;
+                }
+
+                // Update first product price display
+                var priceEl  = document.getElementById('bd-price-'  + blockId + '-0');
+                var cpriceEl = document.getElementById('bd-cprice-' + blockId + '-0');
+                if (priceEl)  priceEl.textContent = fmtMoney(variant.price);
+                if (cpriceEl) {
+                  if (variant.compare_at_price > variant.price) {
+                    cpriceEl.textContent  = fmtMoney(variant.compare_at_price);
+                    cpriceEl.style.display = '';
+                  } else {
+                    cpriceEl.textContent  = '';
+                    cpriceEl.style.display = 'none';
+                  }
+                }
+
+                // Update thumbnail
+                var thumb = document.querySelector('#bd-thumb-' + blockId + '-0 img');
+                if (thumb && variant.featured_image && variant.featured_image.src) {
+                  var src = variant.featured_image.src;
+                  thumb.src = src.replace(/(\.[a-z]+)(\?|$)/, '_144x$1$2');
+                }
+
+              });
+            }
+
+            // Watch for variant changes via ATC button attribute mutation
+            new MutationObserver(function(mutations) {
+              mutations.forEach(function(m) {
+                if (m.attributeName === 'data-variant-id') {
+                  var vid     = parseInt(addBtn.dataset.variantId);
+                  var variant = variants.find(function(v) { return v.id === vid; });
+                  if (variant) syncBundle(variant);
+                }
+              });
+            }).observe(addBtn, { attributes: true, attributeFilter: ['data-variant-id'] });
+
+            // Add Bundle to Cart handler
+            document.querySelectorAll('.bundle-deals__btn').forEach(function(btn) {
+              btn.addEventListener('click', async function() {
+                var bundle  = btn.closest('bundle-deals');
+                var errorEl = bundle && bundle.querySelector('.bundle-deals__error');
+                if (errorEl) { errorEl.textContent = ''; errorEl.classList.remove('is-visible'); }
+
+                var items = [];
+                bundle && bundle.querySelectorAll('.bundle-deals__checkbox').forEach(function(cb) {
+                  if (cb.checked && cb.dataset.variantId) {
+                    items.push({ id: parseInt(cb.dataset.variantId), quantity: 1 });
+                  }
+                });
+                if (!items.length) return;
+
+                btn.disabled    = true;
+                btn.textContent = 'Adding…';
+
+                try {
+                  var res = await fetch('/cart/add.js', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ items: items })
+                  });
+                  if (!res.ok) { var e = await res.json().catch(function(){return{};}); throw new Error(e.description || 'Could not add to cart.'); }
+
+                  // Apply discount code silently to session if set
+                  var discountCode = btn.dataset.discountCode;
+                  if (discountCode) {
+                    await fetch('/discount/' + encodeURIComponent(discountCode), { redirect: 'manual' }).catch(function(){});
+                  }
+
+                  if (window.DiazTheme) {
+                    await window.DiazTheme.fetchCart();
+                    if (window.DiazTheme.openCart)  window.DiazTheme.openCart();
+                    if (window.DiazTheme.showToast) window.DiazTheme.showToast('Bundle added to cart!');
+                  } else { window.location.href = '/cart'; }
+                } catch(err) {
+                  if (errorEl) { errorEl.textContent = err.message; errorEl.classList.add('is-visible'); }
+                } finally {
+                  btn.disabled    = false;
+                  btn.textContent = btn.dataset.label || 'Add Bundle to Cart';
+                }
+              });
+            });
+          })();
+          </script>
+        {%- endif -%}
+
+        {%- comment -%} 11. Upsell Component {%- endcomment -%}
+        {%- if section.settings.show_upsell and section.settings.upsell_product != blank -%}
+          <div class="product-upsell">
+            <p class="product-upsell-heading">{{ section.settings.upsell_heading }}</p>
+            {%- assign upsell = section.settings.upsell_product -%}
+            {%- assign upsell_variant = upsell.selected_or_first_available_variant -%}
+            <div class="product-upsell-card">
+              <a href="{{ upsell.url }}" class="product-upsell-image">
+                {%- if upsell.featured_media -%}
+                  <img
+                    src="{{ upsell.featured_media | image_url: width: 200 }}"
+                    alt="{{ upsell.featured_media.alt | default: upsell.title | escape }}"
+                    width="100" height="100"
+                    loading="lazy"
+                  >
+                {%- endif -%}
+              </a>
+              <div class="product-upsell-details">
+                <a href="{{ upsell.url }}" class="product-upsell-title">{{ upsell.title }}</a>
+                <p class="product-upsell-price">
+                  {%- if upsell_variant.compare_at_price > upsell_variant.price -%}
+                    <s style="color:var(--color-text-muted);margin-right:.25rem;font-size:0.8rem;">
+                      {{ upsell_variant.compare_at_price | money }}
+                    </s>
+                  {%- endif -%}
+                  {{ upsell_variant.price | money }}
+                </p>
+              </div>
+              <button
+                type="button"
+                class="product-upsell-add"
+                data-upsell-variant-id="{{ upsell_variant.id }}"
+                {% unless upsell_variant.available %}disabled{% endunless %}
+              >
+                {%- if upsell_variant.available -%}+{%- else -%}Sold Out{%- endif -%}
+              </button>
+            </div>
+            {%- if section.settings.upsell_product_2 != blank -%}
+              {%- assign upsell2 = section.settings.upsell_product_2 -%}
+              {%- assign upsell2_variant = upsell2.selected_or_first_available_variant -%}
+              <div class="product-upsell-card">
+                <a href="{{ upsell2.url }}" class="product-upsell-image">
+                  {%- if upsell2.featured_media -%}
+                    <img
+                      src="{{ upsell2.featured_media | image_url: width: 200 }}"
+                      alt="{{ upsell2.featured_media.alt | default: upsell2.title | escape }}"
+                      width="100" height="100"
+                      loading="lazy"
+                    >
+                  {%- endif -%}
+                </a>
+                <div class="product-upsell-details">
+                  <a href="{{ upsell2.url }}" class="product-upsell-title">{{ upsell2.title }}</a>
+                  <p class="product-upsell-price">
+                    {%- if upsell2_variant.compare_at_price > upsell2_variant.price -%}
+                      <s style="color:var(--color-text-muted);margin-right:.25rem;font-size:0.8rem;">
+                        {{ upsell2_variant.compare_at_price | money }}
+                      </s>
+                    {%- endif -%}
+                    {{ upsell2_variant.price | money }}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  class="product-upsell-add"
+                  data-upsell-variant-id="{{ upsell2_variant.id }}"
+                  {% unless upsell2_variant.available %}disabled{% endunless %}
+                >
+                  {%- if upsell2_variant.available -%}+{%- else -%}Sold Out{%- endif -%}
+                </button>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{%- comment -%} ── Tab Navigation ── {%- endcomment -%}
+{%- assign has_more_info = false -%}
+{%- if info_blocks.size > 0 or info_tabs_blocks.size > 0 -%}{%- assign has_more_info = true -%}{%- endif -%}
+{%- assign has_faq = false -%}
+{%- if faq_blocks.size > 0 or faq_section_blocks.size > 0 -%}{%- assign has_faq = true -%}{%- endif -%}
+
+{%- if has_more_info or has_faq -%}
+  <div class="product-tabs-bar" id="ProductTabsBar">
+    <div class="product-tabs-center">
+      <div class="product-tabs-inner">
+        <button class="product-tab active" data-tab-target="overview" type="button">Overview</button>
+        {%- if has_more_info -%}
+          <button class="product-tab" data-tab-target="more-info" type="button">More Info</button>
+        {%- endif -%}
+        {%- if has_faq -%}
+          <button class="product-tab" data-tab-target="faq" type="button">FAQ</button>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{%- comment -%} ── Video Hero ── {%- endcomment -%}
+{%- if video_hero_blocks.size > 0 -%}
+  {%- for block in video_hero_blocks -%}
+    <div class="product-video-hero" {{ block.shopify_attributes }}>
+      {%- assign has_shopify_video = false -%}
+      {%- assign has_ext_video = false -%}
+      {%- if block.settings.shopify_video != blank -%}{%- assign has_shopify_video = true -%}{%- endif -%}
+      {%- if block.settings.video_url != blank -%}{%- assign has_ext_video = true -%}{%- endif -%}
+      {%- if has_shopify_video or has_ext_video -%}
+        <div class="product-video-hero__media">
+          {%- if has_shopify_video -%}
+            {%- assign sv = block.settings.shopify_video -%}
+            <video
+              autoplay muted loop playsinline
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"
+            >
+              {%- for source in sv.sources -%}
+                <source src="{{ source.url }}" type="{{ source.mime_type }}">
+              {%- endfor -%}
+            </video>
+          {%- elsif has_ext_video -%}
+            {%- if block.settings.video_url.type == 'youtube' -%}
+              <iframe
+                src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?autoplay=1&mute=1&loop=1&playlist={{ block.settings.video_url.id }}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                loading="lazy"
+              ></iframe>
+            {%- elsif block.settings.video_url.type == 'vimeo' -%}
+              <iframe
+                src="https://player.vimeo.com/video/{{ block.settings.video_url.id }}?autoplay=1&muted=1&loop=1&background=1&playsinline=1"
+                frameborder="0"
+                allow="autoplay"
+                loading="lazy"
+              ></iframe>
+            {%- endif -%}
+          {%- endif -%}
+          <div class="product-video-hero__overlay" style="opacity:{{ block.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+        </div>
+      {%- endif -%}
+      <div class="product-video-hero__content">
+        {%- if block.settings.subtitle != blank -%}
+          <p class="product-video-hero__subtitle">{{ block.settings.subtitle }}</p>
+        {%- endif -%}
+        {%- if block.settings.title != blank -%}
+          <h2 class="product-video-hero__title">{{ block.settings.title }}</h2>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endfor -%}
+{%- endif -%}
+
+{%- comment -%} ── Product Funnel ── {%- endcomment -%}
+{%- if funnel_blocks.size > 0 -%}
+  <div class="product-funnel" id="ProductFunnel">
+    {%- for block in funnel_blocks -%}
+      {%- assign color_value = block.settings.funnel_color | downcase | strip -%}
+      {%- assign funnel_alt = block.settings.funnel_alt | default: 'Product funnel image' -%}
+      {%- assign img_slots = "1,2,3,4,5" | split: "," -%}
+      {%- for slot in img_slots -%}
+        {%- if slot == "1" -%}
+          {%- assign desk_img = block.settings.desktop_image -%}
+          {%- assign mob_img = block.settings.mobile_image -%}
+        {%- elsif slot == "2" -%}
+          {%- assign desk_img = block.settings.desktop_image_2 -%}
+          {%- assign mob_img = block.settings.mobile_image_2 -%}
+        {%- elsif slot == "3" -%}
+          {%- assign desk_img = block.settings.desktop_image_3 -%}
+          {%- assign mob_img = block.settings.mobile_image_3 -%}
+        {%- elsif slot == "4" -%}
+          {%- assign desk_img = block.settings.desktop_image_4 -%}
+          {%- assign mob_img = block.settings.mobile_image_4 -%}
+        {%- elsif slot == "5" -%}
+          {%- assign desk_img = block.settings.desktop_image_5 -%}
+          {%- assign mob_img = block.settings.mobile_image_5 -%}
+        {%- endif -%}
+        {%- if desk_img != blank or mob_img != blank -%}
+          <div
+            class="product-funnel__slide"
+            data-funnel-color="{{ color_value }}"
+            {% if slot == "1" %}{{ block.shopify_attributes }}{% endif %}
+          >
+            {%- if desk_img != blank and mob_img != blank -%}
+              <picture>
+                <source
+                  media="(max-width: 749px)"
+                  srcset="{{ mob_img | image_url: width: 750 }} 750w,
+                          {{ mob_img | image_url: width: 1080 }} 1080w,
+                          {{ mob_img | image_url: width: 1500 }} 1500w"
+                  sizes="100vw"
+                >
+                <source
+                  media="(min-width: 750px)"
+                  srcset="{{ desk_img | image_url: width: 1200 }} 1200w,
+                          {{ desk_img | image_url: width: 1800 }} 1800w,
+                          {{ desk_img | image_url: width: 2400 }} 2400w,
+                          {{ desk_img | image_url: width: 3200 }} 3200w"
+                  sizes="100vw"
+                >
+                <img
+                  src="{{ desk_img | image_url: width: 1800 }}"
+                  alt="{{ funnel_alt | escape }}"
+                  width="{{ desk_img.width }}"
+                  height="{{ desk_img.height }}"
+                  loading="lazy"
+                  class="product-funnel__img"
+                >
+              </picture>
+            {%- elsif desk_img != blank -%}
+              <img
+                src="{{ desk_img | image_url: width: 1800 }}"
+                srcset="{{ desk_img | image_url: width: 1200 }} 1200w,
+                        {{ desk_img | image_url: width: 1800 }} 1800w,
+                        {{ desk_img | image_url: width: 2400 }} 2400w,
+                        {{ desk_img | image_url: width: 3200 }} 3200w"
+                sizes="100vw"
+                alt="{{ funnel_alt | escape }}"
+                width="{{ desk_img.width }}"
+                height="{{ desk_img.height }}"
+                loading="lazy"
+                class="product-funnel__img"
+              >
+            {%- elsif mob_img != blank -%}
+              <img
+                src="{{ mob_img | image_url: width: 1080 }}"
+                srcset="{{ mob_img | image_url: width: 750 }} 750w,
+                        {{ mob_img | image_url: width: 1080 }} 1080w,
+                        {{ mob_img | image_url: width: 1500 }} 1500w"
+                sizes="100vw"
+                alt="{{ funnel_alt | escape }}"
+                width="{{ mob_img.width }}"
+                height="{{ mob_img.height }}"
+                loading="lazy"
+                class="product-funnel__img"
+              >
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
+{%- comment -%} ── More Info & FAQ Cards Section ── {%- endcomment -%}
+{%- if has_more_info or has_faq -%}
+  <div class="product-cards-section">
+    <div class="container" style="max-width:900px;margin:0 auto;">
+
+      {%- if has_more_info -%}
+        <div class="product-floating-card" id="ProductMoreInfo">
+          <button class="product-card-toggle" aria-expanded="false" type="button">
+            <span>More Info</span>
+            <svg class="product-card-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="product-card-body">
+            <div class="more-info-columns">
+              {%- comment -%} Legacy: multiple more_info_group blocks {%- endcomment -%}
+              {%- for block in info_blocks -%}
+                <div class="more-info-group" {{ block.shopify_attributes }}>
+                  {%- if block.settings.info_title != blank -%}
+                    <h4 class="more-info-title">{{ block.settings.info_title }}</h4>
+                  {%- endif -%}
+                  <div class="more-info-content">{{ block.settings.info_content }}</div>
+                </div>
+              {%- endfor -%}
+              {%- comment -%} New: single more_info_tabs block {%- endcomment -%}
+              {%- for block in info_tabs_blocks -%}
+                {%- if block.settings.title_1 != blank or block.settings.content_1 != blank -%}
+                  <div class="more-info-group" {{ block.shopify_attributes }}>
+                    {%- if block.settings.title_1 != blank -%}<h4 class="more-info-title">{{ block.settings.title_1 }}</h4>{%- endif -%}
+                    <div class="more-info-content">{{ block.settings.content_1 }}</div>
+                  </div>
+                {%- endif -%}
+                {%- if block.settings.title_2 != blank or block.settings.content_2 != blank -%}
+                  <div class="more-info-group">
+                    {%- if block.settings.title_2 != blank -%}<h4 class="more-info-title">{{ block.settings.title_2 }}</h4>{%- endif -%}
+                    <div class="more-info-content">{{ block.settings.content_2 }}</div>
+                  </div>
+                {%- endif -%}
+                {%- if block.settings.title_3 != blank or block.settings.content_3 != blank -%}
+                  <div class="more-info-group">
+                    {%- if block.settings.title_3 != blank -%}<h4 class="more-info-title">{{ block.settings.title_3 }}</h4>{%- endif -%}
+                    <div class="more-info-content">{{ block.settings.content_3 }}</div>
+                  </div>
+                {%- endif -%}
+                {%- if block.settings.title_4 != blank or block.settings.content_4 != blank -%}
+                  <div class="more-info-group">
+                    {%- if block.settings.title_4 != blank -%}<h4 class="more-info-title">{{ block.settings.title_4 }}</h4>{%- endif -%}
+                    <div class="more-info-content">{{ block.settings.content_4 }}</div>
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if has_faq -%}
+        <div class="product-floating-card" id="ProductFAQ">
+          <button class="product-card-toggle" aria-expanded="false" type="button">
+            <span>FAQ</span>
+            <svg class="product-card-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="product-card-body">
+            <div class="pfaq-list">
+              {%- comment -%} Legacy: multiple faq_item blocks {%- endcomment -%}
+              {%- for block in faq_blocks -%}
+                <div class="pfaq-item" {{ block.shopify_attributes }}>
+                  <h4 class="pfaq-question-title">{{ block.settings.faq_question }}</h4>
+                  <div class="pfaq-answer-text">{{ block.settings.faq_answer }}</div>
+                </div>
+              {%- endfor -%}
+              {%- comment -%} New: single faq_section block {%- endcomment -%}
+              {%- for block in faq_section_blocks -%}
+                {%- if block.settings.q1 != blank -%}<div class="pfaq-item" {{ block.shopify_attributes }}><h4 class="pfaq-question-title">{{ block.settings.q1 }}</h4><div class="pfaq-answer-text">{{ block.settings.a1 }}</div></div>{%- endif -%}
+                {%- if block.settings.q2 != blank -%}<div class="pfaq-item"><h4 class="pfaq-question-title">{{ block.settings.q2 }}</h4><div class="pfaq-answer-text">{{ block.settings.a2 }}</div></div>{%- endif -%}
+                {%- if block.settings.q3 != blank -%}<div class="pfaq-item"><h4 class="pfaq-question-title">{{ block.settings.q3 }}</h4><div class="pfaq-answer-text">{{ block.settings.a3 }}</div></div>{%- endif -%}
+                {%- if block.settings.q4 != blank -%}<div class="pfaq-item"><h4 class="pfaq-question-title">{{ block.settings.q4 }}</h4><div class="pfaq-answer-text">{{ block.settings.a4 }}</div></div>{%- endif -%}
+                {%- if block.settings.q5 != blank -%}<div class="pfaq-item"><h4 class="pfaq-question-title">{{ block.settings.q5 }}</h4><div class="pfaq-answer-text">{{ block.settings.a5 }}</div></div>{%- endif -%}
+                {%- if block.settings.q6 != blank -%}<div class="pfaq-item"><h4 class="pfaq-question-title">{{ block.settings.q6 }}</h4><div class="pfaq-answer-text">{{ block.settings.a6 }}</div></div>{%- endif -%}
+                {%- if block.settings.q7 != blank -%}<div class="pfaq-item"><h4 class="pfaq-question-title">{{ block.settings.q7 }}</h4><div class="pfaq-answer-text">{{ block.settings.a7 }}</div></div>{%- endif -%}
+                {%- if block.settings.q8 != blank -%}<div class="pfaq-item"><h4 class="pfaq-question-title">{{ block.settings.q8 }}</h4><div class="pfaq-answer-text">{{ block.settings.a8 }}</div></div>{%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+{%- endif -%}
+
+{%- comment -%} ── Styles for Tabs, Cards, FAQ, Reviews ── {%- endcomment -%}
+<style>
+  /* ── Tab Bar — Pill/Capsule Style ── */
+  .product-tabs-bar {
+    padding: 2rem 0 1.5rem 0;
+    background: transparent;
+  }
+  .product-tabs-center {
+    display: flex;
+    justify-content: center;
+  }
+  .product-tabs-inner {
+    display: inline-flex;
+    align-items: center;
+    background: #e8e8e8;
+    border-radius: 0;
+    padding: 4px;
+    gap: 4px;
+  }
+  .product-tab {
+    padding: 0.6rem 1.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(0,0,0,0.5);
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+  .product-tab:hover {
+    color: rgba(0,0,0,0.75);
+  }
+  .product-tab.active {
+    background: #fff;
+    color: #000;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  /* ── Floating Cards Section ── */
+  .product-cards-section {
+    background: #ffffff;
+    padding: 2.5rem 1.5rem;
+  }
+
+  /* ── Floating Card ── */
+  .product-floating-card {
+    background: #fff;
+    border-radius: 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .product-card-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+  }
+  .product-card-toggle:hover {
+    color: var(--color-text-muted);
+  }
+  .product-card-icon {
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+  .product-card-toggle[aria-expanded="true"] .product-card-icon {
+    transform: rotate(45deg);
+  }
+  .product-card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .product-card-body.open {
+    max-height: 2000px;
+  }
+
+  /* ── More Info Columns ── */
+  .more-info-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    padding: 0 1.5rem 1.75rem;
+    border-top: 1px solid var(--color-border);
+    margin-top: 0;
+    padding-top: 1.5rem;
+  }
+  .more-info-title {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+  .more-info-content {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    line-height: 1.8;
+  }
+  .more-info-content ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+  .more-info-content li {
+    margin-bottom: 0.25rem;
+  }
+
+  /* ── Product FAQ Items ── */
+  .pfaq-list {
+    padding: 0 1.5rem 1.5rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+  .pfaq-item {
+    margin-bottom: 1.25rem;
+  }
+  .pfaq-item:last-child {
+    margin-bottom: 0;
+  }
+  .pfaq-question-title {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+  .pfaq-answer-text {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+
+  /* ── Review Badge ── */
+  .product-review-badge {
+    margin-bottom: 0.25rem;
+    cursor: pointer;
+  }
+
+  /* ── Social Proof ── */
+  .product-social-proof {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── Shipping Text ── */
+  .product-shipping-text {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+  .product-shipping-link {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    color: var(--color-text-muted);
+    transition: color 0.2s;
+  }
+  .product-shipping-link:hover {
+    color: var(--color-text);
+  }
+
+  /* ── Shop Pay Installments ── */
+  .product-payment-terms {
+    margin-bottom: 1.25rem;
+  }
+  .product-payment-terms form {
+    margin: 0;
+    padding: 0;
+  }
+  .product-payment-terms shopify-payment-terms {
+    font-size: 0.8125rem !important;
+    color: var(--color-text-muted);
+  }
+
+  /* ── Description spacing override (now above variant selector) ── */
+  .product-info .product-description {
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── Price spacing (less margin since shipping text follows) ── */
+  .product-info .product-price {
+    margin-bottom: 0.25rem;
+  }
+
+  /* ── Delivery Estimate ── */
+  .product-delivery-estimate {
+    font-size: 0.8125rem;
+    color: var(--color-text);
+    padding: 0.25rem 0;
+    margin-bottom: 0.25rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  /* ── Payment Icons ── */
+  .option-label-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .option-label-row .option-label {
+    margin-bottom: 0;
+  }
+  .product-stock-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .product-stock-badge__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  @keyframes stock-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.55; transform: scale(0.88); }
+  }
+  .product-stock-badge__dot--green  { background: #22a06b; animation: stock-pulse 2s ease-in-out infinite; }
+  .product-stock-badge__dot--amber  { background: #d97706; animation: stock-pulse 1.8s ease-in-out infinite; }
+  .product-stock-badge__dot--red    { background: #dc2626; animation: stock-pulse 1.2s ease-in-out infinite; }
+  .product-stock-badge__text {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .product-trust-badges {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.25rem;
+    margin: 0.6rem 0;
+    padding: 0.25rem 0;
+  }
+  .product-trust-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.25rem;
+  }
+  .product-trust-badge svg {
+    width: 28px;
+    height: 28px;
+    color: var(--color-text);
+    flex-shrink: 0;
+  }
+  .product-trust-badge span {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--color-text);
+  }
+  .product-payment-icons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    padding: 0.25rem 0;
+  }
+  .product-payment-icons svg,
+  .product-payment-icons .payment-icon {
+    display: block;
+    height: 20px;
+    width: auto;
+    flex-shrink: 0;
+    border-radius: 0;
+  }
+  .shopify-payment-terms {
+    text-align: center;
+    margin-bottom: 0.25rem;
+  }
+
+  /* ── Upsell Component ── */
+  .product-upsell {
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .product-upsell-heading {
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 0;
+  }
+  .product-upsell-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .product-upsell-image {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 0;
+    overflow: hidden;
+    background: #f5f5f5;
+  }
+  .product-upsell-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .product-upsell-details {
+    flex: 1;
+    min-width: 0;
+  }
+  .product-upsell-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--color-text);
+  }
+  .product-upsell-title:hover {
+    color: var(--color-text-muted);
+  }
+  .product-upsell-price {
+    font-size: 0.8125rem;
+    color: var(--color-text);
+    font-weight: 600;
+    margin: 0;
+  }
+  .product-upsell-add {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-black);
+    color: var(--color-white);
+    font-size: 1.25rem;
+    font-weight: 400;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+    line-height: 1;
+  }
+  .product-upsell-add:hover {
+    background: #222;
+  }
+  .product-upsell-add:disabled {
+    background: #999;
+    cursor: not-allowed;
+    font-size: 0.6rem;
+  }
+
+  /* ── Video Hero ── */
+  .product-video-hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius, 0px);
+    margin-bottom: 0;
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .product-video-hero__media {
+    position: absolute;
+    inset: 0;
+    background: #1a1a1a;
+  }
+  .product-video-hero__media iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 177.78vh;
+    min-width: 100%;
+    height: 56.25vw;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    border: 0;
+  }
+  .product-video-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: #000;
+  }
+  .product-video-hero__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 5rem 2rem;
+    color: #fff;
+  }
+  .product-video-hero__subtitle {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 0 0 0.75rem;
+    opacity: 0.85;
+  }
+  .product-video-hero__title {
+    font-family: var(--font-serif, 'Playfair Display', serif);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+  }
+  @media (max-width: 749px) {
+    .product-video-hero { min-height: 260px; }
+    .product-video-hero__content { padding: 3.5rem 1.5rem; }
+    .product-video-hero__title { font-size: clamp(2rem, 10vw, 3rem); }
+  }
+
+</style>
+
+<script>
+/* ── Upsell map for cart drawer ── */
+window.DiazUpsellMap = window.DiazUpsellMap || {};
+window.DiazUpsellMap[{{ product.handle | json }}] = [
+  {%- if section.settings.upsell_product != blank -%}{{ section.settings.upsell_product.handle | json }}{%- endif -%}
+  {%- if section.settings.upsell_product_2 != blank -%}{%- if section.settings.upsell_product != blank -%},{%- endif -%}{{ section.settings.upsell_product_2.handle | json }}{%- endif -%}
+];
+
+(function () {
+  var form       = document.getElementById('ProductForm');
+  var mainImg    = document.getElementById('ProductMainImage');
+  var thumbWrap  = document.getElementById('ProductThumbnails');
+  var priceEl    = document.getElementById('ProductPrice');
+  if (!form) return;
+
+  /* ── Variant data ── */
+  var variants     = JSON.parse(form.dataset.variants || '[]');
+  var variantImgs  = {};
+  try {
+    variantImgs = JSON.parse(document.getElementById('ProductVariantImages').textContent);
+  } catch(e) {}
+
+  /* ── Gallery helpers ── */
+  function getAllThumbs() {
+    return thumbWrap ? Array.from(thumbWrap.querySelectorAll('.product-thumbnail')) : [];
+  }
+
+  function setMainImage(src, alt) {
+    if (mainImg && src) {
+      mainImg.src = src;
+      if (alt) mainImg.alt = alt;
+    }
+  }
+
+  function setActiveThumb(index) {
+    getAllThumbs().forEach(function(t, i) { t.classList.toggle('active', i === index); });
+  }
+
+  /* ── Color-based gallery filter ── */
+  function filterGalleryByColor(colorValue) {
+    if (!thumbWrap) return;
+    var color  = colorValue.toLowerCase().trim();
+    var thumbs = getAllThumbs();
+    var matches = [];
+
+    thumbs.forEach(function(thumb) {
+      var thumbColor = (thumb.dataset.color || '').toLowerCase();
+      /* match if the image alt contains the selected color word */
+      var isMatch = thumbColor.includes(color) || color.includes(thumbColor) && thumbColor !== '';
+      thumb.style.display = isMatch ? '' : 'none';
+      if (isMatch) {
+        /* lazy-load the thumbnail src if not yet loaded */
+        var img = thumb.querySelector('img');
+        if (img && img.dataset.thumbSrc && !img.src) {
+          img.src = img.dataset.thumbSrc;
+        }
+        matches.push(thumb);
+      }
+    });
+
+    /* If no images matched (alt texts not set up) — show all */
+    if (matches.length === 0) {
+      thumbs.forEach(function(t) { t.style.display = ''; });
+      matches = thumbs;
+    }
+
+    /* Jump to first matching image */
+    if (matches.length > 0) {
+      var firstIdx = parseInt(matches[0].dataset.index || '0', 10);
+      setActiveThumb(firstIdx);
+      setMainImage(matches[0].dataset.src);
+    }
+  }
+
+  /* ── Funnel color filter ── */
+  var funnel = document.getElementById('ProductFunnel');
+  var funnelSlides = funnel ? funnel.querySelectorAll('.product-funnel__slide') : [];
+
+  function filterFunnelByColor(colorValue) {
+    if (!funnelSlides.length) return;
+    var color = (colorValue || '').toLowerCase().trim();
+    var hasMatch = false;
+
+    funnelSlides.forEach(function(slide) {
+      var slideColor = (slide.dataset.funnelColor || '').toLowerCase().trim();
+      if (slideColor === color) hasMatch = true;
+    });
+
+    funnelSlides.forEach(function(slide) {
+      var slideColor = (slide.dataset.funnelColor || '').toLowerCase().trim();
+      if (!hasMatch || slideColor === '' || slideColor === color) {
+        slide.style.display = '';
+      } else {
+        slide.style.display = 'none';
+      }
+    });
+  }
+
+  /* Initial funnel filter based on active color */
+  var initColorBtn = document.querySelector('.option-btn--color.active');
+  if (initColorBtn) filterFunnelByColor(initColorBtn.dataset.value);
+
+  /* ── Variant selector ── */
+  var selected = {};
+
+  /* Pre-fill selected from currently active buttons */
+  form.querySelectorAll('.option-btn.active').forEach(function(b) {
+    selected[b.dataset.option] = b.dataset.value;
+  });
+
+  form.querySelectorAll('.option-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var optionName = btn.dataset.option;
+      var optionVal  = btn.dataset.value;
+      var isColor    = btn.dataset.isColor === 'true';
+
+      /* Deselect siblings */
+      form.querySelectorAll('.option-btn[data-option="' + optionName + '"]').forEach(function(b) {
+        b.classList.remove('active');
+      });
+      btn.classList.add('active');
+      selected[optionName] = optionVal;
+
+      /* Update color label */
+      if (isColor) {
+        var colorLabel = document.getElementById('SelectedColorLabel');
+        if (colorLabel) colorLabel.textContent = optionVal;
+      }
+
+      /* Filter gallery when a color option changes */
+      if (isColor) {
+        filterGalleryByColor(optionVal);
+        filterFunnelByColor(optionVal);
+      }
+
+      /* Find matching variant */
+      var match = variants.find(function(v) {
+        return v.options.every(function(opt, i) {
+          var key = form.dataset['option' + (i + 1)];
+          return !selected[key] || selected[key] === opt;
+        });
+      });
+
+      if (match) {
+        form.querySelector('[name="id"]').value = match.id;
+
+        /* Update price */
+        if (priceEl) {
+          var imgData = variantImgs[String(match.id)];
+          var price = (match.price / 100).toFixed(2);
+          priceEl.textContent = '$' + price;
+        }
+
+        /* Update add-to-cart button */
+        var addBtn = form.querySelector('.product-atc-btn');
+        if (addBtn) {
+          addBtn.disabled  = !match.available;
+          addBtn.textContent = match.available ? 'Add to Cart' : 'Sold Out';
+          addBtn.dataset.variantId = match.id;
+        }
+
+        /* Update stock badge */
+        var stockBadge = document.getElementById('ProductStockBadge');
+        if (stockBadge && variantImgs[String(match.id)]) {
+          var qty = variantImgs[String(match.id)].inventory_quantity || 0;
+          var dot, text;
+          if (qty < 15) {
+            dot = 'product-stock-badge__dot--red';
+            text = 'Only ' + qty + ' left';
+          } else if (qty < 50) {
+            dot = 'product-stock-badge__dot--amber';
+            text = 'Low stock';
+          } else {
+            dot = 'product-stock-badge__dot--green';
+            text = 'In stock';
+          }
+          stockBadge.innerHTML = '<span class="product-stock-badge__dot ' + dot + '"></span><span class="product-stock-badge__text">' + text + '</span>';
+        }
+
+        /* If NOT a color option, still jump to variant's featured image */
+        if (!isColor && variantImgs[String(match.id)]) {
+          var imgSrc = variantImgs[String(match.id)].image_src;
+          if (imgSrc && imgSrc !== 'null') setMainImage(imgSrc);
+        }
+      }
+    });
+  });
+
+  /* ── Thumbnail clicks ── */
+  getAllThumbs().forEach(function(thumb, i) {
+    thumb.addEventListener('click', function() {
+      setActiveThumb(i);
+      setMainImage(thumb.dataset.src);
+    });
+  });
+
+  /* ── Gallery prev/next ── */
+  var prevBtn = form.closest('.product-page').querySelector('[data-gallery-prev]');
+  var nextBtn = form.closest('.product-page').querySelector('[data-gallery-next]');
+
+  function getVisibleThumbs() {
+    return getAllThumbs().filter(function(t) { return t.style.display !== 'none'; });
+  }
+
+  function getActiveVisibleIndex() {
+    var visible = getVisibleThumbs();
+    var active  = thumbWrap ? thumbWrap.querySelector('.product-thumbnail.active') : null;
+    return visible.indexOf(active);
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', function() {
+    var visible = getVisibleThumbs();
+    var cur     = getActiveVisibleIndex();
+    var prev    = (cur - 1 + visible.length) % visible.length;
+    var t       = visible[prev];
+    var idx     = parseInt(t.dataset.index || '0', 10);
+    setActiveThumb(idx);
+    setMainImage(t.dataset.src);
+  });
+
+  if (nextBtn) nextBtn.addEventListener('click', function() {
+    var visible = getVisibleThumbs();
+    var cur     = getActiveVisibleIndex();
+    var next    = (cur + 1) % visible.length;
+    var t       = visible[next];
+    var idx     = parseInt(t.dataset.index || '0', 10);
+    setActiveThumb(idx);
+    setMainImage(t.dataset.src);
+  });
+
+  /* ── Add to cart ── */
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var variantId = form.querySelector('[name="id"]').value;
+    var btn       = form.querySelector('.product-atc-btn');
+    window.DiazTheme.addToCart(variantId, 1, btn);
+  });
+
+  /* ── Tab Navigation ── */
+  var tabBar = document.getElementById('ProductTabsBar');
+  if (tabBar) {
+    tabBar.querySelectorAll('.product-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabBar.querySelectorAll('.product-tab').forEach(function(t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+
+        var target = tab.dataset.tabTarget;
+
+        if (target === 'overview') {
+          var scrollTo = document.getElementById('ProductFunnel') || document.getElementById('ProductTabsBar');
+          if (scrollTo) scrollTo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else if (target === 'more-info') {
+          var section = document.getElementById('ProductMoreInfo');
+          if (section) {
+            var toggle = section.querySelector('.product-card-toggle');
+            var body = section.querySelector('.product-card-body');
+            if (toggle && body && !body.classList.contains('open')) {
+              toggle.setAttribute('aria-expanded', 'true');
+              body.classList.add('open');
+            }
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        } else if (target === 'faq') {
+          var section = document.getElementById('ProductFAQ');
+          if (section) {
+            var toggle = section.querySelector('.product-card-toggle');
+            var body = section.querySelector('.product-card-body');
+            if (toggle && body && !body.classList.contains('open')) {
+              toggle.setAttribute('aria-expanded', 'true');
+              body.classList.add('open');
+            }
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+  }
+
+  /* ── Card Toggles (More Info & FAQ sections) ── */
+  document.querySelectorAll('.product-card-toggle').forEach(function(toggle) {
+    toggle.addEventListener('click', function() {
+      var expanded = toggle.getAttribute('aria-expanded') === 'true';
+      var body = toggle.nextElementSibling;
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      body.classList.toggle('open', !expanded);
+    });
+  });
+
+  /* ── Estimated Delivery Date ── */
+  var deliveryEl = document.getElementById('ProductDeliveryEstimate');
+  if (deliveryEl) {
+    var businessDays = parseInt(deliveryEl.dataset.businessDays || '3', 10);
+    var today = new Date();
+    var deliveryDate = new Date(today);
+    var daysAdded = 0;
+    while (daysAdded < businessDays) {
+      deliveryDate.setDate(deliveryDate.getDate() + 1);
+      var dayOfWeek = deliveryDate.getDay();
+      if (dayOfWeek !== 0 && dayOfWeek !== 6) daysAdded++;
+    }
+    var months = ['Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'];
+    var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var formatted = days[deliveryDate.getDay()] + ', ' + months[deliveryDate.getMonth()] + ' ' + deliveryDate.getDate();
+    deliveryEl.innerHTML = '\ud83c\uddfa\ud83c\uddf8 Order today and get it by <strong>' + formatted + '</strong>';
+  }
+
+  /* ── Review Badge click → scroll to reviews ── */
+  var reviewBadge = document.getElementById('ProductReviewBadge');
+  if (reviewBadge) {
+    reviewBadge.addEventListener('click', function() {
+      var target = document.querySelector('.jdgm-widget')
+        || document.querySelector('.jdgm-review-widget')
+        || document.querySelector('[data-judgeme]')
+        || document.getElementById('judgeme_product_reviews');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  /* ── Upsell Add to Cart ── */
+  document.querySelectorAll('.product-upsell-add').forEach(function(btn) {
+    if (!btn.disabled) {
+      btn.addEventListener('click', function() {
+        var variantId = btn.dataset.upsellVariantId;
+        if (variantId && window.DiazTheme) {
+          window.DiazTheme.addToCart(variantId, 1, btn);
+        }
+      });
+    }
+  });
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Product",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_judgeme_badge",
+      "label": "Show Judge.me review badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "social_proof_text",
+      "label": "Social proof text",
+      "info": "e.g. 500+ UNITS SOLD. Leave blank to hide."
+    },
+    {
+      "type": "textarea",
+      "id": "shipping_text",
+      "label": "Free shipping text",
+      "info": "e.g. Shipping is free on all US orders. Leave blank to hide."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_delivery_estimate",
+      "label": "Show estimated delivery date",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "delivery_business_days",
+      "label": "Estimated business days for delivery",
+      "min": 1,
+      "max": 14,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment method icons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_upsell",
+      "label": "Show upsell product",
+      "default": false
+    },
+    {
+      "type": "product",
+      "id": "upsell_product",
+      "label": "Upsell product 1"
+    },
+    {
+      "type": "product",
+      "id": "upsell_product_2",
+      "label": "Upsell product 2"
+    },
+    {
+      "type": "text",
+      "id": "upsell_heading",
+      "label": "Upsell heading text",
+      "default": "Others Like You Also Bought:"
+    },
+  ],
+  "blocks": [
+    {
+      "type": "video_hero",
+      "name": "Video Hero",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "video",
+          "id": "shopify_video",
+          "label": "Video (subido a Shopify)",
+          "info": "Sube el video en Content → Files, luego selecciónalo aquí. Tiene prioridad sobre el link externo."
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "Video URL (YouTube o Vimeo)",
+          "accept": ["youtube", "vimeo"],
+          "info": "Alternativa: pega un link de YouTube o Vimeo"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle (small text)",
+          "default": "Quality. Character. Tradition."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title (large text)",
+          "default": "Full-Grain Leather"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Overlay darkness",
+          "min": 0,
+          "max": 80,
+          "step": 5,
+          "default": 50,
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "type": "funnel_image",
+      "name": "Funnel Color Group",
+      "settings": [
+        {
+          "type": "text",
+          "id": "funnel_color",
+          "label": "Color",
+          "info": "Enter the exact color name matching the variant (e.g. Black, Blue). Leave blank to show for all colors."
+        },
+        {
+          "type": "text",
+          "id": "funnel_alt",
+          "label": "Alt Text",
+          "info": "Describe the images for accessibility."
+        },
+        { "type": "header", "content": "Image 1" },
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile Image 1"
+        },
+        { "type": "header", "content": "Image 2" },
+        {
+          "type": "image_picker",
+          "id": "desktop_image_2",
+          "label": "Desktop Image 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image_2",
+          "label": "Mobile Image 2"
+        },
+        { "type": "header", "content": "Image 3" },
+        {
+          "type": "image_picker",
+          "id": "desktop_image_3",
+          "label": "Desktop Image 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image_3",
+          "label": "Mobile Image 3"
+        },
+        { "type": "header", "content": "Image 4" },
+        {
+          "type": "image_picker",
+          "id": "desktop_image_4",
+          "label": "Desktop Image 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image_4",
+          "label": "Mobile Image 4"
+        },
+        { "type": "header", "content": "Image 5 (optional)" },
+        {
+          "type": "image_picker",
+          "id": "desktop_image_5",
+          "label": "Desktop Image 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image_5",
+          "label": "Mobile Image 5"
+        }
+      ]
+    },
+    {
+      "type": "more_info_group",
+      "name": "More Info Group",
+      "settings": [
+        {
+          "type": "text",
+          "id": "info_title",
+          "label": "Title",
+          "default": "Design"
+        },
+        {
+          "type": "richtext",
+          "id": "info_content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "faq_question",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_answer",
+          "label": "Answer"
+        }
+      ]
+    },
+    {
+      "type": "more_info_tabs",
+      "name": "More Info (all groups)",
+      "limit": 1,
+      "settings": [
+        { "type": "header", "content": "Group 1" },
+        { "type": "text", "id": "title_1", "label": "Title", "default": "Design" },
+        { "type": "richtext", "id": "content_1", "label": "Content" },
+        { "type": "header", "content": "Group 2" },
+        { "type": "text", "id": "title_2", "label": "Title" },
+        { "type": "richtext", "id": "content_2", "label": "Content" },
+        { "type": "header", "content": "Group 3" },
+        { "type": "text", "id": "title_3", "label": "Title" },
+        { "type": "richtext", "id": "content_3", "label": "Content" },
+        { "type": "header", "content": "Group 4 (optional)" },
+        { "type": "text", "id": "title_4", "label": "Title" },
+        { "type": "richtext", "id": "content_4", "label": "Content" }
+      ]
+    },
+    {
+      "type": "faq_section",
+      "name": "FAQ (all questions)",
+      "limit": 1,
+      "settings": [
+        { "type": "header", "content": "Question 1" },
+        { "type": "text", "id": "q1", "label": "Question" },
+        { "type": "richtext", "id": "a1", "label": "Answer" },
+        { "type": "header", "content": "Question 2" },
+        { "type": "text", "id": "q2", "label": "Question" },
+        { "type": "richtext", "id": "a2", "label": "Answer" },
+        { "type": "header", "content": "Question 3" },
+        { "type": "text", "id": "q3", "label": "Question" },
+        { "type": "richtext", "id": "a3", "label": "Answer" },
+        { "type": "header", "content": "Question 4" },
+        { "type": "text", "id": "q4", "label": "Question" },
+        { "type": "richtext", "id": "a4", "label": "Answer" },
+        { "type": "header", "content": "Question 5" },
+        { "type": "text", "id": "q5", "label": "Question" },
+        { "type": "richtext", "id": "a5", "label": "Answer" },
+        { "type": "header", "content": "Question 6" },
+        { "type": "text", "id": "q6", "label": "Question" },
+        { "type": "richtext", "id": "a6", "label": "Answer" },
+        { "type": "header", "content": "Question 7" },
+        { "type": "text", "id": "q7", "label": "Question" },
+        { "type": "richtext", "id": "a7", "label": "Answer" },
+        { "type": "header", "content": "Question 8" },
+        { "type": "text", "id": "q8", "label": "Question" },
+        { "type": "richtext", "id": "a8", "label": "Answer" }
+      ]
+    },
+    {
+      "type": "bundle_deals",
+      "name": "Bundle Deals",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "BUILD YOUR BUNDLE"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Product 2 (Product 1 is auto-set to this page)"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Product 3"
+        },
+        {
+          "type": "product",
+          "id": "product_4",
+          "label": "Product 4"
+        },
+        {
+          "type": "text",
+          "id": "percentage_discount",
+          "label": "Bundle discount % (no symbol)",
+          "default": "0",
+          "info": "Applied to the bundle total. E.g. enter 25 for 25% off."
+        },
+        {
+          "type": "text",
+          "id": "fixed_amount_discount",
+          "label": "Fixed discount amount (no symbol)",
+          "default": "0"
+        },
+        {
+          "type": "text",
+          "id": "total_price_label",
+          "label": "Total price label",
+          "default": "Bundle Total:"
+        },
+        {
+          "type": "text",
+          "id": "btn_label",
+          "label": "Button label",
+          "default": "ADD BUNDLE TO CART"
+        },
+        {
+          "type": "text",
+          "id": "discount_code",
+          "label": "Discount code to apply automatically",
+          "info": "Enter your Shopify discount code (e.g. TRACKERBUNDLE). It will be applied silently when the customer clicks Add Bundle to Cart."
+        },
+        {
+          "type": "header",
+          "content": "Bundle Price Overrides (optional)"
+        },
+        {
+          "type": "paragraph",
+          "content": "Leave blank to use the product's regular price. Enter a dollar amount (e.g. 24.00) to show a special bundle price with the original crossed out."
+        },
+        {
+          "type": "text",
+          "id": "bundle_price_1",
+          "label": "Bundle price — Product 1 (this page)"
+        },
+        {
+          "type": "text",
+          "id": "bundle_price_2",
+          "label": "Bundle price — Product 2"
+        },
+        {
+          "type": "text",
+          "id": "bundle_price_3",
+          "label": "Bundle price — Product 3"
+        },
+        {
+          "type": "text",
+          "id": "bundle_price_4",
+          "label": "Bundle price — Product 4"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
