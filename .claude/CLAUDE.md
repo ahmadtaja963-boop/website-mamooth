@@ -35,6 +35,57 @@ All colors/fonts/spacing live in `:root` at the top of `assets/theme.css`.
 ## Navigation (desktop header)
 SHOP · WELLNESS · SKINCARE · FITNESS · LIFESTYLE · ABOUT
 
+## Image Generation — KIE.AI
+
+API Key: `a3d6cdb0400bbaac21f248ede2497980`
+Auth header: `Authorization: Bearer a3d6cdb0400bbaac21f248ede2497980`
+Model: `nano-banana-2`
+
+### Step 1 — Submit task
+```
+POST https://api.kie.ai/api/v1/jobs/createTask
+Content-Type: application/json
+Authorization: Bearer a3d6cdb0400bbaac21f248ede2497980
+
+{
+  "model": "nano-banana-2",
+  "input": {
+    "prompt": "...",
+    "aspect_ratio": "16:9",   // or "1:1", "4:3"
+    "output_format": "jpg",
+    "resolution": "2K"        // or "1K"
+  }
+}
+```
+Response: `{ "code": 200, "data": { "taskId": "abc123..." } }`
+
+### Step 2 — Poll for result (use this exact endpoint — others return 404)
+```
+GET https://api.kie.ai/api/v1/jobs/recordInfo?taskId=<taskId>
+Authorization: Bearer a3d6cdb0400bbaac21f248ede2497980
+```
+Response when done: `{ "data": { "state": "success", "resultJson": "{\"resultUrls\":[\"https://tempfile.aiquickdraw.com/...\"]}" } }`
+
+Poll every 10–15 seconds until `state == "success"`. Parse `resultJson` (it's a JSON string inside JSON) to get the image URL array.
+
+### Step 3 — Download image
+```bash
+curl -sL "<resultUrl>" -o "assets/<filename>.jpg"
+```
+
+### Brand image style prompt prefix (always use)
+> "Clean light background #FAFBFC, cool-toned natural daylight, premium editorial product photography, minimalist wellness aesthetic, no text overlays —"
+
+### Generated images already in assets/
+| File | Use |
+|---|---|
+| `mammoth-hero.jpg` | Hero section background (2K 16:9) |
+| `mammoth-wellness.jpg` | Wellness collection card (1K 1:1) |
+| `mammoth-skincare.jpg` | Skincare collection card (1K 1:1) |
+| `mammoth-fitness.jpg` | Fitness collection card (1K 1:1) |
+| `mammoth-lifestyle.jpg` | Lifestyle collection card (1K 1:1) |
+| `mammoth-why-brand.jpg` | Why Brand section image (1K 4:3) |
+
 ## GitHub
 Repo: `https://github.com/ahmadtaja963-boop/website-mamooth`
 Branch: `main`
