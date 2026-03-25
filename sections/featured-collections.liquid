@@ -13,26 +13,27 @@
             href="/collections/{{ col.handle | default: block.settings.collection_handle }}"
             {{ block.shopify_attributes }}
           >
-            <div class="collection-card-image">
+            {%- assign card_label = block.settings.label | default: col.title | upcase -%}
+            <div class="collection-card-image" data-label="{{ card_label }}">
               {%- if block.settings.image != blank -%}
                 <img
                   src="{{ block.settings.image | image_url: width: 600 }}"
-                  alt="{{ block.settings.label | escape }}"
+                  alt="{{ card_label }}"
                   width="600" height="600"
                   loading="lazy"
                 >
               {%- elsif col != blank and col.image != blank -%}
                 <img
                   src="{{ col.image | image_url: width: 600 }}"
-                  alt="{{ col.title | escape }}"
+                  alt="{{ card_label }}"
                   width="600" height="600"
                   loading="lazy"
                 >
               {%- else -%}
-                <div style="aspect-ratio:1/1;background:#ffffff;"></div>
+                <div style="aspect-ratio:1/1;background:var(--color-bg-secondary);"></div>
               {%- endif -%}
             </div>
-            <p class="collection-card-title">{{ block.settings.label | default: col.title }}</p>
+            <p class="collection-card-title">{{ card_label }}</p>
           </a>
         {%- endif -%}
       {%- endfor -%}

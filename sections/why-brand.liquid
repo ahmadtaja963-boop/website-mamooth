@@ -1,0 +1,60 @@
+<section class="why-brand">
+  <div class="container">
+    <div class="why-brand-inner">
+
+      <div class="why-brand-image">
+        {%- if section.settings.image != blank -%}
+          <img
+            src="{{ section.settings.image | image_url: width: 900 }}"
+            alt="{{ section.settings.heading | escape }}"
+            width="900" height="675"
+            loading="lazy"
+          >
+        {%- else -%}
+          <img
+            src="{{ 'hero-leather.jpg' | asset_url }}"
+            alt="{{ section.settings.heading | escape }}"
+            width="900" height="675"
+            loading="lazy"
+          >
+        {%- endif -%}
+      </div>
+
+      <div class="why-brand-card">
+        <h2>{{ section.settings.heading | default: 'Why MAMMOTH' }}</h2>
+        {%- if section.settings.text1 != blank -%}
+          <p>{{ section.settings.text1 }}</p>
+        {%- endif -%}
+        {%- if section.settings.text2 != blank -%}
+          <p>{{ section.settings.text2 }}</p>
+        {%- endif -%}
+        {%- if section.settings.text3 != blank -%}
+          <p>{{ section.settings.text3 }}</p>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_url | default: '/pages/about' }}" class="btn btn-outline" style="margin-top:1.5rem;color:#fff;border-color:rgba(255,255,255,0.4);">
+            {{ section.settings.button_label }}
+          </a>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why Brand",
+  "tag": "div",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Lifestyle image" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Why MAMMOTH" },
+    { "type": "textarea", "id": "text1", "label": "Paragraph 1", "default": "We started with a simple belief: an online store can be both general and premium. Every product on MAMMOTH is curated, vetted, and presented with clarity." },
+    { "type": "textarea", "id": "text2", "label": "Paragraph 2", "default": "Our roots are in wellness and self-improvement. Real value, no gimmicks — just products that deliver." },
+    { "type": "textarea", "id": "text3", "label": "Paragraph 3" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Our Story" },
+    { "type": "url", "id": "button_url", "label": "Button URL" }
+  ],
+  "presets": [{ "name": "Why Brand" }]
+}
+{% endschema %}

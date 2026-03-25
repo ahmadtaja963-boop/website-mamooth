@@ -1,184 +1,86 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
       "type": "hero",
       "settings": {
-        "heading": "Timeless Craftsmanship",
-        "subheading": "Discover the art of exceptional leather goods, handcrafted with meticulous attention to detail",
-        "button_label": "Explore Collection"
+        "heading": "Strength & Vitality For Everyone",
+        "subheading": "Premium wellness, fitness, and lifestyle products curated for people who care.",
+        "button_label": "Shop Now",
+        "button_url": "/collections/all"
       }
     },
     "featured-collections": {
       "type": "featured-collections",
       "blocks": {
-        "magsafe": {
+        "wellness": {
           "type": "collection_card",
           "settings": {
-            "collection": "magsafe-wallets",
-            "image": "shopify://shop_images/image_1.png",
-            "label": "MagSafe Wallets",
-            "collection_handle": "magsafe-wallets"
+            "label": "Wellness",
+            "collection_handle": "wellness"
           }
         },
-        "bags": {
+        "skincare": {
           "type": "collection_card",
           "settings": {
-            "collection": "bags",
-            "label": "Bags",
-            "collection_handle": "bags"
+            "label": "Skincare",
+            "collection_handle": "skincare"
           }
         },
-        "portfolios": {
+        "fitness": {
           "type": "collection_card",
           "settings": {
-            "collection": "portfolio",
-            "label": "Portfolios",
-            "collection_handle": "portfolio"
+            "label": "Fitness",
+            "collection_handle": "fitness"
           }
         },
-        "accessories": {
+        "lifestyle": {
           "type": "collection_card",
           "settings": {
-            "collection": "accessories",
-            "label": "Accessories",
-            "collection_handle": "accessories"
-          }
-        },
-        "belts": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "belts-1",
-            "label": "Belts",
-            "collection_handle": "belts-1"
-          }
-        },
-        "backpacks": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "backpack",
-            "label": "Backpacks",
-            "collection_handle": "backpack"
-          }
-        },
-        "duffels": {
-          "type": "collection_card",
-          "disabled": true,
-          "settings": {
-            "collection": "travel",
-            "label": "Duffels",
-            "collection_handle": "travel"
-          }
-        },
-        "giftsets": {
-          "type": "collection_card",
-          "disabled": true,
-          "settings": {
-            "collection": "gift-set",
-            "label": "Gift Sets",
-            "collection_handle": "gift-set"
+            "label": "Lifestyle",
+            "collection_handle": "lifestyle"
           }
         }
       },
-      "block_order": [
-        "magsafe",
-        "bags",
-        "portfolios",
-        "accessories",
-        "belts",
-        "backpacks",
-        "duffels",
-        "giftsets"
-      ],
+      "block_order": ["wellness", "skincare", "fitness", "lifestyle"],
       "settings": {
-        "heading": "Explore Our Collections",
-        "show_model_image": true,
-        "full_width_heading": "Premium Leather Craftsmanship",
-        "full_width_subheading": "Experience the finest quality leather accessories designed for the modern professional"
+        "heading": "Shop by Category"
       }
     },
-    "collections-hero-banner": {
-      "type": "collections-hero-banner",
+    "trust-badges": {
+      "type": "trust-badges",
       "settings": {
-        "heading": "Premium Leather Craftsmanship",
-        "subheading": "Experience the finest quality leather accessories designed for the modern professional"
-      }
-    },
-    "craftsmanship-banner": {
-      "type": "craftsmanship-banner",
-      "settings": {
-        "heading": "FROM HIDE TO HERITAGE",
-        "subheading": "",
-        "button_label": "See The Process",
-        "button_url": "/pages/craftsmanship"
-      }
-    },
-    "b2b-banner": {
-      "type": "b2b-banner",
-      "settings": {
-        "heading": "WHOLESALE TRADING",
-        "subheading": "Partner with DIAZ for premium leather goods at wholesale pricing",
-        "button_label": "Learn More",
-        "button_url": "/pages/b2b"
+        "badge1_title": "Free Shipping on Orders $50+",
+        "badge2_title": "30-Day Money-Back Guarantee",
+        "badge3_title": "Secure Checkout SSL Encrypted",
+        "badge4_title": "Premium Quality Assured"
       }
     },
     "top-picks": {
       "type": "top-picks",
       "settings": {
-        "heading": "Top Picks",
-        "collection": "",
-        "collection_handle": "",
-        "products_to_show": 10,
+        "heading": "Trending Now",
+        "products_to_show": 4,
         "button_label": "View All Products",
         "button_url": "/collections/all"
       }
     },
-    "brand-sections": {
-      "type": "brand-sections",
-      "blocks": {
-        "stores": {
-          "type": "panel",
-          "settings": {
-            "default_image": "stores-section.jpg",
-            "heading": "STORES",
-            "subtext": "",
-            "button_label": "Discover",
-            "link": "/pages/stores"
-          }
-        },
-        "inside": {
-          "type": "panel",
-          "settings": {
-            "default_image": "inside-diaz.jpg",
-            "heading": "INSIDE DIAZ",
-            "subtext": "",
-            "button_label": "Explore",
-            "link": "/pages/inside-diaz"
-          }
-        }
-      },
-      "block_order": [
-        "stores",
-        "inside"
-      ],
-      "settings": {}
+    "why-brand": {
+      "type": "why-brand",
+      "settings": {
+        "heading": "Why MAMMOTH",
+        "text1": "We started with a simple belief: an online store can be both general and premium. Every product on MAMMOTH is curated, vetted, and presented with clarity.",
+        "text2": "Our roots are in wellness and self-improvement. Real value, no gimmicks — just products that deliver results.",
+        "text3": "Built to last. Just like the mammoth.",
+        "button_label": "Our Story",
+        "button_url": "/pages/about"
+      }
     }
   },
   "order": [
     "hero",
     "featured-collections",
-    "collections-hero-banner",
-    "craftsmanship-banner",
-    "b2b-banner",
+    "trust-badges",
     "top-picks",
-    "brand-sections"
+    "why-brand"
   ]
 }

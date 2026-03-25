@@ -1,7 +1,7 @@
 /* DIAZ Luxe — Theme JavaScript */
 'use strict';
 
-window.DiazTheme = (function () {
+window.MammothTheme = (function () {
 
   /* ─── Utilities ─── */
   function formatMoney(cents) {
@@ -168,8 +168,8 @@ window.DiazTheme = (function () {
       return;
     }
 
-    // Read upsell handles from window.DiazUpsellMap (set on product pages)
-    var map = window.DiazUpsellMap || {};
+    // Read upsell handles from window.MammothUpsellMap (set on product pages)
+    var map = window.MammothUpsellMap || {};
     var cartHandles = cartItems.map(function (item) { return item.handle; });
     var upsellHandles = [];
 

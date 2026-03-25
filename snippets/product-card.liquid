@@ -49,7 +49,7 @@
           data-product-image="{{ featured_image | image_url: width: 200 }}"
           data-product-price="{{ first_variant.price | money }}"
           aria-label="Add {{ product.title | escape }} to cart"
-          onclick="event.preventDefault();window.DiazTheme.addToCart('{{ first_variant.id }}', 1, this);"
+          onclick="event.preventDefault();window.MammothTheme.addToCart('{{ first_variant.id }}', 1, this);"
         >
           {%- if first_variant.available -%}
             Add to Cart
@@ -61,7 +61,7 @@
     </div>
   </a>
 
-  <div>
+  <div class="product-card-info">
     <a href="{{ product_url }}">
       <p class="product-card-title">{{ product.title }}</p>
     </a>
@@ -71,5 +71,8 @@
       {%- endif -%}
       {{ product.price | money }}
     </p>
+    <div class="product-card-stars" aria-label="4.5 out of 5 stars">
+      ★★★★<span style="opacity:0.4;">★</span>
+    </div>
   </div>
 </div>
