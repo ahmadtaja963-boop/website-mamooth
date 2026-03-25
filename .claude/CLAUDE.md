@@ -37,15 +37,15 @@ SHOP · WELLNESS · SKINCARE · FITNESS · LIFESTYLE · ABOUT
 
 ## Image Generation — KIE.AI
 
-API Key: `a3d6cdb0400bbaac21f248ede2497980`
-Auth header: `Authorization: Bearer a3d6cdb0400bbaac21f248ede2497980`
+API Key: stored locally in `~/.mammoth-secrets` (never commit)
+Auth header: `Authorization: Bearer <KIE_AI_KEY>`
 Model: `nano-banana-2`
 
 ### Step 1 — Submit task
 ```
 POST https://api.kie.ai/api/v1/jobs/createTask
 Content-Type: application/json
-Authorization: Bearer a3d6cdb0400bbaac21f248ede2497980
+Authorization: Bearer <KIE_AI_KEY>
 
 {
   "model": "nano-banana-2",
@@ -62,7 +62,7 @@ Response: `{ "code": 200, "data": { "taskId": "abc123..." } }`
 ### Step 2 — Poll for result (use this exact endpoint — others return 404)
 ```
 GET https://api.kie.ai/api/v1/jobs/recordInfo?taskId=<taskId>
-Authorization: Bearer a3d6cdb0400bbaac21f248ede2497980
+Authorization: Bearer <KIE_AI_KEY>
 ```
 Response when done: `{ "data": { "state": "success", "resultJson": "{\"resultUrls\":[\"https://tempfile.aiquickdraw.com/...\"]}" } }`
 
@@ -85,6 +85,12 @@ curl -sL "<resultUrl>" -o "assets/<filename>.jpg"
 | `mammoth-fitness.jpg` | Fitness collection card (1K 1:1) |
 | `mammoth-lifestyle.jpg` | Lifestyle collection card (1K 1:1) |
 | `mammoth-why-brand.jpg` | Why Brand section image (1K 4:3) |
+
+## Shopify MCP
+Store: `mamothus.myshopify.com`
+Access Token: stored in `~/.claude/mcp.json` (never commit)
+MCP server: `shopify-mammoth` (configured in ~/.claude/mcp.json)
+OAuth App Client ID: stored locally (never commit)
 
 ## GitHub
 Repo: `https://github.com/ahmadtaja963-boop/website-mamooth`
