@@ -4,8 +4,8 @@
 
       {%- comment -%} Newsletter {%- endcomment -%}
       <div class="footer-newsletter">
-        <h3>Stay Connected</h3>
-        <p>Subscribe to receive updates on new arrivals, exclusive events, and more.</p>
+        <h3>Stay in the Herd</h3>
+        <p>New arrivals, exclusive deals, and wellness tips — straight to your inbox.</p>
         {%- form 'customer', id: 'FooterNewsletter' -%}
           <input type="hidden" name="contact[tags]" value="newsletter">
           <div class="footer-newsletter-form">
@@ -30,33 +30,34 @@
         {%- endform -%}
       </div>
 
-      {%- comment -%} Customer Service {%- endcomment -%}
+      {%- comment -%} Shop {%- endcomment -%}
       <div class="footer-col">
-        <h4>Customer Service</h4>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="/collections/wellness">Wellness</a></li>
+          <li><a href="/collections/skincare">Skincare</a></li>
+          <li><a href="/collections/fitness">Fitness</a></li>
+          <li><a href="/collections/lifestyle">Lifestyle</a></li>
+          <li><a href="/collections/all">All Products</a></li>
+        </ul>
+      </div>
+
+      {%- comment -%} Support {%- endcomment -%}
+      <div class="footer-col">
+        <h4>Support</h4>
         <ul>
           <li><a href="/pages/contact">Contact Us</a></li>
           <li><a href="/pages/shipping">Shipping & Delivery</a></li>
-          <li><a href="/pages/returns">Returns & Exchanges</a></li>
+          <li><a href="/pages/returns">Returns & Refunds</a></li>
           <li><a href="/pages/faq">FAQ</a></li>
-          <li><a href="/pages/product-care">Product Care</a></li>
         </ul>
       </div>
 
-      {%- comment -%} The House {%- endcomment -%}
+      {%- comment -%} Company {%- endcomment -%}
       <div class="footer-col">
-        <h4>The House</h4>
+        <h4>Company</h4>
         <ul>
-          <li><a href="/pages/about">About DIAZ</a></li>
-          <li><a href="/pages/craftsmanship">Craftsmanship</a></li>
-          <li><a href="/pages/stores">Store Locator</a></li>
-          <li><a href="/pages/sustainability">Sustainability</a></li>
-        </ul>
-      </div>
-
-      {%- comment -%} Legal {%- endcomment -%}
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
+          <li><a href="/pages/about">About MAMMOTH</a></li>
           <li><a href="/pages/terms">Terms of Use</a></li>
           <li><a href="/pages/privacy">Privacy Policy</a></li>
         </ul>

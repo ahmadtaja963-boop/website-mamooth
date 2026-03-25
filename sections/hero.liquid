@@ -30,12 +30,12 @@
         <p>{{ section.settings.subheading }}</p>
       {%- endif -%}
       {%- if section.settings.button_label != blank -%}
-        <button
-          class="btn btn-white btn-lg"
-          data-scroll-to="products"
+        <a
+          href="{{ section.settings.button_url | default: '/collections/all' }}"
+          class="btn btn-primary btn-lg"
         >
           {{ section.settings.button_label }}
-        </button>
+        </a>
       {%- endif -%}
     </div>
   </div>
@@ -55,19 +55,24 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Timeless Craftsmanship"
+      "default": "Strength & Vitality For Everyone"
     },
     {
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Discover the art of exceptional leather goods, handcrafted with meticulous attention to detail"
+      "default": "Premium wellness, fitness, and lifestyle products curated for people who care."
     },
     {
       "type": "text",
       "id": "button_label",
       "label": "Button label",
-      "default": "Explore Collection"
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
     }
   ],
   "presets": [

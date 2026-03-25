@@ -1,15 +1,13 @@
+{%- comment -%} Announcement bar {%- endcomment -%}
+<div class="announcement-bar">
+  {{ section.settings.announcement | default: 'Free Shipping on Orders Over $50' }}
+</div>
+
 <header class="site-header" id="SiteHeader">
   <div class="container header-inner">
 
-    {%- comment -%} Left nav (desktop) {%- endcomment -%}
-    <nav class="header-left" aria-label="Main navigation">
-      <a href="/pages/about">About</a>
-      <a href="/pages/stores">Stores</a>
-      <a href="/pages/b2b">B2B Trading</a>
-    </nav>
-
-    {%- comment -%} Center logo {%- endcomment -%}
-    {%- assign logo_width = section.settings.logo_width | default: 120 -%}
+    {%- comment -%} Logo — left {%- endcomment -%}
+    {%- assign logo_width = section.settings.logo_width | default: 140 -%}
     <a class="header-logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
       {%- if section.settings.logo != blank -%}
         <img
@@ -19,18 +17,23 @@
           loading="eager"
         >
       {%- else -%}
-        <img
-          src="{{ 'diaz_brand-3.png' | asset_url }}"
-          alt="{{ shop.name }}"
-          style="width: {{ logo_width }}px; height: auto;"
-          loading="eager"
-        >
+        <span style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:0.15em;color:var(--color-text);text-transform:uppercase;">MAMMOTH</span>
       {%- endif -%}
     </a>
 
+    {%- comment -%} Center nav (desktop) {%- endcomment -%}
+    <nav class="header-nav" aria-label="Main navigation">
+      <a href="/collections/all">Shop</a>
+      <a href="/collections/wellness">Wellness</a>
+      <a href="/collections/skincare">Skincare</a>
+      <a href="/collections/fitness">Fitness</a>
+      <a href="/collections/lifestyle">Lifestyle</a>
+      <a href="/pages/about">About</a>
+    </nav>
+
     {%- comment -%} Right icons {%- endcomment -%}
     <div class="header-right">
-      <a href="{{ routes.search_url }}" class="btn-ghost btn-icon" aria-label="{{ 'accessibility.skip_to_content' | t }}">
+      <a href="{{ routes.search_url }}" class="btn-ghost btn-icon" aria-label="Search">
         {%- render 'icon-search' -%}
       </a>
       {%- if shop.customer_accounts_enabled -%}
@@ -41,7 +44,7 @@
       <button
         class="btn-ghost btn-icon cart-icon-wrapper"
         id="CartToggle"
-        aria-label="{{ 'accessibility.open_cart' | t }}"
+        aria-label="Open cart"
         aria-expanded="false"
         aria-controls="CartDrawer"
       >
@@ -54,7 +57,7 @@
       <button
         class="mobile-menu-toggle btn-ghost btn-icon"
         id="MobileMenuToggle"
-        aria-label="{{ 'accessibility.open_menu' | t }}"
+        aria-label="Open menu"
         aria-expanded="false"
         aria-controls="MobileNav"
       >
@@ -69,23 +72,25 @@
   </div>
 </header>
 
-{%- comment -%} Collection nav (sticky below header) {%- endcomment -%}
+{%- comment -%} Collection sub-nav (sticky below header on collection/home pages) {%- endcomment -%}
 {%- if template.name == 'index' or template.name == 'collection' -%}
-<nav class="collection-nav" aria-label="Collection navigation">
-  <div class="collection-nav-inner">
-    {%- for block in section.blocks -%}
-      {%- if block.type == 'collection_link' -%}
-        <a
-          href="/collections/{{ block.settings.collection_handle }}"
-          class="collection-nav-link"
-          {{ block.shopify_attributes }}
-        >
-          {{- block.settings.label -}}
-        </a>
-      {%- endif -%}
-    {%- endfor -%}
-  </div>
-</nav>
+  {%- if section.blocks.size > 0 -%}
+    <nav class="collection-nav" aria-label="Category navigation">
+      <div class="collection-nav-inner">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'collection_link' -%}
+            <a
+              href="/collections/{{ block.settings.collection_handle }}"
+              class="collection-nav-link"
+              {{ block.shopify_attributes }}
+            >
+              {{- block.settings.label -}}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </nav>
+  {%- endif -%}
 {%- endif -%}
 
 {% schema %}
@@ -95,6 +100,12 @@
   "class": "header-group",
   "settings": [
     {
+      "type": "text",
+      "id": "announcement",
+      "label": "Announcement bar text",
+      "default": "Free Shipping on Orders Over $50 — Shop Now"
+    },
+    {
       "type": "image_picker",
       "id": "logo",
       "label": "Logo image"
@@ -102,10 +113,10 @@
     {
       "type": "range",
       "id": "logo_width",
-      "min": 50,
-      "max": 200,
+      "min": 60,
+      "max": 220,
       "step": 10,
-      "default": 120,
+      "default": 140,
       "unit": "px",
       "label": "Logo width"
     }
@@ -113,14 +124,14 @@
   "blocks": [
     {
       "type": "collection_link",
-      "name": "Collection link",
+      "name": "Sub-nav link",
       "limit": 12,
       "settings": [
         {
           "type": "text",
           "id": "label",
           "label": "Label",
-          "default": "Collection"
+          "default": "Category"
         },
         {
           "type": "text",
