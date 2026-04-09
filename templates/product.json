@@ -1,25 +1,130 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-product",
-      "blocks": {},
-      "block_order": [],
       "settings": {
+        "show_judgeme_badge": true,
+        "social_proof_text": "",
+        "shipping_text": "",
         "show_delivery_estimate": true,
         "delivery_business_days": 7,
         "show_payment_icons": true,
-        "show_upsell": false
+        "show_upsell": false,
+        "upsell_product": "",
+        "upsell_product_2": "",
+        "upsell_heading": "Others Like You Also Bought:"
+      }
+    },
+    "you_may_also_like_T9ThEC": {
+      "type": "you-may-also-like",
+      "name": "You May Also Like",
+      "settings": {
+        "heading": "You May Also Like",
+        "product_1": "",
+        "product_2": "",
+        "product_3": ""
+      }
+    },
+    "why_brand_YWqVmD": {
+      "type": "why-brand",
+      "name": "Why Brand",
+      "settings": {
+        "image": "shopify://shop_images/d8feed4b-1617-4bb9-aaeb-5ec41b6f62c4.jpg",
+        "heading": "Our Curated, Vetted Standard",
+        "text1": "we believe your well-being deserves curated excellence. We've built a premium general store around vetted products that deliver. No gimmicks, just clear, high-quality tools (like this 5-in-1 styler) that focus on your self-improvement and wellness journey.",
+        "text2": "MAMMOTH: Real Quality, Real Value",
+        "text3": "",
+        "button_label": "",
+        "button_url": ""
+      }
+    },
+    "177572393690540bc5": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_b3199fc_8DrYF7": {
+          "type": "ai_gen_block_b3199fc",
+          "settings": {
+            "heading": "<p>See the difference</p>",
+            "description": "<p>Drag the slider to compare before and after results.</p>",
+            "text_position": "left",
+            "text_width": 50,
+            "before_image": "shopify://shop_images/i_want_this_202604091148.jpg",
+            "after_image": "shopify://shop_images/make_her_with_202604091148.jpg",
+            "aspect_ratio": "1 / 1",
+            "border_radius": 40,
+            "show_labels": true,
+            "before_label": "Before",
+            "after_label": "After",
+            "label_bg_color": "#d4b4b4",
+            "label_text_color": "#000000",
+            "slider_color": "#000000",
+            "slider_icon_color": "#dbadad",
+            "heading_font": "sans_serif_n4",
+            "heading_size": 60,
+            "heading_color": "#000000",
+            "text_size": 21,
+            "text_color": "#000000",
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_b3199fc_8DrYF7"
+      ],
+      "settings": {}
+    },
+    "product_carousel_VWzJPE": {
+      "type": "product-carousel",
+      "name": "Product Carousel",
+      "settings": {
+        "heading": "Explore the Collection",
+        "product_1": "",
+        "product_2": "",
+        "product_3": "",
+        "product_4": "",
+        "product_5": "",
+        "product_6": "",
+        "product_7": "",
+        "product_8": ""
+      }
+    },
+    "trust_badges_anUcqq": {
+      "type": "trust-badges",
+      "name": "Trust Badges",
+      "settings": {
+        "badge1_title": "Free Shipping on Orders $50+",
+        "badge2_title": "30-Day Money-Back Guarantee",
+        "badge3_title": "Secure Checkout SSL Encrypted",
+        "badge4_title": "Premium Quality Assured"
       }
     },
     "you_may_also_like": {
       "type": "you-may-also-like",
       "settings": {
-        "heading": "You May Also Like"
+        "heading": "You May Also Like",
+        "product_1": "",
+        "product_2": "",
+        "product_3": ""
       }
     }
   },
   "order": [
     "main",
+    "you_may_also_like_T9ThEC",
+    "why_brand_YWqVmD",
+    "177572393690540bc5",
+    "product_carousel_VWzJPE",
+    "trust_badges_anUcqq",
     "you_may_also_like"
   ]
 }
