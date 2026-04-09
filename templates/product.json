@@ -11,6 +11,18 @@
   "sections": {
     "main": {
       "type": "main-product",
+      "blocks": {
+        "more_info_group_hcwjhN": {
+          "type": "more_info_group",
+          "settings": {
+            "info_title": "Master Every Style: 5-in-1 Professional Power Meets Salon Perfection",
+            "info_content": "<h2><strong>The Ultimate 5-in-1 Salon Styler (1000W)</strong></h2><p>Say goodbye to \"bathroom drawer chaos\" and hello to your new morning MVP. This <strong>Professional 5-in-1 Styler</strong> combines 1000W of drying power with five interchangeable heads to dry, smooth, curl, and volumize—all with one sleek tool.</p><h3><strong>Product Highlights:</strong></h3><ul><li><strong>5-in-1 Versatility:</strong> Includes attachments for drying, straightening, and curling (left & right barrels).</li><li><strong>1000W High-Speed Motor:</strong> Provides rapid drying and styling without the extreme heat damage.</li><li><strong>Anti-Frizz Technology:</strong> Built-in ionic conditioning reduces static for a smooth, shiny finish.</li><li><strong>Ergonomic Design:</strong> Finished in a premium <strong>Obsidian Black</strong> with a 360° swivel cord for tangle-free styling.</li></ul><p><strong>One tool. Infinite looks. Salon-quality hair from the comfort of home.</strong></p>"
+          }
+        }
+      },
+      "block_order": [
+        "more_info_group_hcwjhN"
+      ],
       "settings": {
         "show_judgeme_badge": true,
         "social_proof_text": "low stock {{ section.settings.upsell_product.metafields.shopify[\"hair-styling-tool-features\"] | metafield_text: field: 'label' }}",
@@ -103,10 +115,10 @@
       "name": "Product Carousel",
       "settings": {
         "heading": "Explore the Collection",
-        "product_1": "",
-        "product_2": "",
-        "product_3": "",
-        "product_4": "",
+        "product_1": "professional-hair-dryers-5-in-1-black-1000w",
+        "product_2": "infinity-love-knot-stainless-steel-bracelets",
+        "product_3": "vitamin-c-brightening-face-cream",
+        "product_4": "bamboo-meditation-yoga-mat",
         "product_5": "",
         "product_6": "",
         "product_7": "",
@@ -127,7 +139,7 @@
       "type": "you-may-also-like",
       "settings": {
         "heading": "You May Also Like",
-        "product_1": "",
+        "product_1": "infinity-love-knot-stainless-steel-bracelets",
         "product_2": "",
         "product_3": ""
       }
