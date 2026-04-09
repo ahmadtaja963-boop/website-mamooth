@@ -13,13 +13,13 @@
       "type": "main-product",
       "settings": {
         "show_judgeme_badge": true,
-        "social_proof_text": "",
+        "social_proof_text": "low stock {{ section.settings.upsell_product.metafields.shopify[\"hair-styling-tool-features\"] | metafield_text: field: 'label' }}",
         "shipping_text": "",
         "show_delivery_estimate": true,
         "delivery_business_days": 7,
         "show_payment_icons": true,
-        "show_upsell": false,
-        "upsell_product": "",
+        "show_upsell": true,
+        "upsell_product": "infinity-love-knot-stainless-steel-bracelets",
         "upsell_product_2": "",
         "upsell_heading": "Others Like You Also Bought:"
       }
