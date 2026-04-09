@@ -60,7 +60,7 @@
             "before_image": "shopify://shop_images/i_want_this_202604091148.jpg",
             "after_image": "shopify://shop_images/make_her_with_202604091148.jpg",
             "aspect_ratio": "1 / 1",
-            "border_radius": 40,
+            "border_radius": 0,
             "show_labels": true,
             "before_label": "Before",
             "after_label": "After",
@@ -76,10 +76,25 @@
             "desktop_width_percent": 100
           },
           "blocks": {}
+        },
+        "ai_gen_block_223743c_hPM6ji": {
+          "type": "ai_gen_block_223743c",
+          "settings": {
+            "heading_text": "SALON GLOW",
+            "font_size": 200,
+            "text_alignment": "center",
+            "fill_image": "shopify://shop_images/bc1156f4-90e3-4204-a7a5-a966cd96b9f9.jpg",
+            "fallback_text_color": "#000000",
+            "background_color": "#cab49e",
+            "padding": 50,
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_b3199fc_8DrYF7"
+        "ai_gen_block_b3199fc_8DrYF7",
+        "ai_gen_block_223743c_hPM6ji"
       ],
       "settings": {}
     },
