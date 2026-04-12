@@ -1485,7 +1485,7 @@ section { display: block; }
 
 /* ─── Product Page ─── */
 .product-page {
-  padding-top: var(--nav-height);
+  padding-top: 0;
   padding-bottom: 5rem;
   min-height: 100vh;
   overflow-x: hidden;
