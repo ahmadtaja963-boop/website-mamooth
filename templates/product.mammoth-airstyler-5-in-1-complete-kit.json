@@ -74,8 +74,8 @@
             "item4_name": "Silk Scrunchie",
             "item4_value": "$30 value",
             "item4_free_label": "FREE",
-            "show_trust_line": true,
-            "trust_text": "Free Shipping • 30-Day Returns • 1-Year Warranty"
+            "show_trust_line": false,
+            "trust_text": ""
           }
         },
         "faq_section_main": {
@@ -110,7 +110,7 @@
       "settings": {
         "show_judgeme_badge": true,
         "social_proof_text": "TRENDING — 500+ UNITS SOLD",
-        "shipping_text": "Free shipping on all US orders 🇺🇸",
+        "shipping_text": "",
         "show_delivery_estimate": true,
         "delivery_business_days": 7,
         "show_payment_icons": true,
