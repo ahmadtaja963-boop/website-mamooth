@@ -2196,12 +2196,12 @@ section { display: block; }
 }
 
 .offer-card:hover {
-  border-color: #2B8F9E;
+  border-color: var(--color-accent);
 }
 
 .offer-card--selected {
-  border: 2px solid #2B8F9E;
-  background: rgba(43,143,158,0.04);
+  border: 2px solid var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 6%, #fff);
   padding: 15px 19px; /* compensate for thicker border */
 }
 
@@ -2218,7 +2218,7 @@ section { display: block; }
 }
 
 .offer-card__radio--checked {
-  border-color: #2B8F9E;
+  border-color: var(--color-accent);
 }
 
 .offer-card__radio--checked::after {
@@ -2229,7 +2229,7 @@ section { display: block; }
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #2B8F9E;
+  background: var(--color-accent);
 }
 
 /* ── Card body ── */
@@ -2360,7 +2360,7 @@ section { display: block; }
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.8rem;
-  color: #2B8F9E;
+  color: var(--color-accent);
   line-height: 1.3;
 }
 
