@@ -68,12 +68,12 @@
             "item2_name": "Travel Pouch",
             "item2_value": "$60 value",
             "item2_free_label": "FREE",
-            "item3_name": "Heat Protectant Spray",
-            "item3_value": "$35 value",
+            "item3_name": "Digital Hair Care E-Book",
+            "item3_value": "$25 value",
             "item3_free_label": "FREE",
-            "item4_name": "Silk Scrunchie",
-            "item4_value": "$30 value",
-            "item4_free_label": "FREE",
+            "item4_name": "",
+            "item4_value": "",
+            "item4_free_label": "",
             "show_trust_line": false,
             "trust_text": ""
           }
