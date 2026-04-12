@@ -83,9 +83,9 @@ window.MammothTheme = (function () {
 
   /* ─── Discount Tiers ─── */
   var discountTiers = [
-    { threshold: 5000,  percent: 10 },  // $50
-    { threshold: 10000, percent: 15 },  // $100
-    { threshold: 15000, percent: 20 },  // $150
+    { threshold: 5000,  percent: 0, label: 'Free Shipping', code: 'FREESHIP' },
+    { threshold: 10000, percent: 15, label: '15% OFF', code: 'MAMMOTH15' },
+    { threshold: 15000, percent: 20, label: '20% OFF', code: 'MAMMOTH20' },
   ];
 
   function updateDiscountBar(totalCents) {
@@ -133,21 +133,25 @@ window.MammothTheme = (function () {
     if (msg) {
       if (!currentTier) {
         var awayDollars = ((nextTier.threshold - totalCents) / 100).toFixed(2);
-        msg.innerHTML = tagIcon + 'You\'re <span class="highlight">$' + awayDollars + '</span> away from <span class="highlight">' + nextTier.percent + '% OFF!</span>';
+        msg.innerHTML = tagIcon + 'You\'re <span class="highlight">$' + awayDollars + '</span> away from <span class="highlight">' + nextTier.label + '!</span>';
       } else if (nextTier) {
         var awayDollars = ((nextTier.threshold - totalCents) / 100).toFixed(2);
-        msg.innerHTML = tagIcon + currentTier.percent + '% OFF unlocked! <span class="highlight">$' + awayDollars + '</span> more for <span class="highlight">' + nextTier.percent + '%!</span>';
+        msg.innerHTML = tagIcon + currentTier.label + ' unlocked! <span class="highlight">$' + awayDollars + '</span> more for <span class="highlight">' + nextTier.label + '!</span>';
       } else {
-        msg.innerHTML = tagIcon + 'Maximum <span class="highlight">' + currentTier.percent + '% OFF</span> unlocked!';
+        msg.innerHTML = tagIcon + 'Maximum <span class="highlight">' + currentTier.label + '</span> unlocked!';
       }
     }
 
     // Update discount line in footer
     if (discountLine && discountName && discountAmount) {
-      if (currentTier) {
+      if (currentTier && currentTier.percent > 0) {
         var savedAmount = ((totalCents * currentTier.percent / 100) / 100).toFixed(2);
-        discountName.textContent = currentTier.percent + '% OFF';
+        discountName.textContent = currentTier.label;
         discountAmount.textContent = '-$' + savedAmount;
+        discountLine.style.display = '';
+      } else if (currentTier && currentTier.percent === 0) {
+        discountName.textContent = currentTier.label;
+        discountAmount.textContent = 'FREE';
         discountLine.style.display = '';
       } else {
         discountLine.style.display = 'none';
