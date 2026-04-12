@@ -24,6 +24,7 @@
         "more_info_group_hcwjhN"
       ],
       "settings": {
+        "accent_color": "",
         "show_judgeme_badge": true,
         "social_proof_text": "low stock {{ section.settings.upsell_product.metafields.shopify[\"hair-styling-tool-features\"] | metafield_text: field: 'label' }}",
         "shipping_text": "",
@@ -45,70 +46,6 @@
         "product_2": "",
         "product_3": ""
       }
-    },
-    "why_brand_YWqVmD": {
-      "type": "why-brand",
-      "name": "Why Brand",
-      "settings": {
-        "image": "shopify://shop_images/d8feed4b-1617-4bb9-aaeb-5ec41b6f62c4.jpg",
-        "heading": "Our Curated, Vetted Standard",
-        "text1": "we believe your well-being deserves curated excellence. We've built a premium general store around vetted products that deliver. No gimmicks, just clear, high-quality tools (like this 5-in-1 styler) that focus on your self-improvement and wellness journey.",
-        "text2": "MAMMOTH: Real Quality, Real Value",
-        "text3": "",
-        "button_label": "",
-        "button_url": ""
-      }
-    },
-    "177572393690540bc5": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_b3199fc_8DrYF7": {
-          "type": "ai_gen_block_b3199fc",
-          "settings": {
-            "heading": "<p>See the difference</p>",
-            "description": "<p>Drag the slider to compare before and after results.</p>",
-            "text_position": "left",
-            "text_width": 50,
-            "before_image": "shopify://shop_images/i_want_this_202604091148.jpg",
-            "after_image": "shopify://shop_images/make_her_with_202604091148.jpg",
-            "aspect_ratio": "1 / 1",
-            "border_radius": 0,
-            "show_labels": true,
-            "before_label": "Before",
-            "after_label": "After",
-            "label_bg_color": "#d4b4b4",
-            "label_text_color": "#000000",
-            "slider_color": "#000000",
-            "slider_icon_color": "#dbadad",
-            "heading_font": "sans_serif_n4",
-            "heading_size": 60,
-            "heading_color": "#000000",
-            "text_size": 21,
-            "text_color": "#000000",
-            "desktop_width_percent": 100
-          },
-          "blocks": {}
-        },
-        "ai_gen_block_223743c_hPM6ji": {
-          "type": "ai_gen_block_223743c",
-          "settings": {
-            "heading_text": "SALON GLOW",
-            "font_size": 200,
-            "text_alignment": "center",
-            "fill_image": "shopify://shop_images/bc1156f4-90e3-4204-a7a5-a966cd96b9f9.jpg",
-            "fallback_text_color": "#000000",
-            "background_color": "#cab49e",
-            "padding": 50,
-            "desktop_width_percent": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_b3199fc_8DrYF7",
-        "ai_gen_block_223743c_hPM6ji"
-      ],
-      "settings": {}
     },
     "product_carousel_VWzJPE": {
       "type": "product-carousel",
@@ -135,15 +72,6 @@
         "badge4_title": "Premium Quality Assured"
       }
     },
-    "you_may_also_like": {
-      "type": "you-may-also-like",
-      "settings": {
-        "heading": "You May Also Like",
-        "product_1": "infinity-love-knot-stainless-steel-bracelets",
-        "product_2": "",
-        "product_3": ""
-      }
-    },
     "judgeme_reviews": {
       "type": "apps",
       "blocks": {
@@ -166,11 +94,8 @@
   "order": [
     "main",
     "you_may_also_like_T9ThEC",
-    "why_brand_YWqVmD",
-    "177572393690540bc5",
     "product_carousel_VWzJPE",
     "trust_badges_anUcqq",
-    "you_may_also_like",
     "judgeme_reviews"
   ]
 }
