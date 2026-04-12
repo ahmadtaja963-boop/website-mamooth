@@ -1,6 +1,17 @@
-{%- comment -%} Announcement bar {%- endcomment -%}
+{%- comment -%} Announcement bar — scrolling marquee {%- endcomment -%}
 <div class="announcement-bar">
-  {{ section.settings.announcement | default: 'Free Shipping on Orders Over $50' }}
+  <div class="announcement-marquee">
+    <div class="announcement-marquee__track">
+      {%- for i in (1..2) -%}
+        <span class="announcement-marquee__item">{{ section.settings.announcement_1 | default: '🔥 SPRING SALE: UP TO 60% OFF + FREE SHIPPING 🔥' }}</span>
+        <span class="announcement-marquee__sep">✦</span>
+        <span class="announcement-marquee__item">{{ section.settings.announcement_2 | default: '⭐ 4.8/5 STARS — 500+ HAPPY CUSTOMERS ⭐' }}</span>
+        <span class="announcement-marquee__sep">✦</span>
+        <span class="announcement-marquee__item">{{ section.settings.announcement_3 | default: '🛡️ 100% SATISFACTION OR YOUR MONEY BACK 🛡️' }}</span>
+        <span class="announcement-marquee__sep">✦</span>
+      {%- endfor -%}
+    </div>
+  </div>
 </div>
 
 <header class="site-header" id="SiteHeader">
@@ -101,9 +112,21 @@
   "settings": [
     {
       "type": "text",
-      "id": "announcement",
-      "label": "Announcement bar text",
-      "default": "Free Shipping on Orders Over $50 — Shop Now"
+      "id": "announcement_1",
+      "label": "Announcement message 1",
+      "default": "🔥 SPRING SALE: UP TO 60% OFF + FREE SHIPPING 🔥"
+    },
+    {
+      "type": "text",
+      "id": "announcement_2",
+      "label": "Announcement message 2",
+      "default": "⭐ 4.8/5 STARS — 500+ HAPPY CUSTOMERS ⭐"
+    },
+    {
+      "type": "text",
+      "id": "announcement_3",
+      "label": "Announcement message 3",
+      "default": "🛡️ 100% SATISFACTION OR YOUR MONEY BACK 🛡️"
     },
     {
       "type": "image_picker",
