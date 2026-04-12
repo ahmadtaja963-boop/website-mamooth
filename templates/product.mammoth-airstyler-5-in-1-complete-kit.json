@@ -14,60 +14,28 @@
       "blocks": {
         "funnel_aplus_1": {
           "type": "funnel_image",
-          "name": "A+ Salon Blowout + No Heat",
+          "name": "A+ Content 1-5",
           "settings": {
             "funnel_color": "",
-            "funnel_alt": "Mammoth AirStyler — Salon blowout without $600 + Styles with airflow, no heat damage",
+            "funnel_alt": "Mammoth AirStyler 5-in-1 A+ Content",
             "desktop_image": "shopify://shop_images/airstyler-aplus-1-salon-blowout-no-heat.jpg",
-            "mobile_image": "shopify://shop_images/airstyler-aplus-1-salon-blowout-no-heat.jpg"
+            "mobile_image": "shopify://shop_images/airstyler-aplus-1-salon-blowout-no-heat.jpg",
+            "desktop_image_2": "shopify://shop_images/airstyler-aplus-2-five-tools-coanda.jpg",
+            "mobile_image_2": "shopify://shop_images/airstyler-aplus-2-five-tools-coanda.jpg",
+            "desktop_image_3": "shopify://shop_images/airstyler-aplus-3-bundle-value-trust.jpg",
+            "mobile_image_3": "shopify://shop_images/airstyler-aplus-3-bundle-value-trust.jpg",
+            "desktop_image_4": "shopify://shop_images/airstyler-aplus-4-before-after-howto.jpg",
+            "mobile_image_4": "shopify://shop_images/airstyler-aplus-4-before-after-howto.jpg",
+            "desktop_image_5": "shopify://shop_images/airstyler-aplus-5-styles-demo-testimonials.jpg",
+            "mobile_image_5": "shopify://shop_images/airstyler-aplus-5-styles-demo-testimonials.jpg"
           }
         },
         "funnel_aplus_2": {
           "type": "funnel_image",
-          "name": "A+ 5 Tools in 1 + Coanda Tech",
+          "name": "A+ Content 6",
           "settings": {
             "funnel_color": "",
-            "funnel_alt": "Mammoth AirStyler — 5 tools in 1 replace your drawer + Coanda technology explained",
-            "desktop_image": "shopify://shop_images/airstyler-aplus-2-five-tools-coanda.jpg",
-            "mobile_image": "shopify://shop_images/airstyler-aplus-2-five-tools-coanda.jpg"
-          }
-        },
-        "funnel_aplus_3": {
-          "type": "funnel_image",
-          "name": "A+ Bundle Value + Trust",
-          "settings": {
-            "funnel_color": "",
-            "funnel_alt": "Mammoth AirStyler — Complete kit $355 value for $99.90 + 1-year warranty, 30-day returns, free shipping",
-            "desktop_image": "shopify://shop_images/airstyler-aplus-3-bundle-value-trust.jpg",
-            "mobile_image": "shopify://shop_images/airstyler-aplus-3-bundle-value-trust.jpg"
-          }
-        },
-        "funnel_aplus_4": {
-          "type": "funnel_image",
-          "name": "A+ Before/After + How To Use",
-          "settings": {
-            "funnel_color": "",
-            "funnel_alt": "Mammoth AirStyler — Before and after transformation + How to use in 3 simple steps",
-            "desktop_image": "shopify://shop_images/airstyler-aplus-4-before-after-howto.jpg",
-            "mobile_image": "shopify://shop_images/airstyler-aplus-4-before-after-howto.jpg"
-          }
-        },
-        "funnel_aplus_5": {
-          "type": "funnel_image",
-          "name": "A+ Styles Demo + Testimonials",
-          "settings": {
-            "funnel_color": "",
-            "funnel_alt": "Mammoth AirStyler — 4 styles one tool attachment demo + Real customer testimonials",
-            "desktop_image": "shopify://shop_images/airstyler-aplus-5-styles-demo-testimonials.jpg",
-            "mobile_image": "shopify://shop_images/airstyler-aplus-5-styles-demo-testimonials.jpg"
-          }
-        },
-        "funnel_aplus_6": {
-          "type": "funnel_image",
-          "name": "A+ Comparison + FAQ",
-          "settings": {
-            "funnel_color": "",
-            "funnel_alt": "Mammoth AirStyler — Comparison vs Dyson and competition + FAQ objection busters",
+            "funnel_alt": "Mammoth AirStyler — Comparison vs competition + FAQ",
             "desktop_image": "shopify://shop_images/airstyler-aplus-6-comparison-faq.jpg",
             "mobile_image": "shopify://shop_images/airstyler-aplus-6-comparison-faq.jpg"
           }
@@ -110,10 +78,6 @@
       "block_order": [
         "funnel_aplus_1",
         "funnel_aplus_2",
-        "funnel_aplus_3",
-        "funnel_aplus_4",
-        "funnel_aplus_5",
-        "funnel_aplus_6",
         "info_tabs_main",
         "faq_section_main"
       ],
