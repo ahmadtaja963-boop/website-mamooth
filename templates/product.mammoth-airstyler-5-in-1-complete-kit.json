@@ -1,0 +1,66 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "info_tabs_main": {
+          "type": "more_info_tabs",
+          "settings": {
+            "title_1": "What's Included",
+            "content_1": "<p><strong>Base Unit</strong> — Mammoth AirStyler 5-in-1 with Coanda airflow<br><strong>Hair Dryer</strong> — High-speed drying attachment<br><strong>Left Curling Barrel</strong> — 32mm for left-side curls<br><strong>Right Curling Barrel</strong> — 32mm for right-side curls<br><strong>Volumizing Brush</strong> — Round brush for root lift<br><strong>Smoothing Brush</strong> — Paddle brush for sleek finishes<br><strong>Travel Pouch</strong> — Black protective case<br><strong>Heat Protectant Spray</strong> — 200ml bottle<br><strong>Silk Scrunchie</strong> — Premium hair accessory<br><strong>Digital E-Book</strong> — Hair care tips & styling guide</p>",
+            "title_2": "Specifications",
+            "content_2": "<p><strong>Weight:</strong> 400g<br><strong>Dimensions:</strong> 22 × 4.5 cm<br><strong>Technology:</strong> Coanda Effect + Negative Ions<br><strong>Cord:</strong> 1.9m with 360° swivel<br><strong>Coating:</strong> Ceramic<br><strong>Power:</strong> 1000W<br><strong>Temperature:</strong> 3 settings (60°C / 85°C / 110°C)<br><strong>Voltage:</strong> 110-120V / 60Hz<br><strong>Certification:</strong> UL 1727</p>",
+            "title_3": "Shipping & Returns",
+            "content_3": "<p><strong>Free shipping</strong> on all US orders.<br>Estimated delivery: 5-7 business days.<br><strong>30-day returns</strong> — no questions asked.<br><strong>1-year warranty</strong> included with every unit.</p>",
+            "title_4": "",
+            "content_4": ""
+          }
+        },
+        "faq_section_main": {
+          "type": "faq_section",
+          "settings": {
+            "q1": "How is this different from the Dyson Airwrap?",
+            "a1": "<p>The Mammoth AirStyler uses the same Coanda airflow technology as the Dyson Airwrap. The difference? Price. You get salon-quality results for under $100 instead of $600. Same technology, smart pricing.</p>",
+            "q2": "Will it damage my hair?",
+            "a2": "<p>No. Unlike flat irons and curling irons that use extreme direct heat (up to 230°C), the AirStyler uses controlled airflow with a max temperature of 110°C. Your hair gets styled without getting fried.</p>",
+            "q3": "How long does styling take?",
+            "a3": "<p>Most styles take under 10 minutes. Dry, curl, or straighten — all with the same tool. No switching between dryer, brush, and iron.</p>",
+            "q4": "Does it work on all hair types?",
+            "a4": "<p>Yes. The 3 temperature settings (60°C, 85°C, 110°C) let you adjust for fine, medium, or thick hair. The ceramic coating ensures even heat distribution regardless of hair type.</p>",
+            "q5": "What's included in the Complete Kit vs Base Unit?",
+            "a5": "<p>The Complete Kit ($99.90) includes the base unit, all 5 attachments, travel pouch, heat protectant spray, silk scrunchie, and digital e-book. The Base Unit ($79.90) includes just the unit and attachments.</p>",
+            "q6": "What if I don't like it?",
+            "a6": "<p>We offer a 30-day return policy — no questions asked. Plus every AirStyler comes with a 1-year warranty. We stand behind our products.</p>",
+            "q7": "Is it safe to use? Any certifications?",
+            "a7": "<p>Yes. The Mammoth AirStyler is UL 1727 certified for electrical safety. The 360° swivel cord and ceramic coating are designed for safe daily use.</p>",
+            "q8": "Can I travel with it?",
+            "a8": "<p>The Complete Kit includes a travel pouch for easy packing. Note: the unit is rated for 110-120V / 60Hz (US standard). For international travel, you'll need a voltage converter.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "info_tabs_main",
+        "faq_section_main"
+      ],
+      "settings": {
+        "show_judgeme_badge": true,
+        "social_proof_text": "TRENDING — 500+ UNITS SOLD",
+        "shipping_text": "Free shipping on all US orders 🇺🇸",
+        "show_delivery_estimate": true,
+        "delivery_business_days": 7,
+        "show_payment_icons": true,
+        "show_upsell": false
+      }
+    },
+    "you_may_also_like": {
+      "type": "you-may-also-like",
+      "settings": {
+        "heading": "You May Also Like"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "you_may_also_like"
+  ]
+}
