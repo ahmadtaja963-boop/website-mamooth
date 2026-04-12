@@ -182,10 +182,6 @@
               {%- comment -%} Offer Selector — Odylla-style radio cards {%- endcomment -%}
               <div class="offer-selector" id="OfferSelector" {{ os_block.shopify_attributes }}>
 
-                {%- if os.heading != blank -%}
-                  <p class="offer-selector__heading">{{ os.heading }}</p>
-                {%- endif -%}
-
                 {%- comment -%} Stock badge for offer selector {%- endcomment -%}
                 {%- assign inv = current_variant.inventory_quantity | default: 0 -%}
                 <span class="product-stock-badge offer-selector__stock" id="ProductStockBadge">
@@ -194,6 +190,10 @@
                   {%- else -%}<span class="product-stock-badge__dot product-stock-badge__dot--green"></span><span class="product-stock-badge__text">In stock</span>
                   {%- endif -%}
                 </span>
+
+                {%- if os.heading != blank -%}
+                  <p class="offer-selector__heading">{{ os.heading }}</p>
+                {%- endif -%}
 
                 {%- comment -%} Build variant data for the two cards {%- endcomment -%}
                 {%- assign v_first = product.variants.first -%}
