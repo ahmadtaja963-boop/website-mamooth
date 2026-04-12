@@ -2090,3 +2090,248 @@ section { display: block; }
   color: var(--color-text-muted);
 }
 
+/* ═══════════════════════════════════════════════════
+   Offer Selector — Odylla-style radio cards
+   ═══════════════════════════════════════════════════ */
+
+.offer-selector {
+  margin: 1.25rem 0 0.5rem;
+}
+
+.offer-selector__heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-text);
+  margin: 0 0 0.75rem;
+}
+
+.offer-selector__stock {
+  display: inline-flex;
+  margin-bottom: 0.75rem;
+}
+
+/* ── Card ── */
+.offer-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+  background: #fff;
+  border: 1px solid #DDE4EA;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+.offer-card:hover {
+  border-color: #2B8F9E;
+}
+
+.offer-card--selected {
+  border: 2px solid #2B8F9E;
+  background: rgba(43,143,158,0.04);
+  padding: 15px 19px; /* compensate for thicker border */
+}
+
+/* ── Radio circle ── */
+.offer-card__radio {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #DDE4EA;
+  border-radius: 50%;
+  margin-top: 2px;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.offer-card__radio--checked {
+  border-color: #2B8F9E;
+}
+
+.offer-card__radio--checked::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2B8F9E;
+}
+
+/* ── Card body ── */
+.offer-card__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.offer-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.offer-card__label-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.offer-card__label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #1A2332;
+  line-height: 1.3;
+}
+
+.offer-card__sublabel {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: #6B7B8D;
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+/* ── Prices ── */
+.offer-card__prices {
+  text-align: right;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.offer-card__price {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #1A2332;
+  line-height: 1.2;
+}
+
+.offer-card__compare {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: #6B7B8D;
+  text-decoration: line-through;
+  line-height: 1.4;
+}
+
+/* ── Deal badge ── */
+.offer-card__badge {
+  position: absolute;
+  top: -1px;
+  right: 16px;
+  background: #E53E3E;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 0 0 4px 4px;
+  line-height: 1;
+}
+
+/* ── Bundle breakdown items ── */
+.offer-card__items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid #DDE4EA;
+  padding-top: 10px;
+  margin-top: 2px;
+}
+
+.offer-card__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.offer-card__item-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.offer-card__check {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.offer-card__item-name {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #1A2332;
+  line-height: 1.3;
+}
+
+.offer-card__item-right {
+  flex-shrink: 0;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.offer-card__item-free {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #2B8F9E;
+  line-height: 1.3;
+}
+
+.offer-card__item-value {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: #6B7B8D;
+  text-decoration: line-through;
+  line-height: 1.3;
+}
+
+/* ── Trust line ── */
+.offer-selector__trust {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: #6B7B8D;
+  margin: 0.75rem 0 0;
+  line-height: 1.5;
+}
+
+/* ── Responsive tweaks ── */
+@media (max-width: 480px) {
+  .offer-card {
+    padding: 14px 14px;
+    gap: 10px;
+  }
+  .offer-card--selected {
+    padding: 13px 13px;
+  }
+  .offer-card__label {
+    font-size: 0.88rem;
+  }
+  .offer-card__price {
+    font-size: 1.05rem;
+  }
+  .offer-card__badge {
+    right: 10px;
+    font-size: 0.55rem;
+    padding: 3px 8px;
+  }
+}
+

@@ -6,6 +6,7 @@
 {%- assign info_tabs_blocks  = section.blocks | where: 'type', 'more_info_tabs' -%}
 {%- assign faq_section_blocks = section.blocks | where: 'type', 'faq_section' -%}
 {%- assign video_hero_blocks = section.blocks | where: 'type', 'video_hero' -%}
+{%- assign offer_selector_blocks = section.blocks | where: 'type', 'offer_selector' -%}
 {%- if bundle_blocks.size > 0 -%}
   {{ 'bundle-deals.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
@@ -112,13 +113,18 @@
         <h1 class="product-title">{{ product.title }}</h1>
 
         {%- comment -%} 4. Product Price {%- endcomment -%}
+        {%- if offer_selector_blocks.size > 0 -%}
+          {%- assign display_variant = product.variants.last -%}
+        {%- else -%}
+          {%- assign display_variant = current_variant -%}
+        {%- endif -%}
         <p class="product-price" id="ProductPrice">
-          {%- if current_variant.compare_at_price > current_variant.price -%}
+          {%- if display_variant.compare_at_price > display_variant.price -%}
             <s style="color:var(--color-text-muted);margin-right:.5rem;font-size:1rem;">
-              {{ current_variant.compare_at_price | money }}
+              {{ display_variant.compare_at_price | money }}
             </s>
           {%- endif -%}
-          {{ current_variant.price | money }}
+          {{ display_variant.price | money }}
         </p>
 
         {%- comment -%} 5. Free Shipping Text {%- endcomment -%}
@@ -163,9 +169,111 @@
             data-option2: product.options[1],
             data-option3: product.options[2]
         -%}
-          <input type="hidden" name="id" value="{{ current_variant.id }}">
+          {%- if offer_selector_blocks.size > 0 -%}
+            <input type="hidden" name="id" value="{{ product.variants.last.id }}">
+          {%- else -%}
+            <input type="hidden" name="id" value="{{ current_variant.id }}">
+          {%- endif -%}
 
           {%- unless product.has_only_default_variant -%}
+            {%- if offer_selector_blocks.size > 0 -%}
+              {%- assign os_block = offer_selector_blocks.first -%}
+              {%- assign os = os_block.settings -%}
+              {%- comment -%} Offer Selector — Odylla-style radio cards {%- endcomment -%}
+              <div class="offer-selector" id="OfferSelector" {{ os_block.shopify_attributes }}>
+
+                {%- if os.heading != blank -%}
+                  <p class="offer-selector__heading">{{ os.heading }}</p>
+                {%- endif -%}
+
+                {%- comment -%} Stock badge for offer selector {%- endcomment -%}
+                {%- assign inv = current_variant.inventory_quantity | default: 0 -%}
+                <span class="product-stock-badge offer-selector__stock" id="ProductStockBadge">
+                  {%- if inv < 15 -%}<span class="product-stock-badge__dot product-stock-badge__dot--red"></span><span class="product-stock-badge__text">Only {{ inv }} left</span>
+                  {%- elsif inv < 50 -%}<span class="product-stock-badge__dot product-stock-badge__dot--amber"></span><span class="product-stock-badge__text">Low stock</span>
+                  {%- else -%}<span class="product-stock-badge__dot product-stock-badge__dot--green"></span><span class="product-stock-badge__text">In stock</span>
+                  {%- endif -%}
+                </span>
+
+                {%- comment -%} Build variant data for the two cards {%- endcomment -%}
+                {%- assign v_first = product.variants.first -%}
+                {%- assign v_last  = product.variants.last  -%}
+
+                {%- comment -%} ── Card 1 (Option 1 — Base / first variant) ── {%- endcomment -%}
+                <label class="offer-card" data-variant-id="{{ v_first.id }}" data-offer-index="0">
+                  <span class="offer-card__radio"></span>
+                  <span class="offer-card__body">
+                    <span class="offer-card__top">
+                      <span class="offer-card__label-wrap">
+                        <span class="offer-card__label">{{ os.option1_label }}</span>
+                        <span class="offer-card__sublabel">{{ os.option1_sublabel }}</span>
+                      </span>
+                      <span class="offer-card__prices">
+                        <span class="offer-card__price">{{ v_first.price | money }}</span>
+                        {%- if v_first.compare_at_price > v_first.price -%}
+                          <span class="offer-card__compare">{{ v_first.compare_at_price | money }}</span>
+                        {%- endif -%}
+                      </span>
+                    </span>
+                  </span>
+                </label>
+
+                {%- comment -%} ── Card 2 (Option 2 — Complete Kit / last variant) ── {%- endcomment -%}
+                <label class="offer-card offer-card--selected" data-variant-id="{{ v_last.id }}" data-offer-index="1">
+                  <span class="offer-card__radio offer-card__radio--checked"></span>
+                  {%- if os.deal_badge_text != blank -%}
+                    <span class="offer-card__badge">{{ os.deal_badge_text }}</span>
+                  {%- endif -%}
+                  <span class="offer-card__body">
+                    <span class="offer-card__top">
+                      <span class="offer-card__label-wrap">
+                        <span class="offer-card__label">{{ os.option2_label }}</span>
+                        <span class="offer-card__sublabel">{{ os.option2_sublabel }}</span>
+                      </span>
+                      <span class="offer-card__prices">
+                        <span class="offer-card__price">{{ v_last.price | money }}</span>
+                        {%- if v_last.compare_at_price > v_last.price -%}
+                          <span class="offer-card__compare">{{ v_last.compare_at_price | money }}</span>
+                        {%- endif -%}
+                      </span>
+                    </span>
+
+                    {%- comment -%} Bundle breakdown items {%- endcomment -%}
+                    <span class="offer-card__items">
+                      {%- for i in (1..4) -%}
+                        {%- assign name_key  = 'item' | append: i | append: '_name' -%}
+                        {%- assign value_key = 'item' | append: i | append: '_value' -%}
+                        {%- assign free_key  = 'item' | append: i | append: '_free_label' -%}
+                        {%- assign item_name  = os[name_key] -%}
+                        {%- assign item_value = os[value_key] -%}
+                        {%- assign item_free  = os[free_key] -%}
+                        {%- if item_name != blank -%}
+                          <span class="offer-card__item">
+                            <span class="offer-card__item-left">
+                              <svg class="offer-card__check" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="#2B8F9E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                              <span class="offer-card__item-name">{{ item_name }}</span>
+                            </span>
+                            <span class="offer-card__item-right">
+                              {%- if item_free != blank -%}
+                                <span class="offer-card__item-free">{{ item_free }}</span>
+                              {%- endif -%}
+                              {%- if item_value != blank -%}
+                                <span class="offer-card__item-value">{{ item_value }}</span>
+                              {%- endif -%}
+                            </span>
+                          </span>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </span>
+                  </span>
+                </label>
+
+                {%- comment -%} Trust line {%- endcomment -%}
+                {%- if os.show_trust_line and os.trust_text != blank -%}
+                  <p class="offer-selector__trust">{{ os.trust_text }}</p>
+                {%- endif -%}
+              </div>
+            {%- else -%}
             <div class="product-options">
               {%- for option in product.options_with_values -%}
                 {%- assign is_color = false -%}
@@ -223,6 +331,7 @@
                 </div>
               {%- endfor -%}
             </div>
+            {%- endif -%}
           {%- endunless -%}
 
           {%- comment -%} 8. Add to Cart {%- endcomment -%}
@@ -1504,6 +1613,66 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
   var initColorBtn = document.querySelector('.option-btn--color.active');
   if (initColorBtn) filterFunnelByColor(initColorBtn.dataset.value);
 
+  /* ── Offer Selector (radio cards) ── */
+  function fmtMoney(cents) { return '$' + (cents / 100).toFixed(2); }
+
+  var offerSelector = document.getElementById('OfferSelector');
+  if (offerSelector) {
+    var offerCards = offerSelector.querySelectorAll('.offer-card');
+    offerCards.forEach(function(card) {
+      card.addEventListener('click', function() {
+        /* Deselect all */
+        offerCards.forEach(function(c) {
+          c.classList.remove('offer-card--selected');
+          c.querySelector('.offer-card__radio').classList.remove('offer-card__radio--checked');
+        });
+        /* Select clicked */
+        card.classList.add('offer-card--selected');
+        card.querySelector('.offer-card__radio').classList.add('offer-card__radio--checked');
+
+        var vid = card.dataset.variantId;
+        /* Update hidden input */
+        form.querySelector('[name="id"]').value = vid;
+
+        /* Update price display */
+        if (priceEl && variantImgs[vid]) {
+          var vData = variantImgs[vid];
+          var matchedVariant = variants.find(function(v) { return String(v.id) === vid; });
+          var html = '';
+          if (matchedVariant && matchedVariant.compare_at_price && matchedVariant.compare_at_price > matchedVariant.price) {
+            html += '<s style="color:var(--color-text-muted);margin-right:.5rem;font-size:1rem;">' + fmtMoney(matchedVariant.compare_at_price) + '</s>';
+          }
+          html += fmtMoney(matchedVariant ? matchedVariant.price : vData.price);
+          priceEl.innerHTML = html;
+        }
+
+        /* Update add-to-cart button */
+        var addBtn = form.querySelector('.product-atc-btn');
+        if (addBtn && variantImgs[vid]) {
+          addBtn.disabled = !variantImgs[vid].available;
+          addBtn.textContent = variantImgs[vid].available ? 'Add to Cart' : 'Sold Out';
+          addBtn.dataset.variantId = vid;
+        }
+
+        /* Update stock badge */
+        var stockBadge = document.getElementById('ProductStockBadge');
+        if (stockBadge && variantImgs[vid]) {
+          var qty = variantImgs[vid].inventory_quantity || 0;
+          var dot, text;
+          if (qty < 15) { dot = 'product-stock-badge__dot--red'; text = 'Only ' + qty + ' left'; }
+          else if (qty < 50) { dot = 'product-stock-badge__dot--amber'; text = 'Low stock'; }
+          else { dot = 'product-stock-badge__dot--green'; text = 'In stock'; }
+          stockBadge.innerHTML = '<span class="product-stock-badge__dot ' + dot + '"></span><span class="product-stock-badge__text">' + text + '</span>';
+        }
+
+        /* Update main image if variant has one */
+        if (variantImgs[vid] && variantImgs[vid].image_src && variantImgs[vid].image_src !== 'null') {
+          setMainImage(variantImgs[vid].image_src);
+        }
+      });
+    });
+  }
+
   /* ── Variant selector ── */
   var selected = {};
 
@@ -1999,6 +2168,129 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
         { "type": "header", "content": "Question 8" },
         { "type": "text", "id": "q8", "label": "Question" },
         { "type": "richtext", "id": "a8", "label": "Answer" }
+      ]
+    },
+    {
+      "type": "offer_selector",
+      "name": "Offer Selector",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Choose Your Offer & Save Today"
+        },
+        {
+          "type": "text",
+          "id": "deal_badge_text",
+          "label": "Deal badge text",
+          "default": "TODAY'S DEAL"
+        },
+        { "type": "header", "content": "Option 1 (first variant)" },
+        {
+          "type": "text",
+          "id": "option1_label",
+          "label": "Option 1 label",
+          "default": "AirStyler Only"
+        },
+        {
+          "type": "text",
+          "id": "option1_sublabel",
+          "label": "Option 1 sublabel",
+          "default": "Base unit with attachments"
+        },
+        { "type": "header", "content": "Option 2 (last variant)" },
+        {
+          "type": "text",
+          "id": "option2_label",
+          "label": "Option 2 label",
+          "default": "Complete Hair Styling Kit"
+        },
+        {
+          "type": "text",
+          "id": "option2_sublabel",
+          "label": "Option 2 sublabel",
+          "default": "Everything you need for perfect hair"
+        },
+        { "type": "header", "content": "Bundle Breakdown Items" },
+        {
+          "type": "text",
+          "id": "item1_name",
+          "label": "Item 1 name"
+        },
+        {
+          "type": "text",
+          "id": "item1_value",
+          "label": "Item 1 crossed-out value (e.g. $230 value)"
+        },
+        {
+          "type": "text",
+          "id": "item1_free_label",
+          "label": "Item 1 free label",
+          "default": "FREE"
+        },
+        {
+          "type": "text",
+          "id": "item2_name",
+          "label": "Item 2 name"
+        },
+        {
+          "type": "text",
+          "id": "item2_value",
+          "label": "Item 2 crossed-out value"
+        },
+        {
+          "type": "text",
+          "id": "item2_free_label",
+          "label": "Item 2 free label",
+          "default": "FREE"
+        },
+        {
+          "type": "text",
+          "id": "item3_name",
+          "label": "Item 3 name"
+        },
+        {
+          "type": "text",
+          "id": "item3_value",
+          "label": "Item 3 crossed-out value"
+        },
+        {
+          "type": "text",
+          "id": "item3_free_label",
+          "label": "Item 3 free label",
+          "default": "FREE"
+        },
+        {
+          "type": "text",
+          "id": "item4_name",
+          "label": "Item 4 name"
+        },
+        {
+          "type": "text",
+          "id": "item4_value",
+          "label": "Item 4 crossed-out value"
+        },
+        {
+          "type": "text",
+          "id": "item4_free_label",
+          "label": "Item 4 free label",
+          "default": "FREE"
+        },
+        { "type": "header", "content": "Trust Line" },
+        {
+          "type": "checkbox",
+          "id": "show_trust_line",
+          "label": "Show trust line",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "trust_text",
+          "label": "Trust text",
+          "default": "Free Shipping • 30-Day Returns • 1-Year Warranty"
+        }
       ]
     },
     {

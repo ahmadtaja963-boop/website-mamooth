@@ -53,6 +53,31 @@
             "content_4": ""
           }
         },
+        "offer_selector_main": {
+          "type": "offer_selector",
+          "settings": {
+            "heading": "Choose Your Offer & Save Today",
+            "deal_badge_text": "TODAY'S DEAL",
+            "option1_label": "AirStyler 5-in-1",
+            "option1_sublabel": "Base unit with attachments",
+            "option2_label": "Complete Hair Styling Kit",
+            "option2_sublabel": "Everything you need for perfect hair",
+            "item1_name": "AirStyler 5-in-1",
+            "item1_value": "$230 value",
+            "item1_free_label": "$99.90",
+            "item2_name": "Travel Pouch",
+            "item2_value": "$60 value",
+            "item2_free_label": "FREE",
+            "item3_name": "Heat Protectant Spray",
+            "item3_value": "$35 value",
+            "item3_free_label": "FREE",
+            "item4_name": "Silk Scrunchie",
+            "item4_value": "$30 value",
+            "item4_free_label": "FREE",
+            "show_trust_line": true,
+            "trust_text": "Free Shipping • 30-Day Returns • 1-Year Warranty"
+          }
+        },
         "faq_section_main": {
           "type": "faq_section",
           "settings": {
@@ -78,6 +103,7 @@
       "block_order": [
         "funnel_aplus_1",
         "funnel_aplus_2",
+        "offer_selector_main",
         "info_tabs_main",
         "faq_section_main"
       ],
