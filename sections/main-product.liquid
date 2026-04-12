@@ -196,8 +196,9 @@
                 {%- endif -%}
 
                 {%- comment -%} Build variant data for the two cards {%- endcomment -%}
-                {%- assign v_first = product.variants.first -%}
-                {%- assign v_last  = product.variants.last  -%}
+                {%- comment -%} v_first = cheaper (Base Unit), v_last = premium (Complete Kit) {%- endcomment -%}
+                {%- assign v_first = product.variants.last -%}
+                {%- assign v_last  = product.variants.first -%}
 
                 {%- comment -%} ── Card 1 (Option 1 — Base / first variant) ── {%- endcomment -%}
                 <label class="offer-card" data-variant-id="{{ v_first.id }}" data-offer-index="0">
