@@ -41,7 +41,7 @@
                 <div class="ymal-placeholder"></div>
               {%- endif -%}
               {%- if first_variant -%}
-                <button class="ymal-add-btn" data-variant-id="{{ first_variant.id }}" aria-label="Add {{ p1.title | escape }} to cart" onclick="event.preventDefault();event.stopPropagation();window.DiazTheme.addToCart('{{ first_variant.id }}', 1, this);">
+                <button class="ymal-add-btn" data-variant-id="{{ first_variant.id }}" aria-label="Add {{ p1.title | escape }} to cart" onclick="event.preventDefault();event.stopPropagation();window.MammothTheme.addToCart('{{ first_variant.id }}', 1, this);">
                   {%- if first_variant.available -%}Add to Cart{%- else -%}Sold Out{%- endif -%}
                 </button>
               {%- endif -%}
@@ -73,7 +73,7 @@
                 <div class="ymal-placeholder"></div>
               {%- endif -%}
               {%- if first_variant -%}
-                <button class="ymal-add-btn" data-variant-id="{{ first_variant.id }}" aria-label="Add {{ p2.title | escape }} to cart" onclick="event.preventDefault();event.stopPropagation();window.DiazTheme.addToCart('{{ first_variant.id }}', 1, this);">
+                <button class="ymal-add-btn" data-variant-id="{{ first_variant.id }}" aria-label="Add {{ p2.title | escape }} to cart" onclick="event.preventDefault();event.stopPropagation();window.MammothTheme.addToCart('{{ first_variant.id }}', 1, this);">
                   {%- if first_variant.available -%}Add to Cart{%- else -%}Sold Out{%- endif -%}
                 </button>
               {%- endif -%}
@@ -105,7 +105,7 @@
                 <div class="ymal-placeholder"></div>
               {%- endif -%}
               {%- if first_variant -%}
-                <button class="ymal-add-btn" data-variant-id="{{ first_variant.id }}" aria-label="Add {{ p3.title | escape }} to cart" onclick="event.preventDefault();event.stopPropagation();window.DiazTheme.addToCart('{{ first_variant.id }}', 1, this);">
+                <button class="ymal-add-btn" data-variant-id="{{ first_variant.id }}" aria-label="Add {{ p3.title | escape }} to cart" onclick="event.preventDefault();event.stopPropagation();window.MammothTheme.addToCart('{{ first_variant.id }}', 1, this);">
                   {%- if first_variant.available -%}Add to Cart{%- else -%}Sold Out{%- endif -%}
                 </button>
               {%- endif -%}

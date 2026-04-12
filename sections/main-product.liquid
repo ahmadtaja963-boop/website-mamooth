@@ -1829,7 +1829,7 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
     e.preventDefault();
     var variantId = form.querySelector('[name="id"]').value;
     var btn       = form.querySelector('.product-atc-btn');
-    window.DiazTheme.addToCart(variantId, 1, btn);
+    window.MammothTheme.addToCart(variantId, 1, btn);
   });
 
   /* ── Tab Navigation ── */
@@ -1918,7 +1918,7 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
       btn.addEventListener('click', function() {
         var variantId = btn.dataset.upsellVariantId;
         if (variantId && window.DiazTheme) {
-          window.DiazTheme.addToCart(variantId, 1, btn);
+          window.MammothTheme.addToCart(variantId, 1, btn);
         }
       });
     }

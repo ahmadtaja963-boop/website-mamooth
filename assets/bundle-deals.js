@@ -140,14 +140,14 @@ class BundleDeals extends HTMLElement {
         throw new Error(err.description || 'Could not add items to cart.');
       }
 
-      /* Use DiazTheme cart helpers if available, otherwise redirect */
-      if (window.DiazTheme && typeof window.DiazTheme.fetchCart === 'function') {
-        await window.DiazTheme.fetchCart();
-        if (typeof window.DiazTheme.openCart === 'function') {
-          window.DiazTheme.openCart();
+      /* Use MammothTheme cart helpers if available, otherwise redirect */
+      if (window.MammothTheme && typeof window.MammothTheme.fetchCart === 'function') {
+        await window.MammothTheme.fetchCart();
+        if (typeof window.MammothTheme.openCart === 'function') {
+          window.MammothTheme.openCart();
         }
-        if (typeof window.DiazTheme.showToast === 'function') {
-          window.DiazTheme.showToast('Bundle added to cart!');
+        if (typeof window.MammothTheme.showToast === 'function') {
+          window.MammothTheme.showToast('Bundle added to cart!');
         }
       } else {
         window.location.href = '/cart';
