@@ -108,6 +108,7 @@
         "faq_section_main"
       ],
       "settings": {
+        "accent_color": "#b5736a",
         "show_judgeme_badge": true,
         "social_proof_text": "TRENDING — 500+ UNITS SOLD",
         "shipping_text": "",

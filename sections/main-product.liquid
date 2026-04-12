@@ -11,6 +11,24 @@
   {{ 'bundle-deals.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 
+{%- if section.settings.accent_color != blank -%}
+<style>
+  .product-page {
+    --color-accent: {{ section.settings.accent_color }};
+  }
+  .product-page .product-atc-btn,
+  .product-page .offer-card.active { border-color: var(--color-accent); }
+  .product-page .product-atc-btn { background: var(--color-accent); }
+  .product-page .product-atc-btn:hover { background: color-mix(in srgb, var(--color-accent) 85%, #000); }
+  .product-page .offer-card.active { background: color-mix(in srgb, var(--color-accent) 6%, #fff); }
+  .product-page .offer-card__radio::after { background: var(--color-accent); }
+  .product-page .offer-card__check path { stroke: var(--color-accent); }
+  .product-page .product-price-badge { background: var(--color-accent); }
+  .product-page .product-stock-badge__dot--amber { background: var(--color-accent); }
+  .product-page .offer-card__deal-badge { background: #c0392b; }
+  .product-page .product-info a { color: var(--color-accent); }
+</style>
+{%- endif -%}
 <div class="product-page" style="padding-bottom:0;">
   <div class="container">
 
@@ -1912,6 +1930,12 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
   "name": "Product",
   "tag": "div",
   "settings": [
+    {
+      "type": "text",
+      "id": "accent_color",
+      "label": "Accent color override",
+      "info": "Enter a hex color (e.g. #b5736a) to override the default teal for this page. Leave blank for default."
+    },
     {
       "type": "checkbox",
       "id": "show_judgeme_badge",
