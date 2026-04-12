@@ -1583,6 +1583,41 @@ section { display: block; }
   font-weight: 600;
   margin-bottom: 1.5rem;
 }
+.product-price-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+.product-price-current {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1A2332;
+}
+.product-price-compare {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6B7B8D;
+  text-decoration: line-through;
+}
+.product-price-badge {
+  display: inline-block;
+  background: #b5736a;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+@media (max-width: 480px) {
+  .product-price-current { font-size: 1.3rem; }
+  .product-price-badge { font-size: 0.68rem; padding: 3px 10px; }
+}
 
 .product-options { margin-bottom: 1.5rem; }
 

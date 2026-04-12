@@ -118,14 +118,14 @@
         {%- else -%}
           {%- assign display_variant = current_variant -%}
         {%- endif -%}
-        <p class="product-price" id="ProductPrice">
+        <div class="product-price-row" id="ProductPrice">
+          <span class="product-price-current">{{ display_variant.price | money }}</span>
           {%- if display_variant.compare_at_price > display_variant.price -%}
-            <s style="color:var(--color-text-muted);margin-right:.5rem;font-size:1rem;">
-              {{ display_variant.compare_at_price | money }}
-            </s>
+            <s class="product-price-compare">{{ display_variant.compare_at_price | money }}</s>
+            {%- assign savings = display_variant.compare_at_price | minus: display_variant.price -%}
+            <span class="product-price-badge">Limited Offer&nbsp;&nbsp;·&nbsp;&nbsp;Save {{ savings | money }}</span>
           {%- endif -%}
-          {{ display_variant.price | money }}
-        </p>
+        </div>
 
         {%- comment -%} 5. Free Shipping Text {%- endcomment -%}
         {%- unless section.settings.shipping_text == blank -%}
@@ -1638,11 +1638,13 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
         if (priceEl && variantImgs[vid]) {
           var vData = variantImgs[vid];
           var matchedVariant = variants.find(function(v) { return String(v.id) === vid; });
-          var html = '';
+          var price = matchedVariant ? matchedVariant.price : vData.price;
+          var html = '<span class="product-price-current">' + fmtMoney(price) + '</span>';
           if (matchedVariant && matchedVariant.compare_at_price && matchedVariant.compare_at_price > matchedVariant.price) {
-            html += '<s style="color:var(--color-text-muted);margin-right:.5rem;font-size:1rem;">' + fmtMoney(matchedVariant.compare_at_price) + '</s>';
+            var savings = matchedVariant.compare_at_price - matchedVariant.price;
+            html += ' <s class="product-price-compare">' + fmtMoney(matchedVariant.compare_at_price) + '</s>';
+            html += ' <span class="product-price-badge">Limited Offer\u00a0\u00a0·\u00a0\u00a0Save ' + fmtMoney(savings) + '</span>';
           }
-          html += fmtMoney(matchedVariant ? matchedVariant.price : vData.price);
           priceEl.innerHTML = html;
         }
 
