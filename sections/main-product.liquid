@@ -344,11 +344,11 @@
 
                 {%- comment -%} Social proof {%- endcomment -%}
                 {%- if bg.social_proof_count != blank -%}
-                  {%- assign sp_count_raw = bg.social_proof_count | plus: 0 -%}
+                  {%- assign sp_placeholder = '{count}' -%}
                   <p class="bogo-social-proof">
                     <span class="bogo-social-proof__dot"></span>
                     <span class="bogo-social-proof__text">
-                      {{ bg.social_proof_text | replace: '{count}', bg.social_proof_count }}
+                      {{ bg.social_proof_text | replace: sp_placeholder, bg.social_proof_count }}
                     </span>
                   </p>
                 {%- endif -%}
