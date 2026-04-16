@@ -217,7 +217,7 @@
               {%- assign bogo_block = bogo_blocks.first -%}
               {%- assign bg = bogo_block.settings -%}
 
-              {%- comment -%} Find color option {%- endcomment -%}
+              {%- comment -%} Find color option + build color map {%- endcomment -%}
               {%- assign bogo_color_option = nil -%}
               {%- for opt in product.options_with_values -%}
                 {%- assign opt_lower = opt.name | downcase -%}
@@ -226,16 +226,41 @@
                 {%- endif -%}
               {%- endfor -%}
 
+              {%- comment -%} Dynamic prices from product {%- endcomment -%}
+              {%- assign bogo_unit_price = current_variant.price | money_without_currency -%}
+              {%- assign bogo_unit_cents = current_variant.price -%}
+              {%- assign tier1_qty_num = bg.tier1_qty | plus: 0 -%}
+              {%- assign tier2_qty_num = bg.tier2_qty | plus: 0 -%}
+              {%- assign tier3_qty_num = bg.tier3_qty | plus: 0 -%}
+              {%- assign tier1_compare_cents = bogo_unit_cents | times: tier1_qty_num -%}
+              {%- assign tier2_compare_cents = bogo_unit_cents | times: tier2_qty_num -%}
+              {%- assign tier3_compare_cents = bogo_unit_cents | times: tier3_qty_num -%}
+
+              {%- comment -%} Build variant color map for swatches {%- endcomment -%}
+              <script id="BogoVariantColorMap" type="application/json">
+                {
+                  {%- for variant in product.variants -%}
+                    {%- for opt in product.options_with_values -%}
+                      {%- assign opt_lower = opt.name | downcase -%}
+                      {%- if opt_lower == 'color' or opt_lower == 'colour' or opt_lower == 'colore' or opt_lower == 'couleur' -%}
+                        {%- assign color_index = forloop.index0 -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                    "{{ variant.options[color_index] | downcase | strip }}": "{{ variant.featured_image | image_url: width: 60 }}"{% unless forloop.last %},{% endunless %}
+                  {%- endfor -%}
+                }
+              </script>
+
               <div class="bogo-tiers" id="BogoTiers" {{ bogo_block.shopify_attributes }}
                 data-tier1-qty="{{ bg.tier1_qty }}"
-                data-tier1-price="{{ bg.tier1_price }}"
-                data-tier1-compare="{{ bg.tier1_compare }}"
+                data-tier1-price="{{ current_variant.price | money_without_currency }}"
+                data-tier1-compare=""
                 data-tier2-qty="{{ bg.tier2_qty }}"
-                data-tier2-price="{{ bg.tier2_price }}"
-                data-tier2-compare="{{ bg.tier2_compare }}"
+                data-tier2-price="{{ current_variant.price | money_without_currency }}"
+                data-tier2-compare="{{ tier2_compare_cents | money_without_currency }}"
                 data-tier3-qty="{{ bg.tier3_qty }}"
-                data-tier3-price="{{ bg.tier3_price }}"
-                data-tier3-compare="{{ bg.tier3_compare }}"
+                data-tier3-price="{{ bogo_unit_cents | times: 2 | money_without_currency }}"
+                data-tier3-compare="{{ tier3_compare_cents | money_without_currency }}"
               >
                 {%- comment -%} ── Tier 1 ── {%- endcomment -%}
                 <label class="bogo-card" data-tier="1" data-qty="{{ bg.tier1_qty }}">
@@ -249,16 +274,13 @@
                         {%- endif -%}
                       </span>
                       <span class="bogo-card__prices">
-                        <span class="bogo-card__price">${{ bg.tier1_price }}</span>
-                        {%- if bg.tier1_compare != blank -%}
-                          <s class="bogo-card__compare">${{ bg.tier1_compare }}</s>
-                        {%- endif -%}
+                        <span class="bogo-card__price">{{ current_variant.price | money }}</span>
                       </span>
                     </span>
                   </span>
                 </label>
 
-                {%- comment -%} ── Tier 2 ── {%- endcomment -%}
+                {%- comment -%} ── Tier 2 (B1G1F — pay for 1, get 2) ── {%- endcomment -%}
                 <label class="bogo-card bogo-card--selected" data-tier="2" data-qty="{{ bg.tier2_qty }}">
                   <span class="bogo-card__radio bogo-card__radio--checked"></span>
                   {%- if bg.tier2_badge != blank -%}
@@ -273,20 +295,18 @@
                         {%- endif -%}
                       </span>
                       <span class="bogo-card__prices">
-                        <span class="bogo-card__price">${{ bg.tier2_price }}</span>
-                        {%- if bg.tier2_compare != blank -%}
-                          <s class="bogo-card__compare">${{ bg.tier2_compare }}</s>
-                        {%- endif -%}
+                        <span class="bogo-card__price">{{ current_variant.price | money }}</span>
+                        <s class="bogo-card__compare">{{ tier2_compare_cents | money }}</s>
                       </span>
                     </span>
-                    {%- if bogo_color_option and bg.tier2_qty != '1' -%}
+                    {%- if bogo_color_option and tier2_qty_num > 1 -%}
                       <span class="bogo-card__variants">
                         <span class="bogo-card__variants-label">{{ bogo_color_option.name }}</span>
                         <span class="bogo-card__variant-selects">
-                          {%- assign tier2_qty_num = bg.tier2_qty | plus: 0 -%}
                           {%- for i in (1..tier2_qty_num) -%}
                             <span class="bogo-card__variant-item">
                               <span class="bogo-card__variant-num">#{{ i }}</span>
+                              <span class="bogo-card__color-swatch" data-select-target="{{ i }}"></span>
                               <select class="bogo-card__color-select" data-item-index="{{ i }}">
                                 {%- for val in bogo_color_option.values -%}
                                   <option value="{{ val }}"{% if val == bogo_color_option.selected_value %} selected{% endif %}>{{ val }}</option>
@@ -300,7 +320,7 @@
                   </span>
                 </label>
 
-                {%- comment -%} ── Tier 3 ── {%- endcomment -%}
+                {%- comment -%} ── Tier 3 (B2G2F — pay for 2, get 4) ── {%- endcomment -%}
                 <label class="bogo-card" data-tier="3" data-qty="{{ bg.tier3_qty }}">
                   <span class="bogo-card__radio"></span>
                   {%- if bg.tier3_badge != blank -%}
@@ -315,20 +335,18 @@
                         {%- endif -%}
                       </span>
                       <span class="bogo-card__prices">
-                        <span class="bogo-card__price">${{ bg.tier3_price }}</span>
-                        {%- if bg.tier3_compare != blank -%}
-                          <s class="bogo-card__compare">${{ bg.tier3_compare }}</s>
-                        {%- endif -%}
+                        <span class="bogo-card__price">{{ bogo_unit_cents | times: 2 | money }}</span>
+                        <s class="bogo-card__compare">{{ tier3_compare_cents | money }}</s>
                       </span>
                     </span>
-                    {%- if bogo_color_option and bg.tier3_qty != '1' -%}
+                    {%- if bogo_color_option and tier3_qty_num > 1 -%}
                       <span class="bogo-card__variants">
                         <span class="bogo-card__variants-label">{{ bogo_color_option.name }}</span>
                         <span class="bogo-card__variant-selects">
-                          {%- assign tier3_qty_num = bg.tier3_qty | plus: 0 -%}
                           {%- for i in (1..tier3_qty_num) -%}
                             <span class="bogo-card__variant-item">
                               <span class="bogo-card__variant-num">#{{ i }}</span>
+                              <span class="bogo-card__color-swatch" data-select-target="{{ i }}"></span>
                               <select class="bogo-card__color-select" data-item-index="{{ i }}">
                                 {%- for val in bogo_color_option.values -%}
                                   <option value="{{ val }}"{% if val == bogo_color_option.selected_value %} selected{% endif %}>{{ val }}</option>
@@ -1982,6 +2000,33 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
         }
       }
       priceEl.innerHTML = html;
+    }
+
+    /* ── Color swatches for BOGO selects ── */
+    var colorMapEl = document.getElementById('BogoVariantColorMap');
+    if (colorMapEl) {
+      var colorMap = JSON.parse(colorMapEl.textContent);
+      /* Known color → hex fallback for common names */
+      var colorHex = { gold: '#C4944C', silver: '#C0C0C0', black: '#1A1A1A', white: '#F5F5F5', rose: '#B76E79', 'rose gold': '#B76E79' };
+
+      function updateSwatch(selectEl) {
+        var color = selectEl.value.toLowerCase().trim();
+        var item = selectEl.closest('.bogo-card__variant-item');
+        var swatch = item ? item.querySelector('.bogo-card__color-swatch') : null;
+        if (!swatch) return;
+        if (colorMap[color]) {
+          swatch.style.backgroundImage = 'url(' + colorMap[color] + ')';
+          swatch.style.backgroundColor = '';
+        } else if (colorHex[color]) {
+          swatch.style.backgroundImage = '';
+          swatch.style.backgroundColor = colorHex[color];
+        }
+      }
+
+      bogoContainer.querySelectorAll('.bogo-card__color-select').forEach(function(sel) {
+        updateSwatch(sel);
+        sel.addEventListener('change', function() { updateSwatch(sel); });
+      });
     }
   }
 

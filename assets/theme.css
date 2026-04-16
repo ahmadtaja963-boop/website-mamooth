@@ -2569,14 +2569,24 @@ section { display: block; }
 
 .bogo-card__variant-selects {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 8px;
 }
 
 .bogo-card__variant-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+}
+
+.bogo-card__color-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #DDE4EA;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
 }
 
 .bogo-card__variant-num {
@@ -2661,7 +2671,6 @@ section { display: block; }
     padding: 3px 8px;
   }
   .bogo-card__variant-selects {
-    flex-direction: column;
     gap: 6px;
   }
   .bogo-card__color-select {
