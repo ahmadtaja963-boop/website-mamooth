@@ -1154,6 +1154,25 @@ section { display: block; }
   margin-right: 0.2rem;
 }
 
+.cart-item-free {
+  color: #16a34a;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  text-transform: uppercase;
+}
+
+.cart-item-discount-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #16a34a;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-top: 2px;
+}
+
 .cart-item-actions {
   display: flex;
   flex-direction: column;

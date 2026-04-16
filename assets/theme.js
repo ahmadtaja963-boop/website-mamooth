@@ -351,6 +351,37 @@ window.MammothTheme = (function () {
       var checkoutTotal = document.getElementById('CartCheckoutTotal');
       if (checkoutTotal) checkoutTotal.textContent = formatMoney(data.total_price);
 
+      // Show discount line if cart has discounts
+      var discountLine = document.getElementById('CartDiscountLine');
+      if (discountLine) {
+        var totalDiscount = data.total_discount || 0;
+        if (totalDiscount > 0) {
+          discountLine.style.display = '';
+          var discountAmount = document.getElementById('CartDiscountAmount');
+          var discountName = document.getElementById('CartDiscountName');
+          if (discountAmount) discountAmount.textContent = '-' + formatMoney(totalDiscount);
+          if (discountName) {
+            var names = [];
+            if (data.cart_level_discount_applications && data.cart_level_discount_applications.length > 0) {
+              data.cart_level_discount_applications.forEach(function(d) { names.push(d.title); });
+            }
+            /* Also check item-level discounts */
+            if (names.length === 0 && data.items) {
+              data.items.forEach(function(item) {
+                if (item.discounts) {
+                  item.discounts.forEach(function(d) {
+                    if (names.indexOf(d.title) === -1) names.push(d.title);
+                  });
+                }
+              });
+            }
+            discountName.textContent = names.join(', ') || 'Discount';
+          }
+        } else {
+          discountLine.style.display = 'none';
+        }
+      }
+
       if (items) {
         items.innerHTML = data.items.map(function (item) {
           return buildCartItemHTML(item);
@@ -383,6 +414,37 @@ window.MammothTheme = (function () {
     const imgSrc = item.image
       ? item.image.replace(/(\.\w+)$/, '_200x200$1')
       : '';
+
+    /* Detect discount: BOGO free items have total_discount > 0 or final_line_price < original_line_price */
+    var hasDiscount = item.total_discount > 0 || (item.original_line_price && item.final_line_price < item.original_line_price);
+    var isFree = item.final_line_price === 0;
+    var priceHTML = '';
+
+    if (isFree) {
+      priceHTML = '<p class="cart-item-price">' +
+        '<s class="cart-item-compare-price">' + formatMoney(item.original_line_price) + '</s> ' +
+        '<span class="cart-item-free">FREE</span>' +
+      '</p>';
+      if (item.discounts && item.discounts.length > 0) {
+        priceHTML += '<p class="cart-item-discount-tag">' + escapeHTML(item.discounts[0].title) + '</p>';
+      }
+    } else if (hasDiscount) {
+      priceHTML = '<p class="cart-item-price">' +
+        '<s class="cart-item-compare-price">' + formatMoney(item.original_line_price) + '</s> ' +
+        formatMoney(item.final_line_price) +
+      '</p>';
+      if (item.discounts && item.discounts.length > 0) {
+        priceHTML += '<p class="cart-item-discount-tag">' + escapeHTML(item.discounts[0].title) + '</p>';
+      }
+    } else if (item.compare_at_price && item.compare_at_price > item.price) {
+      priceHTML = '<p class="cart-item-price">' +
+        '<s class="cart-item-compare-price">' + formatMoney(item.compare_at_price * item.quantity) + '</s> ' +
+        formatMoney(item.line_price) +
+      '</p>';
+    } else {
+      priceHTML = '<p class="cart-item-price">' + formatMoney(item.line_price) + '</p>';
+    }
+
     return '<div class="cart-item" data-qty="' + item.quantity + '">' +
       '<div class="cart-item-image">' +
         (imgSrc ? '<img src="' + imgSrc + '" alt="' + escapeHTML(item.title) + '" loading="lazy">' : '') +
@@ -391,12 +453,7 @@ window.MammothTheme = (function () {
         '<p class="cart-item-title">' + escapeHTML(item.product_title) + '</p>' +
         (item.variant_title && item.variant_title !== 'Default Title'
           ? '<p class="cart-item-variant">' + escapeHTML(item.variant_title) + '</p>' : '') +
-        (item.compare_at_price && item.compare_at_price > item.price
-          ? '<p class="cart-item-price">' +
-              '<s class="cart-item-compare-price">' + formatMoney(item.compare_at_price * item.quantity) + '</s> ' +
-              formatMoney(item.line_price) +
-            '</p>'
-          : '<p class="cart-item-price">' + formatMoney(item.line_price) + '</p>') +
+        priceHTML +
       '</div>' +
       '<div class="cart-item-actions">' +
         '<button class="cart-item-remove" data-remove-btn data-key="' + item.key + '" aria-label="Remove">' +
