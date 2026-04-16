@@ -2427,7 +2427,7 @@ section { display: block; }
    BOGO Quantity Tiers
    ═══════════════════════════════════════════════ */
 .bogo-tiers {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
 }
 
 /* ── Card ── */
@@ -2649,8 +2649,8 @@ section { display: block; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-top: 6px;
-  padding: 10px 0;
+  margin-top: 4px;
+  padding: 6px 0 0;
   font-family: var(--font-body);
   font-size: 0.85rem;
   color: #1A2332;
