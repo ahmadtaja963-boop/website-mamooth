@@ -5,30 +5,32 @@
       "blocks": {
         "funnel_aplus_1": {
           "type": "funnel_image",
-          "name": "A+ Content 1-5",
+          "name": "A+ Args 1+2 Tarnish + Waterproof",
           "settings": {
             "funnel_color": "",
-            "funnel_alt": "Infinity Love Knot Bracelet A+ Content",
-            "desktop_image": "shopify://shop_images/bracelet-aplus-knot-symbolism.jpg",
-            "mobile_image": "shopify://shop_images/bracelet-aplus-knot-symbolism.jpg",
-            "desktop_image_2": "shopify://shop_images/bracelet-aplus-waterproof-tarnish.jpg",
-            "mobile_image_2": "shopify://shop_images/bracelet-aplus-waterproof-tarnish.jpg",
-            "desktop_image_3": "shopify://shop_images/bracelet-aplus-day-to-night.jpg",
-            "mobile_image_3": "shopify://shop_images/bracelet-aplus-day-to-night.jpg",
-            "desktop_image_4": "shopify://shop_images/bracelet-aplus-couples-collection.jpg",
-            "mobile_image_4": "shopify://shop_images/bracelet-aplus-couples-collection.jpg",
-            "desktop_image_5": "shopify://shop_images/bracelet-aplus-complete-the-set.jpg",
-            "mobile_image_5": "shopify://shop_images/bracelet-aplus-complete-the-set.jpg"
+            "funnel_alt": "Infinity Love Knot Bracelet — Tarnish-Free Forever + Waterproof Lifestyle",
+            "desktop_image": "shopify://shop_images/bracelet-aplus-b3-1-desktop.png",
+            "mobile_image": "shopify://shop_images/bracelet-aplus-b3-1-mobile.png"
           }
         },
         "funnel_aplus_2": {
           "type": "funnel_image",
-          "name": "A+ Content 6",
+          "name": "A+ Args 3+4 Love + Hypoallergenic",
           "settings": {
             "funnel_color": "",
-            "funnel_alt": "Infinity Love Knot Bracelet — The Mammoth Promise",
-            "desktop_image": "shopify://shop_images/bracelet-aplus-mammoth-promise.jpg",
-            "mobile_image": "shopify://shop_images/bracelet-aplus-mammoth-promise.jpg"
+            "funnel_alt": "Infinity Love Knot Bracelet — Eternal Love Symbol + Hypoallergenic Safe",
+            "desktop_image": "shopify://shop_images/bracelet-aplus-b3-2-desktop.png",
+            "mobile_image": "shopify://shop_images/bracelet-aplus-b3-2-mobile.png"
+          }
+        },
+        "funnel_aplus_3": {
+          "type": "funnel_image",
+          "name": "A+ Args 5+6 Trending + Sizing",
+          "settings": {
+            "funnel_color": "",
+            "funnel_alt": "Infinity Love Knot Bracelet — Trending Social Proof + One Size Fits All",
+            "desktop_image": "shopify://shop_images/bracelet-aplus-b3-3-desktop.png",
+            "mobile_image": "shopify://shop_images/bracelet-aplus-b3-3-mobile.png"
           }
         },
         "info_tabs_main": {
@@ -69,6 +71,7 @@
       "block_order": [
         "funnel_aplus_1",
         "funnel_aplus_2",
+        "funnel_aplus_3",
         "info_tabs_main",
         "faq_section_main"
       ],
