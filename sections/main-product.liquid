@@ -277,6 +277,21 @@
                         <span class="bogo-card__price">{{ current_variant.price | money }}</span>
                       </span>
                     </span>
+                    {%- if bogo_color_option -%}
+                      <span class="bogo-card__variants bogo-card__variants--hidden">
+                        <span class="bogo-card__variants-label">{{ bogo_color_option.name }}</span>
+                        <span class="bogo-card__variant-selects">
+                          <span class="bogo-card__variant-item">
+                            <span class="bogo-card__color-swatch" data-select-target="1"></span>
+                            <select class="bogo-card__color-select" data-item-index="1">
+                              {%- for val in bogo_color_option.values -%}
+                                <option value="{{ val }}"{% if val == bogo_color_option.selected_value %} selected{% endif %}>{{ val }}</option>
+                              {%- endfor -%}
+                            </select>
+                          </span>
+                        </span>
+                      </span>
+                    {%- endif -%}
                   </span>
                 </label>
 
@@ -340,7 +355,7 @@
                       </span>
                     </span>
                     {%- if bogo_color_option and tier3_qty_num > 1 -%}
-                      <span class="bogo-card__variants">
+                      <span class="bogo-card__variants bogo-card__variants--hidden">
                         <span class="bogo-card__variants-label">{{ bogo_color_option.name }}</span>
                         <span class="bogo-card__variant-selects">
                           {%- for i in (1..tier3_qty_num) -%}
@@ -1885,13 +1900,17 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
         var tier = parseInt(card.dataset.tier, 10);
         bogoActiveTier = tier;
 
-        /* Toggle active state */
+        /* Toggle active state + accordion color selectors */
         bogoCards.forEach(function(c) {
           c.classList.remove('bogo-card--selected');
           c.querySelector('.bogo-card__radio').classList.remove('bogo-card__radio--checked');
+          var v = c.querySelector('.bogo-card__variants');
+          if (v) v.classList.add('bogo-card__variants--hidden');
         });
         card.classList.add('bogo-card--selected');
         card.querySelector('.bogo-card__radio').classList.add('bogo-card__radio--checked');
+        var activeVariants = card.querySelector('.bogo-card__variants');
+        if (activeVariants) activeVariants.classList.remove('bogo-card__variants--hidden');
 
         /* Update price display */
         if (priceEl) {

@@ -2589,6 +2589,10 @@ section { display: block; }
   background-position: center;
 }
 
+.bogo-card__variants--hidden {
+  display: none;
+}
+
 .bogo-card__variant-num {
   font-family: var(--font-heading);
   font-weight: 700;
