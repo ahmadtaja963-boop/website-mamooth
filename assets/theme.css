@@ -2404,3 +2404,269 @@ section { display: block; }
   }
 }
 
+/* ═══════════════════════════════════════════════
+   BOGO Quantity Tiers
+   ═══════════════════════════════════════════════ */
+.bogo-tiers {
+  margin-bottom: 1.5rem;
+}
+
+/* ── Card ── */
+.bogo-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+  background: #fff;
+  border: 1px solid #DDE4EA;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+.bogo-card:hover {
+  border-color: var(--color-accent);
+}
+
+.bogo-card--selected {
+  border: 2px solid var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 6%, #fff);
+  padding: 15px 19px;
+}
+
+/* ── Radio circle ── */
+.bogo-card__radio {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #DDE4EA;
+  border-radius: 50%;
+  margin-top: 2px;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.bogo-card__radio--checked {
+  border-color: var(--color-accent);
+}
+
+.bogo-card__radio--checked::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+/* ── Card body ── */
+.bogo-card__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bogo-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.bogo-card__label-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.bogo-card__label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #1A2332;
+  line-height: 1.3;
+}
+
+.bogo-card__sublabel {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: #6B7B8D;
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+.bogo-card__sublabel--urgent {
+  color: #E05D36;
+  font-weight: 600;
+}
+
+/* ── Prices ── */
+.bogo-card__prices {
+  text-align: right;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.bogo-card__price {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #1A2332;
+  line-height: 1.2;
+}
+
+.bogo-card__compare {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: #6B7B8D;
+  text-decoration: line-through;
+  line-height: 1.3;
+  margin-top: 2px;
+}
+
+/* ── Badge ── */
+.bogo-card__badge {
+  position: absolute;
+  top: -1px;
+  right: 16px;
+  background: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 0 0 8px 8px;
+  line-height: 1.3;
+}
+
+/* ── Color variant selects ── */
+.bogo-card__variants {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px solid #EEF1F4;
+}
+
+.bogo-card__variants-label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: #1A2332;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bogo-card__variant-selects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bogo-card__variant-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bogo-card__variant-num {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: #6B7B8D;
+  min-width: 18px;
+}
+
+.bogo-card__color-select {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: #1A2332;
+  background: #FAFBFC;
+  border: 1px solid #DDE4EA;
+  border-radius: 8px;
+  padding: 6px 28px 6px 10px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' stroke='%236B7B8D' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  min-width: 90px;
+  transition: border-color 0.2s;
+}
+
+.bogo-card__color-select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+/* ── Social proof ── */
+.bogo-social-proof {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 10px 0;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #1A2332;
+}
+
+.bogo-social-proof__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  flex-shrink: 0;
+  animation: bogo-pulse 2s ease-in-out infinite;
+}
+
+.bogo-social-proof__text strong {
+  font-weight: 700;
+}
+
+@keyframes bogo-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ── BOGO Responsive ── */
+@media (max-width: 480px) {
+  .bogo-card {
+    padding: 14px 14px;
+  }
+  .bogo-card--selected {
+    padding: 13px 13px;
+  }
+  .bogo-card__label {
+    font-size: 0.88rem;
+  }
+  .bogo-card__price {
+    font-size: 1.05rem;
+  }
+  .bogo-card__badge {
+    right: 10px;
+    font-size: 0.55rem;
+    padding: 3px 8px;
+  }
+  .bogo-card__variant-selects {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .bogo-card__color-select {
+    min-width: 80px;
+    font-size: 0.78rem;
+  }
+}
+

@@ -46,6 +46,30 @@
             "content_4": "<p>Your bracelet is built to last but a little care goes a long way:<br><br><strong>Daily wear:</strong> Shower swim and exercise — no need to remove<br><strong>Cleaning:</strong> Wipe with soft cloth and warm soapy water<br><strong>Storage:</strong> Store in the included gift box when not wearing<br><strong>Avoid:</strong> Harsh chemicals like bleach or acetone</p>"
           }
         },
+        "bogo_main": {
+          "type": "bogo_tiers",
+          "settings": {
+            "tier1_label": "Buy 1",
+            "tier1_sublabel": "Standard Price",
+            "tier1_qty": "1",
+            "tier1_price": "30.00",
+            "tier1_compare": "",
+            "tier2_label": "Buy 1 Get 1 Free",
+            "tier2_sublabel": "Almost Sold Out!",
+            "tier2_badge": "MOST POPULAR",
+            "tier2_qty": "2",
+            "tier2_price": "39.95",
+            "tier2_compare": "79.90",
+            "tier3_label": "Buy 2 Get 2 Free",
+            "tier3_sublabel": "Almost Sold Out!",
+            "tier3_badge": "",
+            "tier3_qty": "4",
+            "tier3_price": "79.90",
+            "tier3_compare": "159.80",
+            "social_proof_count": "3162",
+            "social_proof_text": "This product was bought {count} times this week!"
+          }
+        },
         "faq_section_main": {
           "type": "faq_section",
           "settings": {
@@ -72,6 +96,7 @@
         "funnel_aplus_1",
         "funnel_aplus_2",
         "funnel_aplus_3",
+        "bogo_main",
         "info_tabs_main",
         "faq_section_main"
       ],
