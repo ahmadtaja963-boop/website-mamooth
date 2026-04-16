@@ -2433,7 +2433,7 @@ section { display: block; }
 /* ── Card ── */
 .bogo-card {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   position: relative;
   background: #fff;
@@ -2462,7 +2462,6 @@ section { display: block; }
   height: 20px;
   border: 2px solid #DDE4EA;
   border-radius: 50%;
-  margin-top: 2px;
   position: relative;
   transition: border-color 0.2s;
 }
