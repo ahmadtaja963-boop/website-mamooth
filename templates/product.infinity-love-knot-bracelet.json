@@ -3,34 +3,64 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "funnel_aplus_1": {
+        "funnel_gold_1": {
           "type": "funnel_image",
-          "name": "A+ Args 1+2 Tarnish + Waterproof",
+          "name": "Gold — Args 1+2 Tarnish + Waterproof",
           "settings": {
-            "funnel_color": "",
-            "funnel_alt": "Infinity Love Knot Bracelet — Tarnish-Free Forever + Waterproof Lifestyle",
+            "funnel_color": "Gold",
+            "funnel_alt": "Gold Bracelet — Tarnish-Free Forever + Waterproof Lifestyle",
             "desktop_image": "shopify://shop_images/bracelet-aplus-b3-1-desktop.png",
             "mobile_image": "shopify://shop_images/bracelet-aplus-b3-1-mobile.png"
           }
         },
-        "funnel_aplus_2": {
+        "funnel_gold_2": {
           "type": "funnel_image",
-          "name": "A+ Args 3+4 Love + Hypoallergenic",
+          "name": "Gold — Args 3+4 Love + Hypoallergenic",
           "settings": {
-            "funnel_color": "",
-            "funnel_alt": "Infinity Love Knot Bracelet — Eternal Love Symbol + Hypoallergenic Safe",
+            "funnel_color": "Gold",
+            "funnel_alt": "Gold Bracelet — Eternal Love Symbol + Hypoallergenic Safe",
             "desktop_image": "shopify://shop_images/bracelet-aplus-b3-2-desktop.png",
             "mobile_image": "shopify://shop_images/bracelet-aplus-b3-2-mobile.png"
           }
         },
-        "funnel_aplus_3": {
+        "funnel_gold_3": {
           "type": "funnel_image",
-          "name": "A+ Args 5+6 Trending + Sizing",
+          "name": "Gold — Args 5+6 Trending + Sizing",
           "settings": {
-            "funnel_color": "",
-            "funnel_alt": "Infinity Love Knot Bracelet — Trending Social Proof + One Size Fits All",
+            "funnel_color": "Gold",
+            "funnel_alt": "Gold Bracelet — Trending Social Proof + One Size Fits All",
             "desktop_image": "shopify://shop_images/bracelet-aplus-b3-3-desktop.png",
             "mobile_image": "shopify://shop_images/bracelet-aplus-b3-3-mobile.png"
+          }
+        },
+        "funnel_silver_1": {
+          "type": "funnel_image",
+          "name": "Silver — Args 1+2 Tarnish + Waterproof",
+          "settings": {
+            "funnel_color": "Silver",
+            "funnel_alt": "Silver Bracelet — Tarnish-Free Forever + Waterproof Lifestyle",
+            "desktop_image": "shopify://shop_images/bracelet-silver-aplus-1-desktop.png",
+            "mobile_image": "shopify://shop_images/bracelet-silver-aplus-1-mobile.png"
+          }
+        },
+        "funnel_silver_2": {
+          "type": "funnel_image",
+          "name": "Silver — Args 3+4 Love + Hypoallergenic",
+          "settings": {
+            "funnel_color": "Silver",
+            "funnel_alt": "Silver Bracelet — Eternal Love Symbol + Hypoallergenic Safe",
+            "desktop_image": "shopify://shop_images/bracelet-silver-aplus-2-desktop.png",
+            "mobile_image": "shopify://shop_images/bracelet-silver-aplus-2-mobile.png"
+          }
+        },
+        "funnel_silver_3": {
+          "type": "funnel_image",
+          "name": "Silver — Args 5+6 Trending + Sizing",
+          "settings": {
+            "funnel_color": "Silver",
+            "funnel_alt": "Silver Bracelet — Trending Social Proof + One Size Fits All",
+            "desktop_image": "shopify://shop_images/bracelet-silver-aplus-3-desktop.png",
+            "mobile_image": "shopify://shop_images/bracelet-silver-aplus-3-mobile.png"
           }
         },
         "info_tabs_main": {
@@ -93,9 +123,12 @@
         }
       },
       "block_order": [
-        "funnel_aplus_1",
-        "funnel_aplus_2",
-        "funnel_aplus_3",
+        "funnel_gold_1",
+        "funnel_gold_2",
+        "funnel_gold_3",
+        "funnel_silver_1",
+        "funnel_silver_2",
+        "funnel_silver_3",
         "bogo_main",
         "info_tabs_main",
         "faq_section_main"
