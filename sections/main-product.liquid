@@ -102,7 +102,8 @@
               {%- assign media_color = '' -%}
               {%- if raw_alt != '' and raw_alt != product_title_lower -%}
                 {%- comment -%} Check if alt matches any color value {%- endcomment -%}
-                {%- for cv in color_option_values | split: '|' -%}
+                {%- assign color_vals_arr = color_option_values | split: '|' -%}
+                {%- for cv in color_vals_arr -%}
                   {%- if cv != '' and raw_alt contains cv -%}
                     {%- assign media_color = cv -%}
                   {%- endif -%}
