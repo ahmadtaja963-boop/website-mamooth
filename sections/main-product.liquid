@@ -97,7 +97,7 @@
               {%- if has_color_option == false or forloop.first -%}
                 {%- assign is_default = true -%}
               {%- elsif media_color == '' -%}
-                {# No alt = generic image, show for all variants #}
+                {%- comment -%} No alt = generic image, show for all variants {%- endcomment -%}
                 {%- assign is_default = true -%}
               {%- elsif default_color != '' and media_color contains default_color -%}
                 {%- assign is_default = true -%}
