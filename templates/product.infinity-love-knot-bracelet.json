@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -36,6 +45,7 @@
         "funnel_silver_1": {
           "type": "funnel_image",
           "name": "Silver — Args 1+2 Tarnish + Waterproof",
+          "disabled": true,
           "settings": {
             "funnel_color": "Silver",
             "funnel_alt": "Silver Bracelet — Tarnish-Free Forever + Waterproof Lifestyle",
@@ -46,6 +56,7 @@
         "funnel_silver_2": {
           "type": "funnel_image",
           "name": "Silver — Args 3+4 Love + Hypoallergenic",
+          "disabled": true,
           "settings": {
             "funnel_color": "Silver",
             "funnel_alt": "Silver Bracelet — Eternal Love Symbol + Hypoallergenic Safe",
@@ -56,11 +67,36 @@
         "funnel_silver_3": {
           "type": "funnel_image",
           "name": "Silver — Args 5+6 Trending + Sizing",
+          "disabled": true,
           "settings": {
             "funnel_color": "Silver",
             "funnel_alt": "Silver Bracelet — Trending Social Proof + One Size Fits All",
             "desktop_image": "shopify://shop_images/bracelet-silver-aplus-3-desktop.png",
             "mobile_image": "shopify://shop_images/bracelet-silver-aplus-3-mobile.png"
+          }
+        },
+        "bogo_main": {
+          "type": "bogo_tiers",
+          "settings": {
+            "tier1_label": "Buy 1",
+            "tier1_sublabel": "Standard Price",
+            "tier1_qty": "1",
+            "tier1_price": "30.00",
+            "tier1_compare": "",
+            "tier2_label": "Buy 1 Get 1 Free",
+            "tier2_sublabel": "Almost Sold Out!",
+            "tier2_badge": "MOST POPULAR",
+            "tier2_qty": "2",
+            "tier2_price": "39.95",
+            "tier2_compare": "79.90",
+            "tier3_label": "Buy 2 Get 2 Free",
+            "tier3_sublabel": "Almost Sold Out!",
+            "tier3_badge": "",
+            "tier3_qty": "4",
+            "tier3_price": "79.90",
+            "tier3_compare": "159.80",
+            "social_proof_count": "3162",
+            "social_proof_text": "This product was bought {count} times this week!"
           }
         },
         "info_tabs_main": {
@@ -74,24 +110,6 @@
             "content_3": "<p><strong>Free shipping</strong> on all US orders.<br>Estimated delivery: 5-7 business days.<br><strong>30-day returns</strong> — no questions asked.<br>Contact us at support@mammothstore.com</p>",
             "title_4": "Care Instructions",
             "content_4": "<p>Your bracelet is built to last but a little care goes a long way:<br><br><strong>Daily wear:</strong> Shower swim and exercise — no need to remove<br><strong>Cleaning:</strong> Wipe with soft cloth and warm soapy water<br><strong>Storage:</strong> Store in the included gift box when not wearing<br><strong>Avoid:</strong> Harsh chemicals like bleach or acetone</p>"
-          }
-        },
-        "bogo_main": {
-          "type": "bogo_tiers",
-          "settings": {
-            "tier1_label": "Buy 1",
-            "tier1_sublabel": "Standard Price",
-            "tier1_qty": "1",
-            "tier2_label": "Buy 1 Get 1 Free",
-            "tier2_sublabel": "Almost Sold Out!",
-            "tier2_badge": "MOST POPULAR",
-            "tier2_qty": "2",
-            "tier3_label": "Buy 2 Get 2 Free",
-            "tier3_sublabel": "Almost Sold Out!",
-            "tier3_badge": "",
-            "tier3_qty": "4",
-            "social_proof_count": "3162",
-            "social_proof_text": "This product was bought {count} times this week!"
           }
         },
         "faq_section_main": {
@@ -135,13 +153,19 @@
         "show_delivery_estimate": true,
         "delivery_business_days": 7,
         "show_payment_icons": true,
-        "show_upsell": false
+        "show_upsell": false,
+        "upsell_product": "",
+        "upsell_product_2": "",
+        "upsell_heading": "Others Like You Also Bought:"
       }
     },
     "you_may_also_like": {
       "type": "you-may-also-like",
       "settings": {
-        "heading": "You May Also Like"
+        "heading": "You May Also Like",
+        "product_1": "",
+        "product_2": "",
+        "product_3": ""
       }
     },
     "judgeme_reviews": {
@@ -169,4 +193,3 @@
     "judgeme_reviews"
   ]
 }
-
