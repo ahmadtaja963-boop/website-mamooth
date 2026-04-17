@@ -84,20 +84,35 @@
         {%- if product.media.size > 1 -%}
           {%- assign default_color = current_variant.option1 | downcase | strip -%}
           {%- assign has_color_option = false -%}
+          {%- assign color_option_values = '' -%}
           {%- for opt in product.options_with_values -%}
             {%- assign opt_lower = opt.name | downcase -%}
             {%- if opt_lower == 'color' or opt_lower == 'colour' or opt_lower == 'colore' or opt_lower == 'couleur' -%}
               {%- assign has_color_option = true -%}
+              {%- for v in opt.values -%}
+                {%- assign color_option_values = color_option_values | append: '|' | append: v | downcase -%}
+              {%- endfor -%}
             {%- endif -%}
           {%- endfor -%}
+          {%- assign product_title_lower = product.title | downcase | strip -%}
           <div class="product-thumbnails" id="ProductThumbnails">
             {%- for media in product.media -%}
-              {%- assign media_color = media.alt | downcase | strip -%}
+              {%- assign raw_alt = media.alt | default: '' | downcase | strip -%}
+              {%- comment -%} Treat alt as generic (empty) if it equals the product title OR doesn't match any color option value {%- endcomment -%}
+              {%- assign media_color = '' -%}
+              {%- if raw_alt != '' and raw_alt != product_title_lower -%}
+                {%- comment -%} Check if alt matches any color value {%- endcomment -%}
+                {%- for cv in color_option_values | split: '|' -%}
+                  {%- if cv != '' and raw_alt contains cv -%}
+                    {%- assign media_color = cv -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endif -%}
               {%- assign is_default = false -%}
               {%- if has_color_option == false or forloop.first -%}
                 {%- assign is_default = true -%}
               {%- elsif media_color == '' -%}
-                {%- comment -%} No alt = generic image, show for all variants {%- endcomment -%}
+                {%- comment -%} Generic image (no specific color assigned) — show for all variants {%- endcomment -%}
                 {%- assign is_default = true -%}
               {%- elsif default_color != '' and media_color contains default_color -%}
                 {%- assign is_default = true -%}
@@ -107,7 +122,7 @@
               <div
                 class="product-thumbnail{% if forloop.first %} active{% endif %}"
                 data-src="{{ media | image_url: width: 900 }}"
-                data-color="{{ media.alt | downcase | strip | escape }}"
+                data-color="{{ media_color | escape }}"
                 data-index="{{ forloop.index0 }}"
                 {% unless is_default %}style="display:none;"{% endunless %}
                 aria-label="Product image {{ forloop.index }}"
