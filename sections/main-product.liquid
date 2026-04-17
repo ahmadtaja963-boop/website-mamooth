@@ -260,12 +260,16 @@
               {%- assign tier2_compare_cents = bogo_unit_cents | times: tier2_qty_num -%}
               {%- assign tier3_compare_cents = bogo_unit_cents | times: tier3_qty_num -%}
 
-              {%- comment -%} Build color swatch map (color value → featured image URL) {%- endcomment -%}
+              {%- comment -%} Build color swatch map from native product_option_value swatches (hex + image) {%- endcomment -%}
               <script id="BogoVariantColorMap" type="application/json">
                 {
                   {%- if bogo_color_index >= 0 -%}
-                    {%- for variant in product.variants -%}
-                      "{{ variant.options[bogo_color_index] | downcase | strip }}": "{{ variant.featured_image | image_url: width: 60 }}"{% unless forloop.last %},{% endunless %}
+                    {%- for opt in product.options_with_values -%}
+                      {%- if forloop.index0 == bogo_color_index -%}
+                        {%- for val in opt.values -%}
+                          "{{ val | downcase | strip }}": { "hex": "{{ val.swatch.color }}", "image": "{%- if val.swatch.image -%}{{ val.swatch.image | image_url: width: 60 }}{%- endif -%}" }{% unless forloop.last %},{% endunless %}
+                        {%- endfor -%}
+                      {%- endif -%}
                     {%- endfor -%}
                   {%- endif -%}
                 }
@@ -2121,9 +2125,15 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
         var item = selectEl.closest('.bogo-card__variant-item');
         var swatch = item ? item.querySelector('.bogo-card__color-swatch') : null;
         if (!swatch) return;
-        if (colorMap[color]) {
-          swatch.style.backgroundImage = 'url(' + colorMap[color] + ')';
+        var entry = colorMap[color];
+        var img = entry && typeof entry === 'object' ? entry.image : '';
+        var hex = entry && typeof entry === 'object' ? entry.hex : '';
+        if (img) {
+          swatch.style.backgroundImage = 'url(' + img + ')';
           swatch.style.backgroundColor = '';
+        } else if (hex) {
+          swatch.style.backgroundImage = '';
+          swatch.style.backgroundColor = hex;
         } else if (colorHex[color]) {
           swatch.style.backgroundImage = '';
           swatch.style.backgroundColor = colorHex[color];
