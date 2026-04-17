@@ -1,0 +1,105 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "bogo_main": {
+          "type": "bogo_tiers",
+          "settings": {
+            "tier1_label": "Buy 1",
+            "tier1_sublabel": "Standard Price",
+            "tier1_qty": "1",
+            "tier2_label": "Buy 1 Get 1 Free",
+            "tier2_sublabel": "Almost Sold Out!",
+            "tier2_badge": "MOST POPULAR",
+            "tier2_qty": "2",
+            "tier3_label": "Buy 2 Get 2 Free",
+            "tier3_sublabel": "Best Value!",
+            "tier3_badge": "",
+            "tier3_qty": "4",
+            "social_proof_count": "2847",
+            "social_proof_text": "This product was bought {count} times this week!"
+          }
+        },
+        "info_tabs_main": {
+          "type": "more_info_tabs",
+          "settings": {
+            "title_1": "Details",
+            "content_1": "<p><strong>Material:</strong> Soft Breathable Fabric (Nylon blend)<br><strong>Design:</strong> Wireless with moulded non-removable cups<br><strong>Support:</strong> Built-in posture correction back band<br><strong>Closure:</strong> Pull-over style<br><strong>Padding:</strong> Light moulded cups for natural shape<br><strong>Seamless:</strong> Yes — invisible under clothing<br><strong>Adjustable Straps:</strong> Yes</p>",
+            "title_2": "Size Guide",
+            "content_2": "<p><strong>S/M (32-36):</strong> Fits band 32 to 36, cup A to C<br><strong>L/XL (38-42):</strong> Fits band 38 to 42, cup B to D<br><br>For best fit measure your band size under your bust and cup at the fullest part. If between sizes go up one size for more comfort.</p>",
+            "title_3": "Shipping & Returns",
+            "content_3": "<p><strong>Free shipping</strong> on all US orders.<br>Estimated delivery: 5-7 business days.<br><strong>30-day returns</strong> — no questions asked.<br>Contact us at support@mammothstore.com</p>",
+            "title_4": "Care Instructions",
+            "content_4": "<p><strong>Hand wash</strong> in cold water with mild detergent<br><strong>Air dry</strong> flat — do not tumble dry<br><strong>Do not bleach</strong> or iron<br><strong>Store flat</strong> to maintain shape</p>"
+          }
+        },
+        "faq_section_main": {
+          "type": "faq_section",
+          "settings": {
+            "q1": "Does it really help with posture?",
+            "a1": "<p>Yes. The built-in back band gently pulls your shoulders into alignment throughout the day. Many customers report reduced upper back and shoulder tension within the first week of regular wear.</p>",
+            "q2": "Is it comfortable for all-day wear?",
+            "a2": "<p>Absolutely. The wireless design with soft moulded cups has zero poking or digging. The seamless fabric is breathable and moisture-wicking making it comfortable even during workouts or long days at the office.</p>",
+            "q3": "Will it show under tight clothing?",
+            "a3": "<p>No. The seamless smooth finish is completely invisible under fitted shirts dresses and blouses. No bumps no lines no visible straps.</p>",
+            "q4": "How do I choose the right size?",
+            "a4": "<p>Our bra fits a wide range of sizes. S/M fits band sizes 32-36 with cups A to C. L/XL fits band sizes 38-42 with cups B to D. If you're between sizes we recommend sizing up for maximum comfort.</p>",
+            "q5": "Is the cup padded?",
+            "a5": "<p>Yes. The moulded cups have light non-removable padding that gives a natural shape without adding bulk. It smooths and shapes without making you look larger.</p>",
+            "q6": "Can I wear it while working out?",
+            "a6": "<p>Yes for low to medium impact activities like yoga pilates walking and daily movement. For high-impact cardio or running we recommend a dedicated sports bra for extra support.</p>",
+            "q7": "How is it different from regular bras?",
+            "a7": "<p>Regular bras focus only on support. Ours combines posture correction wireless comfort and seamless design in one. Most customers say it's the only bra they wear after trying it.</p>",
+            "q8": "What is your return policy?",
+            "a8": "<p>We offer a 30-day no-questions-asked return policy. If you are not completely satisfied send it back for a full refund. Free shipping on all US orders.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "bogo_main",
+        "info_tabs_main",
+        "faq_section_main"
+      ],
+      "settings": {
+        "accent_color": "#C4944C",
+        "show_judgeme_badge": true,
+        "social_proof_text": "TRENDING — BESTSELLER",
+        "shipping_text": "",
+        "show_delivery_estimate": true,
+        "delivery_business_days": 7,
+        "show_payment_icons": true,
+        "show_upsell": false
+      }
+    },
+    "you_may_also_like": {
+      "type": "you-may-also-like",
+      "settings": {
+        "heading": "You May Also Like"
+      }
+    },
+    "judgeme_reviews": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_review_widget": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 900,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_review_widget"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "you_may_also_like",
+    "judgeme_reviews"
+  ]
+}
