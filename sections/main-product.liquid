@@ -217,17 +217,22 @@
               {%- assign bogo_block = bogo_blocks.first -%}
               {%- assign bg = bogo_block.settings -%}
 
-              {%- comment -%} Find color option + build color map {%- endcomment -%}
-              {%- assign bogo_color_option = nil -%}
+              {%- comment -%} Detect ALL product options (color, size, anything) for BOGO selectors {%- endcomment -%}
+              {%- assign bogo_has_options = false -%}
+              {%- unless product.has_only_default_variant -%}
+                {%- assign bogo_has_options = true -%}
+              {%- endunless -%}
+
+              {%- comment -%} Find color option index for swatch (if exists) {%- endcomment -%}
+              {%- assign bogo_color_index = -1 -%}
               {%- for opt in product.options_with_values -%}
                 {%- assign opt_lower = opt.name | downcase -%}
                 {%- if opt_lower == 'color' or opt_lower == 'colour' or opt_lower == 'colore' or opt_lower == 'couleur' -%}
-                  {%- assign bogo_color_option = opt -%}
+                  {%- assign bogo_color_index = forloop.index0 -%}
                 {%- endif -%}
               {%- endfor -%}
 
               {%- comment -%} Dynamic prices from product {%- endcomment -%}
-              {%- assign bogo_unit_price = current_variant.price | money_without_currency -%}
               {%- assign bogo_unit_cents = current_variant.price -%}
               {%- assign tier1_qty_num = bg.tier1_qty | plus: 0 -%}
               {%- assign tier2_qty_num = bg.tier2_qty | plus: 0 -%}
@@ -236,18 +241,30 @@
               {%- assign tier2_compare_cents = bogo_unit_cents | times: tier2_qty_num -%}
               {%- assign tier3_compare_cents = bogo_unit_cents | times: tier3_qty_num -%}
 
-              {%- comment -%} Build variant color map for swatches {%- endcomment -%}
+              {%- comment -%} Build color swatch map (color value → featured image URL) {%- endcomment -%}
               <script id="BogoVariantColorMap" type="application/json">
                 {
-                  {%- for variant in product.variants -%}
-                    {%- for opt in product.options_with_values -%}
-                      {%- assign opt_lower = opt.name | downcase -%}
-                      {%- if opt_lower == 'color' or opt_lower == 'colour' or opt_lower == 'colore' or opt_lower == 'couleur' -%}
-                        {%- assign color_index = forloop.index0 -%}
-                      {%- endif -%}
+                  {%- if bogo_color_index >= 0 -%}
+                    {%- for variant in product.variants -%}
+                      "{{ variant.options[bogo_color_index] | downcase | strip }}": "{{ variant.featured_image | image_url: width: 60 }}"{% unless forloop.last %},{% endunless %}
                     {%- endfor -%}
-                    "{{ variant.options[color_index] | downcase | strip }}": "{{ variant.featured_image | image_url: width: 60 }}"{% unless forloop.last %},{% endunless %}
-                  {%- endfor -%}
+                  {%- endif -%}
+                }
+              </script>
+
+              {%- comment -%} Build option definitions for JS {%- endcomment -%}
+              <script id="BogoOptionsMap" type="application/json">
+                {
+                  "colorIndex": {{ bogo_color_index }},
+                  "options": [
+                    {%- for opt in product.options_with_values -%}
+                      {
+                        "name": "{{ opt.name | escape }}",
+                        "index": {{ forloop.index0 }},
+                        "values": [{% for v in opt.values %}"{{ v | escape }}"{% unless forloop.last %},{% endunless %}{% endfor %}]
+                      }{% unless forloop.last %},{% endunless %}
+                    {%- endfor -%}
+                  ]
                 }
               </script>
 
@@ -277,25 +294,32 @@
                         <span class="bogo-card__price">{{ current_variant.price | money }}</span>
                       </span>
                     </span>
-                    {%- if bogo_color_option -%}
+                    {%- if bogo_has_options -%}
                       <span class="bogo-card__variants bogo-card__variants--hidden">
-                        <span class="bogo-card__variants-label">{{ bogo_color_option.name }}</span>
                         <span class="bogo-card__variant-selects">
-                          <span class="bogo-card__variant-item">
-                            <span class="bogo-card__color-swatch" data-select-target="1"></span>
-                            <select class="bogo-card__color-select" data-item-index="1">
-                              {%- for val in bogo_color_option.values -%}
-                                <option value="{{ val }}"{% if val == bogo_color_option.selected_value %} selected{% endif %}>{{ val }}</option>
+                          {%- for i in (1..tier1_qty_num) -%}
+                            <span class="bogo-card__variant-item">
+                              {%- if tier1_qty_num > 1 -%}<span class="bogo-card__variant-num">#{{ i }}</span>{%- endif -%}
+                              {%- if bogo_color_index >= 0 -%}<span class="bogo-card__color-swatch" data-select-target="{{ i }}"></span>{%- endif -%}
+                              {%- for opt in product.options_with_values -%}
+                                <span class="bogo-card__option-group">
+                                  <span class="bogo-card__option-label">{{ opt.name }}</span>
+                                  <select class="bogo-card__option-select" data-item-index="{{ i }}" data-option-index="{{ forloop.index0 }}" data-option-name="{{ opt.name | escape }}">
+                                    {%- for val in opt.values -%}
+                                      <option value="{{ val }}"{% if val == opt.selected_value %} selected{% endif %}>{{ val }}</option>
+                                    {%- endfor -%}
+                                  </select>
+                                </span>
                               {%- endfor -%}
-                            </select>
-                          </span>
+                            </span>
+                          {%- endfor -%}
                         </span>
                       </span>
                     {%- endif -%}
                   </span>
                 </label>
 
-                {%- comment -%} ── Tier 2 (B1G1F — pay for 1, get 2) ── {%- endcomment -%}
+                {%- comment -%} ── Tier 2 (B1G1F) ── {%- endcomment -%}
                 <label class="bogo-card bogo-card--selected" data-tier="2" data-qty="{{ bg.tier2_qty }}">
                   <span class="bogo-card__radio bogo-card__radio--checked"></span>
                   {%- if bg.tier2_badge != blank -%}
@@ -314,19 +338,23 @@
                         <s class="bogo-card__compare">{{ tier2_compare_cents | money }}</s>
                       </span>
                     </span>
-                    {%- if bogo_color_option and tier2_qty_num > 1 -%}
+                    {%- if bogo_has_options and tier2_qty_num > 0 -%}
                       <span class="bogo-card__variants">
-                        <span class="bogo-card__variants-label">{{ bogo_color_option.name }}</span>
                         <span class="bogo-card__variant-selects">
                           {%- for i in (1..tier2_qty_num) -%}
                             <span class="bogo-card__variant-item">
                               <span class="bogo-card__variant-num">#{{ i }}</span>
-                              <span class="bogo-card__color-swatch" data-select-target="{{ i }}"></span>
-                              <select class="bogo-card__color-select" data-item-index="{{ i }}">
-                                {%- for val in bogo_color_option.values -%}
-                                  <option value="{{ val }}"{% if val == bogo_color_option.selected_value %} selected{% endif %}>{{ val }}</option>
-                                {%- endfor -%}
-                              </select>
+                              {%- if bogo_color_index >= 0 -%}<span class="bogo-card__color-swatch" data-select-target="{{ i }}"></span>{%- endif -%}
+                              {%- for opt in product.options_with_values -%}
+                                <span class="bogo-card__option-group">
+                                  <span class="bogo-card__option-label">{{ opt.name }}</span>
+                                  <select class="bogo-card__option-select" data-item-index="{{ i }}" data-option-index="{{ forloop.index0 }}" data-option-name="{{ opt.name | escape }}">
+                                    {%- for val in opt.values -%}
+                                      <option value="{{ val }}"{% if val == opt.selected_value %} selected{% endif %}>{{ val }}</option>
+                                    {%- endfor -%}
+                                  </select>
+                                </span>
+                              {%- endfor -%}
                             </span>
                           {%- endfor -%}
                         </span>
@@ -354,19 +382,23 @@
                         <s class="bogo-card__compare">{{ tier3_compare_cents | money }}</s>
                       </span>
                     </span>
-                    {%- if bogo_color_option and tier3_qty_num > 1 -%}
+                    {%- if bogo_has_options and tier3_qty_num > 0 -%}
                       <span class="bogo-card__variants bogo-card__variants--hidden">
-                        <span class="bogo-card__variants-label">{{ bogo_color_option.name }}</span>
                         <span class="bogo-card__variant-selects">
                           {%- for i in (1..tier3_qty_num) -%}
                             <span class="bogo-card__variant-item">
                               <span class="bogo-card__variant-num">#{{ i }}</span>
-                              <span class="bogo-card__color-swatch" data-select-target="{{ i }}"></span>
-                              <select class="bogo-card__color-select" data-item-index="{{ i }}">
-                                {%- for val in bogo_color_option.values -%}
-                                  <option value="{{ val }}"{% if val == bogo_color_option.selected_value %} selected{% endif %}>{{ val }}</option>
-                                {%- endfor -%}
-                              </select>
+                              {%- if bogo_color_index >= 0 -%}<span class="bogo-card__color-swatch" data-select-target="{{ i }}"></span>{%- endif -%}
+                              {%- for opt in product.options_with_values -%}
+                                <span class="bogo-card__option-group">
+                                  <span class="bogo-card__option-label">{{ opt.name }}</span>
+                                  <select class="bogo-card__option-select" data-item-index="{{ i }}" data-option-index="{{ forloop.index0 }}" data-option-name="{{ opt.name | escape }}">
+                                    {%- for val in opt.values -%}
+                                      <option value="{{ val }}"{% if val == opt.selected_value %} selected{% endif %}>{{ val }}</option>
+                                    {%- endfor -%}
+                                  </select>
+                                </span>
+                              {%- endfor -%}
                             </span>
                           {%- endfor -%}
                         </span>
@@ -1929,12 +1961,15 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
       });
     });
 
-    /* Override form submit for BOGO */
-    function findVariantByColor(color) {
+    /* Override form submit for BOGO — multi-option support (color, size, etc.) */
+    function findVariantByOptions(optionValues) {
+      /* optionValues: array of values matching option indices, e.g. ['Nude', 'S/M (32-36)'] */
       return variants.find(function(v) {
-        return v.options.some(function(opt) {
-          return opt.toLowerCase() === color.toLowerCase();
-        });
+        if (!v.options || v.options.length !== optionValues.length) return false;
+        for (var i = 0; i < v.options.length; i++) {
+          if ((v.options[i] || '').toLowerCase() !== (optionValues[i] || '').toLowerCase()) return false;
+        }
+        return true;
       });
     }
 
@@ -1945,25 +1980,35 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
       var activeCard = bogoContainer.querySelector('.bogo-card--selected');
       if (!activeCard) return;
 
-      var colorSelects = activeCard.querySelectorAll('.bogo-card__color-select');
+      /* Collect all items with their selected options */
       var items = [];
+      var itemRows = activeCard.querySelectorAll('.bogo-card__variant-item');
 
-      if (colorSelects.length > 0) {
-        /* Group by selected color → find variant for each color */
-        var colorCounts = {};
-        colorSelects.forEach(function(sel) {
-          var color = sel.value;
-          colorCounts[color] = (colorCounts[color] || 0) + 1;
+      if (itemRows.length > 0) {
+        /* Group by option combination → find variant for each combo */
+        var comboCounts = {};
+        var comboValues = {};
+
+        itemRows.forEach(function(row) {
+          var selects = row.querySelectorAll('.bogo-card__option-select');
+          var vals = [];
+          selects.forEach(function(sel) {
+            var idx = parseInt(sel.dataset.optionIndex || '0', 10);
+            vals[idx] = sel.value;
+          });
+          var key = vals.join('|');
+          comboCounts[key] = (comboCounts[key] || 0) + 1;
+          comboValues[key] = vals;
         });
 
-        Object.keys(colorCounts).forEach(function(color) {
-          var matchedVariant = findVariantByColor(color);
+        Object.keys(comboCounts).forEach(function(key) {
+          var matchedVariant = findVariantByOptions(comboValues[key]);
           if (matchedVariant) {
-            items.push({ id: matchedVariant.id, quantity: colorCounts[color] });
+            items.push({ id: matchedVariant.id, quantity: comboCounts[key] });
           }
         });
       } else {
-        /* No color selects — use form's current variant */
+        /* No option selects — use form's current variant */
         var variantId = form.querySelector('[name="id"]').value;
         var tierQty = parseInt(activeCard.dataset.qty || '1', 10);
         items.push({ id: parseInt(variantId, 10), quantity: tierQty });
@@ -2016,14 +2061,17 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
       priceEl.innerHTML = html;
     }
 
-    /* ── Color swatches for BOGO selects ── */
+    /* ── Color swatches for BOGO selects (only Color option triggers swatch) ── */
     var colorMapEl = document.getElementById('BogoVariantColorMap');
-    if (colorMapEl) {
+    var optsMapEl = document.getElementById('BogoOptionsMap');
+    if (colorMapEl && optsMapEl) {
       var colorMap = JSON.parse(colorMapEl.textContent);
-      /* Known color → hex fallback for common names */
-      var colorHex = { gold: '#C4944C', silver: '#C0C0C0', black: '#1A1A1A', white: '#F5F5F5', rose: '#B76E79', 'rose gold': '#B76E79' };
+      var optsMap = JSON.parse(optsMapEl.textContent);
+      var colorHex = { gold: '#C4944C', silver: '#C0C0C0', black: '#1A1A1A', white: '#F5F5F5', nude: '#E4B590', beige: '#E4B590', rose: '#B76E79', 'rose gold': '#B76E79' };
 
       function updateSwatch(selectEl) {
+        var idx = parseInt(selectEl.dataset.optionIndex || '-1', 10);
+        if (idx !== optsMap.colorIndex) return; /* only react to Color option */
         var color = selectEl.value.toLowerCase().trim();
         var item = selectEl.closest('.bogo-card__variant-item');
         var swatch = item ? item.querySelector('.bogo-card__color-swatch') : null;
@@ -2037,7 +2085,7 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
         }
       }
 
-      bogoContainer.querySelectorAll('.bogo-card__color-select').forEach(function(sel) {
+      bogoContainer.querySelectorAll('.bogo-card__option-select').forEach(function(sel) {
         updateSwatch(sel);
         sel.addEventListener('change', function() { updateSwatch(sel); });
       });

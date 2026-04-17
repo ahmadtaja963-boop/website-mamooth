@@ -2595,6 +2595,7 @@ section { display: block; }
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .bogo-card__color-swatch {
@@ -2605,6 +2606,45 @@ section { display: block; }
   flex-shrink: 0;
   background-size: cover;
   background-position: center;
+}
+
+.bogo-card__option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 80px;
+}
+
+.bogo-card__option-label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.68rem;
+  color: #6B7B8D;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bogo-card__option-select {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: #1A2332;
+  background: #FAFBFC;
+  border: 1px solid #DDE4EA;
+  border-radius: 8px;
+  padding: 6px 28px 6px 10px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' stroke='%236B7B8D' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  min-width: 80px;
+  transition: border-color 0.2s;
+}
+
+.bogo-card__option-select:focus {
+  outline: none;
+  border-color: var(--color-accent);
 }
 
 .bogo-card__variants--hidden {
