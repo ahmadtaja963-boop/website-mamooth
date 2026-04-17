@@ -96,6 +96,9 @@
               {%- assign is_default = false -%}
               {%- if has_color_option == false or forloop.first -%}
                 {%- assign is_default = true -%}
+              {%- elsif media_color == '' -%}
+                {# No alt = generic image, show for all variants #}
+                {%- assign is_default = true -%}
               {%- elsif default_color != '' and media_color contains default_color -%}
                 {%- assign is_default = true -%}
               {%- elsif default_color != '' and default_color contains media_color and media_color != '' -%}
@@ -1801,8 +1804,8 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
 
     thumbs.forEach(function(thumb) {
       var thumbColor = (thumb.dataset.color || '').toLowerCase();
-      /* match if the image alt contains the selected color word */
-      var isMatch = thumbColor.includes(color) || color.includes(thumbColor) && thumbColor !== '';
+      /* match if alt is empty (generic image) OR contains the selected color */
+      var isMatch = thumbColor === '' || thumbColor.includes(color) || (color.includes(thumbColor) && thumbColor !== '');
       thumb.style.display = isMatch ? '' : 'none';
       if (isMatch) {
         /* lazy-load the thumbnail src if not yet loaded */
