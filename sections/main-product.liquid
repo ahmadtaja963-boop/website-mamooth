@@ -573,7 +573,33 @@
                           {%- elsif value.swatch.color -%}
                             <span class="color-swatch-img" style="background-color: {{ value.swatch.color }};"></span>
                           {%- else -%}
-                            <span class="color-swatch-img color-swatch-img--fallback">{{ value | slice: 0, 2 }}</span>
+                            {%- assign val_lower = value | downcase | strip -%}
+                            {%- assign hex_fallback = '' -%}
+                            {%- case val_lower -%}
+                              {%- when 'nude' -%}{%- assign hex_fallback = '#E4B590' -%}
+                              {%- when 'beige' -%}{%- assign hex_fallback = '#E4B590' -%}
+                              {%- when 'black' -%}{%- assign hex_fallback = '#1A1A1A' -%}
+                              {%- when 'white' -%}{%- assign hex_fallback = '#F5F5F5' -%}
+                              {%- when 'gold' -%}{%- assign hex_fallback = '#C4944C' -%}
+                              {%- when 'silver' -%}{%- assign hex_fallback = '#C0C0C0' -%}
+                              {%- when 'rose gold' -%}{%- assign hex_fallback = '#B76E79' -%}
+                              {%- when 'rose' -%}{%- assign hex_fallback = '#B76E79' -%}
+                              {%- when 'pink' -%}{%- assign hex_fallback = '#FFC0CB' -%}
+                              {%- when 'red' -%}{%- assign hex_fallback = '#D0342C' -%}
+                              {%- when 'blue' -%}{%- assign hex_fallback = '#2C5282' -%}
+                              {%- when 'navy' -%}{%- assign hex_fallback = '#1A365D' -%}
+                              {%- when 'green' -%}{%- assign hex_fallback = '#38A169' -%}
+                              {%- when 'gray' -%}{%- assign hex_fallback = '#718096' -%}
+                              {%- when 'grey' -%}{%- assign hex_fallback = '#718096' -%}
+                              {%- when 'brown' -%}{%- assign hex_fallback = '#795548' -%}
+                              {%- when 'tan' -%}{%- assign hex_fallback = '#D2B48C' -%}
+                              {%- when 'cream' -%}{%- assign hex_fallback = '#FFFDD0' -%}
+                            {%- endcase -%}
+                            {%- if hex_fallback != '' -%}
+                              <span class="color-swatch-img" style="background-color: {{ hex_fallback }};"></span>
+                            {%- else -%}
+                              <span class="color-swatch-img color-swatch-img--fallback">{{ value | slice: 0, 2 }}</span>
+                            {%- endif -%}
                           {%- endif -%}
                         </button>
                       {%- else -%}
