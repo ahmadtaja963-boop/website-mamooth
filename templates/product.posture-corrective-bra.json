@@ -3,6 +3,60 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "funnel_1": {
+          "type": "funnel_image",
+          "name": "A+ 1 — Silhouette Transformation",
+          "settings": {
+            "funnel_alt": "Under Clothes Silhouette — Before After with Posture Bra",
+            "desktop_image": "shopify://shop_images/posture-bra-aplus-1-silhouette.png",
+            "mobile_image": "shopify://shop_images/posture-bra-aplus-1-silhouette.png"
+          }
+        },
+        "funnel_2": {
+          "type": "funnel_image",
+          "name": "A+ 2 — Supermodel Posture Zero Effort",
+          "settings": {
+            "funnel_alt": "Supermodel Posture Zero Effort",
+            "desktop_image": "shopify://shop_images/posture-bra-aplus-2-supermodel.png",
+            "mobile_image": "shopify://shop_images/posture-bra-aplus-2-supermodel.png"
+          }
+        },
+        "funnel_3": {
+          "type": "funnel_image",
+          "name": "A+ 3 — Anatomy Engineered Correction",
+          "settings": {
+            "funnel_alt": "Engineered Posture Correction — X-Back Straps and W Support Bar",
+            "desktop_image": "shopify://shop_images/posture-bra-aplus-3-anatomy.png",
+            "mobile_image": "shopify://shop_images/posture-bra-aplus-3-anatomy.png"
+          }
+        },
+        "funnel_4": {
+          "type": "funnel_image",
+          "name": "A+ 4 — Front Closure Easy",
+          "settings": {
+            "funnel_alt": "Front Closure 8 Levels Easy Put On",
+            "desktop_image": "shopify://shop_images/posture-bra-aplus-4-frontclosure.png",
+            "mobile_image": "shopify://shop_images/posture-bra-aplus-4-frontclosure.png"
+          }
+        },
+        "funnel_5": {
+          "type": "funnel_image",
+          "name": "A+ 5 — Daily Life Pain Scenarios",
+          "settings": {
+            "funnel_alt": "Bad Posture Daily Life — Desk Phone Housework Baby",
+            "desktop_image": "shopify://shop_images/posture-bra-aplus-5-scenarios.png",
+            "mobile_image": "shopify://shop_images/posture-bra-aplus-5-scenarios.png"
+          }
+        },
+        "funnel_6": {
+          "type": "funnel_image",
+          "name": "A+ 6 — Fabric Tech Breathable",
+          "settings": {
+            "funnel_alt": "150g Memory Fabric 2.8x Stretch Breathable Micro Holes",
+            "desktop_image": "shopify://shop_images/posture-bra-aplus-6-fabrictech.png",
+            "mobile_image": "shopify://shop_images/posture-bra-aplus-6-fabrictech.png"
+          }
+        },
         "bogo_main": {
           "type": "bogo_tiers",
           "settings": {
@@ -57,6 +111,12 @@
         }
       },
       "block_order": [
+        "funnel_1",
+        "funnel_2",
+        "funnel_3",
+        "funnel_4",
+        "funnel_5",
+        "funnel_6",
         "bogo_main",
         "info_tabs_main",
         "faq_section_main"
