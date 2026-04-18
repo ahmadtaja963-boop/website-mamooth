@@ -2591,11 +2591,27 @@ section { display: block; }
   gap: 8px;
 }
 
-.bogo-card__variant-item {
-  display: flex;
+.bogo-card__variant-item,
+.bogo-card__variant-header {
+  display: grid;
+  grid-template-columns: var(--bogo-grid, 28px 22px 1fr);
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.bogo-card__variant-header {
+  padding: 0 2px;
+  margin-bottom: 2px;
+}
+
+.bogo-card__variant-header-label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.68rem;
+  color: #6B7B8D;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
 }
 
 .bogo-card__color-swatch {
@@ -2603,25 +2619,9 @@ section { display: block; }
   height: 22px;
   border-radius: 50%;
   border: 2px solid #DDE4EA;
-  flex-shrink: 0;
   background-size: cover;
   background-position: center;
-}
-
-.bogo-card__option-group {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 80px;
-}
-
-.bogo-card__option-label {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 0.68rem;
-  color: #6B7B8D;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  justify-self: center;
 }
 
 .bogo-card__option-select {

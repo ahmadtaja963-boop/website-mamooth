@@ -250,6 +250,8 @@
                   {%- assign bogo_color_index = forloop.index0 -%}
                 {%- endif -%}
               {%- endfor -%}
+              {%- assign bogo_opts_count = product.options_with_values | size -%}
+              {%- capture bogo_grid -%}28px{%- if bogo_color_index >= 0 %} 22px{% endif %} repeat({{ bogo_opts_count }}, minmax(0, 1fr)){%- endcapture -%}
 
               {%- comment -%} Dynamic prices from product {%- endcomment -%}
               {%- assign bogo_unit_cents = current_variant.price -%}
@@ -319,20 +321,24 @@
                     </span>
                     {%- if bogo_has_options -%}
                       <span class="bogo-card__variants bogo-card__variants--hidden">
-                        <span class="bogo-card__variant-selects">
+                        <span class="bogo-card__variant-selects" style="--bogo-grid: {{ bogo_grid }};">
+                          <span class="bogo-card__variant-header">
+                            <span></span>
+                            {%- if bogo_color_index >= 0 -%}<span></span>{%- endif -%}
+                            {%- for opt in product.options_with_values -%}
+                              <span class="bogo-card__variant-header-label">{{ opt.name }}</span>
+                            {%- endfor -%}
+                          </span>
                           {%- for i in (1..tier1_qty_num) -%}
                             <span class="bogo-card__variant-item">
-                              {%- if tier1_qty_num > 1 -%}<span class="bogo-card__variant-num">#{{ i }}</span>{%- endif -%}
+                              <span class="bogo-card__variant-num">{%- if tier1_qty_num > 1 -%}#{{ i }}{%- endif -%}</span>
                               {%- if bogo_color_index >= 0 -%}<span class="bogo-card__color-swatch" data-select-target="{{ i }}"></span>{%- endif -%}
                               {%- for opt in product.options_with_values -%}
-                                <span class="bogo-card__option-group">
-                                  <span class="bogo-card__option-label">{{ opt.name }}</span>
-                                  <select class="bogo-card__option-select" data-item-index="{{ i }}" data-option-index="{{ forloop.index0 }}" data-option-name="{{ opt.name | escape }}">
-                                    {%- for val in opt.values -%}
-                                      <option value="{{ val }}"{% if val == opt.selected_value %} selected{% endif %}>{{ val }}</option>
-                                    {%- endfor -%}
-                                  </select>
-                                </span>
+                                <select class="bogo-card__option-select" data-item-index="{{ i }}" data-option-index="{{ forloop.index0 }}" data-option-name="{{ opt.name | escape }}">
+                                  {%- for val in opt.values -%}
+                                    <option value="{{ val }}"{% if val == opt.selected_value %} selected{% endif %}>{{ val }}</option>
+                                  {%- endfor -%}
+                                </select>
                               {%- endfor -%}
                             </span>
                           {%- endfor -%}
@@ -363,20 +369,24 @@
                     </span>
                     {%- if bogo_has_options and tier2_qty_num > 0 -%}
                       <span class="bogo-card__variants">
-                        <span class="bogo-card__variant-selects">
+                        <span class="bogo-card__variant-selects" style="--bogo-grid: {{ bogo_grid }};">
+                          <span class="bogo-card__variant-header">
+                            <span></span>
+                            {%- if bogo_color_index >= 0 -%}<span></span>{%- endif -%}
+                            {%- for opt in product.options_with_values -%}
+                              <span class="bogo-card__variant-header-label">{{ opt.name }}</span>
+                            {%- endfor -%}
+                          </span>
                           {%- for i in (1..tier2_qty_num) -%}
                             <span class="bogo-card__variant-item">
                               <span class="bogo-card__variant-num">#{{ i }}</span>
                               {%- if bogo_color_index >= 0 -%}<span class="bogo-card__color-swatch" data-select-target="{{ i }}"></span>{%- endif -%}
                               {%- for opt in product.options_with_values -%}
-                                <span class="bogo-card__option-group">
-                                  <span class="bogo-card__option-label">{{ opt.name }}</span>
-                                  <select class="bogo-card__option-select" data-item-index="{{ i }}" data-option-index="{{ forloop.index0 }}" data-option-name="{{ opt.name | escape }}">
-                                    {%- for val in opt.values -%}
-                                      <option value="{{ val }}"{% if val == opt.selected_value %} selected{% endif %}>{{ val }}</option>
-                                    {%- endfor -%}
-                                  </select>
-                                </span>
+                                <select class="bogo-card__option-select" data-item-index="{{ i }}" data-option-index="{{ forloop.index0 }}" data-option-name="{{ opt.name | escape }}">
+                                  {%- for val in opt.values -%}
+                                    <option value="{{ val }}"{% if val == opt.selected_value %} selected{% endif %}>{{ val }}</option>
+                                  {%- endfor -%}
+                                </select>
                               {%- endfor -%}
                             </span>
                           {%- endfor -%}
@@ -407,20 +417,24 @@
                     </span>
                     {%- if bogo_has_options and tier3_qty_num > 0 -%}
                       <span class="bogo-card__variants bogo-card__variants--hidden">
-                        <span class="bogo-card__variant-selects">
+                        <span class="bogo-card__variant-selects" style="--bogo-grid: {{ bogo_grid }};">
+                          <span class="bogo-card__variant-header">
+                            <span></span>
+                            {%- if bogo_color_index >= 0 -%}<span></span>{%- endif -%}
+                            {%- for opt in product.options_with_values -%}
+                              <span class="bogo-card__variant-header-label">{{ opt.name }}</span>
+                            {%- endfor -%}
+                          </span>
                           {%- for i in (1..tier3_qty_num) -%}
                             <span class="bogo-card__variant-item">
                               <span class="bogo-card__variant-num">#{{ i }}</span>
                               {%- if bogo_color_index >= 0 -%}<span class="bogo-card__color-swatch" data-select-target="{{ i }}"></span>{%- endif -%}
                               {%- for opt in product.options_with_values -%}
-                                <span class="bogo-card__option-group">
-                                  <span class="bogo-card__option-label">{{ opt.name }}</span>
-                                  <select class="bogo-card__option-select" data-item-index="{{ i }}" data-option-index="{{ forloop.index0 }}" data-option-name="{{ opt.name | escape }}">
-                                    {%- for val in opt.values -%}
-                                      <option value="{{ val }}"{% if val == opt.selected_value %} selected{% endif %}>{{ val }}</option>
-                                    {%- endfor -%}
-                                  </select>
-                                </span>
+                                <select class="bogo-card__option-select" data-item-index="{{ i }}" data-option-index="{{ forloop.index0 }}" data-option-name="{{ opt.name | escape }}">
+                                  {%- for val in opt.values -%}
+                                    <option value="{{ val }}"{% if val == opt.selected_value %} selected{% endif %}>{{ val }}</option>
+                                  {%- endfor -%}
+                                </select>
                               {%- endfor -%}
                             </span>
                           {%- endfor -%}
