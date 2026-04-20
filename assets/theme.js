@@ -428,7 +428,7 @@ window.MammothTheme = (function () {
       if (item.discounts && item.discounts.length > 0) {
         priceHTML += '<p class="cart-item-discount-tag">' + escapeHTML(item.discounts[0].title) + '</p>';
       }
-    } else if (hasDiscount) {
+    } else if (hasDiscount && item.original_line_price > item.final_line_price) {
       priceHTML = '<p class="cart-item-price">' +
         '<s class="cart-item-compare-price">' + formatMoney(item.original_line_price) + '</s> ' +
         formatMoney(item.final_line_price) +
@@ -441,8 +441,14 @@ window.MammothTheme = (function () {
         '<s class="cart-item-compare-price">' + formatMoney(item.compare_at_price * item.quantity) + '</s> ' +
         formatMoney(item.line_price) +
       '</p>';
+      if (item.discounts && item.discounts.length > 0) {
+        priceHTML += '<p class="cart-item-discount-tag">' + escapeHTML(item.discounts[0].title) + '</p>';
+      }
     } else {
-      priceHTML = '<p class="cart-item-price">' + formatMoney(item.line_price) + '</p>';
+      priceHTML = '<p class="cart-item-price">' + formatMoney(item.final_line_price || item.line_price) + '</p>';
+      if (item.discounts && item.discounts.length > 0) {
+        priceHTML += '<p class="cart-item-discount-tag">' + escapeHTML(item.discounts[0].title) + '</p>';
+      }
     }
 
     return '<div class="cart-item" data-qty="' + item.quantity + '">' +
