@@ -76,10 +76,23 @@
             "q8": "What is your return policy?",
             "a8": "<p>We offer a 30-day no-questions-asked return policy. If you are not completely satisfied send it back for a full refund. Free shipping on all US orders.</p>"
           }
+        },
+        "video_showcase_main": {
+          "type": "video_showcase",
+          "settings": {
+            "heading": "See It In Action",
+            "open_in_modal": true,
+            "video_url_1": "https://api.teneriadiaz.org/temp/mammoth/flashlight/tt-daddydaughterduop-7617630279594773791.mp4",
+            "video_url_2": "https://api.teneriadiaz.org/temp/mammoth/flashlight/tt-lutorltjg9-7609673539825798413.mp4",
+            "video_url_3": "https://api.teneriadiaz.org/temp/mammoth/flashlight/tt-sherbabyy86-7576132467590008119.mp4",
+            "video_url_4": "https://api.teneriadiaz.org/temp/mammoth/flashlight/tt-urbancartx-7429806836301221163.mp4"
+          }
         }
       },
+
       "block_order": [
         "funnel_main",
+        "video_showcase_main",
         "bogo_main",
         "info_tabs_main",
         "faq_section_main"

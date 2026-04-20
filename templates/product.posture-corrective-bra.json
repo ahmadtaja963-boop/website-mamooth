@@ -69,10 +69,23 @@
             "q8": "What is your return policy?",
             "a8": "<p>We offer a 30-day no-questions-asked return policy. If you are not completely satisfied send it back for a full refund. Free shipping on all US orders.</p>"
           }
+        },
+        "video_showcase_main": {
+          "type": "video_showcase",
+          "settings": {
+            "heading": "See It In Action",
+            "open_in_modal": true,
+            "video_url_1": "https://api.teneriadiaz.org/temp/mammoth/posture-bra/tt-bodysgmwh8l-7628060576660442399.mp4",
+            "video_url_2": "https://api.teneriadiaz.org/temp/mammoth/posture-bra/tt-ibrastar02-7619202704509816095.mp4",
+            "video_url_3": "https://api.teneriadiaz.org/temp/mammoth/posture-bra/tt-boudoirvibes-7621227179463970079.mp4",
+            "video_url_4": "https://api.teneriadiaz.org/temp/mammoth/posture-bra/tt-xiaoyfgnuxy-7618664410189450527.mp4"
+          }
         }
       },
+
       "block_order": [
         "funnel_main",
+        "video_showcase_main",
         "bogo_main",
         "info_tabs_main",
         "faq_section_main"
