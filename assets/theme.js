@@ -83,7 +83,7 @@ window.MammothTheme = (function () {
 
   /* ─── Discount Tiers ─── */
   var discountTiers = [
-    { threshold: 5000,  percent: 0, label: 'Free Shipping', code: 'FREESHIP' },
+    { threshold: 5000,  percent: 10, label: '10% OFF', code: 'MAMMOTH10' },
     { threshold: 10000, percent: 15, label: '15% OFF', code: 'MAMMOTH15' },
     { threshold: 15000, percent: 20, label: '20% OFF', code: 'MAMMOTH20' },
   ];
