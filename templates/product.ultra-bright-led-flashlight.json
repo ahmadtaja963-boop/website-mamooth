@@ -1,0 +1,119 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "funnel_main": {
+          "type": "funnel_image",
+          "name": "A+ Content — Flashlight Full Funnel",
+          "settings": {
+            "funnel_alt": "Ultra Bright LED Flashlight — Full A+ Content",
+            "desktop_image": "shopify://shop_images/flashlight-aplus-1-desktop.jpg",
+            "mobile_image": "shopify://shop_images/flashlight-aplus-1-mobile.jpg",
+            "desktop_image_2": "shopify://shop_images/flashlight-aplus-2-desktop.jpg",
+            "mobile_image_2": "shopify://shop_images/flashlight-aplus-2-mobile.jpg",
+            "desktop_image_3": "shopify://shop_images/flashlight-aplus-3-desktop.jpg",
+            "mobile_image_3": "shopify://shop_images/flashlight-aplus-3-mobile.jpg"
+          }
+        },
+        "bogo_main": {
+          "type": "bogo_tiers",
+          "settings": {
+            "tier1_label": "Buy 1",
+            "tier1_sublabel": "Standard Price",
+            "tier1_qty": "1",
+            "tier2_label": "Buy 1 Get 1 Free",
+            "tier2_sublabel": "Almost Sold Out!",
+            "tier2_badge": "MOST POPULAR",
+            "tier2_qty": "2",
+            "tier3_label": "Buy 2 Get 2 Free",
+            "tier3_sublabel": "Best Value!",
+            "tier3_badge": "",
+            "tier3_qty": "4",
+            "social_proof_count": "3412",
+            "social_proof_text": "This product was bought {count} times this week!"
+          }
+        },
+        "info_tabs_main": {
+          "type": "more_info_tabs",
+          "settings": {
+            "title_1": "Specs",
+            "content_1": "<p><strong>Material:</strong> Aerospace-grade aluminum alloy + ABS<br><strong>Lumens:</strong> 100,000 (claimed max)<br><strong>Light Source:</strong> Dual — front LED + rear COB tail light<br><strong>Range:</strong> 3,280 ft (1,000 m)<br><strong>Battery:</strong> Built-in 3× 18650 / 15000mAh<br><strong>Runtime:</strong> 6-10 hours<br><strong>Charging:</strong> USB-C input (5V/1A)<br><strong>Output:</strong> USB power bank (5V/1A)<br><strong>Modes:</strong> 5 (Low / High / SOS / Strobe / Tail Light)<br><strong>Zoom:</strong> Adjustable wide-to-narrow<br><strong>Waterproof:</strong> IPX6<br><strong>Weight:</strong> 562g (1.24 lbs)<br><strong>Size:</strong> 10.4 × 2.8 in (26.5 × 7.2 cm)</p>",
+            "title_2": "What's Included",
+            "content_2": "<p>Every flashlight ships in a premium gift box with:</p><p><strong>1×</strong> Ultra Bright LED Flashlight<br><strong>1×</strong> USB-C Charging Cable<br><strong>1×</strong> Carrying Strap Rope<br><strong>1×</strong> Premium Gift Box</p><p>Ready to use or gift out of the box.</p>",
+            "title_3": "Shipping & Returns",
+            "content_3": "<p><strong>Free shipping</strong> on all US orders.<br>Estimated delivery: 5-7 business days.<br><strong>30-day returns</strong> — no questions asked.<br>Contact us at support@mammothstore.com</p>",
+            "title_4": "Care & Safety",
+            "content_4": "<p><strong>Charging:</strong> Use the included USB-C cable. Full charge ~7.5 hours.<br><strong>Storage:</strong> Keep dry when not in use. Charge every 3 months if stored long-term.<br><strong>Safety:</strong> Do not look directly into the beam. Keep away from flammable materials on Strobe mode.<br><strong>Battery:</strong> Lithium battery inside — follow local regulations for air freight.</p>"
+          }
+        },
+        "faq_section_main": {
+          "type": "faq_section",
+          "settings": {
+            "q1": "Is this really 100,000 lumens?",
+            "a1": "<p>The manufacturer-stated max output is 100,000 lumens under ideal lab conditions. Real-world output is still dramatically brighter than any standard flashlight — enough to light an entire backyard or campsite. We're honest: no flashlight at this price point truly hits lab spec. What you get is the brightest practical beam in the mid-range category.</p>",
+            "q2": "Does the power bank actually charge a phone?",
+            "a2": "<p>Yes. The built-in 15000mAh battery outputs 5V/1A via USB — enough to fully charge most phones 2-3 times on a single flashlight charge. Perfect for power outages, camping trips, or roadside emergencies when you need a backup power source.</p>",
+            "q3": "Is it really waterproof?",
+            "a3": "<p>IPX6 rated — it handles heavy rain, splashes, and brief submersion. You can use it in storms, on boats, or dropped in a puddle. It's not meant for diving or long underwater use.</p>",
+            "q4": "How long does the battery last?",
+            "a4": "<p>6-10 hours of continuous runtime depending on mode. High beam drains faster, Low beam and Tail Light last longer. The LCD display shows exact battery percentage so you always know when to recharge — no more dying flashlight at 3am.</p>",
+            "q5": "Will it survive being dropped?",
+            "a5": "<p>Yes. The aerospace-grade aluminum alloy body is drop-tested to 16 feet. The LED and lens are shock-resistant. You can drop it on concrete, in your truck bed, or in a tool box without damage.</p>",
+            "q6": "What's the difference between the front light and the rear COB light?",
+            "a6": "<p>The front is a focused spotlight (up to 1,000m range) with adjustable zoom — for searching, signaling, or lighting far distances. The rear COB is a wide flood light — for close-range hands-free work like reading a map, changing a tire, or lighting a workspace. Both can run independently.</p>",
+            "q7": "Is this a good gift?",
+            "a7": "<p>It's one of our best-selling gift items. Comes in a premium gift box with everything included. Perfect for dads, outdoor enthusiasts, preppers, or anyone who values being prepared. Opens to a proper presentation — not a plastic bag.</p>",
+            "q8": "What is your return policy?",
+            "a8": "<p>We offer a 30-day no-questions-asked return policy. If you are not completely satisfied send it back for a full refund. Free shipping on all US orders.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "funnel_main",
+        "bogo_main",
+        "info_tabs_main",
+        "faq_section_main"
+      ],
+      "settings": {
+        "accent_color": "#2B8F9E",
+        "show_judgeme_badge": true,
+        "social_proof_text": "TRENDING — BESTSELLER",
+        "shipping_text": "",
+        "show_delivery_estimate": true,
+        "delivery_business_days": 7,
+        "show_payment_icons": true,
+        "show_upsell": false
+      }
+    },
+    "you_may_also_like": {
+      "type": "you-may-also-like",
+      "settings": {
+        "heading": "You May Also Like"
+      }
+    },
+    "judgeme_reviews": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_review_widget": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 900,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_review_widget"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "you_may_also_like",
+    "judgeme_reviews"
+  ]
+}
