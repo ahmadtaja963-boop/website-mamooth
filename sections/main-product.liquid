@@ -1025,10 +1025,10 @@
                     await fetch('/discount/' + encodeURIComponent(discountCode), { redirect: 'manual' }).catch(function(){});
                   }
 
-                  if (window.DiazTheme) {
-                    await window.DiazTheme.fetchCart();
-                    if (window.DiazTheme.openCart)  window.DiazTheme.openCart();
-                    if (window.DiazTheme.showToast) window.DiazTheme.showToast('Bundle added to cart!');
+                  if (window.MammothTheme) {
+                    await window.MammothTheme.fetchCart();
+                    if (window.MammothTheme.openCart)  window.MammothTheme.openCart();
+                    if (window.MammothTheme.showToast) window.MammothTheme.showToast('Bundle added to cart!');
                   } else { window.location.href = '/cart'; }
                 } catch(err) {
                   if (errorEl) { errorEl.textContent = err.message; errorEl.classList.add('is-visible'); }
@@ -2384,7 +2384,7 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
     if (!btn.disabled) {
       btn.addEventListener('click', function() {
         var variantId = btn.dataset.upsellVariantId;
-        if (variantId && window.DiazTheme) {
+        if (variantId && window.MammothTheme) {
           window.MammothTheme.addToCart(variantId, 1, btn);
         }
       });
