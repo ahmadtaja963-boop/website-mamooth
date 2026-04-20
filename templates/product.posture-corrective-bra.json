@@ -73,12 +73,12 @@
         "video_showcase_main": {
           "type": "video_showcase",
           "settings": {
-            "heading": "See It In Action",
+            "heading": "SEE IT IN ACTION",
             "open_in_modal": true,
-            "video_url_1": "https://api.teneriadiaz.org/temp/mammoth/posture-bra/tt-bodysgmwh8l-7628060576660442399.mp4",
-            "video_url_2": "https://api.teneriadiaz.org/temp/mammoth/posture-bra/tt-ibrastar02-7619202704509816095.mp4",
-            "video_url_3": "https://api.teneriadiaz.org/temp/mammoth/posture-bra/tt-boudoirvibes-7621227179463970079.mp4",
-            "video_url_4": "https://api.teneriadiaz.org/temp/mammoth/posture-bra/tt-xiaoyfgnuxy-7618664410189450527.mp4"
+            "video_url_1": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-bodysgmwh8l-7628060576660442399.mp4?v=1776727546",
+            "video_url_2": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-ibrastar02-7619202704509816095.mp4?v=1776727548",
+            "video_url_3": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-boudoirvibes-7621227179463970079.mp4?v=1776727550",
+            "video_url_4": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-xiaoyfgnuxy-7618664410189450527.mp4?v=1776727551"
           }
         }
       },
