@@ -8,6 +8,7 @@
 {%- assign video_hero_blocks = section.blocks | where: 'type', 'video_hero' -%}
 {%- assign offer_selector_blocks = section.blocks | where: 'type', 'offer_selector' -%}
 {%- assign bogo_blocks = section.blocks | where: 'type', 'bogo_tiers' -%}
+{%- assign video_showcase_blocks = section.blocks | where: 'type', 'video_showcase' -%}
 {%- if bundle_blocks.size > 0 -%}
   {{ 'bundle-deals.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
@@ -1194,6 +1195,257 @@
         {%- endif -%}
       </div>
     </div>
+  {%- endfor -%}
+{%- endif -%}
+
+{%- comment -%} ── Video Showcase (See it in action) ── {%- endcomment -%}
+{%- if video_showcase_blocks.size > 0 -%}
+  {%- for block in video_showcase_blocks -%}
+    {%- liquid
+      assign video_count = 0
+      for i in (1..4)
+        assign vkey = 'video_' | append: i
+        assign pkey = 'poster_' | append: i
+        assign vurl_key = 'video_url_' | append: i
+        assign v = block.settings[vkey]
+        assign p = block.settings[pkey]
+        assign vurl = block.settings[vurl_key]
+        if v != blank or vurl != blank or p != blank
+          assign video_count = video_count | plus: 1
+        endif
+      endfor
+    -%}
+    {%- if video_count > 0 -%}
+      <section class="video-showcase" id="VideoShowcase-{{ block.id }}" {{ block.shopify_attributes }}>
+        <div class="page-width">
+          <h3 class="video-showcase__heading">{{ block.settings.heading | default: 'See it in action' }}</h3>
+          <div class="video-showcase__grid" data-video-count="{{ video_count }}">
+            {%- for i in (1..4) -%}
+              {%- assign vkey = 'video_' | append: i -%}
+              {%- assign pkey = 'poster_' | append: i -%}
+              {%- assign vurl_key = 'video_url_' | append: i -%}
+              {%- assign v = block.settings[vkey] -%}
+              {%- assign p = block.settings[pkey] -%}
+              {%- assign vurl = block.settings[vurl_key] -%}
+              {%- if v != blank or vurl != blank -%}
+                {%- assign src = '' -%}
+                {%- if v != blank -%}
+                  {%- for source in v.sources -%}
+                    {%- if source.format == 'mp4' -%}{%- assign src = source.url -%}{%- endif -%}
+                  {%- endfor -%}
+                {%- elsif vurl != blank -%}
+                  {%- assign src = vurl -%}
+                {%- endif -%}
+                <button class="video-showcase__item" type="button" data-video-src="{{ src }}" aria-label="Play video {{ i }}">
+                  {%- if p != blank -%}
+                    <img class="video-showcase__poster"
+                         src="{{ p | image_url: width: 500 }}"
+                         srcset="{{ p | image_url: width: 300 }} 300w, {{ p | image_url: width: 500 }} 500w, {{ p | image_url: width: 800 }} 800w"
+                         sizes="(max-width: 749px) 50vw, 25vw"
+                         alt="Video {{ i }} preview"
+                         loading="lazy"
+                         width="{{ p.width }}" height="{{ p.height }}">
+                  {%- elsif v != blank and v.preview_image -%}
+                    <img class="video-showcase__poster"
+                         src="{{ v.preview_image | image_url: width: 500 }}"
+                         srcset="{{ v.preview_image | image_url: width: 300 }} 300w, {{ v.preview_image | image_url: width: 500 }} 500w, {{ v.preview_image | image_url: width: 800 }} 800w"
+                         sizes="(max-width: 749px) 50vw, 25vw"
+                         alt="Video {{ i }} preview"
+                         loading="lazy"
+                         width="{{ v.preview_image.width }}" height="{{ v.preview_image.height }}">
+                  {%- else -%}
+                    <div class="video-showcase__placeholder"></div>
+                  {%- endif -%}
+                  <span class="video-showcase__play" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  </span>
+                  <span class="video-showcase__mute" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.17v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                  </span>
+                </button>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+
+        {%- comment -%} ── Modal for expanded video ── {%- endcomment -%}
+        <div class="video-showcase__modal" id="VideoModal-{{ block.id }}" aria-hidden="true">
+          <button class="video-showcase__modal-close" type="button" aria-label="Close video">&times;</button>
+          <div class="video-showcase__modal-inner"></div>
+        </div>
+      </section>
+
+      <style>
+        .video-showcase { margin: 3rem 0 2rem; }
+        .video-showcase__heading {
+          font-family: var(--font-heading, sans-serif);
+          font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+          font-weight: 700;
+          color: #1A2332;
+          margin: 0 0 1.2rem;
+          padding: 0 1rem;
+        }
+        .video-showcase__grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 12px;
+          padding: 0 1rem;
+        }
+        @media (max-width: 749px) {
+          .video-showcase__grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .video-showcase__item {
+          position: relative;
+          aspect-ratio: 9/16;
+          border-radius: 14px;
+          overflow: hidden;
+          background: #1A2332;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .video-showcase__item:hover,
+        .video-showcase__item:focus-visible {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(0,0,0,0.14);
+          outline: none;
+        }
+        .video-showcase__poster,
+        .video-showcase__placeholder {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        .video-showcase__placeholder {
+          background: linear-gradient(135deg, #e8ecf0, #c9d2da);
+        }
+        .video-showcase__play {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.92);
+          color: #1A2332;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+          transition: transform 0.25s ease;
+        }
+        .video-showcase__item:hover .video-showcase__play { transform: translate(-50%, -50%) scale(1.1); }
+        .video-showcase__mute {
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          background: rgba(0,0,0,0.6);
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .video-showcase__item video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          background: #000;
+        }
+        .video-showcase__item.is-playing .video-showcase__play,
+        .video-showcase__item.is-playing .video-showcase__mute { display: none; }
+
+        /* Modal */
+        .video-showcase__modal {
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.88);
+          z-index: 9999;
+          display: none;
+          align-items: center;
+          justify-content: center;
+          padding: 2rem 1rem;
+        }
+        .video-showcase__modal.is-open { display: flex; }
+        .video-showcase__modal-inner {
+          width: min(440px, 100%);
+          aspect-ratio: 9/16;
+          max-height: 90vh;
+          border-radius: 12px;
+          overflow: hidden;
+          background: #000;
+        }
+        .video-showcase__modal-inner video { width: 100%; height: 100%; object-fit: contain; }
+        .video-showcase__modal-close {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.15);
+          color: #fff;
+          border: none;
+          font-size: 28px;
+          line-height: 1;
+          cursor: pointer;
+        }
+        .video-showcase__modal-close:hover { background: rgba(255,255,255,0.25); }
+      </style>
+
+      <script>
+        (function() {
+          var section = document.getElementById('VideoShowcase-{{ block.id }}');
+          if (!section) return;
+          var modal = document.getElementById('VideoModal-{{ block.id }}');
+          var modalInner = modal.querySelector('.video-showcase__modal-inner');
+          var closeBtn = modal.querySelector('.video-showcase__modal-close');
+          var openInModal = {{ block.settings.open_in_modal | default: true }};
+
+          function closeModal() {
+            modal.classList.remove('is-open');
+            modalInner.innerHTML = '';
+            document.body.style.overflow = '';
+          }
+
+          closeBtn.addEventListener('click', closeModal);
+          modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+          document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
+
+          section.querySelectorAll('.video-showcase__item').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+              var src = btn.dataset.videoSrc;
+              if (!src) return;
+
+              if (openInModal) {
+                modalInner.innerHTML = '<video src="' + src + '" autoplay playsinline controls></video>';
+                modal.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+              } else {
+                /* Inline play — replace poster with video */
+                if (btn.classList.contains('is-playing')) return;
+                btn.classList.add('is-playing');
+                var vid = document.createElement('video');
+                vid.src = src;
+                vid.autoplay = true;
+                vid.loop = true;
+                vid.muted = false;
+                vid.playsInline = true;
+                vid.controls = true;
+                btn.appendChild(vid);
+              }
+            });
+          });
+        })();
+      </script>
+    {%- endif -%}
   {%- endfor -%}
 {%- endif -%}
 
@@ -2664,6 +2916,31 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
         { "type": "header", "content": "Question 8" },
         { "type": "text", "id": "q8", "label": "Question" },
         { "type": "richtext", "id": "a8", "label": "Answer" }
+      ]
+    },
+    {
+      "type": "video_showcase",
+      "name": "Video Showcase (See it in action)",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "See it in action" },
+        { "type": "checkbox", "id": "open_in_modal", "label": "Open video in modal popup", "default": true, "info": "If off, video plays inline in the thumbnail." },
+        { "type": "header", "content": "Video 1" },
+        { "type": "video", "id": "video_1", "label": "Video 1 (upload)" },
+        { "type": "url", "id": "video_url_1", "label": "Video 1 URL (optional fallback — use if upload not available)" },
+        { "type": "image_picker", "id": "poster_1", "label": "Video 1 poster image" },
+        { "type": "header", "content": "Video 2" },
+        { "type": "video", "id": "video_2", "label": "Video 2 (upload)" },
+        { "type": "url", "id": "video_url_2", "label": "Video 2 URL (optional fallback)" },
+        { "type": "image_picker", "id": "poster_2", "label": "Video 2 poster image" },
+        { "type": "header", "content": "Video 3" },
+        { "type": "video", "id": "video_3", "label": "Video 3 (upload)" },
+        { "type": "url", "id": "video_url_3", "label": "Video 3 URL (optional fallback)" },
+        { "type": "image_picker", "id": "poster_3", "label": "Video 3 poster image" },
+        { "type": "header", "content": "Video 4" },
+        { "type": "video", "id": "video_4", "label": "Video 4 (upload)" },
+        { "type": "url", "id": "video_url_4", "label": "Video 4 URL (optional fallback)" },
+        { "type": "image_picker", "id": "poster_4", "label": "Video 4 poster image" }
       ]
     },
     {
