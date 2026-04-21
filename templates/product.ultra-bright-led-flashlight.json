@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
@@ -25,62 +16,98 @@
             "mobile_image_3": "shopify://shop_images/flashlight-aplus-3-mobile.jpg"
           }
         },
-        "bogo_main": {
-          "type": "bogo_tiers",
+        "stock_main": {
+          "type": "stock_indicator",
           "settings": {
-            "tier1_label": "Buy 1",
-            "tier1_sublabel": "Standard Price",
-            "tier1_qty": "1",
-            "tier2_label": "Buy 1 Get 1 Free",
-            "tier2_sublabel": "Almost Sold Out!",
-            "tier2_badge": "MOST POPULAR",
-            "tier2_qty": "2",
-            "tier3_label": "Buy 2 Get 2 Free",
-            "tier3_sublabel": "Best Value!",
-            "tier3_badge": "",
-            "tier3_qty": "4",
-            "social_proof_count": "3412",
-            "social_proof_text": "This product was bought {count} times this week!"
+            "in_stock_text": "IN STOCK",
+            "low_text": "LOW STOCK",
+            "critical_text": "Only",
+            "critical_suffix": "left",
+            "low_threshold": 50,
+            "critical_threshold": 15
+          }
+        },
+        "urgency_main": {
+          "type": "urgency_counter",
+          "settings": {
+            "icon": "",
+            "count": "1,832",
+            "text": "Sold {count} times this week!"
+          }
+        },
+        "offer_main": {
+          "type": "offer_selector",
+          "settings": {
+            "heading": "Choose Your Pack",
+            "option1_label": "1 Pack",
+            "option1_sublabel": "Standard Price",
+            "option1_qty": "1",
+            "option1_price": "29.99",
+            "option1_compare": "",
+            "option1_discount_code": "",
+            "option2_label": "2 Pack",
+            "option2_sublabel": "Save $10 + FREE Bonuses",
+            "option2_badge": "MOST POPULAR",
+            "option2_qty": "2",
+            "option2_price": "49.99",
+            "option2_compare": "59.98",
+            "option2_discount_code": "",
+            "option2_bonus1": "Extra 18650 Backup Battery|$20",
+            "option2_bonus2": "Emergency Outage Survival Guide PDF|$27",
+            "option3_label": "3 Pack",
+            "option3_sublabel": "Save $20 + Full Bonus Stack",
+            "option3_badge": "BEST VALUE",
+            "option3_qty": "3",
+            "option3_price": "69.99",
+            "option3_compare": "89.97",
+            "option3_discount_code": "",
+            "option3_bonus1": "Extra 18650 Backup Battery|$20",
+            "option3_bonus2": "Emergency Outage Survival Guide PDF|$27",
+            "option3_bonus3": "72-Hour Blackout Checklist PDF|$17",
+            "option3_bonus4": "10 Camping Lighting Tricks PDF|$19",
+            "show_trust_line": false
+          }
+        },
+        "guarantee_main": {
+          "type": "guarantee_promise",
+          "settings": {
+            "label": "🛡️ THE PROMISE",
+            "headline": "Brighter Than Anything You Own — Or Your Money Back",
+            "body": "<p>Use it for 60 days. If it's not the brightest, most reliable flashlight you've ever owned — email us for a full refund. <strong>Keep the flashlight. Keep the bonuses. No questions.</strong></p>"
           }
         },
         "info_tabs_main": {
           "type": "more_info_tabs",
           "settings": {
             "title_1": "Specs",
-            "content_1": "<p><strong>Material:</strong> Aerospace-grade aluminum alloy + ABS<br><strong>Lumens:</strong> 100,000 (claimed max)<br><strong>Light Source:</strong> Dual — front LED + rear COB tail light<br><strong>Range:</strong> 3,280 ft (1,000 m)<br><strong>Battery:</strong> Built-in 3× 18650 / 15000mAh<br><strong>Runtime:</strong> 6-10 hours<br><strong>Charging:</strong> USB-C input (5V/1A)<br><strong>Output:</strong> USB power bank (5V/1A)<br><strong>Modes:</strong> 5 (Low / High / SOS / Strobe / Tail Light)<br><strong>Zoom:</strong> Adjustable wide-to-narrow<br><strong>Waterproof:</strong> IPX6<br><strong>Weight:</strong> 562g (1.24 lbs)<br><strong>Size:</strong> 10.4 × 2.8 in (26.5 × 7.2 cm)</p>",
-            "title_2": "What's Included",
-            "content_2": "<p>Every flashlight ships in a premium gift box with:</p><p><strong>1×</strong> Ultra Bright LED Flashlight<br><strong>1×</strong> USB-C Charging Cable<br><strong>1×</strong> Carrying Strap Rope<br><strong>1×</strong> Premium Gift Box</p><p>Ready to use or gift out of the box.</p>",
-            "title_3": "Shipping & Returns",
-            "content_3": "<p><strong>Free shipping</strong> on all US orders.<br>Estimated delivery: 5-7 business days.<br><strong>30-day returns</strong> — no questions asked.<br>Contact us at support@mammothstore.com</p>",
-            "title_4": "Care & Safety",
-            "content_4": "<p><strong>Charging:</strong> Use the included USB-C cable. Full charge ~7.5 hours.<br><strong>Storage:</strong> Keep dry when not in use. Charge every 3 months if stored long-term.<br><strong>Safety:</strong> Do not look directly into the beam. Keep away from flammable materials on Strobe mode.<br><strong>Battery:</strong> Lithium battery inside — follow local regulations for air freight.</p>"
+            "content_1": "<p><strong>Material:</strong> Aerospace aluminum alloy + ABS<br><strong>Lumens:</strong> 100,000 (claimed max)<br><strong>Light:</strong> Dual — front LED + rear COB tail light<br><strong>Range:</strong> 3,280 ft (1,000 m)<br><strong>Battery:</strong> 3× 18650 / 15,000mAh<br><strong>Runtime:</strong> 6-10 hours<br><strong>Charging:</strong> USB-C in (5V/1A)<br><strong>Output:</strong> USB power bank (5V/1A)<br><strong>Modes:</strong> 5 (Low / High / SOS / Strobe / Tail Light)<br><strong>Zoom:</strong> Adjustable wide-to-narrow<br><strong>Waterproof:</strong> IPX6<br><strong>Weight:</strong> 562g (1.24 lb)<br><strong>Size:</strong> 10.4 × 2.8 in</p>"
           }
         },
         "faq_section_main": {
           "type": "faq_section",
           "settings": {
             "q1": "Is this really 100,000 lumens?",
-            "a1": "<p>The manufacturer-stated max output is 100,000 lumens under ideal lab conditions. Real-world output is still dramatically brighter than any standard flashlight — enough to light an entire backyard or campsite. We're honest: no flashlight at this price point truly hits lab spec. What you get is the brightest practical beam in the mid-range category.</p>",
+            "a1": "<p>The manufacturer-stated max output is 100,000 lumens under ideal lab conditions. Real-world output is still dramatically brighter than any standard flashlight — enough to light an entire backyard or campsite. We're honest: no flashlight at this price point hits lab spec. What you get is the brightest practical beam in the mid-range category.</p>",
             "q2": "Does the power bank actually charge a phone?",
-            "a2": "<p>Yes. The built-in 15000mAh battery outputs 5V/1A via USB — enough to fully charge most phones 2-3 times on a single flashlight charge. Perfect for power outages, camping trips, or roadside emergencies when you need a backup power source.</p>",
+            "a2": "<p>Yes. The built-in 15,000mAh battery outputs 5V/1A via USB — enough to fully charge most phones 2-3 times on a single flashlight charge. Perfect for power outages, camping trips, or roadside emergencies.</p>",
             "q3": "Is it really waterproof?",
             "a3": "<p>IPX6 rated — it handles heavy rain, splashes, and brief submersion. You can use it in storms, on boats, or dropped in a puddle. It's not meant for diving or long underwater use.</p>",
             "q4": "How long does the battery last?",
             "a4": "<p>6-10 hours of continuous runtime depending on mode. High beam drains faster, Low beam and Tail Light last longer. The LCD display shows exact battery percentage so you always know when to recharge — no more dying flashlight at 3am.</p>",
             "q5": "Will it survive being dropped?",
-            "a5": "<p>Yes. The aerospace-grade aluminum alloy body is drop-tested to 16 feet. The LED and lens are shock-resistant. You can drop it on concrete, in your truck bed, or in a tool box without damage.</p>",
-            "q6": "What's the difference between the front light and the rear COB light?",
-            "a6": "<p>The front is a focused spotlight (up to 1,000m range) with adjustable zoom — for searching, signaling, or lighting far distances. The rear COB is a wide flood light — for close-range hands-free work like reading a map, changing a tire, or lighting a workspace. Both can run independently.</p>",
+            "a5": "<p>Yes. The aerospace aluminum body is drop-tested to 16 feet. The LED and lens are shock-resistant. Drop it on concrete, in your truck bed, or in a tool box without damage.</p>",
+            "q6": "What's the difference between the front and rear lights?",
+            "a6": "<p>Front is a focused spotlight (up to 1,000m range) with adjustable zoom — for searching, signaling, or lighting far distances. Rear COB is a wide flood light — for close-range hands-free work like reading a map, changing a tire, or lighting a workspace. Both run independently.</p>",
             "q7": "Is this a good gift?",
-            "a7": "<p>It's one of our best-selling gift items. Comes in a premium gift box with everything included. Perfect for dads, outdoor enthusiasts, preppers, or anyone who values being prepared. Opens to a proper presentation — not a plastic bag.</p>",
+            "a7": "<p>It's one of our top gift items. Comes in a premium gift box with everything included. Perfect for dads, outdoor enthusiasts, preppers, or anyone who values being prepared. Opens to a proper presentation — not a plastic bag.</p>",
             "q8": "What is your return policy?",
-            "a8": "<p>We offer a 30-day no-questions-asked return policy. If you are not completely satisfied send it back for a full refund. Free shipping on all US orders.</p>"
+            "a8": "<p>We offer a 60-day no-questions-asked return. If you're not completely satisfied send it back for a full refund. Keep the bonuses. Free shipping on all US orders.</p>"
           }
         },
         "video_showcase_main": {
           "type": "video_showcase",
           "settings": {
-            "heading": "See It In Action",
+            "heading": "SEE IT IN ACTION",
             "open_in_modal": true,
             "video_url_1": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-daddydaughterduop-7617630279594773791.mp4?v=1776727553",
             "video_url_2": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-lutorltjg9-7609673539825798413.mp4?v=1776727555",
@@ -89,23 +116,27 @@
           }
         }
       },
-
       "block_order": [
+        "stock_main",
         "funnel_main",
         "video_showcase_main",
-        "bogo_main",
+        "guarantee_main",
+        "offer_main",
+        "urgency_main",
         "info_tabs_main",
         "faq_section_main"
       ],
       "settings": {
         "accent_color": "#2B8F9E",
         "show_judgeme_badge": true,
-        "social_proof_text": "TRENDING — BESTSELLER",
+        "social_proof_text": "100K LUMENS · BUILT-IN POWER BANK",
         "shipping_text": "",
-        "show_delivery_estimate": true,
+        "show_delivery_estimate": false,
         "delivery_business_days": 7,
         "show_payment_icons": true,
-        "show_upsell": false
+        "show_upsell": false,
+        "size_chart_url": "",
+        "size_chart_label": "Size Chart"
       }
     },
     "you_may_also_like": {
