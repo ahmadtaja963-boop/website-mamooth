@@ -2737,3 +2737,99 @@ section { display: block; }
   }
 }
 
+
+/* ── Size Chart Button + Modal ── */
+.product-size-chart-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  margin: 10px 0 14px;
+  background: #fff;
+  border: 1.5px solid #D6DCE2;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease, transform .08s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.product-size-chart-btn:hover { border-color: #1a1a1a; background: #fafafa; }
+.product-size-chart-btn:active { transform: scale(0.98); }
+.product-size-chart-btn svg { flex-shrink: 0; }
+
+.size-chart-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.size-chart-modal[hidden] { display: none; }
+.size-chart-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(2px);
+}
+.size-chart-modal__panel {
+  position: relative;
+  background: #fff;
+  border-radius: 14px;
+  max-width: min(720px, 100%);
+  max-height: 90vh;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  display: flex;
+  overflow: hidden;
+  animation: sizeChartIn .18s ease-out;
+}
+@keyframes sizeChartIn {
+  from { opacity: 0; transform: scale(.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+.size-chart-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid #E0E4E8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #1a1a1a;
+  z-index: 2;
+  transition: background .15s;
+}
+.size-chart-modal__close:hover { background: #f2f2f2; }
+.size-chart-modal__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+/* Size chart image inside Specifications tab */
+.more-info-size-chart-img {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  margin: 12px 0 4px;
+  border-radius: 8px;
+  border: 1px solid #E6EAEE;
+}
+
+@media (max-width: 640px) {
+  .product-size-chart-btn { width: 100%; justify-content: center; }
+  .size-chart-modal { padding: 12px; }
+  .size-chart-modal__panel { max-height: 88vh; }
+}

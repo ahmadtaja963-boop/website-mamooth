@@ -820,6 +820,14 @@
             </p>
           {%- endfor -%}
 
+          {%- comment -%} 7c. Size Chart button {%- endcomment -%}
+          {%- if section.settings.size_chart_url != blank -%}
+            <button type="button" class="product-size-chart-btn" data-size-chart-open aria-haspopup="dialog">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 8.7 8.7 21.3a1 1 0 0 1-1.4 0L2.7 16.7a1 1 0 0 1 0-1.4L15.3 2.7a1 1 0 0 1 1.4 0l4.6 4.6a1 1 0 0 1 0 1.4Z"/><path d="m7.5 12.5 2 2"/><path d="m10.5 9.5 2 2"/><path d="m13.5 6.5 2 2"/><path d="m4.5 15.5 2 2"/></svg>
+              <span>{{ section.settings.size_chart_label | default: 'Size Chart' }}</span>
+            </button>
+          {%- endif -%}
+
           {%- comment -%} 8. Add to Cart {%- endcomment -%}
           <div class="product-atc">
             <button
@@ -1469,6 +1477,19 @@
 
   </div>
 </div>
+
+{%- comment -%} ── Size Chart Modal ── {%- endcomment -%}
+{%- if section.settings.size_chart_url != blank -%}
+  <div class="size-chart-modal" id="SizeChartModal" role="dialog" aria-modal="true" aria-label="Size Chart" hidden>
+    <div class="size-chart-modal__backdrop" data-size-chart-close></div>
+    <div class="size-chart-modal__panel" role="document">
+      <button type="button" class="size-chart-modal__close" data-size-chart-close aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <img src="{{ section.settings.size_chart_url }}" alt="Size Chart" class="size-chart-modal__img" loading="lazy">
+    </div>
+  </div>
+{%- endif -%}
 
 {%- comment -%} ── Tab Navigation ── {%- endcomment -%}
 {%- assign has_more_info = false -%}
@@ -3002,6 +3023,28 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
     }
   });
 
+  /* ── Size Chart Modal ── */
+  var sizeChartModal = document.getElementById('SizeChartModal');
+  if (sizeChartModal) {
+    function openSizeChart() {
+      sizeChartModal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeSizeChart() {
+      sizeChartModal.hidden = true;
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('[data-size-chart-open]').forEach(function(btn) {
+      btn.addEventListener('click', openSizeChart);
+    });
+    sizeChartModal.querySelectorAll('[data-size-chart-close]').forEach(function(el) {
+      el.addEventListener('click', closeSizeChart);
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !sizeChartModal.hidden) closeSizeChart();
+    });
+  }
+
 })();
 </script>
 
@@ -3076,6 +3119,23 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
       "id": "upsell_heading",
       "label": "Upsell heading text",
       "default": "Others Like You Also Bought:"
+    },
+    {
+      "type": "header",
+      "content": "Size Chart"
+    },
+    {
+      "type": "text",
+      "id": "size_chart_url",
+      "label": "Size chart image URL",
+      "info": "Paste the Shopify Files CDN URL of the size chart image. Leave blank to hide the button.",
+      "default": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/size-chart.jpg?v=1776789980"
+    },
+    {
+      "type": "text",
+      "id": "size_chart_label",
+      "label": "Size chart button label",
+      "default": "Size Chart"
     }
   ],
   "blocks": [
