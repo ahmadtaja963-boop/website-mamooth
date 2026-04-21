@@ -498,12 +498,54 @@
 
                 {%- if os_is_tier_mode -%}
                   {%- comment -%} ── 3-Tier Quantity Mode (same variant × qty + discount code) ── {%- endcomment -%}
+                  {%- assign offer_has_options = false -%}
+                  {%- unless product.has_only_default_variant -%}{%- assign offer_has_options = true -%}{%- endunless -%}
+                  {%- assign offer_color_index = -1 -%}
+                  {%- for opt in product.options_with_values -%}
+                    {%- assign opt_lower = opt.name | downcase -%}
+                    {%- if opt_lower == 'color' or opt_lower == 'colour' -%}{%- assign offer_color_index = forloop.index0 -%}{%- endif -%}
+                  {%- endfor -%}
+                  {%- assign offer_opts_count = product.options_with_values | size -%}
+                  {%- capture offer_grid -%}28px{%- if offer_color_index >= 0 %} 22px{% endif %} repeat({{ offer_opts_count }}, minmax(0, 1fr)){%- endcapture -%}
+
+                  {%- if offer_has_options -%}
+                    <script id="OfferVariantColorMap" type="application/json">
+                      {
+                        {%- if offer_color_index >= 0 -%}
+                          {%- for opt in product.options_with_values -%}
+                            {%- if forloop.index0 == offer_color_index -%}
+                              {%- for val in opt.values -%}
+                                "{{ val | downcase | strip }}": { "hex": "{{ val.swatch.color }}", "image": "{%- if val.swatch.image -%}{{ val.swatch.image | image_url: width: 60 }}{%- endif -%}" }{% unless forloop.last %},{% endunless %}
+                              {%- endfor -%}
+                            {%- endif -%}
+                          {%- endfor -%}
+                        {%- endif -%}
+                      }
+                    </script>
+                    <script id="OfferOptionsMap" type="application/json">
+                      {
+                        "colorIndex": {{ offer_color_index }},
+                        "options": [
+                          {%- for opt in product.options_with_values -%}
+                            {
+                              "name": "{{ opt.name | escape }}",
+                              "index": {{ forloop.index0 }},
+                              "values": [{% for v in opt.values %}"{{ v | escape }}"{% unless forloop.last %},{% endunless %}{% endfor %}]
+                            }{% unless forloop.last %},{% endunless %}
+                          {%- endfor -%}
+                        ]
+                      }
+                    </script>
+                  {%- endif -%}
+
                   {%- for n in (1..3) -%}
                     {%- assign label_key = 'option' | append: n | append: '_label' -%}
                     {%- assign sub_key = 'option' | append: n | append: '_sublabel' -%}
                     {%- assign badge_key = 'option' | append: n | append: '_badge' -%}
                     {%- assign price_key = 'option' | append: n | append: '_price' -%}
                     {%- assign compare_key = 'option' | append: n | append: '_compare' -%}
+                    {%- assign qty_key = 'option' | append: n | append: '_qty' -%}
+                    {%- assign tier_qty_num = os[qty_key] | default: n | plus: 0 -%}
                     {%- assign is_selected = false -%}
                     {%- if n == 2 -%}{%- assign is_selected = true -%}{%- endif -%}
                     {%- assign bonus_prefix = 'option' | append: n | append: '_bonus' -%}
@@ -556,6 +598,34 @@
                                 </span>
                               {%- endif -%}
                             {%- endfor -%}
+                          </span>
+                        {%- endif -%}
+
+                        {%- comment -%} Variant selectors (color/size) — only shown when card is selected {%- endcomment -%}
+                        {%- if offer_has_options and tier_qty_num > 0 -%}
+                          <span class="bogo-card__variants{% unless is_selected %} bogo-card__variants--hidden{% endunless %}">
+                            <span class="bogo-card__variant-selects" style="--bogo-grid: {{ offer_grid }};">
+                              <span class="bogo-card__variant-header">
+                                <span></span>
+                                {%- if offer_color_index >= 0 -%}<span></span>{%- endif -%}
+                                {%- for opt in product.options_with_values -%}
+                                  <span class="bogo-card__variant-header-label">{{ opt.name }}</span>
+                                {%- endfor -%}
+                              </span>
+                              {%- for i in (1..tier_qty_num) -%}
+                                <span class="bogo-card__variant-item">
+                                  <span class="bogo-card__variant-num">{%- if tier_qty_num > 1 -%}#{{ i }}{%- endif -%}</span>
+                                  {%- if offer_color_index >= 0 -%}<span class="bogo-card__color-swatch" data-select-target="{{ i }}"></span>{%- endif -%}
+                                  {%- for opt in product.options_with_values -%}
+                                    <select class="bogo-card__option-select" data-item-index="{{ i }}" data-option-index="{{ forloop.index0 }}" data-option-name="{{ opt.name | escape }}">
+                                      {%- for val in opt.values -%}
+                                        <option value="{{ val }}"{% if val == opt.selected_value %} selected{% endif %}>{{ val }}</option>
+                                      {%- endfor -%}
+                                    </select>
+                                  {%- endfor -%}
+                                </span>
+                              {%- endfor -%}
+                            </span>
                           </span>
                         {%- endif -%}
                       </span>
@@ -2275,13 +2345,18 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
     }
 
     offerCards.forEach(function(card) {
-      card.addEventListener('click', function() {
+      card.addEventListener('click', function(e) {
+        if (e.target.tagName === 'SELECT') return; /* don't toggle on select click */
         offerCards.forEach(function(c) {
           c.classList.remove('offer-card--selected');
           c.querySelector('.offer-card__radio').classList.remove('offer-card__radio--checked');
+          var v = c.querySelector('.bogo-card__variants');
+          if (v) v.classList.add('bogo-card__variants--hidden');
         });
         card.classList.add('offer-card--selected');
         card.querySelector('.offer-card__radio').classList.add('offer-card__radio--checked');
+        var activeVariants = card.querySelector('.bogo-card__variants');
+        if (activeVariants) activeVariants.classList.remove('bogo-card__variants--hidden');
 
         if (offerIsTierMode) {
           offerActiveTier = parseInt(card.dataset.tier, 10);
@@ -2315,26 +2390,63 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
       });
     });
 
-    /* Tier-mode: override submit to add qty + apply discount code */
+    /* Tier-mode: override submit to collect variants + qty + apply discount code */
     if (offerIsTierMode) {
       updateOfferPriceDisplay(offerActiveTier);
+
+      function findOfferVariantByOptions(optionValues) {
+        return variants.find(function(v) {
+          if (!v.options || v.options.length !== optionValues.length) return false;
+          for (var i = 0; i < v.options.length; i++) {
+            if ((v.options[i] || '').toLowerCase() !== (optionValues[i] || '').toLowerCase()) return false;
+          }
+          return true;
+        });
+      }
+
       form.addEventListener('submit', function(e) {
         e.preventDefault();
         var activeCard = offerSelector.querySelector('.offer-card--selected');
         if (!activeCard) return;
         var tier = parseInt(activeCard.dataset.tier, 10);
-        var qty = parseInt(offerSelector.dataset['tier' + tier + 'Qty'] || '1', 10);
+        var tierQty = parseInt(offerSelector.dataset['tier' + tier + 'Qty'] || '1', 10);
         var code = offerSelector.dataset['tier' + tier + 'Code'] || '';
-        var variantId = form.querySelector('[name="id"]').value;
         var btn = form.querySelector('.product-atc-btn');
         btn.disabled = true;
         var origText = btn.textContent;
         btn.textContent = 'Adding...';
 
+        /* Collect items from variant selects inside the active card */
+        var items = [];
+        var itemRows = activeCard.querySelectorAll('.bogo-card__variant-item');
+        if (itemRows.length > 0) {
+          var comboCounts = {};
+          var comboValues = {};
+          itemRows.forEach(function(row) {
+            var selects = row.querySelectorAll('.bogo-card__option-select');
+            var vals = [];
+            selects.forEach(function(sel) {
+              var idx = parseInt(sel.dataset.optionIndex || '0', 10);
+              vals[idx] = sel.value;
+            });
+            var key = vals.join('|');
+            comboCounts[key] = (comboCounts[key] || 0) + 1;
+            comboValues[key] = vals;
+          });
+          Object.keys(comboCounts).forEach(function(key) {
+            var matched = findOfferVariantByOptions(comboValues[key]);
+            if (matched) items.push({ id: matched.id, quantity: comboCounts[key] });
+          });
+        } else {
+          var variantId = form.querySelector('[name="id"]').value;
+          items.push({ id: parseInt(variantId, 10), quantity: tierQty });
+        }
+        if (items.length === 0) { btn.disabled = false; btn.textContent = origText; return; }
+
         fetch('/cart/add.js', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items: [{ id: parseInt(variantId, 10), quantity: qty }] })
+          body: JSON.stringify({ items: items })
         })
         .then(function(r) { if (!r.ok) throw new Error('add failed'); return r.json(); })
         .then(function() {
@@ -2354,6 +2466,35 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
           console.error('Tier add error:', err);
         });
       });
+
+      /* Color swatch support for tier-mode selects */
+      var offerColorMapEl = document.getElementById('OfferVariantColorMap');
+      var offerOptsMapEl = document.getElementById('OfferOptionsMap');
+      if (offerColorMapEl && offerOptsMapEl) {
+        var offerColorMap = JSON.parse(offerColorMapEl.textContent);
+        var offerOptsMap = JSON.parse(offerOptsMapEl.textContent);
+        var fallbackHex = { gold: '#C4944C', silver: '#C0C0C0', black: '#1A1A1A', white: '#F5F5F5', nude: '#E4B590', beige: '#E4B590', rose: '#B76E79', 'rose gold': '#B76E79' };
+
+        function updateOfferSwatch(sel) {
+          var idx = parseInt(sel.dataset.optionIndex || '-1', 10);
+          if (idx !== offerOptsMap.colorIndex) return;
+          var color = sel.value.toLowerCase().trim();
+          var item = sel.closest('.bogo-card__variant-item');
+          var swatch = item ? item.querySelector('.bogo-card__color-swatch') : null;
+          if (!swatch) return;
+          var entry = offerColorMap[color];
+          var img = entry && typeof entry === 'object' ? entry.image : '';
+          var hex = entry && typeof entry === 'object' ? entry.hex : '';
+          if (img) { swatch.style.backgroundImage = 'url(' + img + ')'; swatch.style.backgroundColor = ''; }
+          else if (hex) { swatch.style.backgroundImage = ''; swatch.style.backgroundColor = hex; }
+          else if (fallbackHex[color]) { swatch.style.backgroundImage = ''; swatch.style.backgroundColor = fallbackHex[color]; }
+        }
+
+        offerSelector.querySelectorAll('.bogo-card__option-select').forEach(function(sel) {
+          updateOfferSwatch(sel);
+          sel.addEventListener('change', function() { updateOfferSwatch(sel); });
+        });
+      }
     }
   }
 
