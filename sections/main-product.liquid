@@ -2325,6 +2325,7 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
 
   var offerSelector = document.getElementById('OfferSelector');
   if (offerSelector) {
+    var priceEl = document.getElementById('ProductPrice');
     var offerCards = offerSelector.querySelectorAll('.offer-card');
     var offerIsTierMode = offerSelector.dataset.mode === 'tiers';
     var offerActiveTier = 2;
