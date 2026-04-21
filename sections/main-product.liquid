@@ -29,7 +29,6 @@
   .product-page .offer-card__radio::after { background: var(--color-accent); }
   .product-page .offer-card__check path { stroke: var(--color-accent); }
   .product-page .product-price-badge { background: var(--color-accent); }
-  .product-page .product-stock-badge__dot--amber { background: var(--color-accent); }
   .product-page .offer-card__deal-badge { background: var(--color-accent); }
   .product-page .offer-card__free { color: var(--color-accent); }
   .product-page .bogo-card.bogo-card--selected { border-color: var(--color-accent); background: color-mix(in srgb, var(--color-accent) 6%, #fff); }
@@ -489,8 +488,8 @@
                     {%- assign inv = current_variant.inventory_quantity | default: 0 -%}
                     <span class="product-stock-badge offer-selector__stock" id="ProductStockBadge" {{ block.shopify_attributes }}>
                       {%- if inv < critical_threshold -%}<span class="product-stock-badge__dot product-stock-badge__dot--red"></span><span class="product-stock-badge__text">{{ sb.critical_text | default: 'Only' }} {{ inv }} {{ sb.critical_suffix | default: 'left' }}</span>
-                      {%- elsif inv < low_threshold -%}<span class="product-stock-badge__dot product-stock-badge__dot--amber"></span><span class="product-stock-badge__text">{{ sb.low_text | default: 'Low stock' }}</span>
-                      {%- else -%}<span class="product-stock-badge__dot product-stock-badge__dot--green"></span><span class="product-stock-badge__text">{{ sb.in_stock_text | default: 'In stock' }}</span>
+                      {%- elsif inv < low_threshold -%}<span class="product-stock-badge__dot product-stock-badge__dot--amber"></span><span class="product-stock-badge__text">{{ sb.low_text | default: 'Low stock' | replace: '{count}', inv }}</span>
+                      {%- else -%}<span class="product-stock-badge__dot product-stock-badge__dot--green"></span><span class="product-stock-badge__text">{{ sb.in_stock_text | default: 'In stock' | replace: '{count}', inv }}</span>
                       {%- endif -%}
                     </span>
                   {%- endfor -%}
