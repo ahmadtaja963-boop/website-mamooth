@@ -23,7 +23,7 @@
             "low_text": "LOW STOCK",
             "critical_text": "Only",
             "critical_suffix": "left",
-            "low_threshold": 50,
+            "low_threshold": 100,
             "critical_threshold": 15
           }
         },
