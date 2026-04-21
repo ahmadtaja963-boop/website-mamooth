@@ -2840,3 +2840,10 @@ section { display: block; }
   .size-chart-modal { padding: 12px; }
   .size-chart-modal__panel { max-height: 88vh; }
 }
+
+/* Force amber stock dot — beats any section-level accent override */
+.product-stock-badge__dot.product-stock-badge__dot--amber,
+.product-page .product-stock-badge__dot--amber,
+.product-stock-badge__dot--amber {
+  background: #f59e0b !important;
+}
