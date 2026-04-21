@@ -27,6 +27,25 @@
             "mobile_image_4": "shopify://shop_images/bra-aplus-b1-args-5-6-mobile.png"
           }
         },
+        "stock_main": {
+          "type": "stock_indicator",
+          "settings": {
+            "in_stock_text": "IN STOCK",
+            "low_text": "LOW STOCK",
+            "critical_text": "Only",
+            "critical_suffix": "left",
+            "low_threshold": 50,
+            "critical_threshold": 15
+          }
+        },
+        "urgency_main": {
+          "type": "urgency_counter",
+          "settings": {
+            "icon": "🔥",
+            "count": "2847",
+            "text": "Sold {count} times this week"
+          }
+        },
         "offer_main": {
           "type": "offer_selector",
           "settings": {
@@ -129,10 +148,12 @@
       },
 
       "block_order": [
+        "stock_main",
         "funnel_main",
         "video_showcase_main",
         "guarantee_main",
         "offer_main",
+        "urgency_main",
         "info_tabs_main",
         "faq_section_main"
       ],

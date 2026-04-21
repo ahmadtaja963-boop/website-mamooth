@@ -9,6 +9,8 @@
 {%- assign offer_selector_blocks = section.blocks | where: 'type', 'offer_selector' -%}
 {%- assign bogo_blocks = section.blocks | where: 'type', 'bogo_tiers' -%}
 {%- assign video_showcase_blocks = section.blocks | where: 'type', 'video_showcase' -%}
+{%- assign urgency_blocks = section.blocks | where: 'type', 'urgency_counter' -%}
+{%- assign stock_blocks = section.blocks | where: 'type', 'stock_indicator' -%}
 {%- if bundle_blocks.size > 0 -%}
   {{ 'bundle-deals.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
@@ -162,6 +164,26 @@
         {%- if section.settings.social_proof_text != blank -%}
           <p class="product-social-proof">{{ section.settings.social_proof_text }}</p>
         {%- endif -%}
+
+        {%- comment -%} 2b. Stock Indicator (standalone block) {%- endcomment -%}
+        {%- for block in stock_blocks -%}
+          {%- assign sb = block.settings -%}
+          {%- assign low_threshold = sb.low_threshold | default: 50 | plus: 0 -%}
+          {%- assign critical_threshold = sb.critical_threshold | default: 15 | plus: 0 -%}
+          {%- assign inv = current_variant.inventory_quantity | default: 0 -%}
+          <span class="product-stock-badge product-stock-badge--standalone" id="ProductStockBadge" {{ block.shopify_attributes }}>
+            {%- if inv < critical_threshold -%}
+              <span class="product-stock-badge__dot product-stock-badge__dot--red"></span>
+              <span class="product-stock-badge__text">{{ sb.critical_text | default: 'Only' }} {{ inv }} {{ sb.critical_suffix | default: 'left' }}</span>
+            {%- elsif inv < low_threshold -%}
+              <span class="product-stock-badge__dot product-stock-badge__dot--amber"></span>
+              <span class="product-stock-badge__text">{{ sb.low_text | default: 'Low stock' }}</span>
+            {%- else -%}
+              <span class="product-stock-badge__dot product-stock-badge__dot--green"></span>
+              <span class="product-stock-badge__text">{{ sb.in_stock_text | default: 'In stock' }}</span>
+            {%- endif -%}
+          </span>
+        {%- endfor -%}
 
         {%- comment -%} 3. Product Title {%- endcomment -%}
         <h1 class="product-title">{{ product.title }}</h1>
@@ -483,14 +505,16 @@
                 {%- endif -%}
               >
 
-                {%- comment -%} Stock badge {%- endcomment -%}
-                {%- assign inv = current_variant.inventory_quantity | default: 0 -%}
-                <span class="product-stock-badge offer-selector__stock" id="ProductStockBadge">
-                  {%- if inv < 15 -%}<span class="product-stock-badge__dot product-stock-badge__dot--red"></span><span class="product-stock-badge__text">Only {{ inv }} left</span>
-                  {%- elsif inv < 50 -%}<span class="product-stock-badge__dot product-stock-badge__dot--amber"></span><span class="product-stock-badge__text">Low stock</span>
-                  {%- else -%}<span class="product-stock-badge__dot product-stock-badge__dot--green"></span><span class="product-stock-badge__text">In stock</span>
-                  {%- endif -%}
-                </span>
+                {%- comment -%} Stock badge — only if no standalone stock_indicator block is present {%- endcomment -%}
+                {%- if stock_blocks.size == 0 -%}
+                  {%- assign inv = current_variant.inventory_quantity | default: 0 -%}
+                  <span class="product-stock-badge offer-selector__stock" id="ProductStockBadge">
+                    {%- if inv < 15 -%}<span class="product-stock-badge__dot product-stock-badge__dot--red"></span><span class="product-stock-badge__text">Only {{ inv }} left</span>
+                    {%- elsif inv < 50 -%}<span class="product-stock-badge__dot product-stock-badge__dot--amber"></span><span class="product-stock-badge__text">Low stock</span>
+                    {%- else -%}<span class="product-stock-badge__dot product-stock-badge__dot--green"></span><span class="product-stock-badge__text">In stock</span>
+                    {%- endif -%}
+                  </span>
+                {%- endif -%}
 
                 {%- if os.heading != blank -%}
                   <p class="offer-selector__heading">{{ os.heading }}</p>
@@ -788,6 +812,16 @@
             </div>
             {%- endif -%}
           {%- endunless -%}
+
+          {%- comment -%} 7b. Urgency Counter (standalone block) {%- endcomment -%}
+          {%- for block in urgency_blocks -%}
+            {%- assign uc = block.settings -%}
+            {%- assign placeholder = '{count}' -%}
+            <p class="urgency-counter" {{ block.shopify_attributes }}>
+              {%- if uc.icon != blank -%}<span class="urgency-counter__icon">{{ uc.icon }}</span>{%- endif -%}
+              <span class="urgency-counter__text">{{ uc.text | replace: placeholder, uc.count }}</span>
+            </p>
+          {%- endfor -%}
 
           {%- comment -%} 8. Add to Cart {%- endcomment -%}
           <div class="product-atc">
@@ -1964,6 +1998,29 @@
     line-height: 1;
     flex-shrink: 0;
   }
+  .product-stock-badge--standalone {
+    margin: 0 0 0.6rem;
+  }
+  .urgency-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.75rem;
+    margin: 0.75rem 0;
+    font-family: Inter, sans-serif;
+    font-size: 0.875rem;
+    color: #4A5568;
+    background: #F7FAFC;
+    border-radius: 8px;
+  }
+  .urgency-counter__icon {
+    font-size: 14px;
+    line-height: 1;
+  }
+  .urgency-counter__text {
+    font-weight: 500;
+  }
   .offer-value-stack {
     background: linear-gradient(135deg, #FDF6EC 0%, #FAF3E0 100%);
     border: 2px solid #C4944C;
@@ -2386,7 +2443,7 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
         var addBtn = form.querySelector('.product-atc-btn');
         if (addBtn && variantImgs[vid]) {
           addBtn.disabled = !variantImgs[vid].available;
-          addBtn.textContent = variantImgs[vid].available ? 'Add to Cart' : 'Sold Out';
+          addBtn.textContent = variantImgs[vid].available ? 'Claim My Offer' : 'Sold Out';
           addBtn.dataset.variantId = vid;
         }
         if (variantImgs[vid] && variantImgs[vid].image_src && variantImgs[vid].image_src !== 'null') {
@@ -2614,7 +2671,7 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
       })
       .then(function() {
         btn.disabled = false;
-        btn.textContent = 'Add to Cart';
+        btn.textContent = 'Claim My Offer';
         /* Refresh cart drawer + open it */
         if (window.MammothTheme && window.MammothTheme.openCart) {
           window.MammothTheme.fetchCart
@@ -2626,7 +2683,7 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
       })
       .catch(function(err) {
         btn.disabled = false;
-        btn.textContent = 'Add to Cart';
+        btn.textContent = 'Claim My Offer';
         console.error('BOGO add error:', err);
       });
     });
@@ -2738,7 +2795,7 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
         var addBtn = form.querySelector('.product-atc-btn');
         if (addBtn) {
           addBtn.disabled  = !match.available;
-          addBtn.textContent = match.available ? 'Add to Cart' : 'Sold Out';
+          addBtn.textContent = match.available ? 'Claim My Offer' : 'Sold Out';
           addBtn.dataset.variantId = match.id;
         }
 
@@ -3211,6 +3268,31 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
         { "type": "video", "id": "video_4", "label": "Video 4 (upload)" },
         { "type": "url", "id": "video_url_4", "label": "Video 4 URL (optional fallback)" },
         { "type": "image_picker", "id": "poster_4", "label": "Video 4 poster image" }
+      ]
+    },
+    {
+      "type": "urgency_counter",
+      "name": "Urgency Counter",
+      "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "Shows a social-proof line like \"🔥 Sold 2,847 times this week\" — use real Shopify data if possible." },
+        { "type": "text", "id": "icon", "label": "Icon (emoji)", "default": "🔥" },
+        { "type": "text", "id": "count", "label": "Count", "default": "2847" },
+        { "type": "text", "id": "text", "label": "Text (use {count} placeholder)", "default": "Sold {count} times this week" }
+      ]
+    },
+    {
+      "type": "stock_indicator",
+      "name": "Stock Indicator",
+      "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "Auto-colored dot + label based on variant inventory. Green = in stock, amber = low, red = critical." },
+        { "type": "text", "id": "in_stock_text", "label": "In stock text", "default": "In stock" },
+        { "type": "text", "id": "low_text", "label": "Low stock text", "default": "Low stock" },
+        { "type": "text", "id": "critical_text", "label": "Critical text (prefix)", "default": "Only" },
+        { "type": "text", "id": "critical_suffix", "label": "Critical text (suffix)", "default": "left" },
+        { "type": "range", "id": "low_threshold", "label": "Low threshold", "min": 10, "max": 200, "step": 5, "default": 50 },
+        { "type": "range", "id": "critical_threshold", "label": "Critical threshold", "min": 1, "max": 50, "step": 1, "default": 15 }
       ]
     },
     {
