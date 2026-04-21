@@ -32,7 +32,7 @@
           "settings": {
             "icon": "",
             "count": "1,832",
-            "text": "Sold {count} times this week!"
+            "text": "{count} of 2,431 units in this batch already claimed"
           }
         },
         "offer_main": {
@@ -52,8 +52,8 @@
             "option2_price": "49.99",
             "option2_compare": "59.98",
             "option2_discount_code": "",
-            "option2_bonus1": "Extra 18650 Backup Battery|$20",
-            "option2_bonus2": "Emergency Outage Survival Guide PDF|$27",
+            "option2_bonus1": "Extra 18650 Backup Battery|$29",
+            "option2_bonus2": "Emergency Outage Survival Guide PDF|$47",
             "option3_label": "3 Pack",
             "option3_sublabel": "Save $20 + Full Bonus Stack",
             "option3_badge": "BEST VALUE",
@@ -61,19 +61,19 @@
             "option3_price": "69.99",
             "option3_compare": "89.97",
             "option3_discount_code": "",
-            "option3_bonus1": "Extra 18650 Backup Battery|$20",
-            "option3_bonus2": "Emergency Outage Survival Guide PDF|$27",
-            "option3_bonus3": "72-Hour Blackout Checklist PDF|$17",
-            "option3_bonus4": "10 Camping Lighting Tricks PDF|$19",
+            "option3_bonus1": "Extra 18650 Backup Battery|$29",
+            "option3_bonus2": "Emergency Outage Survival Guide PDF|$47",
+            "option3_bonus3": "72-Hour Blackout Readiness Checklist PDF|$27",
+            "option3_bonus4": "10 Tactical Lighting Tricks for Camping PDF|$29",
             "show_trust_line": false
           }
         },
         "guarantee_main": {
           "type": "guarantee_promise",
           "settings": {
-            "label": "🛡️ THE PROMISE",
-            "headline": "Brighter Than Anything You Own — Or Your Money Back",
-            "body": "<p>Use it for 60 days. If it's not the brightest, most reliable flashlight you've ever owned — email us for a full refund. <strong>Keep the flashlight. Keep the bonuses. No questions.</strong></p>"
+            "label": "🛡️ THE NEVER-DARK GUARANTEE",
+            "headline": "Brighter and More Reliable Than Anything You Own — Or Your Money Back",
+            "body": "<p>Use it for 60 days. If it isn't brighter AND more reliable than every flashlight you've ever owned, email us for a full refund. <strong>Keep the flashlight. Keep the bonuses. No questions, no proof, no return shipping.</strong></p>"
           }
         },
         "info_tabs_main": {
