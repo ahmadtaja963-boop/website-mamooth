@@ -212,8 +212,8 @@
               "{{ variant.id }}": {
                 "price": {{ variant.price }},
                 "available": {{ variant.available }},
-                "image_src": "{{ variant.featured_image | image_url: width: 900 }}",
-                "image_color": "{{ variant.featured_image.alt | downcase | strip | escape }}",
+                "image_src": "{%- if variant.featured_image -%}{{ variant.featured_image | image_url: width: 900 }}{%- endif -%}",
+                "image_color": "{%- if variant.featured_image -%}{{ variant.featured_image.alt | downcase | strip | escape }}{%- endif -%}",
                 "inventory_quantity": {{ variant.inventory_quantity | default: 0 }}
               }{% unless forloop.last %},{% endunless %}
             {%- endfor -%}
