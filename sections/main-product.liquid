@@ -506,6 +506,7 @@
                     {%- assign compare_key = 'option' | append: n | append: '_compare' -%}
                     {%- assign is_selected = false -%}
                     {%- if n == 2 -%}{%- assign is_selected = true -%}{%- endif -%}
+                    {%- assign bonus_prefix = 'option' | append: n | append: '_bonus' -%}
                     <label class="offer-card{% if is_selected %} offer-card--selected{% endif %}" data-variant-id="{{ current_variant.id }}" data-tier="{{ n }}">
                       <span class="offer-card__radio{% if is_selected %} offer-card__radio--checked{% endif %}"></span>
                       {%- if os[badge_key] != blank -%}
@@ -522,6 +523,32 @@
                             {%- if os[compare_key] != blank -%}<s class="offer-card__compare">${{ os[compare_key] }}</s>{%- endif -%}
                           </span>
                         </span>
+                        {%- comment -%} Bonuses inside card (tier mode) {%- endcomment -%}
+                        {%- assign has_bonuses = false -%}
+                        {%- for i in (1..5) -%}
+                          {%- assign bkey = bonus_prefix | append: i -%}
+                          {%- if os[bkey] != blank -%}{%- assign has_bonuses = true -%}{%- endif -%}
+                        {%- endfor -%}
+                        {%- if has_bonuses -%}
+                          <span class="offer-card__items">
+                            {%- for i in (1..5) -%}
+                              {%- assign bkey = bonus_prefix | append: i -%}
+                              {%- if os[bkey] != blank -%}
+                                {%- assign parts = os[bkey] | split: '|' -%}
+                                <span class="offer-card__item">
+                                  <span class="offer-card__item-left">
+                                    <svg class="offer-card__check" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" style="color: var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    <span class="offer-card__item-name">{{ parts[0] }}</span>
+                                  </span>
+                                  <span class="offer-card__item-right">
+                                    <span class="offer-card__item-free">FREE</span>
+                                    {%- if parts[1] -%}<span class="offer-card__item-value">{{ parts[1] }}</span>{%- endif -%}
+                                  </span>
+                                </span>
+                              {%- endif -%}
+                            {%- endfor -%}
+                          </span>
+                        {%- endif -%}
                       </span>
                     </label>
                   {%- endfor -%}
@@ -3101,6 +3128,17 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
         { "type": "text", "id": "option3_price", "label": "Price override (no $)" },
         { "type": "text", "id": "option3_compare", "label": "Compare price (no $)" },
         { "type": "text", "id": "option3_discount_code", "label": "Discount code" },
+        { "type": "header", "content": "Option 2 Bonuses (tier mode)" },
+        { "type": "paragraph", "content": "Format: Name|Value (e.g. \"Silk Travel Pouch|$12\"). Leave blank to skip." },
+        { "type": "text", "id": "option2_bonus1", "label": "Bonus 1" },
+        { "type": "text", "id": "option2_bonus2", "label": "Bonus 2" },
+        { "type": "text", "id": "option2_bonus3", "label": "Bonus 3" },
+        { "type": "header", "content": "Option 3 Bonuses (tier mode)" },
+        { "type": "text", "id": "option3_bonus1", "label": "Bonus 1" },
+        { "type": "text", "id": "option3_bonus2", "label": "Bonus 2" },
+        { "type": "text", "id": "option3_bonus3", "label": "Bonus 3" },
+        { "type": "text", "id": "option3_bonus4", "label": "Bonus 4" },
+        { "type": "text", "id": "option3_bonus5", "label": "Bonus 5" },
         { "type": "header", "content": "Bundle Breakdown Items" },
         {
           "type": "text",
