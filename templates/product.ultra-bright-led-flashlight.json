@@ -20,8 +20,8 @@
           "type": "stock_indicator",
           "settings": {
             "in_stock_text": "IN STOCK",
-            "low_text": "LOW STOCK — ONLY {count} LEFT IN THIS BATCH",
-            "critical_text": "Hurry — Only",
+            "low_text": "LOW STOCK",
+            "critical_text": "Only",
             "critical_suffix": "left",
             "low_threshold": 100,
             "critical_threshold": 15
