@@ -492,7 +492,6 @@
                     {%- assign low_threshold = sb.low_threshold | default: 50 | plus: 0 -%}
                     {%- assign critical_threshold = sb.critical_threshold | default: 15 | plus: 0 -%}
                     {%- assign inv = current_variant.inventory_quantity | default: 0 -%}
-                    <!-- DEBUG inv={{ inv }} critical={{ critical_threshold }} low={{ low_threshold }} mgmt={{ current_variant.inventory_management }} policy={{ current_variant.inventory_policy }} -->
                     <span class="product-stock-badge offer-selector__stock" id="ProductStockBadge" {{ block.shopify_attributes }}>
                       {%- if inv < critical_threshold -%}<span class="product-stock-badge__dot product-stock-badge__dot--red"></span><span class="product-stock-badge__text">{{ sb.critical_text | default: 'Only' }} {{ inv }} {{ sb.critical_suffix | default: 'left' }}</span>
                       {%- elsif inv < low_threshold -%}<span class="product-stock-badge__dot product-stock-badge__dot--amber"></span><span class="product-stock-badge__text">{{ sb.low_text | default: 'Low stock' }}</span>
