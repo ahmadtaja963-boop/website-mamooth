@@ -2847,3 +2847,9 @@ section { display: block; }
 .product-stock-badge__dot--amber {
   background: #f59e0b !important;
 }
+
+/* Hide main price row when an offer selector or BOGO selector is present — avoids duplicate pricing display */
+.product-page:has(#OfferSelector) #ProductPrice,
+.product-page:has(.bogo-card) #ProductPrice {
+  display: none !important;
+}
