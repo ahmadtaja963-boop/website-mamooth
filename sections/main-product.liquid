@@ -609,7 +609,7 @@
 
                         {%- assign bonuses = bonus_list | split: '||' -%}
                         {%- if bonuses.size > 0 -%}
-                          <span class="offer-card__items">
+                          <span class="offer-card__items{% unless is_selected %} bogo-card__variants--hidden{% endunless %}">
                             {%- for bonus in bonuses -%}
                               {%- assign trimmed = bonus | strip -%}
                               {%- if trimmed != blank -%}
@@ -2352,11 +2352,15 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
           c.querySelector('.offer-card__radio').classList.remove('offer-card__radio--checked');
           var v = c.querySelector('.bogo-card__variants');
           if (v) v.classList.add('bogo-card__variants--hidden');
+          var it = c.querySelector('.offer-card__items');
+          if (it) it.classList.add('bogo-card__variants--hidden');
         });
         card.classList.add('offer-card--selected');
         card.querySelector('.offer-card__radio').classList.add('offer-card__radio--checked');
         var activeVariants = card.querySelector('.bogo-card__variants');
         if (activeVariants) activeVariants.classList.remove('bogo-card__variants--hidden');
+        var activeItems = card.querySelector('.offer-card__items');
+        if (activeItems) activeItems.classList.remove('bogo-card__variants--hidden');
 
         if (offerIsTierMode) {
           offerActiveTier = parseInt(card.dataset.tier, 10);
