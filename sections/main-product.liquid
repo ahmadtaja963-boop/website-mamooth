@@ -159,6 +159,10 @@
         <h1 class="product-title">{{ product.title }}</h1>
 
         {%- comment -%} 4. Product Price {%- endcomment -%}
+        {%- assign hide_main_price = false -%}
+        {%- if bogo_blocks.size > 0 or offer_selector_blocks.size > 0 -%}
+          {%- assign hide_main_price = true -%}
+        {%- endif -%}
         {%- if bogo_blocks.size > 0 -%}
           {%- assign display_variant = current_variant -%}
         {%- elsif offer_selector_blocks.size > 0 -%}
@@ -166,7 +170,7 @@
         {%- else -%}
           {%- assign display_variant = current_variant -%}
         {%- endif -%}
-        <div class="product-price-row" id="ProductPrice">
+        <div class="product-price-row" id="ProductPrice"{% if hide_main_price %} style="display:none;"{% endif %}>
           <span class="product-price-current">{{ display_variant.price | money }}</span>
           {%- if display_variant.compare_at_price > display_variant.price -%}
             <s class="product-price-compare">{{ display_variant.compare_at_price | money }}</s>
