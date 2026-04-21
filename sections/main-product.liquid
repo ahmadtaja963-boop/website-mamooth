@@ -165,26 +165,6 @@
           <p class="product-social-proof">{{ section.settings.social_proof_text }}</p>
         {%- endif -%}
 
-        {%- comment -%} 2b. Stock Indicator (standalone block) {%- endcomment -%}
-        {%- for block in stock_blocks -%}
-          {%- assign sb = block.settings -%}
-          {%- assign low_threshold = sb.low_threshold | default: 50 | plus: 0 -%}
-          {%- assign critical_threshold = sb.critical_threshold | default: 15 | plus: 0 -%}
-          {%- assign inv = current_variant.inventory_quantity | default: 0 -%}
-          <span class="product-stock-badge product-stock-badge--standalone" id="ProductStockBadge" {{ block.shopify_attributes }}>
-            {%- if inv < critical_threshold -%}
-              <span class="product-stock-badge__dot product-stock-badge__dot--red"></span>
-              <span class="product-stock-badge__text">{{ sb.critical_text | default: 'Only' }} {{ inv }} {{ sb.critical_suffix | default: 'left' }}</span>
-            {%- elsif inv < low_threshold -%}
-              <span class="product-stock-badge__dot product-stock-badge__dot--amber"></span>
-              <span class="product-stock-badge__text">{{ sb.low_text | default: 'Low stock' }}</span>
-            {%- else -%}
-              <span class="product-stock-badge__dot product-stock-badge__dot--green"></span>
-              <span class="product-stock-badge__text">{{ sb.in_stock_text | default: 'In stock' }}</span>
-            {%- endif -%}
-          </span>
-        {%- endfor -%}
-
         {%- comment -%} 3. Product Title {%- endcomment -%}
         <h1 class="product-title">{{ product.title }}</h1>
 
@@ -505,8 +485,21 @@
                 {%- endif -%}
               >
 
-                {%- comment -%} Stock badge — only if no standalone stock_indicator block is present {%- endcomment -%}
-                {%- if stock_blocks.size == 0 -%}
+                {%- comment -%} Stock badge — standalone block (preferred) or legacy embedded fallback {%- endcomment -%}
+                {%- if stock_blocks.size > 0 -%}
+                  {%- for block in stock_blocks -%}
+                    {%- assign sb = block.settings -%}
+                    {%- assign low_threshold = sb.low_threshold | default: 50 | plus: 0 -%}
+                    {%- assign critical_threshold = sb.critical_threshold | default: 15 | plus: 0 -%}
+                    {%- assign inv = current_variant.inventory_quantity | default: 0 -%}
+                    <span class="product-stock-badge offer-selector__stock" id="ProductStockBadge" {{ block.shopify_attributes }}>
+                      {%- if inv < critical_threshold -%}<span class="product-stock-badge__dot product-stock-badge__dot--red"></span><span class="product-stock-badge__text">{{ sb.critical_text | default: 'Only' }} {{ inv }} {{ sb.critical_suffix | default: 'left' }}</span>
+                      {%- elsif inv < low_threshold -%}<span class="product-stock-badge__dot product-stock-badge__dot--amber"></span><span class="product-stock-badge__text">{{ sb.low_text | default: 'Low stock' }}</span>
+                      {%- else -%}<span class="product-stock-badge__dot product-stock-badge__dot--green"></span><span class="product-stock-badge__text">{{ sb.in_stock_text | default: 'In stock' }}</span>
+                      {%- endif -%}
+                    </span>
+                  {%- endfor -%}
+                {%- else -%}
                   {%- assign inv = current_variant.inventory_quantity | default: 0 -%}
                   <span class="product-stock-badge offer-selector__stock" id="ProductStockBadge">
                     {%- if inv < 15 -%}<span class="product-stock-badge__dot product-stock-badge__dot--red"></span><span class="product-stock-badge__text">Only {{ inv }} left</span>
