@@ -2309,8 +2309,8 @@
 
 <script>
 /* ── Upsell map for cart drawer ── */
-window.DiazUpsellMap = window.DiazUpsellMap || {};
-window.DiazUpsellMap[{{ product.handle | json }}] = [
+window.MammothUpsellMap = window.MammothUpsellMap || {};
+window.MammothUpsellMap[{{ product.handle | json }}] = [
   {%- if section.settings.upsell_product != blank -%}{{ section.settings.upsell_product.handle | json }}{%- endif -%}
   {%- if section.settings.upsell_product_2 != blank -%}{%- if section.settings.upsell_product != blank -%},{%- endif -%}{{ section.settings.upsell_product_2.handle | json }}{%- endif -%}
 ];
