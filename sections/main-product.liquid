@@ -823,6 +823,45 @@
           {%- endfor -%}
         {%- endif -%}
 
+        {%- comment -%} 10b-3. Value Stack card (Hormozi offer stack) {%- endcomment -%}
+        {%- assign value_stack_blocks = section.blocks | where: 'type', 'value_stack' -%}
+        {%- for block in value_stack_blocks -%}
+          {%- assign vs = block.settings -%}
+          <div class="offer-value-stack" {{ block.shopify_attributes }}>
+            <p class="offer-value-stack__heading">{{ vs.heading }}</p>
+            <table class="offer-value-stack__items">
+              {%- for n in (1..6) -%}
+                {%- assign key = 'item' | append: n -%}
+                {%- assign raw = vs[key] -%}
+                {%- if raw != blank -%}
+                  {%- assign parts = raw | split: '|' -%}
+                  <tr>
+                    <td>✅ {{ parts[0] }}</td>
+                    <td class="offer-value-stack__val">{{ parts[1] }}</td>
+                  </tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </table>
+            <hr class="offer-value-stack__sep">
+            <table class="offer-value-stack__totals">
+              <tr><td>Total Value</td><td class="offer-value-stack__val"><s>{{ vs.total_value }}</s></td></tr>
+              <tr class="offer-value-stack__price"><td>Your Price Today</td><td class="offer-value-stack__val">{{ vs.your_price }}</td></tr>
+              <tr class="offer-value-stack__save"><td>You Save</td><td class="offer-value-stack__val">{{ vs.you_save }}</td></tr>
+            </table>
+          </div>
+        {%- endfor -%}
+
+        {%- comment -%} 10b-4. Guarantee Promise (Hormozi risk reversal) {%- endcomment -%}
+        {%- assign guarantee_blocks = section.blocks | where: 'type', 'guarantee_promise' -%}
+        {%- for block in guarantee_blocks -%}
+          {%- assign gp = block.settings -%}
+          <div class="offer-guarantee" {{ block.shopify_attributes }}>
+            <p class="offer-guarantee__label">{{ gp.label }}</p>
+            <p class="offer-guarantee__headline">{{ gp.headline }}</p>
+            <div class="offer-guarantee__body">{{ gp.body }}</div>
+          </div>
+        {%- endfor -%}
+
         {%- comment -%} 10c. Bundle Deals {%- endcomment -%}
         {%- assign bundle_blocks = section.blocks | where: 'type', 'bundle_deals' -%}
         {%- if bundle_blocks.size > 0 -%}
@@ -1777,6 +1816,84 @@
     font-size: 26px;
     line-height: 1;
     flex-shrink: 0;
+  }
+  .offer-value-stack {
+    background: linear-gradient(135deg, #FDF6EC 0%, #FAF3E0 100%);
+    border: 2px solid #C4944C;
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    font-family: Inter, sans-serif;
+    color: #1A2332;
+  }
+  .offer-value-stack__heading {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: #C4944C;
+    margin: 0 0 0.75rem;
+    text-transform: uppercase;
+  }
+  .offer-value-stack__items,
+  .offer-value-stack__totals {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .offer-value-stack__items td {
+    padding: 0.35rem 0;
+    font-size: 0.875rem;
+  }
+  .offer-value-stack__val {
+    text-align: right;
+    color: #718096;
+  }
+  .offer-value-stack__sep {
+    border: none;
+    border-top: 1px solid #C4944C;
+    opacity: 0.3;
+    margin: 0.75rem 0;
+  }
+  .offer-value-stack__totals td {
+    padding: 0.25rem 0;
+    font-weight: 500;
+  }
+  .offer-value-stack__price td {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #C4944C;
+  }
+  .offer-value-stack__save td {
+    color: #38A169;
+    font-weight: 600;
+  }
+  .offer-guarantee {
+    background: #1A2332;
+    color: #F7FAFC;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    text-align: center;
+    font-family: Inter, sans-serif;
+  }
+  .offer-guarantee__label {
+    font-size: 0.6875rem;
+    letter-spacing: 2px;
+    color: #C4944C;
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+  }
+  .offer-guarantee__headline {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+  }
+  .offer-guarantee__body {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #CBD5E0;
+  }
+  .offer-guarantee__body strong {
+    color: #F7FAFC;
   }
   .product-trust-badge span {
     font-size: 0.7rem;
@@ -2826,6 +2943,35 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
         { "type": "video", "id": "video_4", "label": "Video 4 (upload)" },
         { "type": "url", "id": "video_url_4", "label": "Video 4 URL (optional fallback)" },
         { "type": "image_picker", "id": "poster_4", "label": "Video 4 poster image" }
+      ]
+    },
+    {
+      "type": "value_stack",
+      "name": "Value Stack (Hormozi)",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "🎁 Your 3-Pack Includes" },
+        { "type": "paragraph", "content": "Format each item as: Label|Value (e.g. \"3 Posture Corrective Bras|$89.97\"). Leave blank to skip." },
+        { "type": "text", "id": "item1", "label": "Item 1", "default": "3 Posture Corrective Bras|$89.97" },
+        { "type": "text", "id": "item2", "label": "Item 2", "default": "FREE Silk Travel Pouch|$12" },
+        { "type": "text", "id": "item3", "label": "Item 3", "default": "FREE 30-Day Posture Guide (PDF)|$17" },
+        { "type": "text", "id": "item4", "label": "Item 4", "default": "FREE 7-Day Perfect Posture Challenge (emails)|$47" },
+        { "type": "text", "id": "item5", "label": "Item 5", "default": "60-Day Money-Back Guarantee|Priceless" },
+        { "type": "text", "id": "item6", "label": "Item 6 (optional)" },
+        { "type": "header", "content": "Totals" },
+        { "type": "text", "id": "total_value", "label": "Total Value", "default": "$165" },
+        { "type": "text", "id": "your_price", "label": "Your Price Today", "default": "$69.99" },
+        { "type": "text", "id": "you_save", "label": "You Save", "default": "$95 (58%)" }
+      ]
+    },
+    {
+      "type": "guarantee_promise",
+      "name": "Guarantee Promise (Hormozi)",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "label", "label": "Small label", "default": "🛡️ THE PROMISE" },
+        { "type": "text", "id": "headline", "label": "Headline", "default": "Stand Tall or Your Money Back - 60 Days" },
+        { "type": "richtext", "id": "body", "label": "Body" }
       ]
     },
     {

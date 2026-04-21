@@ -86,12 +86,36 @@
             "video_url_3": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-boudoirvibes-7621227179463970079.mp4?v=1776727550",
             "video_url_4": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-xiaoyfgnuxy-7618664410189450527.mp4?v=1776727551"
           }
+        },
+        "value_stack_main": {
+          "type": "value_stack",
+          "settings": {
+            "heading": "🎁 YOUR 3-PACK INCLUDES",
+            "item1": "3 Posture Corrective Bras|$89.97",
+            "item2": "FREE Silk Travel Pouch|$12",
+            "item3": "FREE 30-Day Posture Guide (PDF)|$17",
+            "item4": "FREE 7-Day Perfect Posture Challenge (emails)|$47",
+            "item5": "60-Day Money-Back Guarantee|Priceless",
+            "total_value": "$165",
+            "your_price": "$69.99",
+            "you_save": "$95 (58%)"
+          }
+        },
+        "guarantee_main": {
+          "type": "guarantee_promise",
+          "settings": {
+            "label": "🛡️ THE PROMISE",
+            "headline": "Stand Tall or Your Money Back - 60 Days",
+            "body": "<p>Wear it for 30 days. If you don't feel your posture improving on the first wear - or at any point in the next 60 days you're not 100% happy - email us for a full refund. <strong>Keep the bras. Keep the bonuses. No questions.</strong></p>"
+          }
         }
       },
 
       "block_order": [
         "funnel_main",
         "video_showcase_main",
+        "value_stack_main",
+        "guarantee_main",
         "bogo_main",
         "info_tabs_main",
         "faq_section_main"
