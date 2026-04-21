@@ -101,7 +101,7 @@
         "show_judgeme_badge": true,
         "social_proof_text": "LOVED BY 1,000+ WOMEN · TRENDING ON TIKTOK",
         "shipping_text": "",
-        "show_delivery_estimate": true,
+        "show_delivery_estimate": false,
         "delivery_business_days": 7,
         "show_payment_icons": true,
         "show_upsell": false
