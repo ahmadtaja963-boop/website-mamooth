@@ -684,19 +684,19 @@
         -%}
         <div class="product-trust-badges">
           <div class="product-trust-badge">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7.1L12 17.3 5.7 21.3l1.7-7.1L2 9.5l7.1-.6L12 2z"/></svg>
+            <span class="product-trust-badge__emoji">⭐</span>
             <span>{%- if jdg_count > 0 -%}{{ jdg_rating_display }} · {{ jdg_count }}<br>Reviews{%- else -%}Loved by<br>Customers{%- endif -%}</span>
           </div>
           <div class="product-trust-badge">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <span class="product-trust-badge__emoji">🛡️</span>
             <span>60-Day<br>Money-Back</span>
           </div>
           <div class="product-trust-badge">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="0"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <span class="product-trust-badge__emoji">🚚</span>
             <span>Free US<br>Shipping</span>
           </div>
           <div class="product-trust-badge">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="product-trust-badge__emoji">⚡</span>
             <span>Ships Within<br>48 Hours</span>
           </div>
         </div>
@@ -1771,6 +1771,11 @@
     width: 28px;
     height: 28px;
     color: var(--color-text);
+    flex-shrink: 0;
+  }
+  .product-trust-badge__emoji {
+    font-size: 26px;
+    line-height: 1;
     flex-shrink: 0;
   }
   .product-trust-badge span {
