@@ -2876,8 +2876,8 @@ window.DiazUpsellMap[{{ product.handle | json }}] = [
     setMainImage(t.dataset.src);
   });
 
-  /* ── Add to cart ── */
-  if (!bogoContainer) {
+  /* ── Add to cart (fallback for plain product pages, not bogo/offer_selector) ── */
+  if (!bogoContainer && !offerSelector) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       var variantId = form.querySelector('[name="id"]').value;
