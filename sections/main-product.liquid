@@ -579,29 +579,7 @@
                             {%- if os.option3_bonus5 != blank -%}{{ os.option3_bonus5 }}||{%- endif -%}
                           {%- endif -%}
                         {%- endcapture -%}
-                        {%- assign bonuses = bonus_list | split: '||' -%}
-                        {%- if bonuses.size > 0 -%}
-                          <span class="offer-card__items">
-                            {%- for bonus in bonuses -%}
-                              {%- assign trimmed = bonus | strip -%}
-                              {%- if trimmed != blank -%}
-                                {%- assign parts = trimmed | split: '|' -%}
-                                <span class="offer-card__item">
-                                  <span class="offer-card__item-left">
-                                    <svg class="offer-card__check" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" style="color: var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                    <span class="offer-card__item-name">{{ parts[0] }}</span>
-                                  </span>
-                                  <span class="offer-card__item-right">
-                                    <span class="offer-card__item-free">FREE</span>
-                                    {%- if parts[1] -%}<span class="offer-card__item-value">{{ parts[1] }}</span>{%- endif -%}
-                                  </span>
-                                </span>
-                              {%- endif -%}
-                            {%- endfor -%}
-                          </span>
-                        {%- endif -%}
-
-                        {%- comment -%} Variant selectors (color/size) — only shown when card is selected {%- endcomment -%}
+                        {%- comment -%} Variant selectors (color/size) — ABOVE bonuses, only shown when card is selected {%- endcomment -%}
                         {%- if offer_has_options and tier_qty_num > 0 -%}
                           <span class="bogo-card__variants{% unless is_selected %} bogo-card__variants--hidden{% endunless %}">
                             <span class="bogo-card__variant-selects" style="--bogo-grid: {{ offer_grid }};">
@@ -626,6 +604,28 @@
                                 </span>
                               {%- endfor -%}
                             </span>
+                          </span>
+                        {%- endif -%}
+
+                        {%- assign bonuses = bonus_list | split: '||' -%}
+                        {%- if bonuses.size > 0 -%}
+                          <span class="offer-card__items">
+                            {%- for bonus in bonuses -%}
+                              {%- assign trimmed = bonus | strip -%}
+                              {%- if trimmed != blank -%}
+                                {%- assign parts = trimmed | split: '|' -%}
+                                <span class="offer-card__item">
+                                  <span class="offer-card__item-left">
+                                    <svg class="offer-card__check" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" style="color: var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    <span class="offer-card__item-name">{{ parts[0] }}</span>
+                                  </span>
+                                  <span class="offer-card__item-right">
+                                    <span class="offer-card__item-free">FREE</span>
+                                    {%- if parts[1] -%}<span class="offer-card__item-value">{{ parts[1] }}</span>{%- endif -%}
+                                  </span>
+                                </span>
+                              {%- endif -%}
+                            {%- endfor -%}
                           </span>
                         {%- endif -%}
                       </span>
