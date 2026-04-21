@@ -92,14 +92,12 @@ window.MammothTheme = (function () {
     var bar     = document.getElementById('CartDiscountBar');
     var msg     = document.getElementById('CartDiscountMsg');
     var fill    = document.getElementById('CartDiscountFill');
-    var discountLine = document.getElementById('CartDiscountLine');
-    var discountName = document.getElementById('CartDiscountName');
-    var discountAmount = document.getElementById('CartDiscountAmount');
+    var discountsContainer = document.getElementById('CartDiscountsContainer');
     if (!bar) return;
 
     if (totalCents === 0) {
       bar.style.display = 'none';
-      if (discountLine) discountLine.style.display = 'none';
+      if (discountsContainer) discountsContainer.style.display = 'none';
       return;
     }
     bar.style.display = '';
@@ -351,34 +349,41 @@ window.MammothTheme = (function () {
       var checkoutTotal = document.getElementById('CartCheckoutTotal');
       if (checkoutTotal) checkoutTotal.textContent = formatMoney(data.total_price);
 
-      // Show discount line if cart has discounts
-      var discountLine = document.getElementById('CartDiscountLine');
-      if (discountLine) {
+      // Show discount breakdown (one line per unique discount)
+      var discountsContainer = document.getElementById('CartDiscountsContainer');
+      if (discountsContainer) {
         var totalDiscount = data.total_discount || 0;
         if (totalDiscount > 0) {
-          discountLine.style.display = '';
-          var discountAmount = document.getElementById('CartDiscountAmount');
-          var discountName = document.getElementById('CartDiscountName');
-          if (discountAmount) discountAmount.textContent = '-' + formatMoney(totalDiscount);
-          if (discountName) {
-            var names = [];
-            if (data.cart_level_discount_applications && data.cart_level_discount_applications.length > 0) {
-              data.cart_level_discount_applications.forEach(function(d) { names.push(d.title); });
-            }
-            /* Also check item-level discounts */
-            if (names.length === 0 && data.items) {
-              data.items.forEach(function(item) {
-                if (item.discounts) {
-                  item.discounts.forEach(function(d) {
-                    if (names.indexOf(d.title) === -1) names.push(d.title);
-                  });
-                }
-              });
-            }
-            discountName.textContent = names.join(', ') || 'Discount';
-          }
+          // Aggregate discounts by title: title -> amount (in cents)
+          var discountMap = {};
+          (data.cart_level_discount_applications || []).forEach(function(d) {
+            var t = d.title || 'Discount';
+            discountMap[t] = (discountMap[t] || 0) + (d.total_allocated_amount || 0);
+          });
+          (data.items || []).forEach(function(item) {
+            (item.discounts || []).forEach(function(d) {
+              var t = d.title || 'Discount';
+              discountMap[t] = (discountMap[t] || 0) + (d.amount || 0);
+            });
+          });
+          var badgeSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>';
+          var html = '';
+          Object.keys(discountMap).forEach(function(title) {
+            var amt = discountMap[title];
+            if (amt <= 0) return;
+            html += '<div class="cart-discount-line">';
+            html += '<span class="cart-discount-line-left">';
+            html += '<span class="cart-discount-line-label">Discount</span>';
+            html += '<span class="cart-discount-line-badge">' + badgeSvg + '<span>' + title + '</span></span>';
+            html += '</span>';
+            html += '<span class="cart-discount-line-amount">-' + formatMoney(amt) + '</span>';
+            html += '</div>';
+          });
+          discountsContainer.innerHTML = html;
+          discountsContainer.style.display = '';
         } else {
-          discountLine.style.display = 'none';
+          discountsContainer.innerHTML = '';
+          discountsContainer.style.display = 'none';
         }
       }
 
