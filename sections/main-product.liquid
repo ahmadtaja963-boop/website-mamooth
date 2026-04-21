@@ -523,18 +523,27 @@
                             {%- if os[compare_key] != blank -%}<s class="offer-card__compare">${{ os[compare_key] }}</s>{%- endif -%}
                           </span>
                         </span>
-                        {%- comment -%} Bonuses inside card (tier mode) {%- endcomment -%}
-                        {%- assign has_bonuses = false -%}
-                        {%- for i in (1..5) -%}
-                          {%- assign bkey = bonus_prefix | append: i -%}
-                          {%- if os[bkey] != blank -%}{%- assign has_bonuses = true -%}{%- endif -%}
-                        {%- endfor -%}
-                        {%- if has_bonuses -%}
+                        {%- comment -%} Bonuses inside card (tier mode) — explicit keys to avoid Liquid dynamic-access quirks {%- endcomment -%}
+                        {%- capture bonus_list -%}
+                          {%- if n == 2 -%}
+                            {%- if os.option2_bonus1 != blank -%}{{ os.option2_bonus1 }}||{%- endif -%}
+                            {%- if os.option2_bonus2 != blank -%}{{ os.option2_bonus2 }}||{%- endif -%}
+                            {%- if os.option2_bonus3 != blank -%}{{ os.option2_bonus3 }}||{%- endif -%}
+                          {%- elsif n == 3 -%}
+                            {%- if os.option3_bonus1 != blank -%}{{ os.option3_bonus1 }}||{%- endif -%}
+                            {%- if os.option3_bonus2 != blank -%}{{ os.option3_bonus2 }}||{%- endif -%}
+                            {%- if os.option3_bonus3 != blank -%}{{ os.option3_bonus3 }}||{%- endif -%}
+                            {%- if os.option3_bonus4 != blank -%}{{ os.option3_bonus4 }}||{%- endif -%}
+                            {%- if os.option3_bonus5 != blank -%}{{ os.option3_bonus5 }}||{%- endif -%}
+                          {%- endif -%}
+                        {%- endcapture -%}
+                        {%- assign bonuses = bonus_list | split: '||' -%}
+                        {%- if bonuses.size > 0 -%}
                           <span class="offer-card__items">
-                            {%- for i in (1..5) -%}
-                              {%- assign bkey = bonus_prefix | append: i -%}
-                              {%- if os[bkey] != blank -%}
-                                {%- assign parts = os[bkey] | split: '|' -%}
+                            {%- for bonus in bonuses -%}
+                              {%- assign trimmed = bonus | strip -%}
+                              {%- if trimmed != blank -%}
+                                {%- assign parts = trimmed | split: '|' -%}
                                 <span class="offer-card__item">
                                   <span class="offer-card__item-left">
                                     <svg class="offer-card__check" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" style="color: var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
