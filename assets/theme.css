@@ -2622,13 +2622,14 @@ section { display: block; }
 
 .bogo-card__option-select {
   font-family: var(--font-body);
-  font-size: 0.82rem;
+  font-size: 16px; /* 16px minimum to prevent iOS Safari auto-zoom on focus */
   color: #1A2332;
   background: #FAFBFC;
   border: 1px solid #DDE4EA;
   border-radius: 8px;
   padding: 6px 28px 6px 10px;
   cursor: pointer;
+  touch-action: manipulation;
   appearance: none;
   -webkit-appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' stroke='%236B7B8D' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
@@ -2645,6 +2646,11 @@ section { display: block; }
 
 .bogo-card__variants--hidden {
   display: none;
+}
+
+/* Desktop: smaller select font once past the iOS auto-zoom concern */
+@media (min-width: 768px) {
+  .bogo-card__option-select { font-size: 0.82rem; }
 }
 
 .bogo-card__variant-num {
