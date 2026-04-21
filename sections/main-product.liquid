@@ -226,7 +226,11 @@
             <input type="hidden" name="id" value="{{ current_variant.id }}">
           {%- endif -%}
 
-          {%- unless product.has_only_default_variant -%}
+          {%- assign show_variant_block = false -%}
+          {%- if product.has_only_default_variant == false -%}{%- assign show_variant_block = true -%}{%- endif -%}
+          {%- if bogo_blocks.size > 0 -%}{%- assign show_variant_block = true -%}{%- endif -%}
+          {%- if offer_selector_blocks.size > 0 -%}{%- assign show_variant_block = true -%}{%- endif -%}
+          {%- if show_variant_block -%}
             {%- if bogo_blocks.size > 0 -%}
               {%- assign bogo_block = bogo_blocks.first -%}
               {%- assign bg = bogo_block.settings -%}
@@ -795,7 +799,7 @@
               {%- endfor -%}
             </div>
             {%- endif -%}
-          {%- endunless -%}
+          {%- endif -%}
 
           {%- comment -%} 7b. Size Chart button (above urgency counter) {%- endcomment -%}
           {%- if section.settings.size_chart_url != blank -%}
