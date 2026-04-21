@@ -2119,9 +2119,15 @@ section { display: block; }
 }
 
 
-/* ─── Judge.me Reviews Section ─── */
-.jdgm-review-widget {
-  padding: 1.25rem 1.5rem;
+/* ─── Judge.me Reviews — clean white bg, no custom padding ─── */
+.shopify-section--apps,
+.shopify-section--apps > div,
+.jdgm-widget,
+.jdgm-rev-widg,
+.jdgm-review-widget,
+.jdgm-all-reviews-page {
+  background: #ffffff !important;
+  padding: 0 !important;
 }
 
 /* ─── Gift Card ─── */

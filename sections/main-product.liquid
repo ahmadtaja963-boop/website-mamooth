@@ -153,7 +153,7 @@
         {%- if section.settings.show_judgeme_badge -%}
           <div class="product-review-badge" id="ProductReviewBadge">
             <!-- Start of Judge.me code -->
-            <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'>
+            <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'>
               {{ product.metafields.judgeme.badge }}
             </div>
             <!-- End of Judge.me code -->
