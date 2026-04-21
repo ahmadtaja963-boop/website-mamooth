@@ -813,12 +813,16 @@
             {%- endif -%}
           {%- endunless -%}
 
-          {%- comment -%} 7b. Urgency Counter (standalone block) {%- endcomment -%}
+          {%- comment -%} 7b. Urgency Counter (standalone block) — pulsing dot style, tight to CTA {%- endcomment -%}
           {%- for block in urgency_blocks -%}
             {%- assign uc = block.settings -%}
             {%- assign placeholder = '{count}' -%}
             <p class="urgency-counter" {{ block.shopify_attributes }}>
-              {%- if uc.icon != blank -%}<span class="urgency-counter__icon">{{ uc.icon }}</span>{%- endif -%}
+              {%- if uc.icon != blank -%}
+                <span class="urgency-counter__icon">{{ uc.icon }}</span>
+              {%- else -%}
+                <span class="urgency-counter__dot"></span>
+              {%- endif -%}
               <span class="urgency-counter__text">{{ uc.text | replace: placeholder, uc.count }}</span>
             </p>
           {%- endfor -%}
@@ -2005,21 +2009,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.4rem;
-    padding: 0.5rem 0.75rem;
-    margin: 0.75rem 0;
-    font-family: Inter, sans-serif;
-    font-size: 0.875rem;
-    color: #4A5568;
-    background: #F7FAFC;
-    border-radius: 8px;
+    gap: 8px;
+    margin: 4px 0 0;
+    padding: 6px 0 0;
+    font-family: var(--font-body, Inter, sans-serif);
+    font-size: 0.85rem;
+    color: #1A2332;
   }
   .urgency-counter__icon {
     font-size: 14px;
     line-height: 1;
+    flex-shrink: 0;
   }
-  .urgency-counter__text {
-    font-weight: 500;
+  .urgency-counter__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent, #C4944C);
+    flex-shrink: 0;
+    animation: urgency-pulse 2s ease-in-out infinite;
+  }
+  @keyframes urgency-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .urgency-counter__text strong {
+    font-weight: 700;
   }
   .offer-value-stack {
     background: linear-gradient(135deg, #FDF6EC 0%, #FAF3E0 100%);

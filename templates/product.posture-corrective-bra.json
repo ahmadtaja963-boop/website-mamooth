@@ -41,9 +41,9 @@
         "urgency_main": {
           "type": "urgency_counter",
           "settings": {
-            "icon": "🔥",
+            "icon": "",
             "count": "2847",
-            "text": "Sold {count} times this week"
+            "text": "Sold {count} times this week!"
           }
         },
         "offer_main": {
