@@ -165,7 +165,9 @@
         "show_delivery_estimate": false,
         "delivery_business_days": 7,
         "show_payment_icons": true,
-        "show_upsell": false
+        "show_upsell": false,
+        "size_chart_url": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/size-chart.jpg?v=1776789980",
+        "size_chart_label": "Size Chart"
       }
     },
     "you_may_also_like": {
