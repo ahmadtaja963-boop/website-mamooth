@@ -140,21 +140,7 @@ window.MammothTheme = (function () {
       }
     }
 
-    // Update discount line in footer
-    if (discountLine && discountName && discountAmount) {
-      if (currentTier && currentTier.percent > 0) {
-        var savedAmount = ((totalCents * currentTier.percent / 100) / 100).toFixed(2);
-        discountName.textContent = currentTier.label;
-        discountAmount.textContent = '-$' + savedAmount;
-        discountLine.style.display = '';
-      } else if (currentTier && currentTier.percent === 0) {
-        discountName.textContent = currentTier.label;
-        discountAmount.textContent = 'FREE';
-        discountLine.style.display = '';
-      } else {
-        discountLine.style.display = 'none';
-      }
-    }
+    /* Footer discount lines are now handled by buildCart() which reads actual applied discounts from /cart.js response — no need to duplicate here. */
   }
 
   /* ─── Cart Upsell from Product Template Settings ─── */
