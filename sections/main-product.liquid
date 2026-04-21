@@ -2315,6 +2315,33 @@
     .product-video-hero { min-height: 260px; }
     .product-video-hero__content { padding: 3.5rem 1.5rem; }
     .product-video-hero__title { font-size: clamp(2rem, 10vw, 3rem); }
+
+    /* FAQ — bump to 16px for readability + more comfortable padding */
+    .pfaq-heading { font-size: 1.1rem; padding: 1.1rem 1.25rem; }
+    .pfaq-list { padding: 0 1.25rem 0.5rem; }
+    .pfaq-item > summary { font-size: 1rem; padding: 1rem 0; gap: 1rem; }
+    .pfaq-answer-text { font-size: 0.95rem; line-height: 1.65; padding: 0 0 1rem; }
+    /* Specifications — same readability bump */
+    .more-info-title { font-size: 0.8rem; }
+    .more-info-content { font-size: 0.95rem; }
+  }
+
+  /* ── Judge.me review widget — match page gutters on mobile ── */
+  .jdgm-rev-widg,
+  .jdgm-widget.jdgm-rev-widg {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    box-sizing: border-box;
+  }
+  @media (min-width: 768px) {
+    .jdgm-rev-widg,
+    .jdgm-widget.jdgm-rev-widg {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
 
 </style>
