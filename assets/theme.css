@@ -167,6 +167,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── Announcement Bar ─── */
 .announcement-bar {
+  display: block;
   background: var(--color-bg-dark);
   color: #fff;
   padding: 0.6rem 0;
@@ -175,9 +176,13 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
 }
+.announcement-bar:hover { color: #fff; }
+a.product-card-info { color: inherit; text-decoration: none; }
+a.product-card-info:hover { color: inherit; }
 .announcement-marquee {
   position: relative;
   width: 100%;

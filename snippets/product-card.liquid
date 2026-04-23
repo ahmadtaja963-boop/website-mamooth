@@ -61,10 +61,8 @@
     </div>
   </a>
 
-  <div class="product-card-info">
-    <a href="{{ product_url }}">
-      <p class="product-card-title">{{ product.title }}</p>
-    </a>
+  <a href="{{ product_url }}" class="product-card-info" aria-label="{{ product.title | escape }}">
+    <p class="product-card-title">{{ product.title }}</p>
     <p class="product-card-price">
       {%- if product.compare_at_price > product.price -%}
         <s style="color:var(--color-text-muted);margin-right:.25rem;">{{ product.compare_at_price | money }}</s>
@@ -74,5 +72,5 @@
     <div class="product-card-stars" aria-label="4.5 out of 5 stars">
       ★★★★<span style="opacity:0.4;">★</span>
     </div>
-  </div>
+  </a>
 </div>
