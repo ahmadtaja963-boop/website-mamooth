@@ -3138,9 +3138,15 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
       setTimeout(syncFromActiveCard, 50);
     });
 
-    // Click handler — always scroll to the offer selector
+    // Click handler — scroll so the offer heading sits at the top of the viewport
     btnEl.addEventListener('click', function() {
-      offerSel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      var headerEl = document.querySelector('.site-header, .header, header');
+      var stickyTabs = document.getElementById('ProductTabsBar');
+      var topOffset = 16;
+      if (headerEl) topOffset += headerEl.getBoundingClientRect().height;
+      if (stickyTabs) topOffset += stickyTabs.getBoundingClientRect().height;
+      var targetY = offerSel.getBoundingClientRect().top + window.pageYOffset - topOffset;
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
     });
 
     // Find/shift any small fixed-position floating widget (Klaviyo, gift popups, chat bubbles)
