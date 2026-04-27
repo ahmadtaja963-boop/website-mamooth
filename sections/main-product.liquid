@@ -564,6 +564,17 @@
                     {%- assign compare_key = 'option' | append: n | append: '_compare' -%}
                     {%- assign qty_key = 'option' | append: n | append: '_qty' -%}
                     {%- assign tier_qty_num = os[qty_key] | default: n | plus: 0 -%}
+                    {%- comment -%} Tier price/compare: section setting wins; otherwise derive from Shopify variant × qty {%- endcomment -%}
+                    {%- assign tier_price_display = os[price_key] -%}
+                    {%- if tier_price_display == blank -%}
+                      {%- assign tier_price_cents = current_variant.price | times: tier_qty_num -%}
+                      {%- assign tier_price_display = tier_price_cents | money_without_currency -%}
+                    {%- endif -%}
+                    {%- assign tier_compare_display = os[compare_key] -%}
+                    {%- if tier_compare_display == blank and current_variant.compare_at_price > current_variant.price -%}
+                      {%- assign tier_compare_cents = current_variant.compare_at_price | times: tier_qty_num -%}
+                      {%- assign tier_compare_display = tier_compare_cents | money_without_currency -%}
+                    {%- endif -%}
                     {%- assign is_selected = false -%}
                     {%- if n == 2 -%}{%- assign is_selected = true -%}{%- endif -%}
                     {%- assign bonus_prefix = 'option' | append: n | append: '_bonus' -%}
@@ -579,8 +590,8 @@
                             {%- if os[sub_key] != blank -%}<span class="offer-card__sublabel">{{ os[sub_key] }}</span>{%- endif -%}
                           </span>
                           <span class="offer-card__prices">
-                            <span class="offer-card__price">${{ os[price_key] }}</span>
-                            {%- if os[compare_key] != blank -%}<s class="offer-card__compare">${{ os[compare_key] }}</s>{%- endif -%}
+                            <span class="offer-card__price">${{ tier_price_display }}</span>
+                            {%- if tier_compare_display != blank -%}<s class="offer-card__compare">${{ tier_compare_display }}</s>{%- endif -%}
                           </span>
                         </span>
                         {%- comment -%} Bonuses inside card (tier mode) — explicit keys to avoid Liquid dynamic-access quirks {%- endcomment -%}
@@ -3194,14 +3205,11 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
       io.observe(atcBtn);
     }
 
-    function shouldShift() {
-      return document.body.classList.contains('has-sticky-cta')
-          && !document.body.classList.contains('cart-is-open');
-    }
-
     // Re-scan after delays — third-party widgets often inject after page load
     [1000, 2500, 5000, 10000].forEach(function(ms) {
-      setTimeout(function() { if (shouldShift()) shiftWidgets(true); }, ms);
+      setTimeout(function() {
+        if (document.body.classList.contains('has-sticky-cta')) shiftWidgets(true);
+      }, ms);
     });
 
     // Watch for late-injected widgets (Klaviyo popups, gift apps, chat bubbles)
@@ -3210,26 +3218,12 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
       var mo = new MutationObserver(function() {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(function() {
-          if (shouldShift()) shiftWidgets(true);
+          if (document.body.classList.contains('has-sticky-cta')) shiftWidgets(true);
         }, 300);
       });
       mo.observe(document.body, { childList: true, subtree: true });
     }
 
-    // When cart drawer opens, hide widgets entirely (they'd otherwise stack on top of cart)
-    function setWidgetsHidden(hidden) {
-      findFloatingWidgets().forEach(function(el) {
-        if (hidden) el.style.setProperty('visibility', 'hidden', 'important');
-        else el.style.removeProperty('visibility');
-      });
-    }
-    document.addEventListener('cart:opened', function() {
-      setWidgetsHidden(true);
-    });
-    document.addEventListener('cart:closed', function() {
-      setWidgetsHidden(false);
-      if (shouldShift()) shiftWidgets(true);
-    });
   }
 
   /* ── Size Chart Modal ── */

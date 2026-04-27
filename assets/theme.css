@@ -1020,7 +1020,7 @@ section { display: block; }
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.5);
-  z-index: 100;
+  z-index: 10001;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
@@ -1036,7 +1036,7 @@ section { display: block; }
   width: 100%;
   max-width: 400px;
   background: var(--color-white);
-  z-index: 101;
+  z-index: 10002;
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
@@ -2876,8 +2876,6 @@ section { display: block; }
   gap: 10px;
 }
 .sticky-cta-bar.is-visible { display: flex; }
-body.cart-is-open .sticky-cta-bar,
-body.cart-is-open .sticky-cta-bar.is-visible { display: none !important; }
 
 .sticky-cta-bar__thumb {
   flex-shrink: 0;
