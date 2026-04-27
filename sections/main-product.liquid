@@ -491,9 +491,12 @@
                     {%- assign critical_threshold = sb.critical_threshold | default: 15 | plus: 0 -%}
                     {%- assign inv = current_variant.inventory_quantity | default: 0 -%}
                     <span class="product-stock-badge offer-selector__stock" id="ProductStockBadge" {{ block.shopify_attributes }}>
+                      {%- assign count_token = '{count}' -%}
+                      {%- assign low_text_resolved = sb.low_text | default: 'Low stock' | replace: count_token, inv -%}
+                      {%- assign in_stock_text_resolved = sb.in_stock_text | default: 'In stock' | replace: count_token, inv -%}
                       {%- if inv < critical_threshold -%}<span class="product-stock-badge__dot product-stock-badge__dot--red"></span><span class="product-stock-badge__text">{{ sb.critical_text | default: 'Only' }} {{ inv }} {{ sb.critical_suffix | default: 'left' }}</span>
-                      {%- elsif inv < low_threshold -%}<span class="product-stock-badge__dot product-stock-badge__dot--amber"></span><span class="product-stock-badge__text">{{ sb.low_text | default: 'Low stock' | replace: '{count}', inv }}</span>
-                      {%- else -%}<span class="product-stock-badge__dot product-stock-badge__dot--green"></span><span class="product-stock-badge__text">{{ sb.in_stock_text | default: 'In stock' | replace: '{count}', inv }}</span>
+                      {%- elsif inv < low_threshold -%}<span class="product-stock-badge__dot product-stock-badge__dot--amber"></span><span class="product-stock-badge__text">{{ low_text_resolved }}</span>
+                      {%- else -%}<span class="product-stock-badge__dot product-stock-badge__dot--green"></span><span class="product-stock-badge__text">{{ in_stock_text_resolved }}</span>
                       {%- endif -%}
                     </span>
                   {%- endfor -%}
