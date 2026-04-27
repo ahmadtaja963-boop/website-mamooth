@@ -3413,18 +3413,19 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
       "name": "Specs (all groups)",
       "limit": 1,
       "settings": [
+        { "type": "paragraph", "content": "Tip: content fields accept full HTML including <img> tags for size charts, diagrams, etc." },
         { "type": "header", "content": "Group 1" },
         { "type": "text", "id": "title_1", "label": "Title", "default": "Design" },
-        { "type": "richtext", "id": "content_1", "label": "Content" },
+        { "type": "html", "id": "content_1", "label": "Content (HTML allowed)" },
         { "type": "header", "content": "Group 2" },
         { "type": "text", "id": "title_2", "label": "Title" },
-        { "type": "richtext", "id": "content_2", "label": "Content" },
+        { "type": "html", "id": "content_2", "label": "Content (HTML allowed)" },
         { "type": "header", "content": "Group 3" },
         { "type": "text", "id": "title_3", "label": "Title" },
-        { "type": "richtext", "id": "content_3", "label": "Content" },
+        { "type": "html", "id": "content_3", "label": "Content (HTML allowed)" },
         { "type": "header", "content": "Group 4 (optional)" },
         { "type": "text", "id": "title_4", "label": "Title" },
-        { "type": "richtext", "id": "content_4", "label": "Content" }
+        { "type": "html", "id": "content_4", "label": "Content (HTML allowed)" }
       ]
     },
     {
