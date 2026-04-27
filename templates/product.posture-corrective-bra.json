@@ -51,13 +51,13 @@
           "settings": {
             "heading": "Choose Your Pack",
             "option1_label": "1 Bra",
-            "option1_sublabel": "",
+            "option1_sublabel": "Standard price + shipping",
             "option1_qty": "1",
             "option1_price": "",
             "option1_compare": "",
             "option1_discount_code": "",
             "option2_label": "2 Bras",
-            "option2_sublabel": "Most chosen · 2 FREE Gifts",
+            "option2_sublabel": "FREE shipping · 2 FREE gifts",
             "option2_badge": "MOST POPULAR",
             "option2_qty": "2",
             "option2_price": "49.99",
@@ -66,7 +66,7 @@
             "option2_bonus1": "Clover Necklace - Rose Gold|$14",
             "option2_bonus2": "Silk Travel Pouch|$12",
             "option3_label": "3 Bras",
-            "option3_sublabel": "Full bonus stack",
+            "option3_sublabel": "FREE shipping · 3 FREE gifts + VIP priority",
             "option3_badge": "BEST VALUE",
             "option3_qty": "3",
             "option3_price": "69.99",
@@ -75,6 +75,7 @@
             "option3_bonus1": "Clover Necklace - Rose Gold|$14",
             "option3_bonus2": "Silk Travel Pouch|$12",
             "option3_bonus3": "7-Day Perfect Posture Challenge|$47",
+            "option3_bonus4": "VIP 60-Day Keep-It Guarantee|$0",
             "show_trust_line": false
           }
         },
