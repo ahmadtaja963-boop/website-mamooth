@@ -2899,26 +2899,27 @@ section { display: block; }
 }
 .sticky-cta-bar__title {
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #1A2332;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.2;
 }
 .sticky-cta-bar__meta {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 0.7rem;
+  gap: 6px;
+  font-size: 0.85rem;
   color: #6B7B8D;
   margin: 0;
-  line-height: 1;
+  line-height: 1.2;
 }
 .sticky-cta-bar__stars {
   color: #F5A623;
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   letter-spacing: -0.5px;
 }
 .sticky-cta-bar__star-empty {
@@ -2967,8 +2968,9 @@ body.has-sticky-cta div[class*="kl-private-reset-css"] {
   }
 }
 .sticky-cta-bar__rating-text {
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   color: #6B7B8D;
+  font-weight: 500;
 }
 .sticky-cta-bar__pricing {
   display: flex;

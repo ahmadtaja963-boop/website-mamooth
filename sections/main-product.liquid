@@ -3144,25 +3144,31 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
         var s = getComputedStyle(el);
         if (s.position !== 'fixed') return;
         var r = el.getBoundingClientRect();
-        // Bottom-anchored, small (launcher-sized), not full-width (skip sticky bars/banners)
         if (r.bottom > barTop - 20 && r.width > 24 && r.width < 200 && r.height > 24 && r.height < 200) {
+          // Snapshot the exact style attribute before we touch it
           el.dataset.stickyShifted = 'measured';
-          el.dataset.stickyOriginalBottom = s.bottom;
-          el.style.transition = 'bottom 0.2s ease';
+          el.dataset.stickyOriginalStyle = el.getAttribute('style') || '__none__';
           widgets.push(el);
         }
       });
       return widgets;
     }
     function shiftWidgets(up) {
+      var bar = stickyBar.getBoundingClientRect();
+      // Position widgets so they sit ~halfway over the bar — close to the screen bottom
+      // but not fully covered by the bar. Tweak this single offset to taste.
+      var shiftPx = Math.max(20, Math.round(bar.height - 40));
       findFloatingWidgets().forEach(function(el) {
         if (up) {
-          var newBottom = stickyBar.getBoundingClientRect().height + 'px';
-          el.style.setProperty('bottom', newBottom, 'important');
+          el.style.setProperty('bottom', shiftPx + 'px', 'important');
+          el.style.setProperty('transition', 'bottom 0.2s ease');
         } else {
-          el.style.removeProperty('bottom');
-          if (el.dataset.stickyOriginalBottom) {
-            el.style.setProperty('bottom', el.dataset.stickyOriginalBottom, 'important');
+          // Restore the exact pre-shift inline style
+          var orig = el.dataset.stickyOriginalStyle;
+          if (orig === '__none__' || orig === undefined) {
+            el.removeAttribute('style');
+          } else {
+            el.setAttribute('style', orig);
           }
         }
       });
