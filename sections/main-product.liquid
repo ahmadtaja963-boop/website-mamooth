@@ -564,15 +564,15 @@
                     {%- assign compare_key = 'option' | append: n | append: '_compare' -%}
                     {%- assign qty_key = 'option' | append: n | append: '_qty' -%}
                     {%- assign tier_qty_num = os[qty_key] | default: n | plus: 0 -%}
-                    {%- comment -%} Tier price/compare: section setting wins; otherwise derive from Shopify variant × qty {%- endcomment -%}
+                    {%- comment -%} Price: section setting wins; else variant.price × qty. Compare: Tier 1 never; Tier 2/3 use variant.price × qty (the 'pay separately' anchor) {%- endcomment -%}
                     {%- assign tier_price_display = os[price_key] -%}
                     {%- if tier_price_display == blank -%}
                       {%- assign tier_price_cents = current_variant.price | times: tier_qty_num -%}
                       {%- assign tier_price_display = tier_price_cents | money_without_currency -%}
                     {%- endif -%}
                     {%- assign tier_compare_display = os[compare_key] -%}
-                    {%- if tier_compare_display == blank and current_variant.compare_at_price > current_variant.price -%}
-                      {%- assign tier_compare_cents = current_variant.compare_at_price | times: tier_qty_num -%}
+                    {%- if tier_compare_display == blank and tier_qty_num > 1 -%}
+                      {%- assign tier_compare_cents = current_variant.price | times: tier_qty_num -%}
                       {%- assign tier_compare_display = tier_compare_cents | money_without_currency -%}
                     {%- endif -%}
                     {%- assign is_selected = false -%}
