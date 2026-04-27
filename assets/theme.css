@@ -1572,16 +1572,6 @@ section { display: block; }
   width: 100%; height: 100%; object-fit: contain;
 }
 
-/* Mobile: cap hero image at 50vh so title + bullets fit above the fold */
-@media (max-width: 749px) {
-  .product-main-image {
-    aspect-ratio: auto;
-    max-height: 50vh;
-  }
-  .product-main-image img {
-    width: 100%; height: 50vh; object-fit: contain;
-  }
-}
 
 .gallery-nav {
   position: absolute;
