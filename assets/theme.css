@@ -2983,9 +2983,12 @@ section { display: block; }
 .sticky-cta-bar__btn:active { transform: scale(0.96); }
 .sticky-cta-bar__btn:hover { background: #A87D3E; }
 
-@media (max-width: 749px) {
-  body.has-sticky-cta { padding-bottom: 80px; }
-}
+body.has-sticky-cta { padding-bottom: 80px; }
 @media (min-width: 750px) {
-  .sticky-cta-bar, .sticky-cta-bar.is-visible { display: none !important; }
+  .sticky-cta-bar { padding: 12px 24px; gap: 16px; }
+  .sticky-cta-bar__thumb { width: 56px; height: 56px; }
+  .sticky-cta-bar__title { font-size: 0.95rem; }
+  .sticky-cta-bar__btn { min-width: 160px; padding: 14px 28px; }
+  .sticky-cta-bar__btn-price { font-size: 1.05rem; }
+  body.has-sticky-cta { padding-bottom: 96px; }
 }

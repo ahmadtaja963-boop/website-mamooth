@@ -3061,10 +3061,10 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
     }
   });
 
-  /* ── Sticky Bottom CTA Bar (mobile) ── */
+  /* ── Sticky Bottom CTA Bar (desktop + mobile, hidden when ATC in view) ── */
   var stickyBar = document.getElementById('StickyCtaBar');
   var offerSel = document.getElementById('OfferSelector');
-  if (stickyBar && offerSel && window.matchMedia('(max-width: 749px)').matches) {
+  if (stickyBar && offerSel) {
     var priceEl    = document.getElementById('StickyCtaPrice');
     var compareEl  = document.getElementById('StickyCtaCompare');
     var saveEl     = document.getElementById('StickyCtaSave');
