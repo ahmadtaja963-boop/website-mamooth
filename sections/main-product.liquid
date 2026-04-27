@@ -3194,11 +3194,14 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
       io.observe(atcBtn);
     }
 
+    function shouldShift() {
+      return document.body.classList.contains('has-sticky-cta')
+          && !document.body.classList.contains('cart-is-open');
+    }
+
     // Re-scan after delays — third-party widgets often inject after page load
     [1000, 2500, 5000, 10000].forEach(function(ms) {
-      setTimeout(function() {
-        if (document.body.classList.contains('has-sticky-cta')) shiftWidgets(true);
-      }, ms);
+      setTimeout(function() { if (shouldShift()) shiftWidgets(true); }, ms);
     });
 
     // Watch for late-injected widgets (Klaviyo popups, gift apps, chat bubbles)
@@ -3207,11 +3210,26 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
       var mo = new MutationObserver(function() {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(function() {
-          if (document.body.classList.contains('has-sticky-cta')) shiftWidgets(true);
+          if (shouldShift()) shiftWidgets(true);
         }, 300);
       });
       mo.observe(document.body, { childList: true, subtree: true });
     }
+
+    // When cart drawer opens, hide widgets entirely (they'd otherwise stack on top of cart)
+    function setWidgetsHidden(hidden) {
+      findFloatingWidgets().forEach(function(el) {
+        if (hidden) el.style.setProperty('visibility', 'hidden', 'important');
+        else el.style.removeProperty('visibility');
+      });
+    }
+    document.addEventListener('cart:opened', function() {
+      setWidgetsHidden(true);
+    });
+    document.addEventListener('cart:closed', function() {
+      setWidgetsHidden(false);
+      if (shouldShift()) shiftWidgets(true);
+    });
   }
 
   /* ── Size Chart Modal ── */

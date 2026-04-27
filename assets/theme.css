@@ -2876,6 +2876,8 @@ section { display: block; }
   gap: 10px;
 }
 .sticky-cta-bar.is-visible { display: flex; }
+body.cart-is-open .sticky-cta-bar,
+body.cart-is-open .sticky-cta-bar.is-visible { display: none !important; }
 
 .sticky-cta-bar__thumb {
   flex-shrink: 0;
