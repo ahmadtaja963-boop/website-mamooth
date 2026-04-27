@@ -1970,12 +1970,18 @@
 
   /* ── Social Proof ── */
   .product-social-proof {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
     color: var(--color-text-muted);
     margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @media (min-width: 480px) {
+    .product-social-proof { font-size: 0.7rem; letter-spacing: 0.12em; }
   }
 
   /* ── Shipping Text ── */
@@ -3156,9 +3162,13 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
     function shiftWidgets(up) {
       findFloatingWidgets().forEach(function(el) {
         if (up) {
-          el.style.bottom = (stickyBar.getBoundingClientRect().height + 8) + 'px';
+          var newBottom = (stickyBar.getBoundingClientRect().height + 8) + 'px';
+          el.style.setProperty('bottom', newBottom, 'important');
         } else {
-          el.style.bottom = el.dataset.stickyOriginalBottom || '';
+          el.style.removeProperty('bottom');
+          if (el.dataset.stickyOriginalBottom) {
+            el.style.setProperty('bottom', el.dataset.stickyOriginalBottom, 'important');
+          }
         }
       });
     }
@@ -3183,9 +3193,24 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
       io.observe(atcBtn);
     }
 
-    // Re-scan after a delay — third-party widgets often inject after page load
-    setTimeout(function() { if (document.body.classList.contains('has-sticky-cta')) shiftWidgets(true); }, 2000);
-    setTimeout(function() { if (document.body.classList.contains('has-sticky-cta')) shiftWidgets(true); }, 5000);
+    // Re-scan after delays — third-party widgets often inject after page load
+    [1000, 2500, 5000, 10000].forEach(function(ms) {
+      setTimeout(function() {
+        if (document.body.classList.contains('has-sticky-cta')) shiftWidgets(true);
+      }, ms);
+    });
+
+    // Watch for late-injected widgets (Klaviyo popups, gift apps, chat bubbles)
+    if ('MutationObserver' in window) {
+      var debounceTimer;
+      var mo = new MutationObserver(function() {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function() {
+          if (document.body.classList.contains('has-sticky-cta')) shiftWidgets(true);
+        }, 300);
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+    }
   }
 
   /* ── Size Chart Modal ── */
