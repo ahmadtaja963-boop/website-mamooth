@@ -12,21 +12,6 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "funnel_main": {
-          "type": "funnel_image",
-          "name": "A+ Content Funnel",
-          "settings": {
-            "funnel_alt": "Posture Corrective Bra — Full A+ Content",
-            "desktop_image": "shopify://shop_images/bra-aplus-b1-args-1-2-desktop.png",
-            "mobile_image": "shopify://shop_images/bra-aplus-b1-args-1-2-mobile.png",
-            "desktop_image_2": "shopify://shop_images/bra-aplus-b1-args-3-4-chest-desktop.png",
-            "mobile_image_2": "shopify://shop_images/bra-aplus-b1-args-3-4-chest-mobile.png",
-            "desktop_image_3": "shopify://shop_images/bra-aplus-b1-args-3-4-anatomy-desktop.png",
-            "mobile_image_3": "shopify://shop_images/bra-aplus-b1-args-3-4-anatomy-mobile.png",
-            "desktop_image_4": "shopify://shop_images/bra-aplus-b1-args-5-6-desktop.png",
-            "mobile_image_4": "shopify://shop_images/bra-aplus-b1-args-5-6-mobile.png"
-          }
-        },
         "stock_main": {
           "type": "stock_indicator",
           "settings": {
@@ -38,18 +23,46 @@
             "critical_threshold": 15
           }
         },
-        "urgency_main": {
-          "type": "urgency_counter",
+        "funnel_main": {
+          "type": "funnel_image",
+          "name": "A+ Content Funnel",
           "settings": {
-            "icon": "",
-            "count": "2847",
-            "text": "Sold {count} times this week!"
+            "funnel_color": "",
+            "funnel_alt": "Posture Corrective Bra — Full A+ Content",
+            "desktop_image": "shopify://shop_images/bra-aplus-b1-args-1-2-desktop.png",
+            "mobile_image": "shopify://shop_images/bra-aplus-b1-args-1-2-mobile.png",
+            "desktop_image_2": "shopify://shop_images/bra-aplus-b1-args-3-4-chest-desktop.png",
+            "mobile_image_2": "shopify://shop_images/bra-aplus-b1-args-3-4-chest-mobile.png",
+            "desktop_image_3": "shopify://shop_images/bra-aplus-b1-args-3-4-anatomy-desktop.png",
+            "mobile_image_3": "shopify://shop_images/bra-aplus-b1-args-3-4-anatomy-mobile.png",
+            "desktop_image_4": "shopify://shop_images/bra-aplus-b1-args-5-6-desktop.png",
+            "mobile_image_4": "shopify://shop_images/bra-aplus-b1-args-5-6-mobile.png"
+          }
+        },
+        "video_showcase_main": {
+          "type": "video_showcase",
+          "settings": {
+            "heading": "SEE IT IN ACTION",
+            "open_in_modal": true,
+            "video_url_1": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-bodysgmwh8l-7628060576660442399.mp4?v=1776727546",
+            "video_url_2": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-ibrastar02-7619202704509816095.mp4?v=1776727548",
+            "video_url_3": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-boudoirvibes-7621227179463970079.mp4?v=1776727550",
+            "video_url_4": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-xiaoyfgnuxy-7618664410189450527.mp4?v=1776727551"
+          }
+        },
+        "guarantee_main": {
+          "type": "guarantee_promise",
+          "settings": {
+            "label": "🛡️ THE PROMISE",
+            "headline": "Stand Tall or Your Money Back - 60 Days",
+            "body": "<p>Wear it for 30 days. If you don't feel your posture improving on the first wear - or at any point in the next 60 days you're not 100% happy - email us for a full refund. <strong>Keep the bras. Keep the bonuses. No questions.</strong></p>"
           }
         },
         "offer_main": {
           "type": "offer_selector",
           "settings": {
             "heading": "Choose Your Pack",
+            "deal_badge_text": "TODAY'S DEAL",
             "option1_label": "1 Bra",
             "option1_sublabel": "Standard Price + Shipping",
             "option1_qty": "1",
@@ -63,8 +76,6 @@
             "option2_price": "49.99",
             "option2_compare": "",
             "option2_discount_code": "",
-            "option2_bonus1": "Posture Correction Tape Strips|$14",
-            "option2_bonus2": "Silk Travel Pouch|$12",
             "option3_label": "3 Bras",
             "option3_sublabel": "Free Shipping + 3 FREE Gifts + VIP Priority",
             "option3_badge": "BEST VALUE",
@@ -72,11 +83,36 @@
             "option3_price": "69.99",
             "option3_compare": "",
             "option3_discount_code": "",
+            "option2_bonus1": "Posture Correction Tape Strips|$14",
+            "option2_bonus2": "Silk Travel Pouch|$12",
+            "option2_bonus3": "",
             "option3_bonus1": "Posture Correction Tape Strips|$14",
             "option3_bonus2": "Silk Travel Pouch|$12",
             "option3_bonus3": "7-Day Perfect Posture Challenge|$47",
             "option3_bonus4": "VIP 60-Day Keep-It Guarantee|$0",
-            "show_trust_line": false
+            "option3_bonus5": "",
+            "item1_name": "",
+            "item1_value": "",
+            "item1_free_label": "FREE",
+            "item2_name": "",
+            "item2_value": "",
+            "item2_free_label": "FREE",
+            "item3_name": "",
+            "item3_value": "",
+            "item3_free_label": "FREE",
+            "item4_name": "",
+            "item4_value": "",
+            "item4_free_label": "FREE",
+            "show_trust_line": false,
+            "trust_text": "Free Shipping • 30-Day Returns • 1-Year Warranty"
+          }
+        },
+        "urgency_main": {
+          "type": "urgency_counter",
+          "settings": {
+            "icon": "",
+            "count": "847",
+            "text": "Sold {count} times this week!"
           }
         },
         "info_tabs_main": {
@@ -112,42 +148,8 @@
             "q8": "What is your return policy?",
             "a8": "<p>We offer a 30-day no-questions-asked return policy. If you are not completely satisfied send it back for a full refund. Free shipping on all US orders.</p>"
           }
-        },
-        "video_showcase_main": {
-          "type": "video_showcase",
-          "settings": {
-            "heading": "SEE IT IN ACTION",
-            "open_in_modal": true,
-            "video_url_1": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-bodysgmwh8l-7628060576660442399.mp4?v=1776727546",
-            "video_url_2": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-ibrastar02-7619202704509816095.mp4?v=1776727548",
-            "video_url_3": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-boudoirvibes-7621227179463970079.mp4?v=1776727550",
-            "video_url_4": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-xiaoyfgnuxy-7618664410189450527.mp4?v=1776727551"
-          }
-        },
-        "value_stack_main": {
-          "type": "value_stack",
-          "settings": {
-            "heading": "🎁 YOUR 3-PACK INCLUDES",
-            "item1": "3 Posture Corrective Bras|$89.97",
-            "item2": "FREE Silk Travel Pouch|$12",
-            "item3": "FREE 30-Day Posture Guide (PDF)|$17",
-            "item4": "FREE 7-Day Perfect Posture Challenge (emails)|$47",
-            "item5": "60-Day Money-Back Guarantee|Priceless",
-            "total_value": "$165",
-            "your_price": "$69.99",
-            "you_save": "$95 (58%)"
-          }
-        },
-        "guarantee_main": {
-          "type": "guarantee_promise",
-          "settings": {
-            "label": "🛡️ THE PROMISE",
-            "headline": "Stand Tall or Your Money Back - 60 Days",
-            "body": "<p>Wear it for 30 days. If you don't feel your posture improving on the first wear - or at any point in the next 60 days you're not 100% happy - email us for a full refund. <strong>Keep the bras. Keep the bonuses. No questions.</strong></p>"
-          }
         }
       },
-
       "block_order": [
         "stock_main",
         "funnel_main",
@@ -167,6 +169,9 @@
         "delivery_business_days": 7,
         "show_payment_icons": true,
         "show_upsell": false,
+        "upsell_product": "",
+        "upsell_product_2": "",
+        "upsell_heading": "Others Like You Also Bought:",
         "size_chart_url": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/size-chart.jpg?v=1776789980",
         "size_chart_label": "Size Chart"
       }
@@ -174,7 +179,10 @@
     "you_may_also_like": {
       "type": "you-may-also-like",
       "settings": {
-        "heading": "You May Also Like"
+        "heading": "You May Also Like",
+        "product_1": "",
+        "product_2": "",
+        "product_3": ""
       }
     },
     "judgeme_reviews": {
@@ -202,4 +210,3 @@
     "judgeme_reviews"
   ]
 }
-
