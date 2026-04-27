@@ -3138,14 +3138,17 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
       setTimeout(syncFromActiveCard, 50);
     });
 
-    // Click handler — scroll so the offer heading sits at the top of the viewport
+    // Click handler — scroll so the real ATC button is at the bottom of the viewport
+    // (offer cards visible above it, sticky bar auto-hides since ATC is now in view)
     btnEl.addEventListener('click', function() {
-      var headerEl = document.querySelector('.site-header, .header, header');
-      var stickyTabs = document.getElementById('ProductTabsBar');
-      var topOffset = 16;
-      if (headerEl) topOffset += headerEl.getBoundingClientRect().height;
-      if (stickyTabs) topOffset += stickyTabs.getBoundingClientRect().height;
-      var targetY = offerSel.getBoundingClientRect().top + window.pageYOffset - topOffset;
+      var atc = document.querySelector('.product-atc-btn');
+      if (!atc) {
+        offerSel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+      var atcRect = atc.getBoundingClientRect();
+      // Place ATC ~80px above viewport bottom (thumb-reach margin)
+      var targetY = atcRect.top + window.pageYOffset - (window.innerHeight - atcRect.height - 80);
       window.scrollTo({ top: targetY, behavior: 'smooth' });
     });
 
