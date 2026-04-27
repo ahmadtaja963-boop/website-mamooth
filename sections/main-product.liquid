@@ -1533,7 +1533,7 @@
       </p>
     </div>
     <button type="button" class="sticky-cta-bar__btn" id="StickyCtaBtn" aria-label="Claim my offer">
-      <span class="sticky-cta-bar__btn-label">CLAIM MY OFFER →</span>
+      <span class="sticky-cta-bar__btn-label">CLAIM<br>MY OFFER →</span>
     </button>
   </div>
 {%- endif -%}
@@ -3131,6 +3131,38 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
       offerSel.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 
+    // Find/shift any small fixed-position floating widget (Klaviyo, gift popups, chat bubbles)
+    // sitting at the bottom corners — covers apps that use unpredictable selectors.
+    function findFloatingWidgets() {
+      var widgets = [];
+      var bar = stickyBar.getBoundingClientRect();
+      var barTop = window.innerHeight - bar.height;
+      document.querySelectorAll('body *').forEach(function(el) {
+        if (el === stickyBar || stickyBar.contains(el) || el.contains(stickyBar)) return;
+        if (el.dataset.stickyShifted === 'measured') { widgets.push(el); return; }
+        var s = getComputedStyle(el);
+        if (s.position !== 'fixed') return;
+        var r = el.getBoundingClientRect();
+        // Bottom-anchored, small (launcher-sized), not full-width (skip sticky bars/banners)
+        if (r.bottom > barTop - 20 && r.width > 24 && r.width < 200 && r.height > 24 && r.height < 200) {
+          el.dataset.stickyShifted = 'measured';
+          el.dataset.stickyOriginalBottom = s.bottom;
+          el.style.transition = 'bottom 0.2s ease';
+          widgets.push(el);
+        }
+      });
+      return widgets;
+    }
+    function shiftWidgets(up) {
+      findFloatingWidgets().forEach(function(el) {
+        if (up) {
+          el.style.bottom = (stickyBar.getBoundingClientRect().height + 8) + 'px';
+        } else {
+          el.style.bottom = el.dataset.stickyOriginalBottom || '';
+        }
+      });
+    }
+
     // Hide sticky bar when offer selector is fully visible (avoids covering ATC button)
     if ('IntersectionObserver' in window && atcBtn) {
       var io = new IntersectionObserver(function(entries) {
@@ -3139,15 +3171,21 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
             stickyBar.classList.remove('is-visible');
             stickyBar.setAttribute('aria-hidden','true');
             document.body.classList.remove('has-sticky-cta');
+            shiftWidgets(false);
           } else {
             stickyBar.classList.add('is-visible');
             stickyBar.setAttribute('aria-hidden','false');
             document.body.classList.add('has-sticky-cta');
+            shiftWidgets(true);
           }
         });
       }, { threshold: 0.5 });
       io.observe(atcBtn);
     }
+
+    // Re-scan after a delay — third-party widgets often inject after page load
+    setTimeout(function() { if (document.body.classList.contains('has-sticky-cta')) shiftWidgets(true); }, 2000);
+    setTimeout(function() { if (document.body.classList.contains('has-sticky-cta')) shiftWidgets(true); }, 5000);
   }
 
   /* ── Size Chart Modal ── */
