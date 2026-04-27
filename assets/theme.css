@@ -2938,7 +2938,7 @@ section { display: block; }
   opacity: 1;
 }
 
-/* Push floating launchers (Judge.me, Klaviyo, Smile, Tidio, etc.) above sticky CTA bar */
+/* Push floating launchers (Judge.me, Klaviyo, Smile, Tidio, etc.) just above sticky CTA bar */
 body.has-sticky-cta .jdgm-rev-launcher,
 body.has-sticky-cta .jdgm-revs-tab,
 body.has-sticky-cta #smile-ui-container,
@@ -2947,7 +2947,7 @@ body.has-sticky-cta #launcher,
 body.has-sticky-cta iframe[id^="klaviyo-form"],
 body.has-sticky-cta div[class*="needsclick"][class*="rounded-full"],
 body.has-sticky-cta div[class*="kl-private-reset-css"] {
-  bottom: 88px !important;
+  bottom: 8px !important;
   transition: bottom 0.2s ease;
 }
 @media (min-width: 750px) {
@@ -2959,7 +2959,7 @@ body.has-sticky-cta div[class*="kl-private-reset-css"] {
   body.has-sticky-cta iframe[id^="klaviyo-form"],
   body.has-sticky-cta div[class*="needsclick"][class*="rounded-full"],
   body.has-sticky-cta div[class*="kl-private-reset-css"] {
-    bottom: 104px !important;
+    bottom: 12px !important;
   }
 }
 .sticky-cta-bar__rating-text {
