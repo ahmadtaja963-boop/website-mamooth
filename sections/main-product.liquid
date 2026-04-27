@@ -1526,11 +1526,6 @@
         <span class="sticky-cta-bar__stars" aria-label="{{ jdg_rating_display }} out of 5 stars">{%- if jdg_full_stars > 0 -%}{%- for i in (1..jdg_full_stars) -%}★{%- endfor -%}{%- endif -%}{%- if jdg_has_half -%}<span class="sticky-cta-bar__star-half">★</span>{%- endif -%}{%- if jdg_empty_stars > 0 -%}{%- for i in (1..jdg_empty_stars) -%}<span class="sticky-cta-bar__star-empty">★</span>{%- endfor -%}{%- endif -%}</span>
         <span class="sticky-cta-bar__rating-text">{{ jdg_rating_display }} · {{ jdg_count }} reviews</span>
       </p>
-      <p class="sticky-cta-bar__pricing">
-        <span class="sticky-cta-bar__price" id="StickyCtaPrice">${{ os_b.option2_price | default: '49.99' }}</span>
-        <s class="sticky-cta-bar__compare" id="StickyCtaCompare">${{ os_b.option2_compare | default: '119.98' }}</s>
-        <span class="sticky-cta-bar__save" id="StickyCtaSave">Save $70</span>
-      </p>
     </div>
     <button type="button" class="sticky-cta-bar__btn" id="StickyCtaBtn" aria-label="Claim my offer">
       <span class="sticky-cta-bar__btn-label">CLAIM<br>MY OFFER →</span>
@@ -3162,7 +3157,7 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
     function shiftWidgets(up) {
       findFloatingWidgets().forEach(function(el) {
         if (up) {
-          var newBottom = (stickyBar.getBoundingClientRect().height + 8) + 'px';
+          var newBottom = stickyBar.getBoundingClientRect().height + 'px';
           el.style.setProperty('bottom', newBottom, 'important');
         } else {
           el.style.removeProperty('bottom');
