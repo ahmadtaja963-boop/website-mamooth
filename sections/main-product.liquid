@@ -3157,7 +3157,7 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
       var bar = stickyBar.getBoundingClientRect();
       // Position widgets so they sit ~halfway over the bar — close to the screen bottom
       // but not fully covered by the bar. Tweak this single offset to taste.
-      var shiftPx = Math.max(20, Math.round(bar.height - 40));
+      var shiftPx = Math.max(40, Math.round(bar.height - 20));
       findFloatingWidgets().forEach(function(el) {
         if (up) {
           el.style.setProperty('bottom', shiftPx + 'px', 'important');

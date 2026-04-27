@@ -2903,34 +2903,37 @@ section { display: block; }
   font-weight: 700;
   color: #1A2332;
   margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
 }
 .sticky-cta-bar__meta {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #6B7B8D;
   margin: 0;
   line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .sticky-cta-bar__stars {
   color: #F5A623;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   letter-spacing: -0.5px;
+  flex-shrink: 0;
 }
 .sticky-cta-bar__star-empty {
-  color: #F5A623;
-  opacity: 0.3;
+  color: rgba(245, 166, 35, 0.3);
 }
 .sticky-cta-bar__star-half {
   position: relative;
   display: inline-block;
-  color: #F5A623;
-  opacity: 0.3;
+  color: rgba(245, 166, 35, 0.3);
 }
 .sticky-cta-bar__star-half::before {
   content: '★';
@@ -2939,8 +2942,15 @@ section { display: block; }
   top: 0;
   width: 50%;
   overflow: hidden;
-  color: #F5A623;
-  opacity: 1;
+  color: rgba(245, 166, 35, 1);
+}
+.sticky-cta-bar__rating-text {
+  font-size: 0.75rem;
+  color: #6B7B8D;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Push floating launchers (Judge.me, Klaviyo, Smile, Tidio, etc.) just above sticky CTA bar */
@@ -2966,11 +2976,6 @@ body.has-sticky-cta div[class*="kl-private-reset-css"] {
   body.has-sticky-cta div[class*="kl-private-reset-css"] {
     bottom: 12px !important;
   }
-}
-.sticky-cta-bar__rating-text {
-  font-size: 0.85rem;
-  color: #6B7B8D;
-  font-weight: 500;
 }
 .sticky-cta-bar__pricing {
   display: flex;
