@@ -1489,17 +1489,37 @@
   </div>
 {%- endif -%}
 
-{%- comment -%} ── Sticky Bottom CTA Bar (mobile, when offer_selector exists) ── {%- endcomment -%}
+{%- comment -%} ── Sticky Bottom CTA Bar (Shrine-style: thumb + title + rating + price + big ATC) ── {%- endcomment -%}
 {%- if offer_selector_blocks.size > 0 -%}
   {%- assign os_b = offer_selector_blocks.first.settings -%}
+  {%- liquid
+    assign jdg_data = product.metafields.judgeme.review_widget_data.value
+    assign jdg_count = jdg_data.number_of_reviews | default: 192
+    assign jdg_rating = jdg_data.average_rating | default: 4.5
+    assign jdg_rating_display = jdg_rating | times: 1.0 | round: 1
+    assign sticky_thumb = product.featured_media.preview_image | image_url: width: 120
+  -%}
   <div class="sticky-cta-bar" id="StickyCtaBar" aria-hidden="true" hidden>
+    <a href="#OfferSelector" class="sticky-cta-bar__thumb" id="StickyCtaThumb" aria-label="Scroll to offer">
+      {%- if sticky_thumb != blank -%}
+        <img src="{{ sticky_thumb }}" alt="{{ product.title | escape }}" loading="lazy" width="48" height="48">
+      {%- endif -%}
+    </a>
     <div class="sticky-cta-bar__info">
-      <span class="sticky-cta-bar__label" id="StickyCtaLabel">{{ os_b.option2_label | default: '2 Pack' }}</span>
-      <span class="sticky-cta-bar__price" id="StickyCtaPrice">${{ os_b.option2_price | default: '49.99' }}</span>
-      <span class="sticky-cta-bar__save" id="StickyCtaSave">Save $10</span>
+      <p class="sticky-cta-bar__title">{{ product.title | truncatewords: 4, '' }}</p>
+      <p class="sticky-cta-bar__meta">
+        <span class="sticky-cta-bar__stars" aria-label="{{ jdg_rating_display }} out of 5 stars">★★★★<span style="opacity:.4">★</span></span>
+        <span class="sticky-cta-bar__rating-text">{{ jdg_rating_display }} · {{ jdg_count }} reviews</span>
+      </p>
+      <p class="sticky-cta-bar__pricing">
+        <span class="sticky-cta-bar__price" id="StickyCtaPrice">${{ os_b.option2_price | default: '49.99' }}</span>
+        <s class="sticky-cta-bar__compare" id="StickyCtaCompare">${{ os_b.option2_compare | default: '119.98' }}</s>
+        <span class="sticky-cta-bar__save" id="StickyCtaSave">Save $70</span>
+      </p>
     </div>
-    <button type="button" class="sticky-cta-bar__btn" id="StickyCtaBtn" aria-label="Claim offer">
-      CLAIM →
+    <button type="button" class="sticky-cta-bar__btn" id="StickyCtaBtn" aria-label="Add to cart">
+      <span class="sticky-cta-bar__btn-price" id="StickyCtaBtnPrice">${{ os_b.option2_price | default: '49.99' }}</span>
+      <span class="sticky-cta-bar__btn-label">CLAIM →</span>
     </button>
   </div>
 {%- endif -%}
@@ -3042,31 +3062,40 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
   var stickyBar = document.getElementById('StickyCtaBar');
   var offerSel = document.getElementById('OfferSelector');
   if (stickyBar && offerSel && window.matchMedia('(max-width: 749px)').matches) {
-    var labelEl = document.getElementById('StickyCtaLabel');
-    var priceEl = document.getElementById('StickyCtaPrice');
-    var saveEl  = document.getElementById('StickyCtaSave');
-    var btnEl   = document.getElementById('StickyCtaBtn');
-    var atcBtn  = document.querySelector('.product-atc-btn');
+    var priceEl    = document.getElementById('StickyCtaPrice');
+    var compareEl  = document.getElementById('StickyCtaCompare');
+    var saveEl     = document.getElementById('StickyCtaSave');
+    var btnEl      = document.getElementById('StickyCtaBtn');
+    var btnPriceEl = document.getElementById('StickyCtaBtnPrice');
+    var atcBtn     = document.querySelector('.product-atc-btn');
 
     function fmtPrice(p) { return '$' + (parseFloat(p) || 0).toFixed(2); }
 
     function syncFromActiveCard() {
       var active = offerSel.querySelector('.offer-card--selected');
       if (!active) return;
-      var tier = active.getAttribute('data-tier');
-      var label = (active.querySelector('.offer-card__label') || {}).textContent || (tier ? tier + ' Pack' : 'Selected');
       var priceText = (active.querySelector('.product-price-current') || active.querySelector('.offer-card__price-current') || {}).textContent || '';
       var compareText = (active.querySelector('.offer-card__price-compare') || active.querySelector('.product-price-compare') || {}).textContent || '';
-      // Try to extract numbers
       var priceMatch = priceText.match(/[\d.,]+/);
       var compareMatch = compareText.match(/[\d.,]+/);
-      labelEl.textContent = (label || '').trim();
-      if (priceMatch) priceEl.textContent = fmtPrice(priceMatch[0].replace(',',''));
+
+      if (priceMatch && priceEl) {
+        priceEl.textContent = fmtPrice(priceMatch[0].replace(',',''));
+        if (btnPriceEl) btnPriceEl.textContent = fmtPrice(priceMatch[0].replace(',',''));
+      }
+      if (compareMatch && compareEl) {
+        compareEl.textContent = fmtPrice(compareMatch[0].replace(',',''));
+        compareEl.style.display = '';
+      } else if (compareEl) {
+        compareEl.style.display = 'none';
+      }
       if (priceMatch && compareMatch) {
         var savings = parseFloat(compareMatch[0].replace(',','')) - parseFloat(priceMatch[0].replace(',',''));
-        if (savings > 0) { saveEl.textContent = 'Save $' + savings.toFixed(2); saveEl.style.display = ''; }
-        else { saveEl.style.display = 'none'; }
-      } else {
+        if (savings > 0 && saveEl) {
+          saveEl.textContent = 'Save $' + savings.toFixed(0);
+          saveEl.style.display = '';
+        } else if (saveEl) saveEl.style.display = 'none';
+      } else if (saveEl) {
         saveEl.style.display = 'none';
       }
     }
