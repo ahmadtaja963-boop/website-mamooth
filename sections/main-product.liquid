@@ -1532,9 +1532,8 @@
         <span class="sticky-cta-bar__save" id="StickyCtaSave">Save $70</span>
       </p>
     </div>
-    <button type="button" class="sticky-cta-bar__btn" id="StickyCtaBtn" aria-label="Add to cart">
-      <span class="sticky-cta-bar__btn-price" id="StickyCtaBtnPrice">${{ os_b.option2_price | default: '49.99' }}</span>
-      <span class="sticky-cta-bar__btn-label">CLAIM →</span>
+    <button type="button" class="sticky-cta-bar__btn" id="StickyCtaBtn" aria-label="Claim my offer">
+      <span class="sticky-cta-bar__btn-label">CLAIM MY OFFER →</span>
     </button>
   </div>
 {%- endif -%}
@@ -3127,17 +3126,9 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
       setTimeout(syncFromActiveCard, 50);
     });
 
-    // Click handler — scroll to offer + click ATC if already on offer
+    // Click handler — always scroll to the offer selector
     btnEl.addEventListener('click', function() {
-      var rect = offerSel.getBoundingClientRect();
-      var inView = rect.top >= 0 && rect.bottom <= window.innerHeight;
-      if (inView && atcBtn) {
-        // Already viewing offer: trigger ATC submit
-        atcBtn.click();
-      } else {
-        // Scroll to offer selector
-        offerSel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+      offerSel.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 
     // Hide sticky bar when offer selector is fully visible (avoids covering ATC button)
