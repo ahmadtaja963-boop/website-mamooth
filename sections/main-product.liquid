@@ -1489,6 +1489,21 @@
   </div>
 {%- endif -%}
 
+{%- comment -%} ── Sticky Bottom CTA Bar (mobile, when offer_selector exists) ── {%- endcomment -%}
+{%- if offer_selector_blocks.size > 0 -%}
+  {%- assign os_b = offer_selector_blocks.first.settings -%}
+  <div class="sticky-cta-bar" id="StickyCtaBar" aria-hidden="true" hidden>
+    <div class="sticky-cta-bar__info">
+      <span class="sticky-cta-bar__label" id="StickyCtaLabel">{{ os_b.option2_label | default: '2 Pack' }}</span>
+      <span class="sticky-cta-bar__price" id="StickyCtaPrice">${{ os_b.option2_price | default: '49.99' }}</span>
+      <span class="sticky-cta-bar__save" id="StickyCtaSave">Save $10</span>
+    </div>
+    <button type="button" class="sticky-cta-bar__btn" id="StickyCtaBtn" aria-label="Claim offer">
+      CLAIM →
+    </button>
+  </div>
+{%- endif -%}
+
 {%- comment -%} ── Tab Navigation ── {%- endcomment -%}
 {%- assign has_more_info = false -%}
 {%- if info_blocks.size > 0 or info_tabs_blocks.size > 0 -%}{%- assign has_more_info = true -%}{%- endif -%}
@@ -3022,6 +3037,81 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
       });
     }
   });
+
+  /* ── Sticky Bottom CTA Bar (mobile) ── */
+  var stickyBar = document.getElementById('StickyCtaBar');
+  var offerSel = document.getElementById('OfferSelector');
+  if (stickyBar && offerSel && window.matchMedia('(max-width: 749px)').matches) {
+    var labelEl = document.getElementById('StickyCtaLabel');
+    var priceEl = document.getElementById('StickyCtaPrice');
+    var saveEl  = document.getElementById('StickyCtaSave');
+    var btnEl   = document.getElementById('StickyCtaBtn');
+    var atcBtn  = document.querySelector('.product-atc-btn');
+
+    function fmtPrice(p) { return '$' + (parseFloat(p) || 0).toFixed(2); }
+
+    function syncFromActiveCard() {
+      var active = offerSel.querySelector('.offer-card--selected');
+      if (!active) return;
+      var tier = active.getAttribute('data-tier');
+      var label = (active.querySelector('.offer-card__label') || {}).textContent || (tier ? tier + ' Pack' : 'Selected');
+      var priceText = (active.querySelector('.product-price-current') || active.querySelector('.offer-card__price-current') || {}).textContent || '';
+      var compareText = (active.querySelector('.offer-card__price-compare') || active.querySelector('.product-price-compare') || {}).textContent || '';
+      // Try to extract numbers
+      var priceMatch = priceText.match(/[\d.,]+/);
+      var compareMatch = compareText.match(/[\d.,]+/);
+      labelEl.textContent = (label || '').trim();
+      if (priceMatch) priceEl.textContent = fmtPrice(priceMatch[0].replace(',',''));
+      if (priceMatch && compareMatch) {
+        var savings = parseFloat(compareMatch[0].replace(',','')) - parseFloat(priceMatch[0].replace(',',''));
+        if (savings > 0) { saveEl.textContent = 'Save $' + savings.toFixed(2); saveEl.style.display = ''; }
+        else { saveEl.style.display = 'none'; }
+      } else {
+        saveEl.style.display = 'none';
+      }
+    }
+
+    // Init
+    syncFromActiveCard();
+    stickyBar.removeAttribute('hidden');
+    stickyBar.setAttribute('aria-hidden','false');
+    stickyBar.classList.add('is-visible');
+    document.body.classList.add('has-sticky-cta');
+
+    // Re-sync when user changes tier
+    offerSel.addEventListener('click', function() {
+      setTimeout(syncFromActiveCard, 50);
+    });
+
+    // Click handler — scroll to offer + click ATC if already on offer
+    btnEl.addEventListener('click', function() {
+      var rect = offerSel.getBoundingClientRect();
+      var inView = rect.top >= 0 && rect.bottom <= window.innerHeight;
+      if (inView && atcBtn) {
+        // Already viewing offer: trigger ATC submit
+        atcBtn.click();
+      } else {
+        // Scroll to offer selector
+        offerSel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
+    // Hide sticky bar when offer selector is fully visible (avoids covering ATC button)
+    if ('IntersectionObserver' in window && atcBtn) {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            stickyBar.classList.remove('is-visible');
+            stickyBar.setAttribute('aria-hidden','true');
+          } else {
+            stickyBar.classList.add('is-visible');
+            stickyBar.setAttribute('aria-hidden','false');
+          }
+        });
+      }, { threshold: 0.5 });
+      io.observe(atcBtn);
+    }
+  }
 
   /* ── Size Chart Modal ── */
   var sizeChartModal = document.getElementById('SizeChartModal');

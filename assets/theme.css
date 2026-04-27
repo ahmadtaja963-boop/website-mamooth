@@ -1572,6 +1572,17 @@ section { display: block; }
   width: 100%; height: 100%; object-fit: contain;
 }
 
+/* Mobile: cap hero image at 50vh so title + bullets fit above the fold */
+@media (max-width: 749px) {
+  .product-main-image {
+    aspect-ratio: auto;
+    max-height: 50vh;
+  }
+  .product-main-image img {
+    width: 100%; height: 50vh; object-fit: contain;
+  }
+}
+
 .gallery-nav {
   position: absolute;
   inset: 0;
@@ -2854,4 +2865,78 @@ section { display: block; }
 .product-page:has(#OfferSelector) #ProductPrice,
 .product-page:has(.bogo-card) #ProductPrice {
   display: none !important;
+}
+
+/* ── Sticky bottom CTA bar (mobile only) ── */
+.sticky-cta-bar {
+  display: none; /* hidden by default; mobile media query enables */
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 9990;
+  background: #1A2332;
+  color: #fff;
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.25);
+  align-items: center;
+  gap: 12px;
+}
+.sticky-cta-bar.is-visible { display: flex; }
+.sticky-cta-bar__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  line-height: 1.2;
+}
+.sticky-cta-bar__label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+}
+.sticky-cta-bar__price {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  display: inline-block;
+}
+.sticky-cta-bar__save {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #C4944C;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.sticky-cta-bar__btn {
+  flex-shrink: 0;
+  padding: 12px 24px;
+  background: #C4944C;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .08s ease, background .15s ease;
+}
+.sticky-cta-bar__btn:active { transform: scale(0.96); }
+.sticky-cta-bar__btn:hover { background: #A87D3E; }
+
+/* Show only on mobile */
+@media (max-width: 749px) {
+  .sticky-cta-bar { /* will be flipped to flex via .is-visible JS */ }
+  /* Add bottom padding to body so sticky bar doesn't cover footer content */
+  body.has-sticky-cta { padding-bottom: 70px; }
+}
+
+/* Hide on desktop entirely */
+@media (min-width: 750px) {
+  .sticky-cta-bar, .sticky-cta-bar.is-visible { display: none !important; }
 }
