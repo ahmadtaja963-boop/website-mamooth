@@ -1,0 +1,77 @@
+{%- comment -%}
+  Country / Language selector — uses Shopify's native localization form.
+  Country dropdown shows: flag + country name + currency (e.g. "🇫🇷 France (EUR €)")
+  Language dropdown shows: native language name (e.g. "Deutsch", "Français", "English")
+{%- endcomment -%}
+
+<div class="locale-selector">
+  {%- form 'localization', id: 'FooterCountryForm', class: 'locale-selector__form' -%}
+    {%- if localization.available_countries.size > 1 -%}
+      <label class="locale-selector__group">
+        <span class="locale-selector__icon" aria-hidden="true">🌍</span>
+        <select name="country_code" class="locale-selector__select" aria-label="Country/region" onchange="this.form.submit()">
+          {%- for country in localization.available_countries -%}
+            <option value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} selected{% endif %}>
+              {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
+            </option>
+          {%- endfor -%}
+        </select>
+      </label>
+    {%- endif -%}
+  {%- endform -%}
+
+  {%- form 'localization', id: 'FooterLanguageForm', class: 'locale-selector__form' -%}
+    {%- if localization.available_languages.size > 1 -%}
+      <label class="locale-selector__group">
+        <span class="locale-selector__icon" aria-hidden="true">💬</span>
+        <select name="locale_code" class="locale-selector__select" aria-label="Language" onchange="this.form.submit()">
+          {%- for language in localization.available_languages -%}
+            <option value="{{ language.iso_code }}" lang="{{ language.iso_code }}"{% if language.iso_code == localization.language.iso_code %} selected{% endif %}>
+              {{ language.endonym_name | capitalize }}
+            </option>
+          {%- endfor -%}
+        </select>
+      </label>
+    {%- endif -%}
+  {%- endform -%}
+</div>
+
+<style>
+  .locale-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .locale-selector__form { margin: 0; padding: 0; }
+  .locale-selector__group {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .locale-selector__group:hover { background: rgba(255,255,255,0.12); }
+  .locale-selector__icon { font-size: 14px; line-height: 1; }
+  .locale-selector__select {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: 0.8125rem;
+    font-family: inherit;
+    cursor: pointer;
+    padding-right: 4px;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .locale-selector__select:focus { outline: none; }
+  .locale-selector__select option { color: #1a2332; background: #fff; }
+  @media (max-width: 480px) {
+    .locale-selector { flex-direction: column; align-items: flex-start; }
+  }
+</style>
