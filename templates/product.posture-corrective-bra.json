@@ -12,22 +12,10 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "stock_main": {
-          "type": "stock_indicator",
-          "settings": {
-            "in_stock_text": "IN STOCK",
-            "low_text": "LOW STOCK",
-            "critical_text": "Only",
-            "critical_suffix": "left",
-            "low_threshold": 50,
-            "critical_threshold": 15
-          }
-        },
         "funnel_main": {
           "type": "funnel_image",
           "name": "A+ Content Funnel",
           "settings": {
-            "funnel_color": "",
             "funnel_alt": "Posture Corrective Bra — Full A+ Content",
             "desktop_image": "shopify://shop_images/bra-aplus-b1-args-1-2-desktop.png",
             "mobile_image": "shopify://shop_images/bra-aplus-b1-args-1-2-mobile.png",
@@ -39,80 +27,55 @@
             "mobile_image_4": "shopify://shop_images/bra-aplus-b1-args-5-6-mobile.png"
           }
         },
-        "video_showcase_main": {
-          "type": "video_showcase",
+        "stock_main": {
+          "type": "stock_indicator",
           "settings": {
-            "heading": "SEE IT IN ACTION",
-            "open_in_modal": true,
-            "video_url_1": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-bodysgmwh8l-7628060576660442399.mp4?v=1776727546",
-            "video_url_2": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-ibrastar02-7619202704509816095.mp4?v=1776727548",
-            "video_url_3": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-boudoirvibes-7621227179463970079.mp4?v=1776727550",
-            "video_url_4": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-xiaoyfgnuxy-7618664410189450527.mp4?v=1776727551"
-          }
-        },
-        "guarantee_main": {
-          "type": "guarantee_promise",
-          "settings": {
-            "label": "🛡️ THE PROMISE",
-            "headline": "Stand Tall or Your Money Back - 60 Days",
-            "body": "<p>Wear it for 30 days. If you don't feel your posture improving on the first wear - or at any point in the next 60 days you're not 100% happy - email us for a full refund. <strong>Keep the bras. Keep the bonuses. No questions.</strong></p>"
-          }
-        },
-        "offer_main": {
-          "type": "offer_selector",
-          "settings": {
-            "heading": "Choose Your Pack",
-            "deal_badge_text": "TODAY'S DEAL",
-            "option1_label": "1 Bra",
-            "option1_sublabel": "Standard Price + Shipping",
-            "option1_qty": "1",
-            "option1_price": "",
-            "option1_compare": "",
-            "option1_discount_code": "",
-            "option2_label": "2 Bras",
-            "option2_sublabel": "Free Shipping + 2 FREE Gifts",
-            "option2_badge": "MOST POPULAR",
-            "option2_qty": "2",
-            "option2_price": "49.99",
-            "option2_compare": "",
-            "option2_discount_code": "",
-            "option3_label": "3 Bras",
-            "option3_sublabel": "Free Shipping + 3 FREE Gifts + VIP Priority",
-            "option3_badge": "BEST VALUE",
-            "option3_qty": "3",
-            "option3_price": "69.99",
-            "option3_compare": "",
-            "option3_discount_code": "",
-            "option2_bonus1": "Posture Correction Tape Strips|$14",
-            "option2_bonus2": "Silk Travel Pouch|$12",
-            "option2_bonus3": "",
-            "option3_bonus1": "Posture Correction Tape Strips|$14",
-            "option3_bonus2": "Silk Travel Pouch|$12",
-            "option3_bonus3": "7-Day Perfect Posture Challenge|$47",
-            "option3_bonus4": "VIP 60-Day Keep-It Guarantee|$0",
-            "option3_bonus5": "",
-            "item1_name": "",
-            "item1_value": "",
-            "item1_free_label": "FREE",
-            "item2_name": "",
-            "item2_value": "",
-            "item2_free_label": "FREE",
-            "item3_name": "",
-            "item3_value": "",
-            "item3_free_label": "FREE",
-            "item4_name": "",
-            "item4_value": "",
-            "item4_free_label": "FREE",
-            "show_trust_line": false,
-            "trust_text": "Free Shipping • 30-Day Returns • 1-Year Warranty"
+            "in_stock_text": "IN STOCK",
+            "low_text": "LOW STOCK",
+            "critical_text": "Only",
+            "critical_suffix": "left",
+            "low_threshold": 50,
+            "critical_threshold": 15
           }
         },
         "urgency_main": {
           "type": "urgency_counter",
           "settings": {
             "icon": "",
-            "count": "847",
+            "count": "2847",
             "text": "Sold {count} times this week!"
+          }
+        },
+        "offer_main": {
+          "type": "offer_selector",
+          "settings": {
+            "heading": "Choose Your Pack",
+            "option1_label": "1 Pack",
+            "option1_sublabel": "Save 50%",
+            "option1_qty": "1",
+            "option1_price": "29.99",
+            "option1_compare": "59.99",
+            "option1_discount_code": "",
+            "option2_label": "2 Pack",
+            "option2_sublabel": "Save $70 + FREE Bonuses",
+            "option2_badge": "MOST POPULAR",
+            "option2_qty": "2",
+            "option2_price": "49.99",
+            "option2_compare": "119.98",
+            "option2_discount_code": "",
+            "option2_bonus1": "Silk Travel Pouch|$12",
+            "option2_bonus2": "30-Day Posture Guide PDF|$17",
+            "option3_label": "3 Pack",
+            "option3_sublabel": "Save $110 + Full Bonus Stack",
+            "option3_badge": "BEST VALUE",
+            "option3_qty": "3",
+            "option3_price": "69.99",
+            "option3_compare": "179.97",
+            "option3_discount_code": "",
+            "option3_bonus1": "Silk Travel Pouch|$12",
+            "option3_bonus2": "30-Day Posture Guide PDF|$17",
+            "option3_bonus3": "7-Day Perfect Posture Challenge|$47",
+            "show_trust_line": false
           }
         },
         "info_tabs_main": {
@@ -121,7 +84,7 @@
             "title_1": "Details",
             "content_1": "<p><strong>Material:</strong> Soft Breathable Fabric (Nylon blend)<br><strong>Design:</strong> Wireless with moulded non-removable cups<br><strong>Support:</strong> Built-in posture correction back band<br><strong>Closure:</strong> Pull-over style<br><strong>Padding:</strong> Light moulded cups for natural shape<br><strong>Seamless:</strong> Yes — invisible under clothing<br><strong>Adjustable Straps:</strong> Yes</p>",
             "title_2": "Size Guide",
-            "content_2": "<p><strong>Choose by weight:</strong><br><strong>S:</strong> 42.5 to 50 kg (93 to 110 lbs)<br><strong>M:</strong> 50 to 57.5 kg (110 to 127 lbs)<br><strong>L:</strong> 57.5 to 65 kg (127 to 143 lbs)<br><strong>XL:</strong> 65 to 72.5 kg (143 to 160 lbs)<br><br>If between sizes or your daily bra size is larger, choose one size up for maximum comfort.</p><p><img src=\"https://cdn.shopify.com/s/files/1/0755/4111/9113/files/size-chart.jpg?v=1776789980\" alt=\"Posture Corrective Bra Size Chart\" class=\"more-info-size-chart-img\" loading=\"lazy\"></p>",
+            "content_2": "<p><strong>Choose by weight:</strong><br><strong>S:</strong> 42.5 to 50 kg (93 to 110 lbs)<br><strong>M:</strong> 50 to 57.5 kg (110 to 127 lbs)<br><strong>L:</strong> 57.5 to 65 kg (127 to 143 lbs)<br><strong>XL:</strong> 65 to 72.5 kg (143 to 160 lbs)<br><br>If between sizes or your daily bra size is larger, choose one size up for maximum comfort.</p><img src=\"https://cdn.shopify.com/s/files/1/0755/4111/9113/files/size-chart.jpg?v=1776789980\" alt=\"Posture Corrective Bra Size Chart\" class=\"more-info-size-chart-img\" loading=\"lazy\">",
             "title_3": "Shipping & Returns",
             "content_3": "<p><strong>Free shipping</strong> on all US orders.<br>Estimated delivery: 5-7 business days.<br><strong>30-day returns</strong> — no questions asked.<br>Contact us at support@mammothstore.com</p>",
             "title_4": "Care Instructions",
@@ -148,8 +111,42 @@
             "q8": "What is your return policy?",
             "a8": "<p>We offer a 30-day no-questions-asked return policy. If you are not completely satisfied send it back for a full refund. Free shipping on all US orders.</p>"
           }
+        },
+        "video_showcase_main": {
+          "type": "video_showcase",
+          "settings": {
+            "heading": "SEE IT IN ACTION",
+            "open_in_modal": true,
+            "video_url_1": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-bodysgmwh8l-7628060576660442399.mp4?v=1776727546",
+            "video_url_2": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-ibrastar02-7619202704509816095.mp4?v=1776727548",
+            "video_url_3": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-boudoirvibes-7621227179463970079.mp4?v=1776727550",
+            "video_url_4": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/tt-xiaoyfgnuxy-7618664410189450527.mp4?v=1776727551"
+          }
+        },
+        "value_stack_main": {
+          "type": "value_stack",
+          "settings": {
+            "heading": "🎁 YOUR 3-PACK INCLUDES",
+            "item1": "3 Posture Corrective Bras|$89.97",
+            "item2": "FREE Silk Travel Pouch|$12",
+            "item3": "FREE 30-Day Posture Guide (PDF)|$17",
+            "item4": "FREE 7-Day Perfect Posture Challenge (emails)|$47",
+            "item5": "60-Day Money-Back Guarantee|Priceless",
+            "total_value": "$165",
+            "your_price": "$69.99",
+            "you_save": "$95 (58%)"
+          }
+        },
+        "guarantee_main": {
+          "type": "guarantee_promise",
+          "settings": {
+            "label": "🛡️ THE PROMISE",
+            "headline": "Stand Tall or Your Money Back - 60 Days",
+            "body": "<p>Wear it for 30 days. If you don't feel your posture improving on the first wear - or at any point in the next 60 days you're not 100% happy - email us for a full refund. <strong>Keep the bras. Keep the bonuses. No questions.</strong></p>"
+          }
         }
       },
+
       "block_order": [
         "stock_main",
         "funnel_main",
@@ -169,9 +166,6 @@
         "delivery_business_days": 7,
         "show_payment_icons": true,
         "show_upsell": false,
-        "upsell_product": "",
-        "upsell_product_2": "",
-        "upsell_heading": "Others Like You Also Bought:",
         "size_chart_url": "https://cdn.shopify.com/s/files/1/0755/4111/9113/files/size-chart.jpg?v=1776789980",
         "size_chart_label": "Size Chart"
       }
@@ -179,10 +173,7 @@
     "you_may_also_like": {
       "type": "you-may-also-like",
       "settings": {
-        "heading": "You May Also Like",
-        "product_1": "",
-        "product_2": "",
-        "product_3": ""
+        "heading": "You May Also Like"
       }
     },
     "judgeme_reviews": {
@@ -210,3 +201,4 @@
     "judgeme_reviews"
   ]
 }
+
