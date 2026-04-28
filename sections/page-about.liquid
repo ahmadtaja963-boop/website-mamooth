@@ -5,43 +5,43 @@
     {%- if section.settings.hero_image != blank -%}
       <img
         src="{{ section.settings.hero_image | image_url: width: 2400 }}"
-        alt="DIAZ — Our Story"
+        alt="MAMMOTH — Our Story"
         class="about-hero__img"
         loading="eager"
       >
     {%- else -%}
-      <div class="about-hero__placeholder">[ Photo: Wide shot of tannery or Ecuadorian landscape ]</div>
+      <div class="about-hero__placeholder">[ Photo: Wide lifestyle shot — product detail or brand visual ]</div>
     {%- endif -%}
     <div class="about-hero__overlay">
-      <span class="about-eyebrow">Est. 1989 · Ecuador</span>
+      <span class="about-eyebrow">Built to endure</span>
       <h1 class="about-hero__title">Our Story</h1>
-      <p class="about-hero__sub">From a rented room in Ecuador to your hands.</p>
+      <p class="about-hero__sub">Built to last. Built for the long run.</p>
     </div>
   </div>
 
-  {%- comment -%} ── 2. THE ORIGIN — Patricio ── {%- endcomment -%}
+  {%- comment -%} ── 2. THE ORIGIN ── {%- endcomment -%}
   <section class="about-section about-section--white">
     <div class="container">
       <div class="about-split">
         <div class="about-split__text">
-          <span class="about-eyebrow about-eyebrow--dark">1989</span>
-          <h2 class="about-heading">A Man, a Dream,<br>and a Rented Room</h2>
-          <p class="about-body">In a small town in Ecuador, a man named Patricio Díaz started a tannery with nothing but his hands and a dream.</p>
-          <p class="about-body">He came from a humble family — no investors, no connections, no safety net. Just a rented room, a suitcase, and his wife by his side. Patricio was a chemist by trade, and he had one extraordinary gift: he knew how to turn raw hide into leather of exceptional quality. Not factory leather. Not synthetic leather. <em>Real</em> leather.</p>
-          <p class="about-body">Over three decades, Patricio built Tenería Díaz into the <strong>third-largest tannery in Ecuador.</strong> At its peak, eighty people worked the floor. Every piece of leather that left the plant carried his expertise — years of refining formulas, selecting the finest hides, perfecting the craft that most of the world has forgotten.</p>
+          <span class="about-eyebrow about-eyebrow--dark">The idea</span>
+          <h2 class="about-heading">A Mammoth Wasn't<br>Just Big</h2>
+          <p class="about-body">It was built to endure. Through ice ages, across continents, through conditions that wiped out everything else. That's the energy behind MAMMOTH.</p>
+          <p class="about-body">We started with a simple observation: most online stores feel disposable. Generic layouts, random products, zero personality. Cheap checkout experiences, thin product pages, and the quiet sense that nobody on the other end actually cares whether the thing shows up working.</p>
+          <p class="about-body">We wanted to build something different. A store that actually feels like a brand — a place where every product is curated, every detail is intentional, and every customer interaction builds trust.</p>
         </div>
         <div class="about-split__media">
           {%- if section.settings.photo_patricio != blank -%}
             <img
               src="{{ section.settings.photo_patricio | image_url: width: 900 }}"
-              alt="Patricio Díaz — Founder"
+              alt="MAMMOTH — The idea"
               class="about-split__img"
               loading="lazy"
             >
-            <p class="about-caption">Patricio Díaz, Founder — Tenería Díaz, 1989</p>
+            <p class="about-caption">Built to endure.</p>
           {%- else -%}
             <div class="about-photo-placeholder">
-              <span>📷 Photo: Patricio Díaz — founder portrait<br>or early tannery days</span>
+              <span>📷 Photo: Brand visual, lifestyle,<br>or hero product shot</span>
             </div>
           {%- endif -%}
         </div>
@@ -49,31 +49,31 @@
     </div>
   </section>
 
-  {%- comment -%} ── 3. STATS BAR ── {%- endcomment -%}
+  {%- comment -%} ── 3. STATS BAR — our values ── {%- endcomment -%}
   <section class="about-stats">
     <div class="container">
       <div class="about-stats__grid">
         <div class="about-stat">
-          <span class="about-stat__num">36</span>
-          <span class="about-stat__label">Years of expertise</span>
+          <span class="about-stat__num">01</span>
+          <span class="about-stat__label">Strength</span>
         </div>
         <div class="about-stat about-stat--divider">
-          <span class="about-stat__num">3rd</span>
-          <span class="about-stat__label">Largest tannery in Ecuador</span>
+          <span class="about-stat__num">02</span>
+          <span class="about-stat__label">Endurance</span>
         </div>
         <div class="about-stat about-stat--divider">
-          <span class="about-stat__num">80</span>
-          <span class="about-stat__label">Workers at its peak</span>
+          <span class="about-stat__num">03</span>
+          <span class="about-stat__label">Trust</span>
         </div>
         <div class="about-stat about-stat--divider">
-          <span class="about-stat__num">1</span>
-          <span class="about-stat__label">Family. Our family.</span>
+          <span class="about-stat__num">04</span>
+          <span class="about-stat__label">Vitality</span>
         </div>
       </div>
     </div>
   </section>
 
-  {%- comment -%} ── 4. THE STRUGGLE — photo + text ── {%- endcomment -%}
+  {%- comment -%} ── 4. WHAT WE STAND FOR ── {%- endcomment -%}
   <section class="about-section about-section--beige">
     <div class="container">
       <div class="about-split about-split--reverse">
@@ -81,54 +81,53 @@
           {%- if section.settings.photo_tannery != blank -%}
             <img
               src="{{ section.settings.photo_tannery | image_url: width: 900 }}"
-              alt="Tenería Díaz — tannery floor"
+              alt="MAMMOTH — What we stand for"
               class="about-split__img"
               loading="lazy"
             >
-            <p class="about-caption">Tenería Díaz, Ecuador</p>
+            <p class="about-caption">Real value. No junk.</p>
           {%- else -%}
             <div class="about-photo-placeholder">
-              <span>📷 Photo: Tannery floor, workers,<br>leather processing</span>
+              <span>📷 Photo: Lifestyle, product in use,<br>or brand moment</span>
             </div>
           {%- endif -%}
         </div>
         <div class="about-split__text">
-          <span class="about-eyebrow about-eyebrow--dark">The test</span>
-          <h2 class="about-heading">He Could Have<br>Closed the Doors</h2>
-          <p class="about-body">Then the market shifted. Cheap synthetic shoes flooded the country. Plastic replaced leather. Then COVID hit, and sales collapsed. The tannery went from sixty workers to twenty. There were months of loss, years of struggle.</p>
-          <p class="about-body">Patricio thought about closing the doors more than once. It would have been the easy choice.</p>
+          <span class="about-eyebrow about-eyebrow--dark">What we stand for</span>
+          <h2 class="about-heading">Strength Over Hype.<br>Substance Over Noise.</h2>
+          <p class="about-body"><strong>Strength</strong> — we don't list junk. If a product can't hold up to our own testing, it doesn't make the catalog. Real value, priced honestly.</p>
+          <p class="about-body"><strong>Endurance</strong> — we think in years, not weeks. That goes for the products we pick, the brand we're building, and the relationship we want with every person who orders.</p>
           <blockquote class="about-quote">
-            "But he couldn't leave his people behind. So he kept going."
+            "If it's not built to last, it doesn't belong here."
           </blockquote>
         </div>
       </div>
     </div>
   </section>
 
-  {%- comment -%} ── 5. NEXT GENERATION — Sebastián ── {%- endcomment -%}
+  {%- comment -%} ── 5. HOW WE CURATE ── {%- endcomment -%}
   <section class="about-section about-section--white">
     <div class="container">
       <div class="about-split">
         <div class="about-split__text">
-          <span class="about-eyebrow about-eyebrow--dark">The next generation</span>
-          <h2 class="about-heading">We Started in a Corner<br>of a Room</h2>
-          <p class="about-body">I'm Sebastián Díaz, Patricio's son. When I saw the tannery struggling, I saw something else too: an opportunity. We had decades of expertise. We had the leather. We had the craft. What we didn't have was a direct connection to the people who would actually <em>use</em> what we make.</p>
-          <p class="about-body">So my wife and I started DIAZ.</p>
-          <p class="about-body">We began in less than two meters by two meters. One sewing machine. No employees. We worked until dawn, every night, cutting and stitching wallets by hand. The smell of leather filled the room. Our hands ached. People who promised to help disappeared. But we didn't stop.</p>
-          <p class="about-body">Slowly, we grew. First the two of us. Then three. Then five. Today, we design and craft every DIAZ product ourselves, using leather made in our own family tannery, and ship directly to the United States.</p>
+          <span class="about-eyebrow about-eyebrow--dark">How we curate</span>
+          <h2 class="about-heading">Every Product,<br>On Purpose.</h2>
+          <p class="about-body">We don't chase trends and we don't stock everything. Each product in the MAMMOTH catalog earns its spot through a simple filter: does this actually make someone's day better?</p>
+          <p class="about-body">We test before we list. We read the reviews. We run the numbers. If something sounds great on paper but falls apart in real use, it's out — no matter how good the margin looks.</p>
+          <p class="about-body">What's left is a small, intentional collection of wellness-leaning goods built to earn a permanent spot in your day-to-day.</p>
         </div>
         <div class="about-split__media">
           {%- if section.settings.photo_sebastian != blank -%}
             <img
               src="{{ section.settings.photo_sebastian | image_url: width: 900 }}"
-              alt="Sebastián Díaz — Co-Founder"
+              alt="MAMMOTH — How we curate"
               class="about-split__img"
               loading="lazy"
             >
-            <p class="about-caption">Sebastián & wife — the first workshop</p>
+            <p class="about-caption">Curated, not stocked.</p>
           {%- else -%}
             <div class="about-photo-placeholder">
-              <span>📷 Photo: Sebastián + wife in first workshop,<br>sewing machine, early products</span>
+              <span>📷 Photo: Product flat lay,<br>detail shot, or workspace</span>
             </div>
           {%- endif -%}
         </div>
@@ -136,33 +135,33 @@
     </div>
   </section>
 
-  {%- comment -%} ── 6. THE TRUTH — dark section ── {%- endcomment -%}
+  {%- comment -%} ── 6. WHO WE'RE FOR — dark section ── {%- endcomment -%}
   <section class="about-section about-section--dark">
     <div class="container about-truth">
-      <span class="about-eyebrow">The truth</span>
-      <h2 class="about-heading about-heading--light">The Leather Goods Market<br>Is Full of Lies</h2>
-      <p class="about-body about-body--light">Brands that call plastic "vegan leather" and charge premium prices. Wallets that peel in three months. "Genuine leather" labels slapped on the lowest grade material money can buy. Fake reviews. Fake stories. Fake everything.</p>
+      <span class="about-eyebrow">Who we're for</span>
+      <h2 class="about-heading about-heading--light">Built for People Who<br>Care About the Details</h2>
+      <p class="about-body about-body--light">The health-conscious. The quietly ambitious. People who read the label, compare the specs, and don't mind paying a little more for something that works properly the first time.</p>
 
       <div class="about-truth__grid">
         <div class="about-truth__card">
-          <h3>Chinese PU Leather</h3>
-          <p>Basically plastic disguised as leather. Sold at impossibly low prices. Peels in months. Destroys consumer trust.</p>
+          <h3>Strength</h3>
+          <p>Real value. No junk. Products that hold up in daily use, not just in the unboxing video.</p>
         </div>
         <div class="about-truth__card about-truth__card--highlight">
-          <h3>DIAZ — Full Grain<br>Andean Cowhide</h3>
-          <p>Real leather from real Andean cattle. Cold climate. Fewer scars. Dense grain. Ages with elegance, not deterioration.</p>
+          <h3>Endurance</h3>
+          <p>Long-run thinking. We'd rather ship fewer products and stand behind each one than flood the catalog with filler.</p>
         </div>
         <div class="about-truth__card">
-          <h3>Indian Buffalo Leather</h3>
-          <p>Coarse, stiff grain. Tropical parasites leave hides covered in scars. Sold "distressed" to hide imperfections — not for style.</p>
+          <h3>Trust &amp; Vitality</h3>
+          <p>Clean design, honest copy, fast support. Goods that lean into wellness, energy, and everyday performance.</p>
         </div>
       </div>
 
-      <p class="about-truth__kicker">Our leather doesn't need to hide anything.<br>What you see is what you get.</p>
+      <p class="about-truth__kicker">Confident but not arrogant.<br>Clean but not cold.</p>
     </div>
   </section>
 
-  {%- comment -%} ── 7. THE LEATHER — quality deep dive ── {%- endcomment -%}
+  {%- comment -%} ── 7. HOW WE OPERATE ── {%- endcomment -%}
   <section class="about-section about-section--beige">
     <div class="container">
       <div class="about-split about-split--reverse">
@@ -170,45 +169,45 @@
           {%- if section.settings.photo_leather != blank -%}
             <img
               src="{{ section.settings.photo_leather | image_url: width: 900 }}"
-              alt="Full grain Andean leather — DIAZ"
+              alt="MAMMOTH — How we operate"
               class="about-split__img"
               loading="lazy"
             >
-            <p class="about-caption">Full grain Andean cowhide — Tenería Díaz</p>
+            <p class="about-caption">Fast, clean, honest.</p>
           {%- else -%}
             <div class="about-photo-placeholder">
-              <span>📷 Photo: Close-up of leather texture,<br>grain detail, natural surface</span>
+              <span>📷 Photo: Packaging, shipping,<br>or behind-the-scenes detail</span>
             </div>
           {%- endif -%}
         </div>
         <div class="about-split__text">
-          <span class="about-eyebrow about-eyebrow--dark">The leather</span>
-          <h2 class="about-heading">Full Grain. Andean Cattle.<br>36 Years of Expertise.</h2>
-          <p class="about-body"><strong>Full grain</strong> means the complete outer surface of the hide, with all its natural fiber structure intact. No sanding. No correcting. No plastic coating on top. This separates us from 90% of "leather" products on the market.</p>
-          <p class="about-body">Our leather comes from <strong>Andean cattle</strong> — a breed that has adapted to high altitude and cold climate over 500+ years. Cold climate means fewer parasites, fewer ticks, fewer scars. The result is a naturally cleaner, smoother hide that doesn't need artificial treatment to look beautiful.</p>
-          <p class="about-body">In towns like Cotacachi, indigenous families have kept ancestral tanning traditions alive for over a century. We work within that tradition, selecting the finest hides and processing them with decades of chemical expertise passed down in our family.</p>
-          <p class="about-body">It ages beautifully. It develops a patina that tells <em>your</em> story. It doesn't peel. It doesn't crack. It lasts.</p>
+          <span class="about-eyebrow about-eyebrow--dark">How we operate</span>
+          <h2 class="about-heading">Free US Shipping.<br>Straightforward Returns.</h2>
+          <p class="about-body"><strong>Free shipping</strong> on every US order — no minimums, no games. Orders ship within 1–3 business days and typically arrive in 5–7.</p>
+          <p class="about-body"><strong>30-day returns</strong> on unused items. If something arrives damaged or isn't what you expected, we fix it. One email, one reply, no runaround.</p>
+          <p class="about-body"><strong>Real support</strong>. A person reads every message that comes into <a href="mailto:support@mammothstore.com">support@mammothstore.com</a>, usually within 24 hours on business days. If we made a mistake, we own it and make it right.</p>
+          <p class="about-body">That's the whole model: good products, clean experience, honest service. Nothing more complicated than that.</p>
         </div>
       </div>
     </div>
   </section>
 
-  {%- comment -%} ── 8. CLOSING — Real Leather. Real Story. Real Value. ── {%- endcomment -%}
+  {%- comment -%} ── 8. CLOSING ── {%- endcomment -%}
   <section class="about-closing">
     {%- if section.settings.photo_closing != blank -%}
       <img
         src="{{ section.settings.photo_closing | image_url: width: 2400 }}"
-        alt="DIAZ — Real Leather"
+        alt="MAMMOTH — Built to endure"
         class="about-closing__img"
         loading="lazy"
       >
     {%- else -%}
-      <div class="about-closing__placeholder">[ Photo: Products laid out, team, or tannery — wide shot ]</div>
+      <div class="about-closing__placeholder">[ Photo: Wide brand visual — lifestyle, product, or landscape ]</div>
     {%- endif -%}
     <div class="about-closing__overlay">
-      <p class="about-closing__tagline">Real Leather. Real Story. Real Value.</p>
-      <p class="about-closing__body">The name DIAZ is my father's name. It represents everything he built, every sacrifice he made, every worker he refused to let go. When you hold a DIAZ product, you're holding a piece of that legacy.</p>
-      <p class="about-closing__sig">— Sebastián Díaz, Founder</p>
+      <p class="about-closing__tagline">Built to endure. Built to last.</p>
+      <p class="about-closing__body">MAMMOTH is a small team obsessed with getting the details right. The products, the packaging, the emails, the post-purchase experience — all of it. We're building the kind of store we'd want to buy from.</p>
+      <p class="about-closing__sig">— The MAMMOTH Team</p>
       <a href="/collections/all" class="btn about-closing__btn">Shop the Collection</a>
     </div>
   </section>
@@ -521,7 +520,7 @@
       "type": "image_picker",
       "id": "hero_image",
       "label": "Hero image",
-      "info": "Wide shot — tannery exterior, Ecuadorian landscape, or team photo. Recommended: 2400×1400px."
+      "info": "Wide brand or lifestyle shot. Recommended: 2400x1400px."
     },
     {
       "type": "header",
@@ -530,32 +529,32 @@
     {
       "type": "image_picker",
       "id": "photo_patricio",
-      "label": "Photo: Patricio Díaz",
-      "info": "Portrait of Patricio, or early tannery days. Recommended: portrait orientation."
+      "label": "Photo: The idea section",
+      "info": "Brand visual or hero product. Portrait orientation recommended."
     },
     {
       "type": "image_picker",
       "id": "photo_tannery",
-      "label": "Photo: Tannery floor",
-      "info": "Workers, machines, leather processing inside the tannery."
+      "label": "Photo: What we stand for",
+      "info": "Lifestyle, product in use, or brand moment."
     },
     {
       "type": "image_picker",
       "id": "photo_sebastian",
-      "label": "Photo: Sebastián & first workshop",
-      "info": "Sebastián and wife in the first workspace, sewing machine, early products."
+      "label": "Photo: How we curate",
+      "info": "Product flat lay, detail shot, or workspace."
     },
     {
       "type": "image_picker",
       "id": "photo_leather",
-      "label": "Photo: Leather texture close-up",
-      "info": "Macro shot of full grain leather — grain detail, natural surface, color."
+      "label": "Photo: How we operate",
+      "info": "Packaging, shipping, or behind-the-scenes detail."
     },
     {
       "type": "image_picker",
       "id": "photo_closing",
       "label": "Photo: Closing image",
-      "info": "Products laid out, team photo, or wide tannery shot. Full-width."
+      "info": "Wide full-width brand visual."
     }
   ]
 }

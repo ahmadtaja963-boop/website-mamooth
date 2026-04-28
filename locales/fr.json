@@ -91,5 +91,44 @@
     "open_menu": "Ouvrir le menu",
     "open_cart": "Ouvrir le panier",
     "close_cart": "Fermer le panier"
+  },
+  "header": {
+    "announcement_1": "🔥 SOLDES DE PRINTEMPS : JUSQU'À -60% + LIVRAISON GRATUITE 🔥",
+    "announcement_2": "⭐ 4,8/5 ÉTOILES — PLUS DE 500 CLIENTES SATISFAITES ⭐",
+    "announcement_3": "🛡️ 100% SATISFAITE OU REMBOURSÉE 🛡️",
+    "nav": {
+      "shop": "Boutique",
+      "wellness": "Bien-être",
+      "skincare": "Soins de la peau",
+      "fitness": "Fitness",
+      "lifestyle": "Lifestyle",
+      "about": "À propos"
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "heading": "Rejoignez la Horde",
+      "body": "Nouveautés, offres exclusives et conseils bien-être — directement dans votre boîte mail."
+    },
+    "support": {
+      "heading": "Support",
+      "contact": "Nous contacter",
+      "shipping": "Livraison & Expédition",
+      "returns": "Retours & Remboursements",
+      "faq": "FAQ"
+    },
+    "company": {
+      "heading": "Entreprise",
+      "about": "À propos de MAMMOTH",
+      "terms": "Conditions d'utilisation",
+      "privacy": "Politique de confidentialité"
+    },
+    "social": {
+      "heading": "Suivez-nous"
+    },
+    "copyright": {
+      "rights": "Tous droits réservés.",
+      "tagline": "Conçu pour durer."
+    }
   }
 }

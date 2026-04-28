@@ -83,5 +83,44 @@
     "open_menu": "Open menu",
     "open_cart": "Open cart",
     "close_cart": "Close cart"
+  },
+  "header": {
+    "announcement_1": "🔥 SPRING SALE: UP TO 60% OFF + FREE SHIPPING 🔥",
+    "announcement_2": "⭐ 4.8/5 STARS — 500+ HAPPY CUSTOMERS ⭐",
+    "announcement_3": "🛡️ 100% SATISFACTION OR YOUR MONEY BACK 🛡️",
+    "nav": {
+      "shop": "Shop",
+      "wellness": "Wellness",
+      "skincare": "Skincare",
+      "fitness": "Fitness",
+      "lifestyle": "Lifestyle",
+      "about": "About"
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "heading": "Stay in the Herd",
+      "body": "New arrivals, exclusive deals, and wellness tips — straight to your inbox."
+    },
+    "support": {
+      "heading": "Support",
+      "contact": "Contact Us",
+      "shipping": "Shipping & Delivery",
+      "returns": "Returns & Refunds",
+      "faq": "FAQ"
+    },
+    "company": {
+      "heading": "Company",
+      "about": "About MAMMOTH",
+      "terms": "Terms of Use",
+      "privacy": "Privacy Policy"
+    },
+    "social": {
+      "heading": "Follow Us"
+    },
+    "copyright": {
+      "rights": "All rights reserved.",
+      "tagline": "Built to last."
+    }
   }
 }

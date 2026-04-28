@@ -3,11 +3,11 @@
   <div class="announcement-marquee">
     <div class="announcement-marquee__track">
       {%- for i in (1..2) -%}
-        <span class="announcement-marquee__item">{{ section.settings.announcement_1 | default: '🔥 SPRING SALE: UP TO 60% OFF + FREE SHIPPING 🔥' }}</span>
+        <span class="announcement-marquee__item">{% if section.settings.announcement_1 != blank %}{{ section.settings.announcement_1 }}{% else %}{{ 'header.announcement_1' | t }}{% endif %}</span>
         <span class="announcement-marquee__sep">✦</span>
-        <span class="announcement-marquee__item">{{ section.settings.announcement_2 | default: '⭐ 4.8/5 STARS — 500+ HAPPY CUSTOMERS ⭐' }}</span>
+        <span class="announcement-marquee__item">{% if section.settings.announcement_2 != blank %}{{ section.settings.announcement_2 }}{% else %}{{ 'header.announcement_2' | t }}{% endif %}</span>
         <span class="announcement-marquee__sep">✦</span>
-        <span class="announcement-marquee__item">{{ section.settings.announcement_3 | default: '🛡️ 100% SATISFACTION OR YOUR MONEY BACK 🛡️' }}</span>
+        <span class="announcement-marquee__item">{% if section.settings.announcement_3 != blank %}{{ section.settings.announcement_3 }}{% else %}{{ 'header.announcement_3' | t }}{% endif %}</span>
         <span class="announcement-marquee__sep">✦</span>
       {%- endfor -%}
     </div>
@@ -34,12 +34,12 @@
 
     {%- comment -%} Center nav (desktop) {%- endcomment -%}
     <nav class="header-nav" aria-label="Main navigation">
-      <a href="/collections/all">Shop</a>
-      <a href="/collections/wellness">Wellness</a>
-      <a href="/collections/skincare">Skincare</a>
-      <a href="/collections/fitness">Fitness</a>
-      <a href="/collections/lifestyle">Lifestyle</a>
-      <a href="/pages/about">About</a>
+      <a href="/collections/all">{{ 'header.nav.shop' | t }}</a>
+      <a href="/collections/wellness">{{ 'header.nav.wellness' | t }}</a>
+      <a href="/collections/skincare">{{ 'header.nav.skincare' | t }}</a>
+      <a href="/collections/fitness">{{ 'header.nav.fitness' | t }}</a>
+      <a href="/collections/lifestyle">{{ 'header.nav.lifestyle' | t }}</a>
+      <a href="/pages/about">{{ 'header.nav.about' | t }}</a>
     </nav>
 
     {%- comment -%} Right icons {%- endcomment -%}

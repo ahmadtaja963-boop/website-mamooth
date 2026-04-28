@@ -91,5 +91,44 @@
     "open_menu": "Menü öffnen",
     "open_cart": "Warenkorb öffnen",
     "close_cart": "Warenkorb schließen"
+  },
+  "header": {
+    "announcement_1": "🔥 FRÜHLINGSAKTION: BIS ZU 60% RABATT + KOSTENLOSER VERSAND 🔥",
+    "announcement_2": "⭐ 4,8/5 STERNE — ÜBER 500 ZUFRIEDENE KUNDINNEN ⭐",
+    "announcement_3": "🛡️ 100% ZUFRIEDENHEIT ODER GELD ZURÜCK 🛡️",
+    "nav": {
+      "shop": "Shop",
+      "wellness": "Wellness",
+      "skincare": "Hautpflege",
+      "fitness": "Fitness",
+      "lifestyle": "Lifestyle",
+      "about": "Über uns"
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "heading": "Bleiben Sie in der Herde",
+      "body": "Neue Produkte, exklusive Angebote und Wellness-Tipps — direkt in Ihr Postfach."
+    },
+    "support": {
+      "heading": "Support",
+      "contact": "Kontakt",
+      "shipping": "Versand & Lieferung",
+      "returns": "Rückgabe & Erstattung",
+      "faq": "FAQ"
+    },
+    "company": {
+      "heading": "Unternehmen",
+      "about": "Über MAMMOTH",
+      "terms": "Nutzungsbedingungen",
+      "privacy": "Datenschutz"
+    },
+    "social": {
+      "heading": "Folgen Sie uns"
+    },
+    "copyright": {
+      "rights": "Alle Rechte vorbehalten.",
+      "tagline": "Gebaut, um zu halten."
+    }
   }
 }

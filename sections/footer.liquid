@@ -4,8 +4,8 @@
 
       {%- comment -%} Newsletter {%- endcomment -%}
       <div class="footer-newsletter">
-        <h3>Stay in the Herd</h3>
-        <p>New arrivals, exclusive deals, and wellness tips — straight to your inbox.</p>
+        <h3>{{ 'footer.newsletter.heading' | t }}</h3>
+        <p>{{ 'footer.newsletter.body' | t }}</p>
         {%- form 'customer', id: 'FooterNewsletter' -%}
           <input type="hidden" name="contact[tags]" value="newsletter">
           <div class="footer-newsletter-form">
@@ -32,22 +32,22 @@
 
       {%- comment -%} Support {%- endcomment -%}
       <div class="footer-col">
-        <h4>Support</h4>
+        <h4>{{ 'footer.support.heading' | t }}</h4>
         <ul>
-          <li><a href="/pages/contact">Contact Us</a></li>
-          <li><a href="/pages/shipping">Shipping & Delivery</a></li>
-          <li><a href="/pages/returns">Returns & Refunds</a></li>
-          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/contact">{{ 'footer.support.contact' | t }}</a></li>
+          <li><a href="/pages/shipping">{{ 'footer.support.shipping' | t }}</a></li>
+          <li><a href="/pages/returns">{{ 'footer.support.returns' | t }}</a></li>
+          <li><a href="/pages/faq">{{ 'footer.support.faq' | t }}</a></li>
         </ul>
       </div>
 
       {%- comment -%} Company {%- endcomment -%}
       <div class="footer-col">
-        <h4>Company</h4>
+        <h4>{{ 'footer.company.heading' | t }}</h4>
         <ul>
-          <li><a href="/pages/about">About MAMMOTH</a></li>
-          <li><a href="/pages/terms">Terms of Use</a></li>
-          <li><a href="/pages/privacy">Privacy Policy</a></li>
+          <li><a href="/pages/about">{{ 'footer.company.about' | t }}</a></li>
+          <li><a href="/pages/terms">{{ 'footer.company.terms' | t }}</a></li>
+          <li><a href="/pages/privacy">{{ 'footer.company.privacy' | t }}</a></li>
         </ul>
       </div>
 
@@ -56,7 +56,7 @@
     {%- comment -%} Bottom bar {%- endcomment -%}
     <div class="footer-bottom">
       <div class="footer-social">
-        <span>Follow Us</span>
+        <span>{{ 'footer.social.heading' | t }}</span>
         <div class="footer-social-links">
           <a href="#" class="footer-social-link" target="_blank" rel="noopener" aria-label="Instagram">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -68,8 +68,8 @@
       </div>
 
       <div class="footer-copyright">
-        <p>&copy; {{ 'now' | date: '%Y' }} MAMMOTH. All rights reserved.</p>
-        <p>Built to last.</p>
+        <p>&copy; {{ 'now' | date: '%Y' }} MAMMOTH. {{ 'footer.copyright.rights' | t }}</p>
+        <p>{{ 'footer.copyright.tagline' | t }}</p>
       </div>
     </div>
 
