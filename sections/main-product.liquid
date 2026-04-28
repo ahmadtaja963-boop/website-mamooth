@@ -564,24 +564,16 @@
                     {%- assign compare_key = 'option' | append: n | append: '_compare' -%}
                     {%- assign qty_key = 'option' | append: n | append: '_qty' -%}
                     {%- assign tier_qty_num = os[qty_key] | default: n | plus: 0 -%}
-                    {%- comment -%}
-                      Price logic — fully derived from current_variant.price so it auto-converts via Markets (USD→EUR etc).
-                      - Compare price = variant.price × qty (the "pay separately" anchor)
-                      - Tier price   = compare price minus bundle discount (option{N}_price treated as USD discount in dollars)
-                      - When section setting price IS set, treat as USD-cents override (multiply by 100)
-                      - Render via | money so currency symbol matches the active market
-                    {%- endcomment -%}
-                    {%- assign tier_compare_cents = current_variant.price | times: tier_qty_num -%}
-                    {%- assign tier_price_cents = tier_compare_cents -%}
-                    {%- assign override = os[price_key] -%}
-                    {%- if override != blank -%}
-                      {%- comment -%} Section setting like "49.99" — convert to cents and use as the displayed bundle price (USD baseline, Markets converts) {%- endcomment -%}
-                      {%- assign tier_price_cents = override | times: 100 | round -%}
+                    {%- comment -%} Price: section setting wins; else variant.price × qty. Compare: Tier 1 never; Tier 2/3 use variant.price × qty (the 'pay separately' anchor) {%- endcomment -%}
+                    {%- assign tier_price_display = os[price_key] -%}
+                    {%- if tier_price_display == blank -%}
+                      {%- assign tier_price_cents = current_variant.price | times: tier_qty_num -%}
+                      {%- assign tier_price_display = tier_price_cents | money_without_currency -%}
                     {%- endif -%}
-                    {%- assign tier_price_display = tier_price_cents | money -%}
-                    {%- assign tier_compare_display = '' -%}
-                    {%- if tier_qty_num > 1 and tier_compare_cents > tier_price_cents -%}
-                      {%- assign tier_compare_display = tier_compare_cents | money -%}
+                    {%- assign tier_compare_display = os[compare_key] -%}
+                    {%- if tier_compare_display == blank and tier_qty_num > 1 -%}
+                      {%- assign tier_compare_cents = current_variant.price | times: tier_qty_num -%}
+                      {%- assign tier_compare_display = tier_compare_cents | money_without_currency -%}
                     {%- endif -%}
                     {%- assign is_selected = false -%}
                     {%- if n == 2 -%}{%- assign is_selected = true -%}{%- endif -%}
@@ -598,8 +590,8 @@
                             {%- if os[sub_key] != blank -%}<span class="offer-card__sublabel">{{ os[sub_key] }}</span>{%- endif -%}
                           </span>
                           <span class="offer-card__prices">
-                            <span class="offer-card__price">{{ tier_price_display }}</span>
-                            {%- if tier_compare_display != blank -%}<s class="offer-card__compare">{{ tier_compare_display }}</s>{%- endif -%}
+                            <span class="offer-card__price">${{ tier_price_display }}</span>
+                            {%- if tier_compare_display != blank -%}<s class="offer-card__compare">${{ tier_compare_display }}</s>{%- endif -%}
                           </span>
                         </span>
                         {%- comment -%} Bonuses inside card (tier mode) — explicit keys to avoid Liquid dynamic-access quirks {%- endcomment -%}
