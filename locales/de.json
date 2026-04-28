@@ -10,32 +10,32 @@
 {
   "general": {
     "meta": {
-      "tags": "Verschlagwortet mit {{ tags }}",
+      "tags": "Markiert mit {{ tags }}",
       "page": "Seite {{ page }}"
     }
   },
   "cart": {
     "general": {
-      "title": "Einkaufswagen",
+      "title": "Warenkorb",
       "empty": "Ihr Warenkorb ist leer",
-      "checkout": "Zur Kasse gehen",
+      "checkout": "Zur Kasse",
       "subtotal": "Zwischensumme",
       "continue_shopping": "Weiter einkaufen",
       "remove": "Entfernen",
       "item_count": {
-        "one": "{{ count }} Element",
+        "one": "{{ count }} Artikel",
         "other": "{{ count }} Artikel"
       }
     }
   },
   "products": {
     "product": {
-      "add_to_cart": "Angebot einlösen",
+      "add_to_cart": "Mein Angebot sichern",
       "sold_out": "Ausverkauft",
       "unavailable": "Nicht verfügbar",
       "quantity": "Menge",
       "description": "Beschreibung",
-      "view_product": "Produkt anzeigen",
+      "view_product": "Produkt ansehen",
       "new": "Neu"
     }
   },
@@ -70,20 +70,20 @@
     }
   },
   "404": {
-    "subtext": "Die Seite, die Sie suchen, existiert nicht.",
+    "subtext": "Die gesuchte Seite existiert nicht.",
     "link": "Weiter einkaufen"
   },
   "search": {
     "title": "Suche",
-    "placeholder": "Produkte suchen ...",
-    "submit": "Suche",
-    "no_results": "Keine Ergebnisse für „{{ terms }}“"
+    "placeholder": "Produkte suchen...",
+    "submit": "Suchen",
+    "no_results": "Keine Ergebnisse für \"{{ terms }}\""
   },
   "newsletter": {
     "label": "E-Mail-Adresse",
     "placeholder": "E-Mail-Adresse",
     "submit": "Abonnieren",
-    "success": "Vielen Dank für Ihr Abonnement."
+    "success": "Danke für Ihre Anmeldung."
   },
   "accessibility": {
     "skip_to_content": "Zum Inhalt springen",
