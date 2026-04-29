@@ -927,8 +927,27 @@
             {%- endif -%}
           {%- endif -%}
 
-          {%- comment -%} 7b. Size Chart button (above urgency counter) {%- endcomment -%}
-          {%- if section.settings.size_chart_url != blank -%}
+          {%- comment -%} 7b. Size Chart button — locale-aware via product image alt "lang:{locale} 5" {%- endcomment -%}
+          {%- assign sc_locale = request.locale.iso_code | split: '-' | first | downcase -%}
+          {%- assign sc_alt = 'lang:' | append: sc_locale | append: ' 5' -%}
+          {%- assign size_chart_img = nil -%}
+          {%- for img in product.images -%}
+            {%- if img.alt == sc_alt -%}
+              {%- assign size_chart_img = img -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if size_chart_img == nil -%}
+            {%- for img in product.images -%}
+              {%- if img.alt == 'lang:en 5' -%}
+                {%- assign size_chart_img = img -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+          {%- assign sc_src = size_chart_img | image_url: width: 1200 -%}
+          {%- if sc_src == blank -%}{%- assign sc_src = section.settings.size_chart_url -%}{%- endif -%}
+          {%- if sc_src != blank -%}
             <button type="button" class="product-size-chart-btn" data-size-chart-open aria-haspopup="dialog">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 8.7 8.7 21.3a1 1 0 0 1-1.4 0L2.7 16.7a1 1 0 0 1 0-1.4L15.3 2.7a1 1 0 0 1 1.4 0l4.6 4.6a1 1 0 0 1 0 1.4Z"/><path d="m7.5 12.5 2 2"/><path d="m10.5 9.5 2 2"/><path d="m13.5 6.5 2 2"/><path d="m4.5 15.5 2 2"/></svg>
               <span>{{ section.settings.size_chart_label | default: 'Size Chart' }}</span>
@@ -1600,14 +1619,14 @@
 </div>
 
 {%- comment -%} ── Size Chart Modal ── {%- endcomment -%}
-{%- if section.settings.size_chart_url != blank -%}
+{%- if sc_src != blank -%}
   <div class="size-chart-modal" id="SizeChartModal" role="dialog" aria-modal="true" aria-label="Size Chart" hidden>
     <div class="size-chart-modal__backdrop" data-size-chart-close></div>
     <div class="size-chart-modal__panel" role="document">
       <button type="button" class="size-chart-modal__close" data-size-chart-close aria-label="Close">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
-      <img src="{{ section.settings.size_chart_url }}" alt="Size Chart" class="size-chart-modal__img" loading="lazy">
+      <img src="{{ sc_src }}" alt="Size Chart" class="size-chart-modal__img" loading="lazy">
     </div>
   </div>
 {%- endif -%}
