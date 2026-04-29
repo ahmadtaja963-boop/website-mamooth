@@ -587,8 +587,23 @@
                     {%- comment -%} Regular price = variant × qty. Savings discounts FROM this. {%- endcomment -%}
                     {%- assign tier_compare_cents = os_unit_price | times: tier_qty_num -%}
 
-                    {%- comment -%} Manual savings: accepts "10%" (percent off regular) or "5" (fixed amount off, store currency). {%- endcomment -%}
-                    {%- assign savings_input = os[savings_key] | default: '' | strip -%}
+                    {%- comment -%}
+                      Manual savings. Accepts:
+                        - "10%"            → percent off
+                        - "10"             → fixed amount in store currency
+                        - "USD:10,EUR:10"  → per-currency fixed amounts (current cart currency wins)
+                    {%- endcomment -%}
+                    {%- assign savings_input_raw = os[savings_key] | default: '' | strip -%}
+                    {%- assign savings_input = savings_input_raw -%}
+                    {%- if savings_input_raw contains ':' -%}
+                      {%- assign cur_code = cart.currency.iso_code -%}
+                      {%- assign savings_input = '' -%}
+                      {%- assign parts = savings_input_raw | split: ',' -%}
+                      {%- for p in parts -%}
+                        {%- assign kv = p | strip | split: ':' -%}
+                        {%- if kv[0] == cur_code -%}{%- assign savings_input = kv[1] | strip -%}{%- endif -%}
+                      {%- endfor -%}
+                    {%- endif -%}
                     {%- assign tier_savings_cents = 0 -%}
                     {%- if savings_input != '' -%}
                       {%- if savings_input contains '%' -%}
