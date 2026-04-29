@@ -52,12 +52,35 @@
     <div class="product-layout">
 
       {%- comment -%} ── Gallery ── {%- endcomment -%}
+      {%- comment -%} Pick locale-aware featured media {%- endcomment -%}
+      {%- assign gallery_locale_short = request.locale.iso_code | default: 'en' | slice: 0, 2 | downcase -%}
+      {%- assign gallery_locale_token = 'lang:' | append: gallery_locale_short -%}
+      {%- assign gallery_has_locale_media = false -%}
+      {%- for m in product.media -%}
+        {%- assign m_alt = m.alt | default: '' | downcase -%}
+        {%- if m_alt contains gallery_locale_token -%}{%- assign gallery_has_locale_media = true -%}{%- endif -%}
+      {%- endfor -%}
+      {%- assign featured_media = product.featured_media -%}
+      {%- if gallery_has_locale_media -%}
+        {%- for m in product.media -%}
+          {%- assign m_alt = m.alt | default: '' | downcase -%}
+          {%- assign m_lang = '' -%}
+          {%- assign m_tokens = m_alt | split: ' ' -%}
+          {%- for tok in m_tokens -%}
+            {%- if tok contains 'lang:' -%}{%- assign m_lang = tok | replace: 'lang:', '' | strip -%}{%- endif -%}
+          {%- endfor -%}
+          {%- if m_lang == gallery_locale_short -%}
+            {%- assign featured_media = m -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
       <div class="product-gallery">
         <div class="product-main-image">
           <img
             id="ProductMainImage"
-            src="{{ product.featured_media | image_url: width: 900 }}"
-            alt="{{ product.featured_media.alt | default: product.title | escape }}"
+            src="{{ featured_media | image_url: width: 900 }}"
+            alt="{{ featured_media.alt | default: product.title | escape }}"
             width="900" height="900"
             loading="eager"
             fetchpriority="high"
@@ -89,9 +112,32 @@
             {%- endif -%}
           {%- endfor -%}
           {%- assign product_title_lower = product.title | downcase | strip -%}
+          {%- assign current_locale_short = request.locale.iso_code | default: 'en' | slice: 0, 2 | downcase -%}
+          {%- comment -%} Detect if any media is tagged for the current locale via "lang:xx" in alt {%- endcomment -%}
+          {%- assign has_locale_media = false -%}
+          {%- assign locale_token = 'lang:' | append: current_locale_short -%}
+          {%- for m in product.media -%}
+            {%- assign m_alt = m.alt | default: '' | downcase -%}
+            {%- if m_alt contains locale_token -%}{%- assign has_locale_media = true -%}{%- endif -%}
+          {%- endfor -%}
           <div class="product-thumbnails" id="ProductThumbnails">
             {%- for media in product.media -%}
               {%- assign raw_alt = media.alt | default: '' | downcase | strip -%}
+              {%- comment -%} Detect language tag in alt: "lang:fr", "lang:de", "lang:en" {%- endcomment -%}
+              {%- assign media_lang = '' -%}
+              {%- assign alt_tokens = raw_alt | split: ' ' -%}
+              {%- for tok in alt_tokens -%}
+                {%- if tok contains 'lang:' -%}
+                  {%- assign media_lang = tok | replace: 'lang:', '' | strip -%}
+                {%- endif -%}
+              {%- endfor -%}
+              {%- comment -%}
+                Locale filter: if any locale-tagged media exists for the current locale,
+                skip media tagged for OTHER locales entirely. Untagged media always show.
+              {%- endcomment -%}
+              {%- if has_locale_media and media_lang != '' and media_lang != current_locale_short -%}
+                {%- continue -%}
+              {%- endif -%}
               {%- comment -%} Treat alt as generic (empty) if it equals the product title OR doesn't match any color option value {%- endcomment -%}
               {%- assign media_color = '' -%}
               {%- if raw_alt != '' and raw_alt != product_title_lower -%}
@@ -1686,8 +1732,28 @@
 
 {%- comment -%} ── Product Funnel ── {%- endcomment -%}
 {%- if funnel_blocks.size > 0 -%}
+  {%- assign current_locale_short = request.locale.iso_code | default: 'en' | slice: 0, 2 | downcase -%}
+  {%- comment -%} If any block is locale-tagged for the current locale, only show locale-matching/blank blocks. Otherwise show all blocks (legacy behavior). {%- endcomment -%}
+  {%- assign has_locale_match = false -%}
+  {%- for block in funnel_blocks -%}
+    {%- assign block_locale = block.settings.funnel_locale | downcase | strip -%}
+    {%- if block_locale != '' and block_locale == current_locale_short -%}
+      {%- assign has_locale_match = true -%}
+    {%- endif -%}
+  {%- endfor -%}
   <div class="product-funnel" id="ProductFunnel">
     {%- for block in funnel_blocks -%}
+      {%- assign block_locale = block.settings.funnel_locale | downcase | strip -%}
+      {%- assign locale_ok = true -%}
+      {%- if has_locale_match -%}
+        {%- if block_locale != '' and block_locale != current_locale_short -%}
+          {%- assign locale_ok = false -%}
+        {%- elsif block_locale == '' and current_locale_short != 'en' -%}
+          {%- comment -%} Suppress locale-blank blocks when a localized block is present for current non-EN locale. {%- endcomment -%}
+          {%- assign locale_ok = false -%}
+        {%- endif -%}
+      {%- endif -%}
+      {%- unless locale_ok -%}{%- continue -%}{%- endunless -%}
       {%- assign color_value = block.settings.funnel_color | downcase | strip -%}
       {%- assign funnel_alt = block.settings.funnel_alt | default: 'Product funnel image' -%}
       {%- assign img_slots = "1,2,3,4,5" | split: "," -%}
@@ -3317,6 +3383,11 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
     document.querySelectorAll('[data-size-chart-open]').forEach(function(btn) {
       btn.addEventListener('click', openSizeChart);
     });
+    /* Also open from any size-chart image inside more-info-tabs (Size Guide tab). */
+    document.querySelectorAll('img.more-info-size-chart-img').forEach(function(img) {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', openSizeChart);
+    });
     sizeChartModal.querySelectorAll('[data-size-chart-close]').forEach(function(el) {
       el.addEventListener('click', closeSizeChart);
     });
@@ -3469,6 +3540,12 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
           "id": "funnel_color",
           "label": "Color",
           "info": "Enter the exact color name matching the variant (e.g. Black, Blue). Leave blank to show for all colors."
+        },
+        {
+          "type": "text",
+          "id": "funnel_locale",
+          "label": "Language (locale code)",
+          "info": "ISO code: fr, de, en. Leave blank to show for all languages. Duplicate this block for each language."
         },
         {
           "type": "text",
