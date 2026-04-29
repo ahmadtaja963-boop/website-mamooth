@@ -52,29 +52,7 @@
     <div class="product-layout">
 
       {%- comment -%} ── Gallery ── {%- endcomment -%}
-      {%- comment -%} Pick locale-aware featured media {%- endcomment -%}
-      {%- assign gallery_locale_short = request.locale.iso_code | default: 'en' | slice: 0, 2 | downcase -%}
-      {%- assign gallery_locale_token = 'lang:' | append: gallery_locale_short -%}
-      {%- assign gallery_has_locale_media = false -%}
-      {%- for m in product.media -%}
-        {%- assign m_alt = m.alt | default: '' | downcase -%}
-        {%- if m_alt contains gallery_locale_token -%}{%- assign gallery_has_locale_media = true -%}{%- endif -%}
-      {%- endfor -%}
       {%- assign featured_media = product.featured_media -%}
-      {%- if gallery_has_locale_media -%}
-        {%- for m in product.media -%}
-          {%- assign m_alt = m.alt | default: '' | downcase -%}
-          {%- assign m_lang = '' -%}
-          {%- assign m_tokens = m_alt | split: ' ' -%}
-          {%- for tok in m_tokens -%}
-            {%- if tok contains 'lang:' -%}{%- assign m_lang = tok | replace: 'lang:', '' | strip -%}{%- endif -%}
-          {%- endfor -%}
-          {%- if m_lang == gallery_locale_short -%}
-            {%- assign featured_media = m -%}
-            {%- break -%}
-          {%- endif -%}
-        {%- endfor -%}
-      {%- endif -%}
       <div class="product-gallery">
         <div class="product-main-image">
           <img

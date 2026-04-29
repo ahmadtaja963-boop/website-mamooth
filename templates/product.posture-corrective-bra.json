@@ -16,6 +16,7 @@
           "type": "funnel_image",
           "name": "A+ Content Funnel",
           "settings": {
+            "funnel_locale": "en",
             "funnel_alt": "Posture Corrective Bra — Full A+ Content",
             "desktop_image": "shopify://shop_images/bra-aplus-b1-args-1-2-desktop.png",
             "mobile_image": "shopify://shop_images/bra-aplus-b1-args-1-2-mobile.png",
@@ -25,6 +26,38 @@
             "mobile_image_3": "shopify://shop_images/bra-aplus-b1-args-3-4-anatomy-mobile.png",
             "desktop_image_4": "shopify://shop_images/bra-aplus-b1-args-5-6-desktop.png",
             "mobile_image_4": "shopify://shop_images/bra-aplus-b1-args-5-6-mobile.png"
+          }
+        },
+        "funnel_fr": {
+          "type": "funnel_image",
+          "name": "A+ Content Funnel — FR",
+          "settings": {
+            "funnel_locale": "fr",
+            "funnel_alt": "Soutien-gorge correcteur de posture — Contenu A+",
+            "desktop_image": "shopify://shop_images/1777425393280-xrpj8n47xy8.jpg",
+            "mobile_image": "shopify://shop_images/1777425361086-1uiwbi0wyz7.jpg",
+            "desktop_image_2": "shopify://shop_images/1777425349557-sbiuvhk0xk.jpg",
+            "mobile_image_2": "shopify://shop_images/1777425397402-vth3qn9vyun.jpg",
+            "desktop_image_3": "shopify://shop_images/1777425407688-c7nuf0ehupu.jpg",
+            "mobile_image_3": "shopify://shop_images/1777425350472-okfubrijjm.jpg",
+            "desktop_image_4": "shopify://shop_images/1777425366170-huw0307jn3k.jpg",
+            "mobile_image_4": "shopify://shop_images/1777425364430-zfga9ft27y.jpg"
+          }
+        },
+        "funnel_de": {
+          "type": "funnel_image",
+          "name": "A+ Content Funnel — DE",
+          "settings": {
+            "funnel_locale": "de",
+            "funnel_alt": "Haltungskorrektur-BH — A+ Inhalt",
+            "desktop_image": "shopify://shop_images/1777425362800-r52wsd6tlwp.jpg",
+            "mobile_image": "shopify://shop_images/1777425352922-o64zz0my2gp.jpg",
+            "desktop_image_2": "shopify://shop_images/1777425367000-eob0akwdurq.jpg",
+            "mobile_image_2": "shopify://shop_images/1777425359622-3p6mq3qa39a.jpg",
+            "desktop_image_3": "shopify://shop_images/1777425358466-knjydp4ckjk.jpg",
+            "mobile_image_3": "shopify://shop_images/1777425369176-9ub6qoc57m.jpg",
+            "desktop_image_4": "shopify://shop_images/1777425363703-usgw6d9tr8.jpg",
+            "mobile_image_4": "shopify://shop_images/48c27b01094098ab09fd71fe0505bc451205549.jpg"
           }
         },
         "stock_main": {
@@ -148,6 +181,8 @@
       "block_order": [
         "stock_main",
         "funnel_main",
+        "funnel_fr",
+        "funnel_de",
         "video_showcase_main",
         "guarantee_main",
         "offer_main",
