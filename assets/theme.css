@@ -2291,8 +2291,6 @@ section { display: block; }
   font-weight: 600;
   line-height: 1.4;
   margin-top: 2px;
-  text-align: right;
-  white-space: nowrap;
 }
 
 /* ── Prices ── */
@@ -2325,6 +2323,19 @@ section { display: block; }
   color: #6B7B8D;
   text-decoration: line-through;
   line-height: 1.4;
+}
+
+.offer-card__save-badge {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--color-accent, #C4944C);
+  padding: 2px 8px;
+  border-radius: 4px;
+  line-height: 1.4;
+  white-space: nowrap;
 }
 
 /* ── Deal badge ── */

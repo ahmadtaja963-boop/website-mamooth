@@ -606,7 +606,7 @@
                       {%- assign tier_savings_cents = tier_compare_cents | minus: tier_price_cents -%}
                     {%- endif -%}
 
-                    {%- comment -%} Sublabel: replace {savings} token with computed amount {%- endcomment -%}
+                    {%- comment -%} Sublabel: friction copy on the LEFT under label. {savings} token still resolves if used. {%- endcomment -%}
                     {%- assign tier_sublabel = os[sub_key] -%}
                     {%- if tier_sublabel != blank -%}
                       {%- assign savings_token = '{savings}' -%}
@@ -627,13 +627,14 @@
                         <span class="offer-card__top">
                           <span class="offer-card__label-wrap">
                             <span class="offer-card__label">{{ os[label_key] }}</span>
+                            {%- if tier_sublabel != blank -%}<span class="offer-card__sublabel">{{ tier_sublabel }}</span>{%- endif -%}
                           </span>
                           <span class="offer-card__prices">
                             <span class="offer-card__price-row">
                               <span class="offer-card__price">{{ tier_price_cents | money }}</span>
                               {%- if tier_savings_cents > 0 -%}<s class="offer-card__compare">{{ tier_compare_cents | money }}</s>{%- endif -%}
                             </span>
-                            {%- if tier_sublabel != blank -%}<span class="offer-card__sublabel">{{ tier_sublabel }}</span>{%- endif -%}
+                            {%- if tier_savings_cents > 0 -%}<span class="offer-card__save-badge">Save {{ tier_savings_cents | money }}</span>{%- endif -%}
                           </span>
                         </span>
                         {%- comment -%} Bonuses — direct from settings (name only, no price text needed) {%- endcomment -%}
