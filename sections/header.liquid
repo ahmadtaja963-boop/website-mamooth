@@ -3,11 +3,11 @@
   <div class="announcement-marquee">
     <div class="announcement-marquee__track">
       {%- for i in (1..2) -%}
-        <span class="announcement-marquee__item">{% if section.settings.announcement_1 != blank %}{{ section.settings.announcement_1 }}{% else %}{{ 'header.announcement_1' | t }}{% endif %}</span>
-        <span class="announcement-marquee__sep">✦</span>
-        <span class="announcement-marquee__item">{% if section.settings.announcement_2 != blank %}{{ section.settings.announcement_2 }}{% else %}{{ 'header.announcement_2' | t }}{% endif %}</span>
-        <span class="announcement-marquee__sep">✦</span>
-        <span class="announcement-marquee__item">{% if section.settings.announcement_3 != blank %}{{ section.settings.announcement_3 }}{% else %}{{ 'header.announcement_3' | t }}{% endif %}</span>
+        <span class="announcement-marquee__item">{{ 'header.announcement_1' | t }}</span>
+        {%- assign ann2 = 'header.announcement_2' | t -%}
+        {%- assign ann3 = 'header.announcement_3' | t -%}
+        {%- if ann2 != blank -%}<span class="announcement-marquee__sep">✦</span><span class="announcement-marquee__item">{{ ann2 }}</span>{%- endif -%}
+        {%- if ann3 != blank -%}<span class="announcement-marquee__sep">✦</span><span class="announcement-marquee__item">{{ ann3 }}</span>{%- endif -%}
         <span class="announcement-marquee__sep">✦</span>
       {%- endfor -%}
     </div>

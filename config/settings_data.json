@@ -23,10 +23,7 @@
         "type": "header",
         "settings": {
           "logo": "shopify://shop_images/DIAZ_LOGO_no_baclground_white.png",
-          "logo_width": 110,
-          "announcement_1": "🚚 LIMITED TIME: FREE SHIPPING ON ALL ORDERS — TODAY ONLY",
-          "announcement_2": "",
-          "announcement_3": ""
+          "logo_width": 110
         }
       },
       "footer": {
