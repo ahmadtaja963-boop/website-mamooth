@@ -2303,12 +2303,6 @@ section { display: block; }
   gap: 2px;
 }
 
-.offer-card__price-row {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 8px;
-}
-
 .offer-card__price {
   font-family: var(--font-heading);
   font-weight: 700;
@@ -2325,18 +2319,6 @@ section { display: block; }
   line-height: 1.4;
 }
 
-.offer-card__save-badge {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 0.02em;
-  color: #fff;
-  background: var(--color-accent, #C4944C);
-  padding: 2px 8px;
-  border-radius: 4px;
-  line-height: 1.4;
-  white-space: nowrap;
-}
 
 /* ── Deal badge ── */
 .offer-card__badge {
