@@ -590,20 +590,29 @@
                     {%- comment -%} Manual savings field overrides variant compare_at. Accepts "25%" or "10" / "$10". {%- endcomment -%}
                     {%- assign savings_input = os[savings_key] | default: '' | strip -%}
                     {%- assign tier_savings_cents = 0 -%}
+                    {%- assign tier_savings_display = '' -%}
                     {%- if savings_input != '' -%}
                       {%- if savings_input contains '%' -%}
                         {%- assign pct_str = savings_input | replace: '%', '' | strip -%}
                         {%- assign pct_num = pct_str | times: 1.0 -%}
-                        {%- assign tier_savings_cents = tier_price_cents | times: pct_num | divided_by: 100 | round -%}
+                        {%- comment -%} % off post-discount: compare = price / (1 - pct/100) {%- endcomment -%}
+                        {%- assign keep_ratio = 100 | minus: pct_num | divided_by: 100.0 -%}
+                        {%- assign tier_compare_cents = tier_price_cents | divided_by: keep_ratio | round -%}
+                        {%- assign tier_savings_cents = tier_compare_cents | minus: tier_price_cents -%}
+                        {%- assign tier_savings_display = pct_num | round | append: '%' -%}
                       {%- else -%}
                         {%- assign amt_str = savings_input | replace: '$', '' | replace: '€', '' | replace: ',', '.' | strip -%}
                         {%- assign amt_num = amt_str | times: 1.0 -%}
                         {%- assign tier_savings_cents = amt_num | times: 100 | round -%}
+                        {%- assign tier_compare_cents = tier_price_cents | plus: tier_savings_cents -%}
+                        {%- assign tier_savings_display = tier_savings_cents | money -%}
                       {%- endif -%}
-                      {%- assign tier_compare_cents = tier_price_cents | plus: tier_savings_cents -%}
                     {%- else -%}
                       {%- assign tier_compare_cents = os_unit_compare | times: tier_qty_num -%}
                       {%- assign tier_savings_cents = tier_compare_cents | minus: tier_price_cents -%}
+                      {%- if tier_savings_cents > 0 -%}
+                        {%- assign tier_savings_display = tier_savings_cents | money -%}
+                      {%- endif -%}
                     {%- endif -%}
 
                     {%- comment -%} Sublabel: friction copy on the LEFT under label. {savings} token still resolves if used. {%- endcomment -%}
@@ -634,7 +643,7 @@
                               <span class="offer-card__price">{{ tier_price_cents | money }}</span>
                               {%- if tier_savings_cents > 0 -%}<s class="offer-card__compare">{{ tier_compare_cents | money }}</s>{%- endif -%}
                             </span>
-                            {%- if tier_savings_cents > 0 -%}<span class="offer-card__save-badge">Save {{ tier_savings_cents | money }}</span>{%- endif -%}
+                            {%- if tier_savings_display != '' -%}<span class="offer-card__save-badge">Save {{ tier_savings_display }}</span>{%- endif -%}
                           </span>
                         </span>
                         {%- comment -%} Bonuses — direct from settings (name only, no price text needed) {%- endcomment -%}
