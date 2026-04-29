@@ -4,9 +4,18 @@
 window.MammothTheme = (function () {
 
   /* ─── Utilities ─── */
+  var currentCurrency = (window.MammothCartCurrency || 'USD');
+  var currentLocale = (document.documentElement.lang || 'en').split('-')[0];
   function formatMoney(cents) {
-    const dollars = (cents / 100).toFixed(2);
-    return '$' + dollars;
+    var amount = (cents || 0) / 100;
+    try {
+      return new Intl.NumberFormat(currentLocale, {
+        style: 'currency',
+        currency: currentCurrency,
+      }).format(amount);
+    } catch (e) {
+      return '$' + amount.toFixed(2);
+    }
   }
 
   function showToast(message, duration) {
@@ -27,6 +36,7 @@ window.MammothTheme = (function () {
     return fetch('/cart.js', { headers: { 'Content-Type': 'application/json' } })
       .then(function (res) { return res.json(); })
       .then(function (data) {
+        if (data && data.currency) currentCurrency = data.currency;
         cartData = data;
         updateCartUI(data);
         return data;
@@ -71,6 +81,7 @@ window.MammothTheme = (function () {
     })
       .then(function (res) { return res.json(); })
       .then(function (data) {
+        if (data && data.currency) currentCurrency = data.currency;
         cartData = data;
         updateCartUI(data);
         return data;
@@ -130,11 +141,11 @@ window.MammothTheme = (function () {
     var tagIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>';
     if (msg) {
       if (!currentTier) {
-        var awayDollars = ((nextTier.threshold - totalCents) / 100).toFixed(2);
-        msg.innerHTML = tagIcon + 'You\'re <span class="highlight">$' + awayDollars + '</span> away from <span class="highlight">' + nextTier.label + '!</span>';
+        var awayMoney = formatMoney(nextTier.threshold - totalCents);
+        msg.innerHTML = tagIcon + 'You\'re <span class="highlight">' + awayMoney + '</span> away from <span class="highlight">' + nextTier.label + '!</span>';
       } else if (nextTier) {
-        var awayDollars = ((nextTier.threshold - totalCents) / 100).toFixed(2);
-        msg.innerHTML = tagIcon + currentTier.label + ' unlocked! <span class="highlight">$' + awayDollars + '</span> more for <span class="highlight">' + nextTier.label + '!</span>';
+        var awayMoney = formatMoney(nextTier.threshold - totalCents);
+        msg.innerHTML = tagIcon + currentTier.label + ' unlocked! <span class="highlight">' + awayMoney + '</span> more for <span class="highlight">' + nextTier.label + '!</span>';
       } else {
         msg.innerHTML = tagIcon + 'Maximum <span class="highlight">' + currentTier.label + '</span> unlocked!';
       }

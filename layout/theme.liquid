@@ -62,6 +62,9 @@
     <a href="/pages/about">About</a>
   </div>
 
+  <script>
+    window.MammothCartCurrency = {{ cart.currency.iso_code | json }};
+  </script>
   <script src="{{ 'theme.js' | asset_url }}" defer></script>
 
 </body>
