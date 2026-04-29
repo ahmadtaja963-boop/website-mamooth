@@ -2287,10 +2287,13 @@ section { display: block; }
 .offer-card__sublabel {
   font-family: var(--font-body);
   font-size: 0.8rem;
-  color: var(--color-accent, #C4944C);
-  font-weight: 600;
+  color: #6B7B8D;
   line-height: 1.4;
   margin-top: 2px;
+}
+
+.offer-card--selected .offer-card__label {
+  color: var(--color-accent, #C4944C);
 }
 
 /* ── Prices ── */
