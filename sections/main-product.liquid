@@ -465,21 +465,42 @@
               {%- assign os_is_tier_mode = false -%}
               {%- if os.option3_label != blank -%}{%- assign os_is_tier_mode = true -%}{%- endif -%}
 
+              {%- comment -%} ── Fully dynamic pricing: all prices from variant data × qty ── {%- endcomment -%}
+              {%- assign os_unit_price = current_variant.price -%}
+              {%- assign os_unit_compare = current_variant.compare_at_price | default: current_variant.price -%}
+
+              {%- comment -%} Pre-compute all 3 tiers for Liquid | money rendering + JS data ── {%- endcomment -%}
+              {%- assign os_t1_qty = os.option1_qty | default: 1 | plus: 0 -%}
+              {%- assign os_t2_qty = os.option2_qty | default: 2 | plus: 0 -%}
+              {%- assign os_t3_qty = os.option3_qty | default: 3 | plus: 0 -%}
+              {%- assign os_t1_price_cents = os_unit_price | times: os_t1_qty -%}
+              {%- assign os_t2_price_cents = os_unit_price | times: os_t2_qty -%}
+              {%- assign os_t3_price_cents = os_unit_price | times: os_t3_qty -%}
+              {%- assign os_t1_compare_cents = os_unit_compare | times: os_t1_qty -%}
+              {%- assign os_t2_compare_cents = os_unit_compare | times: os_t2_qty -%}
+              {%- assign os_t3_compare_cents = os_unit_compare | times: os_t3_qty -%}
+              {%- assign os_t1_savings_cents = os_t1_compare_cents | minus: os_t1_price_cents -%}
+              {%- assign os_t2_savings_cents = os_t2_compare_cents | minus: os_t2_price_cents -%}
+              {%- assign os_t3_savings_cents = os_t3_compare_cents | minus: os_t3_price_cents -%}
+
               <div class="offer-selector{% if os_is_tier_mode %} offer-selector--tiers{% endif %}" id="OfferSelector" {{ os_block.shopify_attributes }}
                 {%- if os_is_tier_mode -%}
                   data-mode="tiers"
-                  data-tier1-qty="{{ os.option1_qty | default: 1 }}"
+                  data-tier1-qty="{{ os_t1_qty }}"
                   data-tier1-code="{{ os.option1_discount_code }}"
-                  data-tier1-price="{{ os.option1_price }}"
-                  data-tier1-compare="{{ os.option1_compare }}"
-                  data-tier2-qty="{{ os.option2_qty | default: 2 }}"
+                  data-tier1-price="{{ os_t1_price_cents | money }}"
+                  data-tier1-compare="{% if os_t1_savings_cents > 0 %}{{ os_t1_compare_cents | money }}{% endif %}"
+                  data-tier2-qty="{{ os_t2_qty }}"
                   data-tier2-code="{{ os.option2_discount_code }}"
-                  data-tier2-price="{{ os.option2_price }}"
-                  data-tier2-compare="{{ os.option2_compare }}"
-                  data-tier3-qty="{{ os.option3_qty | default: 3 }}"
+                  data-tier2-price="{{ os_t2_price_cents | money }}"
+                  data-tier2-compare="{% if os_t2_savings_cents > 0 %}{{ os_t2_compare_cents | money }}{% endif %}"
+                  data-tier3-qty="{{ os_t3_qty }}"
                   data-tier3-code="{{ os.option3_discount_code }}"
-                  data-tier3-price="{{ os.option3_price }}"
-                  data-tier3-compare="{{ os.option3_compare }}"
+                  data-tier3-price="{{ os_t3_price_cents | money }}"
+                  data-tier3-compare="{% if os_t3_savings_cents > 0 %}{{ os_t3_compare_cents | money }}{% endif %}"
+                  data-tier1-savings="{% if os_t1_savings_cents > 0 %}{{ os_t1_savings_cents | money }}{% endif %}"
+                  data-tier2-savings="{% if os_t2_savings_cents > 0 %}{{ os_t2_savings_cents | money }}{% endif %}"
+                  data-tier3-savings="{% if os_t3_savings_cents > 0 %}{{ os_t3_savings_cents | money }}{% endif %}"
                 {%- endif -%}
               >
 
@@ -515,7 +536,7 @@
                 {%- endif -%}
 
                 {%- if os_is_tier_mode -%}
-                  {%- comment -%} ── 3-Tier Quantity Mode (same variant × qty + discount code) ── {%- endcomment -%}
+                  {%- comment -%} ── 3-Tier Quantity Mode — fully dynamic pricing ── {%- endcomment -%}
                   {%- assign offer_has_options = false -%}
                   {%- unless product.has_only_default_variant -%}{%- assign offer_has_options = true -%}{%- endunless -%}
                   {%- assign offer_color_index = -1 -%}
@@ -560,30 +581,20 @@
                     {%- assign label_key = 'option' | append: n | append: '_label' -%}
                     {%- assign sub_key = 'option' | append: n | append: '_sublabel' -%}
                     {%- assign badge_key = 'option' | append: n | append: '_badge' -%}
-                    {%- assign price_key = 'option' | append: n | append: '_price' -%}
-                    {%- assign compare_key = 'option' | append: n | append: '_compare' -%}
                     {%- assign qty_key = 'option' | append: n | append: '_qty' -%}
                     {%- assign tier_qty_num = os[qty_key] | default: n | plus: 0 -%}
-                    {%- comment -%}
-                      Price logic:
-                      - tier_price_use_money = true when we render via | money (full currency-aware: respects Markets catalog override + symbol)
-                      - tier_price_use_money = false when section setting overrides (literal USD baseline; rendered with hardcoded $, symbol-swapped by Markets)
-                    {%- endcomment -%}
-                    {%- assign tier_price_use_money = false -%}
-                    {%- assign tier_price_display = os[price_key] -%}
-                    {%- if tier_price_display == blank -%}
-                      {%- assign tier_price_use_money = true -%}
-                      {%- assign tier_price_cents = current_variant.price | times: tier_qty_num -%}
-                    {%- endif -%}
-                    {%- assign tier_compare_use_money = false -%}
-                    {%- assign tier_compare_display = os[compare_key] -%}
-                    {%- if tier_compare_display == blank and tier_qty_num > 1 -%}
-                      {%- assign tier_compare_use_money = true -%}
-                      {%- assign tier_compare_cents = current_variant.price | times: tier_qty_num -%}
+                    {%- comment -%} Compute dynamic prices from variant data {%- endcomment -%}
+                    {%- assign tier_price_cents = os_unit_price | times: tier_qty_num -%}
+                    {%- assign tier_compare_cents = os_unit_compare | times: tier_qty_num -%}
+                    {%- assign tier_savings_cents = tier_compare_cents | minus: tier_price_cents -%}
+                    {%- comment -%} Auto-generate sublabel: use setting sublabel but replace {savings} token with dynamic amount {%- endcomment -%}
+                    {%- assign tier_sublabel = os[sub_key] -%}
+                    {%- if tier_sublabel != blank -%}
+                      {%- assign savings_token = '{savings}' -%}
+                      {%- assign tier_sublabel = tier_sublabel | replace: savings_token, tier_savings_cents | money -%}
                     {%- endif -%}
                     {%- assign is_selected = false -%}
                     {%- if n == 2 -%}{%- assign is_selected = true -%}{%- endif -%}
-                    {%- assign bonus_prefix = 'option' | append: n | append: '_bonus' -%}
                     <label class="offer-card{% if is_selected %} offer-card--selected{% endif %}" data-variant-id="{{ current_variant.id }}" data-tier="{{ n }}">
                       <span class="offer-card__radio{% if is_selected %} offer-card__radio--checked{% endif %}"></span>
                       {%- if os[badge_key] != blank -%}
@@ -593,14 +604,14 @@
                         <span class="offer-card__top">
                           <span class="offer-card__label-wrap">
                             <span class="offer-card__label">{{ os[label_key] }}</span>
-                            {%- if os[sub_key] != blank -%}<span class="offer-card__sublabel">{{ os[sub_key] }}</span>{%- endif -%}
+                            {%- if tier_sublabel != blank -%}<span class="offer-card__sublabel">{{ tier_sublabel }}</span>{%- endif -%}
                           </span>
                           <span class="offer-card__prices">
-                            <span class="offer-card__price">{% if tier_price_use_money %}{{ tier_price_cents | money }}{% else %}${{ tier_price_display }}{% endif %}</span>
-                            {%- if tier_compare_use_money -%}<s class="offer-card__compare">{{ tier_compare_cents | money }}</s>{%- elsif tier_compare_display != blank -%}<s class="offer-card__compare">${{ tier_compare_display }}</s>{%- endif -%}
+                            <span class="offer-card__price">{{ tier_price_cents | money }}</span>
+                            {%- if tier_savings_cents > 0 -%}<s class="offer-card__compare">{{ tier_compare_cents | money }}</s>{%- endif -%}
                           </span>
                         </span>
-                        {%- comment -%} Bonuses inside card (tier mode) — explicit keys to avoid Liquid dynamic-access quirks {%- endcomment -%}
+                        {%- comment -%} Bonuses — direct from settings (name only, no price text needed) {%- endcomment -%}
                         {%- capture bonus_list -%}
                           {%- if n == 2 -%}
                             {%- if os.option2_bonus1 != blank -%}{{ os.option2_bonus1 }}||{%- endif -%}
@@ -2495,8 +2506,11 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
   var initColorBtn = document.querySelector('.option-btn--color.active');
   if (initColorBtn) filterFunnelByColor(initColorBtn.dataset.value);
 
+  /* ── Currency symbol (from Liquid) ── */
+  var CURRENCY_SYMBOL = {{ cart.currency.symbol | json | default: "'$'" }};
+
   /* ── Offer Selector (radio cards) ── */
-  function fmtMoney(cents) { return '$' + (cents / 100).toFixed(2); }
+  function fmtMoney(cents) { return CURRENCY_SYMBOL + (cents / 100).toFixed(2); }
 
   var offerSelector = document.getElementById('OfferSelector');
   if (offerSelector) {
@@ -2508,13 +2522,14 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
     function updateOfferPriceDisplay(tier) {
       if (!priceEl) return;
       if (offerIsTierMode) {
+        /* Values are pre-formatted by Liquid | money (e.g. "$29.99" or "€27,99") */
         var p = offerSelector.dataset['tier' + tier + 'Price'] || '';
         var c = offerSelector.dataset['tier' + tier + 'Compare'] || '';
-        var html = '<span class="product-price-current">$' + p + '</span>';
+        var s = offerSelector.dataset['tier' + tier + 'Savings'] || '';
+        var html = '<span class="product-price-current">' + p + '</span>';
         if (c) {
-          html += ' <s class="product-price-compare">$' + c + '</s>';
-          var savings = (parseFloat(c) - parseFloat(p)).toFixed(2);
-          if (parseFloat(savings) > 0) html += ' <span class="product-price-badge">Save $' + savings + '</span>';
+          html += ' <s class="product-price-compare">' + c + '</s>';
+          if (s) html += ' <span class="product-price-badge">Save ' + s + '</span>';
         }
         priceEl.innerHTML = html;
       }
@@ -2908,7 +2923,7 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
         if (priceEl) {
           var imgData = variantImgs[String(match.id)];
           var price = (match.price / 100).toFixed(2);
-          priceEl.textContent = '$' + price;
+          priceEl.textContent = CURRENCY_SYMBOL + price;
         }
 
         /* Update add-to-cart button */
@@ -3101,7 +3116,7 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
     var btnPriceEl = document.getElementById('StickyCtaBtnPrice');
     var atcBtn     = document.querySelector('.product-atc-btn');
 
-    function fmtPrice(p) { return '$' + (parseFloat(p) || 0).toFixed(2); }
+    function fmtPrice(p) { return CURRENCY_SYMBOL + (parseFloat(p) || 0).toFixed(2); }
 
     function syncFromActiveCard() {
       var active = offerSel.querySelector('.offer-card--selected');
@@ -3654,14 +3669,14 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
         { "type": "paragraph", "content": "TIER MODE: If you fill option3_label, the block switches to 3-tier quantity mode (same variant × qty + discount code). Leave option3 fields blank to keep legacy 2-variant mode." },
         { "type": "header", "content": "Option 1" },
         { "type": "text", "id": "option1_label", "label": "Label", "default": "AirStyler Only" },
-        { "type": "text", "id": "option1_sublabel", "label": "Sublabel", "default": "Base unit with attachments" },
+        { "type": "text", "id": "option1_sublabel", "label": "Sublabel (use {savings} for auto amount)", "default": "Save {savings}" },
         { "type": "text", "id": "option1_qty", "label": "Qty (tier mode only)", "default": "1" },
         { "type": "text", "id": "option1_price", "label": "Price override (tier mode, no $)" },
         { "type": "text", "id": "option1_compare", "label": "Compare price (tier mode, no $)" },
         { "type": "text", "id": "option1_discount_code", "label": "Discount code (tier mode)" },
         { "type": "header", "content": "Option 2" },
         { "type": "text", "id": "option2_label", "label": "Label", "default": "Complete Hair Styling Kit" },
-        { "type": "text", "id": "option2_sublabel", "label": "Sublabel", "default": "Everything you need for perfect hair" },
+        { "type": "text", "id": "option2_sublabel", "label": "Sublabel (use {savings} for auto amount)", "default": "Save {savings}" },
         { "type": "text", "id": "option2_badge", "label": "Badge (tier mode)" },
         { "type": "text", "id": "option2_qty", "label": "Qty (tier mode)", "default": "2" },
         { "type": "text", "id": "option2_price", "label": "Price override (tier mode, no $)" },
@@ -3669,7 +3684,7 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
         { "type": "text", "id": "option2_discount_code", "label": "Discount code (tier mode)" },
         { "type": "header", "content": "Option 3 (tier mode only)" },
         { "type": "text", "id": "option3_label", "label": "Label (fill to enable 3-tier mode)" },
-        { "type": "text", "id": "option3_sublabel", "label": "Sublabel" },
+        { "type": "text", "id": "option3_sublabel", "label": "Sublabel (use {savings} for auto amount)" },
         { "type": "text", "id": "option3_badge", "label": "Badge", "default": "BEST VALUE" },
         { "type": "text", "id": "option3_qty", "label": "Qty", "default": "3" },
         { "type": "text", "id": "option3_price", "label": "Price override (no $)" },
