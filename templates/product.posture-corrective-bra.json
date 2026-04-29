@@ -42,7 +42,7 @@
           "type": "urgency_counter",
           "settings": {
             "icon": "",
-            "count": "2847",
+            "count": "847",
             "text": "Sold {count} times this week!"
           }
         },
