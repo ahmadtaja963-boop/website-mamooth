@@ -46,7 +46,7 @@ window.MammothTheme = (function () {
   function addToCart(variantId, quantity, triggerEl) {
     quantity = quantity || 1;
     const btn = triggerEl;
-    if (btn) btn.textContent = 'Adding…';
+    if (btn) btn.textContent = T.adding || 'Adding…';
 
     return fetch('/cart/add.js', {
       method: 'POST',
@@ -61,15 +61,15 @@ window.MammothTheme = (function () {
         return fetchCart();
       })
       .then(function () {
-        if (btn) btn.textContent = 'Add to Cart';
+        if (btn) btn.textContent = T.add_to_cart || 'Add to Cart';
         resetCartTimer();
         openCart();
-        showToast('Added to cart');
+        showToast(T.added || 'Added to cart');
       })
       .catch(function (err) {
         console.error(err);
-        if (btn) btn.textContent = 'Add to Cart';
-        showToast('Could not add item. Please try again.');
+        if (btn) btn.textContent = T.add_to_cart || 'Add to Cart';
+        showToast(T.add_error || 'Could not add item. Please try again.');
       });
   }
 
@@ -93,10 +93,18 @@ window.MammothTheme = (function () {
   }
 
   /* ─── Discount Tiers ─── */
+  var T = window.MammothT || {};
+  function tStr(template, vars) {
+    var s = template || '';
+    Object.keys(vars || {}).forEach(function(k){
+      s = s.split(k).join(vars[k]);
+    });
+    return s;
+  }
   var discountTiers = [
-    { threshold: 3000, percent: 0,  label: 'Free Shipping', code: 'FREESHIP30' },
-    { threshold: 6000, percent: 10, label: '10% OFF',       code: 'MAMMOTH10' },
-    { threshold: 9000, percent: 15, label: '15% OFF',       code: 'MAMMOTH15' },
+    { threshold: 3000, percent: 0,  label: T.free_shipping_label || 'Free Shipping',      code: 'FREESHIP30' },
+    { threshold: 6000, percent: 10, label: tStr(T.percent_off, {'__P__': 10}) || '10% OFF', code: 'MAMMOTH10' },
+    { threshold: 9000, percent: 15, label: tStr(T.percent_off, {'__P__': 15}) || '15% OFF', code: 'MAMMOTH15' },
   ];
 
   function updateDiscountBar(totalCents) {
@@ -142,12 +150,24 @@ window.MammothTheme = (function () {
     if (msg) {
       if (!currentTier) {
         var awayMoney = formatMoney(nextTier.threshold - totalCents);
-        msg.innerHTML = tagIcon + 'You\'re <span class="highlight">' + awayMoney + '</span> away from <span class="highlight">' + nextTier.label + '!</span>';
+        var s = tStr(T.away_from, {
+          '__A__': '<span class="highlight">' + awayMoney + '</span>',
+          '__T__': '<span class="highlight">' + nextTier.label + '</span>',
+        });
+        msg.innerHTML = tagIcon + (s || 'You\'re ' + awayMoney + ' away from ' + nextTier.label + '!');
       } else if (nextTier) {
         var awayMoney = formatMoney(nextTier.threshold - totalCents);
-        msg.innerHTML = tagIcon + currentTier.label + ' unlocked! <span class="highlight">' + awayMoney + '</span> more for <span class="highlight">' + nextTier.label + '!</span>';
+        var unlocked = (currentTier.threshold === 3000 && T.free_shipping_unlocked)
+          ? T.free_shipping_unlocked
+          : (currentTier.label + ' unlocked!');
+        var more = tStr(T.more_for, {
+          '__A__': '<span class="highlight">' + awayMoney + '</span>',
+          '__T__': '<span class="highlight">' + nextTier.label + '</span>',
+        });
+        msg.innerHTML = tagIcon + unlocked + ' ' + (more || (awayMoney + ' more for ' + nextTier.label + '!'));
       } else {
-        msg.innerHTML = tagIcon + 'Maximum <span class="highlight">' + currentTier.label + '</span> unlocked!';
+        var maxStr = tStr(T.max_unlocked, {'__T__': '<span class="highlight">' + currentTier.label + '</span>'});
+        msg.innerHTML = tagIcon + (maxStr || 'Maximum ' + currentTier.label + ' unlocked!');
       }
     }
 

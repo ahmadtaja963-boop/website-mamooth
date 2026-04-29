@@ -7,7 +7,7 @@
   hidden
 >
   <div class="cart-drawer-header">
-    <h2 class="cart-drawer-title" id="CartDrawerTitle">Cart</h2>
+    <h2 class="cart-drawer-title" id="CartDrawerTitle">{{ 'cart.general.drawer_title' | t }}</h2>
     <button
       class="cart-drawer-close"
       id="CartClose"
@@ -20,7 +20,7 @@
   {%- comment -%} Cart Reserved Countdown {%- endcomment -%}
   <div class="cart-reserved" id="CartReserved" style="display:none;">
     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    Cart reserved for <span id="CartTimer">05:00</span>
+    {{ 'cart.general.reserved_for' | t }} <span id="CartTimer">05:00</span>
   </div>
 
   {%- comment -%} Tiered Discount Progress Bar {%- endcomment -%}
@@ -29,17 +29,17 @@
     <div class="cart-discount-track">
       <div class="cart-discount-fill" id="CartDiscountFill"></div>
       <div class="cart-discount-milestone" data-tier="1" style="left:33.33%;">
-        <span class="cart-discount-label">Free Shipping</span>
+        <span class="cart-discount-label">{{ 'cart.discount.free_shipping_label' | t }}</span>
         <span class="cart-discount-dot"></span>
         <span class="cart-discount-price">{{ cart.currency.symbol }}30</span>
       </div>
       <div class="cart-discount-milestone" data-tier="2" style="left:66.66%;">
-        <span class="cart-discount-label">10% Discount</span>
+        <span class="cart-discount-label">{{ 'cart.discount.percent_discount' | t: percent: 10 }}</span>
         <span class="cart-discount-dot"></span>
         <span class="cart-discount-price">{{ cart.currency.symbol }}60</span>
       </div>
       <div class="cart-discount-milestone" data-tier="3" style="left:100%;">
-        <span class="cart-discount-label">15% Discount</span>
+        <span class="cart-discount-label">{{ 'cart.discount.percent_discount' | t: percent: 15 }}</span>
         <span class="cart-discount-dot"></span>
         <span class="cart-discount-price">{{ cart.currency.symbol }}90</span>
       </div>
@@ -50,13 +50,13 @@
     <div class="cart-empty" id="CartEmpty">
       {%- render 'icon-cart' -%}
       <p>{{ 'cart.general.empty' | t }}</p>
-      <a href="/collections/all" class="btn btn-primary btn-sm">Shop Now</a>
+      <a href="/collections/all" class="btn btn-primary btn-sm">{{ 'cart.general.shop_now' | t }}</a>
     </div>
     <div class="cart-items" id="CartItems" style="display:none;"></div>
 
     {%- comment -%} Complementary Products Upsell {%- endcomment -%}
     <div class="cart-upsell" id="CartUpsell" style="display:none;">
-      <p class="cart-upsell-heading">You Might Also Like</p>
+      <p class="cart-upsell-heading">{{ 'cart.general.you_might_like' | t }}</p>
       <div class="cart-upsell-products" id="CartUpsellProducts"></div>
     </div>
   </div>
@@ -64,11 +64,11 @@
   <div class="cart-drawer-footer" id="CartFooter" style="display:none;">
     <div class="cart-discounts" id="CartDiscountsContainer" style="display:none;"></div>
     <div class="cart-total">
-      <span class="cart-total-label">Subtotal</span>
+      <span class="cart-total-label">{{ 'cart.general.subtotal' | t }}</span>
       <span class="cart-total-amount" id="CartTotal"></span>
     </div>
     <a href="/checkout" class="cart-checkout-btn" id="CartCheckout">
-      Check out &bull; <span id="CartCheckoutTotal"></span>
+      {{ 'cart.general.check_out' | t }} &bull; <span id="CartCheckoutTotal"></span>
     </a>
     <div class="cart-payment-icons">
       {%- for type in shop.enabled_payment_types -%}

@@ -25,7 +25,28 @@
       "item_count": {
         "one": "{{ count }} article",
         "other": "{{ count }} articles"
-      }
+      },
+      "drawer_title": "Panier",
+      "reserved_for": "Panier réservé pendant",
+      "shop_now": "Acheter maintenant",
+      "you_might_like": "Vous aimerez aussi",
+      "check_out": "Commander"
+    },
+    "discount": {
+      "free_shipping_label": "Livraison offerte",
+      "percent_discount": "{{ percent }}% de réduction",
+      "free_shipping_unlocked": "Livraison offerte débloquée !",
+      "percent_off": "{{ percent }}% DE RÉDUCTION",
+      "away_from": "Plus que {{ amount }} pour {{ tier }} !",
+      "more_for": "{{ amount }} de plus pour {{ tier }} !",
+      "max_unlocked": "{{ tier }} maximum débloquée !"
+    },
+    "toast": {
+      "added": "Ajouté au panier",
+      "adding": "Ajout en cours…",
+      "error": "Impossible d'ajouter l'article. Veuillez réessayer.",
+      "add_to_cart": "Ajouter au panier",
+      "bundle_added": "Pack ajouté au panier !"
     }
   },
   "products": {

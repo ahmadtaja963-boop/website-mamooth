@@ -25,7 +25,28 @@
       "item_count": {
         "one": "{{ count }} item",
         "other": "{{ count }} items"
-      }
+      },
+      "drawer_title": "Cart",
+      "reserved_for": "Cart reserved for",
+      "shop_now": "Shop Now",
+      "you_might_like": "You Might Also Like",
+      "check_out": "Check out"
+    },
+    "discount": {
+      "free_shipping_label": "Free Shipping",
+      "percent_discount": "{{ percent }}% Discount",
+      "free_shipping_unlocked": "Free Shipping unlocked!",
+      "percent_off": "{{ percent }}% OFF",
+      "away_from": "You're {{ amount }} away from {{ tier }}!",
+      "more_for": "{{ amount }} more for {{ tier }}!",
+      "max_unlocked": "Maximum {{ tier }} unlocked!"
+    },
+    "toast": {
+      "added": "Added to cart",
+      "adding": "Adding…",
+      "error": "Could not add item. Please try again.",
+      "add_to_cart": "Add to Cart",
+      "bundle_added": "Bundle added to cart!"
     }
   },
   "products": {

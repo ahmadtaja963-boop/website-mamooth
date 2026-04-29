@@ -64,6 +64,19 @@
 
   <script>
     window.MammothCartCurrency = {{ cart.currency.iso_code | json }};
+    window.MammothT = {
+      free_shipping_label: {{ 'cart.discount.free_shipping_label' | t | json }},
+      percent_off: {{ 'cart.discount.percent_off' | t: percent: '__P__' | json }},
+      free_shipping_unlocked: {{ 'cart.discount.free_shipping_unlocked' | t | json }},
+      away_from: {{ 'cart.discount.away_from' | t: amount: '__A__', tier: '__T__' | json }},
+      more_for: {{ 'cart.discount.more_for' | t: amount: '__A__', tier: '__T__' | json }},
+      max_unlocked: {{ 'cart.discount.max_unlocked' | t: tier: '__T__' | json }},
+      added: {{ 'cart.toast.added' | t | json }},
+      adding: {{ 'cart.toast.adding' | t | json }},
+      add_to_cart: {{ 'cart.toast.add_to_cart' | t | json }},
+      add_error: {{ 'cart.toast.error' | t | json }},
+      bundle_added: {{ 'cart.toast.bundle_added' | t | json }}
+    };
   </script>
   <script src="{{ 'theme.js' | asset_url }}" defer></script>
 
