@@ -580,18 +580,41 @@
                   {%- for n in (1..3) -%}
                     {%- assign label_key = 'option' | append: n | append: '_label' -%}
                     {%- assign sub_key = 'option' | append: n | append: '_sublabel' -%}
+                    {%- assign savings_key = 'option' | append: n | append: '_savings' -%}
                     {%- assign badge_key = 'option' | append: n | append: '_badge' -%}
                     {%- assign qty_key = 'option' | append: n | append: '_qty' -%}
                     {%- assign tier_qty_num = os[qty_key] | default: n | plus: 0 -%}
-                    {%- comment -%} Compute dynamic prices from variant data {%- endcomment -%}
+                    {%- comment -%} Base price always from variant × qty {%- endcomment -%}
                     {%- assign tier_price_cents = os_unit_price | times: tier_qty_num -%}
-                    {%- assign tier_compare_cents = os_unit_compare | times: tier_qty_num -%}
-                    {%- assign tier_savings_cents = tier_compare_cents | minus: tier_price_cents -%}
-                    {%- comment -%} Auto-generate sublabel: use setting sublabel but replace {savings} token with dynamic amount {%- endcomment -%}
+
+                    {%- comment -%} Manual savings field overrides variant compare_at. Accepts "25%" or "10" / "$10". {%- endcomment -%}
+                    {%- assign savings_input = os[savings_key] | default: '' | strip -%}
+                    {%- assign tier_savings_cents = 0 -%}
+                    {%- if savings_input != '' -%}
+                      {%- if savings_input contains '%' -%}
+                        {%- assign pct_str = savings_input | replace: '%', '' | strip -%}
+                        {%- assign pct_num = pct_str | times: 1.0 -%}
+                        {%- assign tier_savings_cents = tier_price_cents | times: pct_num | divided_by: 100 | round -%}
+                      {%- else -%}
+                        {%- assign amt_str = savings_input | replace: '$', '' | replace: '€', '' | replace: ',', '.' | strip -%}
+                        {%- assign amt_num = amt_str | times: 1.0 -%}
+                        {%- assign tier_savings_cents = amt_num | times: 100 | round -%}
+                      {%- endif -%}
+                      {%- assign tier_compare_cents = tier_price_cents | plus: tier_savings_cents -%}
+                    {%- else -%}
+                      {%- assign tier_compare_cents = os_unit_compare | times: tier_qty_num -%}
+                      {%- assign tier_savings_cents = tier_compare_cents | minus: tier_price_cents -%}
+                    {%- endif -%}
+
+                    {%- comment -%} Sublabel: replace {savings} token with computed amount {%- endcomment -%}
                     {%- assign tier_sublabel = os[sub_key] -%}
                     {%- if tier_sublabel != blank -%}
                       {%- assign savings_token = '{savings}' -%}
-                      {%- assign tier_sublabel = tier_sublabel | replace: savings_token, tier_savings_cents | money -%}
+                      {%- if tier_savings_cents > 0 -%}
+                        {%- assign tier_sublabel = tier_sublabel | replace: savings_token, tier_savings_cents | money -%}
+                      {%- else -%}
+                        {%- assign tier_sublabel = tier_sublabel | replace: savings_token, '' | strip -%}
+                      {%- endif -%}
                     {%- endif -%}
                     {%- assign is_selected = false -%}
                     {%- if n == 2 -%}{%- assign is_selected = true -%}{%- endif -%}
@@ -604,11 +627,13 @@
                         <span class="offer-card__top">
                           <span class="offer-card__label-wrap">
                             <span class="offer-card__label">{{ os[label_key] }}</span>
-                            {%- if tier_sublabel != blank -%}<span class="offer-card__sublabel">{{ tier_sublabel }}</span>{%- endif -%}
                           </span>
                           <span class="offer-card__prices">
-                            <span class="offer-card__price">{{ tier_price_cents | money }}</span>
-                            {%- if tier_savings_cents > 0 -%}<s class="offer-card__compare">{{ tier_compare_cents | money }}</s>{%- endif -%}
+                            <span class="offer-card__price-row">
+                              <span class="offer-card__price">{{ tier_price_cents | money }}</span>
+                              {%- if tier_savings_cents > 0 -%}<s class="offer-card__compare">{{ tier_compare_cents | money }}</s>{%- endif -%}
+                            </span>
+                            {%- if tier_sublabel != blank -%}<span class="offer-card__sublabel">{{ tier_sublabel }}</span>{%- endif -%}
                           </span>
                         </span>
                         {%- comment -%} Bonuses — direct from settings (name only, no price text needed) {%- endcomment -%}
@@ -3670,6 +3695,7 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
         { "type": "header", "content": "Option 1" },
         { "type": "text", "id": "option1_label", "label": "Label", "default": "AirStyler Only" },
         { "type": "text", "id": "option1_sublabel", "label": "Sublabel (use {savings} for auto amount)", "default": "Save {savings}" },
+        { "type": "text", "id": "option1_savings", "label": "Savings (e.g. 25% or 10) — match your coupon", "info": "Percent like '25%' or fixed amount like '10'. Leave blank for none." },
         { "type": "text", "id": "option1_qty", "label": "Qty (tier mode only)", "default": "1" },
         { "type": "text", "id": "option1_price", "label": "Price override (tier mode, no $)" },
         { "type": "text", "id": "option1_compare", "label": "Compare price (tier mode, no $)" },
@@ -3677,6 +3703,7 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
         { "type": "header", "content": "Option 2" },
         { "type": "text", "id": "option2_label", "label": "Label", "default": "Complete Hair Styling Kit" },
         { "type": "text", "id": "option2_sublabel", "label": "Sublabel (use {savings} for auto amount)", "default": "Save {savings}" },
+        { "type": "text", "id": "option2_savings", "label": "Savings (e.g. 25% or 10) — match your coupon", "info": "Percent like '25%' or fixed amount like '10'. Leave blank for none." },
         { "type": "text", "id": "option2_badge", "label": "Badge (tier mode)" },
         { "type": "text", "id": "option2_qty", "label": "Qty (tier mode)", "default": "2" },
         { "type": "text", "id": "option2_price", "label": "Price override (tier mode, no $)" },
@@ -3685,6 +3712,7 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
         { "type": "header", "content": "Option 3 (tier mode only)" },
         { "type": "text", "id": "option3_label", "label": "Label (fill to enable 3-tier mode)" },
         { "type": "text", "id": "option3_sublabel", "label": "Sublabel (use {savings} for auto amount)" },
+        { "type": "text", "id": "option3_savings", "label": "Savings (e.g. 35% or 20) — match your coupon", "info": "Percent like '35%' or fixed amount like '20'. Leave blank for none." },
         { "type": "text", "id": "option3_badge", "label": "Badge", "default": "BEST VALUE" },
         { "type": "text", "id": "option3_qty", "label": "Qty", "default": "3" },
         { "type": "text", "id": "option3_price", "label": "Price override (no $)" },

@@ -2287,9 +2287,12 @@ section { display: block; }
 .offer-card__sublabel {
   font-family: var(--font-body);
   font-size: 0.8rem;
-  color: #6B7B8D;
+  color: var(--color-accent, #C4944C);
+  font-weight: 600;
   line-height: 1.4;
   margin-top: 2px;
+  text-align: right;
+  white-space: nowrap;
 }
 
 /* ── Prices ── */
@@ -2299,6 +2302,13 @@ section { display: block; }
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  gap: 2px;
+}
+
+.offer-card__price-row {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
 }
 
 .offer-card__price {
