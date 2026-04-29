@@ -24,9 +24,9 @@
         "settings": {
           "logo": "shopify://shop_images/DIAZ_LOGO_no_baclground_white.png",
           "logo_width": 110,
-          "announcement_1": "🚚 LIMITED TIME: FREE SHIPPING ON ALL ORDERS",
-          "announcement_2": "⭐ 4.8/5 STARS — 192 VERIFIED BUYERS ⭐",
-          "announcement_3": "🛡️ 60-DAY GUARANTEE — KEEP IT OR FULL REFUND 🛡️"
+          "announcement_1": "🚚 FREE SHIPPING ON ALL ORDERS — TODAY ONLY",
+          "announcement_2": "",
+          "announcement_3": ""
         }
       },
       "footer": {
