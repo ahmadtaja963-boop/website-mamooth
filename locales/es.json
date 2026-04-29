@@ -1,0 +1,146 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Etiquetado con {{ tags }}",
+      "page": "Página {{ page }}"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Carrito de compras",
+      "empty": "Tu carrito está vacío",
+      "checkout": "Proceder al pago",
+      "subtotal": "Subtotal",
+      "continue_shopping": "Seguir comprando",
+      "remove": "Eliminar",
+      "item_count": {
+        "one": "{{ count }} artículo",
+        "other": "{{ count }} artículos"
+      },
+      "drawer_title": "Carrito",
+      "reserved_for": "Carrito reservado por",
+      "shop_now": "Comprar ahora",
+      "you_might_like": "También te puede gustar",
+      "check_out": "Finalizar compra"
+    },
+    "discount": {
+      "free_shipping_label": "Envío gratis",
+      "percent_discount": "{{ percent }}% de descuento",
+      "free_shipping_unlocked": "¡Envío gratis desbloqueado!",
+      "percent_off": "{{ percent }}% DE DESCUENTO",
+      "away_from": "¡Te faltan {{ amount }} para {{ tier }}!",
+      "more_for": "¡{{ amount }} más para {{ tier }}!",
+      "max_unlocked": "¡{{ tier }} máximo desbloqueado!"
+    },
+    "toast": {
+      "added": "Añadido al carrito",
+      "adding": "Añadiendo…",
+      "error": "No se pudo añadir el artículo. Por favor, inténtalo de nuevo.",
+      "add_to_cart": "Añadir al carrito",
+      "bundle_added": "¡Pack añadido al carrito!"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Reclamar mi oferta",
+      "sold_out": "Agotado",
+      "unavailable": "No disponible",
+      "quantity": "Cantidad",
+      "description": "Descripción",
+      "view_product": "Ver producto",
+      "new": "Nuevo"
+    }
+  },
+  "collections": {
+    "general": {
+      "no_matches": "No se encontraron productos"
+    }
+  },
+  "customer": {
+    "login": {
+      "title": "Iniciar sesión",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "submit": "Iniciar sesión",
+      "forgot_password": "¿Olvidaste tu contraseña?",
+      "create_account": "Crear cuenta"
+    },
+    "register": {
+      "title": "Crear cuenta",
+      "submit": "Crear cuenta"
+    },
+    "account": {
+      "title": "Mi cuenta",
+      "orders": "Historial de pedidos",
+      "logout": "Cerrar sesión"
+    },
+    "addresses": {
+      "title": "Mis direcciones",
+      "add": "Añadir nueva dirección",
+      "edit": "Editar dirección",
+      "delete": "Eliminar"
+    }
+  },
+  "404": {
+    "subtext": "La página que buscas no existe.",
+    "link": "Seguir comprando"
+  },
+  "search": {
+    "title": "Buscar",
+    "placeholder": "Buscar productos...",
+    "submit": "Buscar",
+    "no_results": "Sin resultados para \"{{ terms }}\""
+  },
+  "newsletter": {
+    "label": "Correo electrónico",
+    "placeholder": "Correo electrónico",
+    "submit": "Suscribirse",
+    "success": "Gracias por suscribirte."
+  },
+  "accessibility": {
+    "skip_to_content": "Saltar al contenido",
+    "close_menu": "Cerrar menú",
+    "open_menu": "Abrir menú",
+    "open_cart": "Abrir carrito",
+    "close_cart": "Cerrar carrito"
+  },
+  "header": {
+    "announcement_1": "🚚 TIEMPO LIMITADO: ENVÍO GRATIS EN TODOS LOS PEDIDOS — SOLO HOY",
+    "announcement_2": "",
+    "announcement_3": "",
+    "nav": {
+      "shop": "Tienda",
+      "wellness": "Bienestar",
+      "skincare": "Cuidado de la piel",
+      "fitness": "Fitness",
+      "lifestyle": "Estilo de vida",
+      "about": "Nosotros"
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "heading": "Únete a la Manada",
+      "body": "Novedades, ofertas exclusivas y consejos de bienestar — directo a tu bandeja de entrada."
+    },
+    "support": {
+      "heading": "Soporte",
+      "contact": "Contáctanos",
+      "shipping": "Envío y entrega",
+      "returns": "Devoluciones y reembolsos",
+      "faq": "Preguntas frecuentes"
+    },
+    "company": {
+      "heading": "Empresa",
+      "about": "Sobre MAMMOTH",
+      "terms": "Términos de uso",
+      "privacy": "Política de privacidad"
+    },
+    "social": {
+      "heading": "Síguenos"
+    },
+    "copyright": {
+      "rights": "Todos los derechos reservados.",
+      "tagline": "Construido para durar."
+    }
+  }
+}
