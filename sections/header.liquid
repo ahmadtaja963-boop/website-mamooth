@@ -1,9 +1,13 @@
-{%- comment -%} Announcement bar v2 {%- endcomment -%}
+{%- comment -%} Announcement bar — scrolling marquee {%- endcomment -%}
 <div class="announcement-bar">
   <div class="announcement-marquee">
     <div class="announcement-marquee__track">
       {%- for i in (1..2) -%}
-        <span class="announcement-marquee__item">🚚 LIMITED TIME: FREE SHIPPING ON ALL ORDERS — TODAY ONLY</span>
+        <span class="announcement-marquee__item">{% if section.settings.announcement_1 != blank %}{{ section.settings.announcement_1 }}{% else %}{{ 'header.announcement_1' | t }}{% endif %}</span>
+        <span class="announcement-marquee__sep">✦</span>
+        <span class="announcement-marquee__item">{% if section.settings.announcement_2 != blank %}{{ section.settings.announcement_2 }}{% else %}{{ 'header.announcement_2' | t }}{% endif %}</span>
+        <span class="announcement-marquee__sep">✦</span>
+        <span class="announcement-marquee__item">{% if section.settings.announcement_3 != blank %}{{ section.settings.announcement_3 }}{% else %}{{ 'header.announcement_3' | t }}{% endif %}</span>
         <span class="announcement-marquee__sep">✦</span>
       {%- endfor -%}
     </div>
@@ -109,7 +113,8 @@
     {
       "type": "text",
       "id": "announcement_1",
-      "label": "Announcement message 1"
+      "label": "Announcement message 1",
+      "default": "🚚 LIMITED TIME: FREE SHIPPING ON ALL ORDERS — TODAY ONLY"
     },
     {
       "type": "text",
