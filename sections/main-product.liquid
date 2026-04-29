@@ -584,34 +584,31 @@
                     {%- assign badge_key = 'option' | append: n | append: '_badge' -%}
                     {%- assign qty_key = 'option' | append: n | append: '_qty' -%}
                     {%- assign tier_qty_num = os[qty_key] | default: n | plus: 0 -%}
-                    {%- comment -%} Base price always from variant × qty {%- endcomment -%}
-                    {%- assign tier_price_cents = os_unit_price | times: tier_qty_num -%}
+                    {%- comment -%} Regular price = variant × qty. Savings discounts FROM this. {%- endcomment -%}
+                    {%- assign tier_compare_cents = os_unit_price | times: tier_qty_num -%}
 
-                    {%- comment -%} Manual savings field overrides variant compare_at. Accepts "25%" or "10" / "$10". {%- endcomment -%}
+                    {%- comment -%} Manual savings: accepts "10%" (percent off regular) or "5" (fixed amount off, store currency). {%- endcomment -%}
                     {%- assign savings_input = os[savings_key] | default: '' | strip -%}
                     {%- assign tier_savings_cents = 0 -%}
-                    {%- assign tier_savings_display = '' -%}
                     {%- if savings_input != '' -%}
                       {%- if savings_input contains '%' -%}
                         {%- assign pct_str = savings_input | replace: '%', '' | strip -%}
                         {%- assign pct_num = pct_str | times: 1.0 -%}
-                        {%- comment -%} % off post-discount: compare = price / (1 - pct/100) {%- endcomment -%}
-                        {%- assign keep_ratio = 100 | minus: pct_num | divided_by: 100.0 -%}
-                        {%- assign tier_compare_cents = tier_price_cents | divided_by: keep_ratio | round -%}
-                        {%- assign tier_savings_cents = tier_compare_cents | minus: tier_price_cents -%}
-                        {%- assign tier_savings_display = pct_num | round | append: '%' -%}
+                        {%- assign tier_savings_cents = tier_compare_cents | times: pct_num | divided_by: 100 | round -%}
                       {%- else -%}
                         {%- assign amt_str = savings_input | replace: '$', '' | replace: '€', '' | replace: ',', '.' | strip -%}
                         {%- assign amt_num = amt_str | times: 1.0 -%}
                         {%- assign tier_savings_cents = amt_num | times: 100 | round -%}
-                        {%- assign tier_compare_cents = tier_price_cents | plus: tier_savings_cents -%}
-                        {%- assign tier_savings_display = tier_savings_cents | money -%}
                       {%- endif -%}
+                      {%- assign tier_price_cents = tier_compare_cents | minus: tier_savings_cents -%}
                     {%- else -%}
-                      {%- assign tier_compare_cents = os_unit_compare | times: tier_qty_num -%}
-                      {%- assign tier_savings_cents = tier_compare_cents | minus: tier_price_cents -%}
-                      {%- if tier_savings_cents > 0 -%}
-                        {%- assign tier_savings_display = tier_savings_cents | money -%}
+                      {%- comment -%} No manual savings — fall back to variant compare_at if set, else no discount. {%- endcomment -%}
+                      {%- if os_unit_compare > os_unit_price -%}
+                        {%- assign tier_price_cents = os_unit_price | times: tier_qty_num -%}
+                        {%- assign tier_compare_cents = os_unit_compare | times: tier_qty_num -%}
+                        {%- assign tier_savings_cents = tier_compare_cents | minus: tier_price_cents -%}
+                      {%- else -%}
+                        {%- assign tier_price_cents = tier_compare_cents -%}
                       {%- endif -%}
                     {%- endif -%}
 
