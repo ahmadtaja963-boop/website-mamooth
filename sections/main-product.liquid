@@ -1571,7 +1571,7 @@
                 data-upsell-variant-id="{{ upsell_variant.id }}"
                 {% unless upsell_variant.available %}disabled{% endunless %}
               >
-                {%- if upsell_variant.available -%}+{%- else -%}Sold Out{%- endif -%}
+                {%- if upsell_variant.available -%}+{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
               </button>
             </div>
             {%- if section.settings.upsell_product_2 != blank -%}
@@ -1605,7 +1605,7 @@
                   data-upsell-variant-id="{{ upsell2_variant.id }}"
                   {% unless upsell2_variant.available %}disabled{% endunless %}
                 >
-                  {%- if upsell2_variant.available -%}+{%- else -%}Sold Out{%- endif -%}
+                  {%- if upsell2_variant.available -%}+{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
                 </button>
               </div>
             {%- endif -%}
@@ -1682,12 +1682,12 @@
   <div class="product-tabs-bar" id="ProductTabsBar">
     <div class="product-tabs-center">
       <div class="product-tabs-inner">
-        <button class="product-tab active" data-tab-target="overview" type="button">Overview</button>
+        <button class="product-tab active" data-tab-target="overview" type="button">{{ 'products.product.overview' | t }}</button>
         {%- if has_more_info -%}
-          <button class="product-tab" data-tab-target="more-info" type="button">Specifications</button>
+          <button class="product-tab" data-tab-target="more-info" type="button">{{ 'products.product.specifications' | t }}</button>
         {%- endif -%}
         {%- if has_faq -%}
-          <button class="product-tab" data-tab-target="faq" type="button">FAQ</button>
+          <button class="product-tab" data-tab-target="faq" type="button">{{ 'products.product.faq' | t }}</button>
         {%- endif -%}
       </div>
     </div>
@@ -1867,7 +1867,7 @@
       {%- if has_more_info -%}
         <div class="product-floating-card" id="ProductMoreInfo">
           <button class="product-card-toggle" aria-expanded="false" type="button">
-            <span>Specifications</span>
+            <span>{{ 'products.product.specifications' | t }}</span>
             <svg class="product-card-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
           <div class="product-card-body">
@@ -2536,6 +2536,12 @@
 </style>
 
 <script>
+/* ── Locale strings for JS-rendered text ── */
+window.MammothT = {
+  claim_my_offer: {{ 'products.product.add_to_cart' | t | json }},
+  sold_out: {{ 'products.product.sold_out' | t | json }}
+};
+
 /* ── Upsell map for cart drawer ── */
 window.MammothUpsellMap = window.MammothUpsellMap || {};
 window.MammothUpsellMap[{{ product.handle | json }}] = [
@@ -2708,7 +2714,7 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
         var addBtn = form.querySelector('.product-atc-btn');
         if (addBtn && variantImgs[vid]) {
           addBtn.disabled = !variantImgs[vid].available;
-          addBtn.textContent = variantImgs[vid].available ? 'Claim My Offer' : 'Sold Out';
+          addBtn.textContent = variantImgs[vid].available ? window.MammothT.claim_my_offer : window.MammothT.sold_out;
           addBtn.dataset.variantId = vid;
         }
         if (variantImgs[vid] && variantImgs[vid].image_src && variantImgs[vid].image_src !== 'null') {
@@ -2937,7 +2943,7 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
       })
       .then(function() {
         btn.disabled = false;
-        btn.textContent = 'Claim My Offer';
+        btn.textContent = window.MammothT.claim_my_offer;
         /* Refresh cart drawer + open it */
         if (window.MammothTheme && window.MammothTheme.openCart) {
           window.MammothTheme.fetchCart
@@ -2949,7 +2955,7 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
       })
       .catch(function(err) {
         btn.disabled = false;
-        btn.textContent = 'Claim My Offer';
+        btn.textContent = window.MammothT.claim_my_offer;
         console.error('BOGO add error:', err);
       });
     });
@@ -3061,7 +3067,7 @@ window.MammothUpsellMap[{{ product.handle | json }}] = [
         var addBtn = form.querySelector('.product-atc-btn');
         if (addBtn) {
           addBtn.disabled  = !match.available;
-          addBtn.textContent = match.available ? 'Claim My Offer' : 'Sold Out';
+          addBtn.textContent = match.available ? window.MammothT.claim_my_offer : window.MammothT.sold_out;
           addBtn.dataset.variantId = match.id;
         }
 

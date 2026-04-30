@@ -57,7 +57,10 @@
       "quantity": "Quantity",
       "description": "Description",
       "view_product": "View Product",
-      "new": "New"
+      "new": "New",
+      "specifications": "Specifications",
+      "overview": "Overview",
+      "faq": "FAQ"
     }
   },
   "collections": {
