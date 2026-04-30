@@ -60,6 +60,22 @@
             "mobile_image_4": "shopify://shop_images/48c27b01094098ab09fd71fe0505bc451205549.jpg"
           }
         },
+        "funnel_es": {
+          "type": "funnel_image",
+          "name": "A+ Content Funnel — ES",
+          "settings": {
+            "funnel_locale": "es",
+            "funnel_alt": "Sostén corrector de postura — Contenido A+",
+            "desktop_image": "shopify://shop_images/posture-bra-es-ap1_desk.jpg",
+            "mobile_image": "shopify://shop_images/posture-bra-es-ap1_mob.jpg",
+            "desktop_image_2": "shopify://shop_images/posture-bra-es-ap3_desk.jpg",
+            "mobile_image_2": "shopify://shop_images/posture-bra-es-ap3_mob.jpg",
+            "desktop_image_3": "shopify://shop_images/posture-bra-es-ap2_desk.jpg",
+            "mobile_image_3": "shopify://shop_images/posture-bra-es-ap2_mob.jpg",
+            "desktop_image_4": "shopify://shop_images/posture-bra-es-ap4_desk.jpg",
+            "mobile_image_4": "shopify://shop_images/posture-bra-es-ap4_mob.jpg"
+          }
+        },
         "stock_main": {
           "type": "stock_indicator",
           "settings": {
@@ -180,6 +196,7 @@
         "funnel_main",
         "funnel_fr",
         "funnel_de",
+        "funnel_es",
         "video_showcase_main",
         "guarantee_main",
         "offer_main",
