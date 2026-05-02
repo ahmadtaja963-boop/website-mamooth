@@ -1,38 +1,40 @@
-/* MAMMOTH — Shopify Theme Styles */
+/* the pretty fix. — Shopify Theme Styles */
 
 /* ─── Google Fonts are loaded via theme.liquid ─── */
 
 /* ════════════════════════════════════════════════════════════
-   MAMMOTH DESIGN TOKENS — Edit ONLY this block to retheme.
-   Every component references these variables. Nothing is
-   hardcoded below. Switching stores = swap this block.
+   THE PRETTY FIX — DESIGN TOKENS — Palette J: Pink Script & Cream
+   Edit ONLY this block to retheme. Every component references
+   these variables. Nothing is hardcoded below.
    ════════════════════════════════════════════════════════════ */
 :root {
   /* — Backgrounds — */
-  --color-bg:           #FAFBFC;  /* Arctic White — page bg */
-  --color-bg-secondary: #E8F4F8;  /* Ice Blue — section bg, badges */
+  --color-bg:           #F8F2EB;  /* Warm Cream — page bg */
+  --color-bg-secondary: #F8D8DD;  /* Blush — section bg, badges */
   --color-bg-card:      #FFFFFF;  /* Card backgrounds */
-  --color-bg-dark:      #1A2332;  /* Mammoth Dark — footer, announcement */
+  --color-bg-dark:      #1F1A1A;  /* Warm Black — footer, announcement */
 
   /* — Text — */
-  --color-text:         #1A2332;  /* Mammoth Dark — primary text */
-  --color-text-muted:   #6B7B8D;  /* Steel Gray — body, captions */
+  --color-text:         #1F1A1A;  /* Warm Black — primary text */
+  --color-text-muted:   #6B5D5D;  /* Warm Muted — body, captions */
   --color-white-90:     rgba(255,255,255,0.90);
   --color-white-60:     rgba(255,255,255,0.60);
   --color-white-10:     rgba(255,255,255,0.10);
 
   /* — Brand — */
-  --color-accent:       #2B8F9E;  /* Tusk Teal — CTAs, links, logo */
-  --color-accent-hover: #247A87;  /* Teal 10% darker */
+  --color-accent:       #EE6B97;  /* Pink Script — CTAs, links, accents */
+  --color-accent-hover: #C73E6E;  /* Deep Pink — hover/pressed */
+  --color-script:       #EE6B97;  /* Handwritten brushy pink — wordmark + scripts */
+  --color-script-shadow:#C73E6E;  /* Drop shadow under script */
 
   /* — Borders — */
-  --color-border:       #DDE4EA;  /* Glacier */
+  --color-border:       #E8DDD5;  /* Warm Cream Border */
 
   /* — Semantic aliases (kept for backwards compat) — */
-  --color-black:        #1A2332;
-  --color-white:        #FAFBFC;
-  --color-secondary-bg: #E8F4F8;
-  --color-support:      #2B8F9E;
+  --color-black:        #1F1A1A;
+  --color-white:        #F8F2EB;
+  --color-secondary-bg: #F8D8DD;
+  --color-support:      #EE6B97;
 
   /* — Status — */
   --color-success:      #34C759;
@@ -40,10 +42,11 @@
   --color-error:        #E53E3E;
 
   /* — Typography — */
-  --font-heading: 'Montserrat', system-ui, sans-serif;
-  --font-body:    'Inter', system-ui, sans-serif;
-  --font-sans:    'Montserrat', system-ui, sans-serif;  /* compat alias */
-  --font-serif:   'Montserrat', system-ui, sans-serif;  /* redirect serif */
+  --font-heading: 'Inter', system-ui, sans-serif;            /* clean readable sans for headings */
+  --font-body:    'Inter', system-ui, sans-serif;            /* body */
+  --font-sans:    'Inter', system-ui, sans-serif;            /* compat alias */
+  --font-serif:   'Inter', system-ui, sans-serif;            /* redirect serif (no serif used) */
+  --font-script:  'Caveat Brush', 'Caveat', cursive;         /* wordmark + emotional headlines ONLY */
 
   /* — Layout — */
   --nav-height:     64px;
@@ -151,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
   border-color: var(--color-bg-dark);
 }
-.btn-dark:hover { background: #243044; border-color: #243044; }
+.btn-dark:hover { background: #2A2421; border-color: #2A2421; }
 
 .btn-ghost {
   background: transparent;
