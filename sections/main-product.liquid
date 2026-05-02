@@ -38,12 +38,12 @@
   .product-page .bogo-card__badge { background: var(--color-accent); }
   .product-page .bogo-social-proof__dot { background: var(--color-accent); }
   .product-page .product-info a { color: var(--color-accent); }
-  .announcement-bar { background: {{ section.settings.accent_color }} !important; }
-  .cart-reserved { background: {{ section.settings.accent_color }} !important; }
-  .cart-checkout-btn { background: {{ section.settings.accent_color }} !important; }
-  .cart-checkout-btn:hover { background: color-mix(in srgb, {{ section.settings.accent_color }} 85%, #000) !important; }
-  .cart-discount-milestone.reached .cart-discount-dot { background: {{ section.settings.accent_color }}; border-color: {{ section.settings.accent_color }}; box-shadow: 0 0 0 3px rgba(181,115,106,0.15); }
-  .cart-discount-fill { background: {{ section.settings.accent_color }}; }
+  .announcement-bar { background: var(--color-bg-dark) !important; color: var(--color-bg) !important; }
+  .cart-reserved { background: var(--color-accent) !important; }
+  .cart-checkout-btn { background: var(--color-accent) !important; }
+  .cart-checkout-btn:hover { background: var(--color-accent-hover) !important; }
+  .cart-discount-milestone.reached .cart-discount-dot { background: var(--color-accent); border-color: var(--color-accent); box-shadow: 0 0 0 3px rgba(238,107,151,0.15); }
+  .cart-discount-fill { background: var(--color-accent); }
 </style>
 {%- endif -%}
 <div class="product-page" style="padding-bottom:0;">
@@ -2259,7 +2259,7 @@
     padding: 6px 0 0;
     font-family: var(--font-body, Inter, sans-serif);
     font-size: 0.85rem;
-    color: #1A2332;
+    color: var(--color-text);
   }
   .urgency-counter__icon {
     font-size: 14px;
@@ -2288,7 +2288,7 @@
     padding: 1.25rem;
     margin: 1rem 0;
     font-family: Inter, sans-serif;
-    color: #1A2332;
+    color: var(--color-text);
   }
   .offer-value-stack__heading {
     font-size: 0.8125rem;
@@ -2331,8 +2331,8 @@
     font-weight: 600;
   }
   .offer-guarantee {
-    background: #1A2332;
-    color: #F7FAFC;
+    background: var(--color-bg-dark);
+    color: var(--color-bg);
     border-radius: 12px;
     padding: 1.5rem;
     margin: 1rem 0;
