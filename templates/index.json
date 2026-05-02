@@ -76,10 +76,10 @@
     "why-brand": {
       "type": "why-brand",
       "settings": {
-        "heading": "Why MAMMOTH",
-        "text1": "We started with a simple belief: an online store can be both general and premium. Every product on MAMMOTH is curated, vetted, and presented with clarity.",
-        "text2": "Our roots are in wellness and self-improvement. Real value, no gimmicks — just products that deliver results.",
-        "text3": "Built to last. Just like the mammoth.",
+        "heading": "Why the pretty fix",
+        "text1": "She tried braces, reminders, and 5 days of yoga. Nothing stuck — not because she's lazy, but because she's exhausted, and the methods were wrong.",
+        "text2": "the pretty fix is the passive way to fix tech neck while you scroll. Three pieces, designed to disappear into your routine. No new habits.",
+        "text3": "Rest is the work.",
         "button_label": "Our Story",
         "button_url": "/pages/about"
       }
