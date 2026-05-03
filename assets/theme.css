@@ -611,8 +611,8 @@ section { display: block; }
 }
 
 .why-brand-card {
-  background: var(--color-bg-dark);
-  color: #fff;
+  background: var(--color-bg-secondary);
+  color: var(--color-text);
   border-radius: var(--radius-card);
   padding: 2.5rem;
 }
@@ -623,7 +623,7 @@ section { display: block; }
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--color-text);
   margin-bottom: 1.25rem;
 }
 
@@ -631,7 +631,7 @@ section { display: block; }
   font-family: var(--font-body);
   font-size: 0.9375rem;
   line-height: 1.7;
-  color: var(--color-white-90);
+  color: var(--color-text-muted);
   margin-bottom: 0.75rem;
 }
 
