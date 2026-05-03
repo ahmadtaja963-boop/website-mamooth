@@ -17,29 +17,17 @@
 <header class="site-header" id="SiteHeader">
   <div class="container header-inner">
 
-    {%- comment -%} Logo — left {%- endcomment -%}
-    {%- assign logo_width = section.settings.logo_width | default: 140 -%}
-    <a class="header-logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
-      {%- if section.settings.logo != blank -%}
-        <img
-          src="{{ section.settings.logo | image_url: width: logo_width }}"
-          alt="{{ shop.name }}"
-          style="width: {{ logo_width }}px; height: auto;"
-          loading="eager"
-        >
-      {%- else -%}
-        <span style="font-family:var(--font-script,'Caveat Brush',cursive);font-weight:400;font-size:2rem;letter-spacing:0.01em;color:var(--color-accent);line-height:1;text-shadow:1px 1px 0 var(--color-accent-hover);transform:rotate(-1.5deg);display:inline-block;">the pretty fix.</span>
-      {%- endif -%}
+    {%- comment -%} Wordmark — left (forced; ignores stale legacy logo setting) {%- endcomment -%}
+    <a class="header-logo" href="{{ routes.root_url }}" aria-label="the pretty fix.">
+      <span style="font-family:var(--font-script,'Caveat Brush',cursive);font-weight:400;font-size:2rem;letter-spacing:0.01em;color:var(--color-accent);line-height:1;text-shadow:1px 1px 0 var(--color-accent-hover);transform:rotate(-1.5deg);display:inline-block;">the pretty fix.</span>
     </a>
 
-    {%- comment -%} Center nav (desktop) {%- endcomment -%}
+    {%- comment -%} Center nav (desktop) — pretty fix lineup {%- endcomment -%}
     <nav class="header-nav" aria-label="Main navigation">
-      <a href="/collections/all">{{ 'header.nav.shop' | t }}</a>
-      <a href="/collections/wellness">{{ 'header.nav.wellness' | t }}</a>
-      <a href="/collections/skincare">{{ 'header.nav.skincare' | t }}</a>
-      <a href="/collections/fitness">{{ 'header.nav.fitness' | t }}</a>
-      <a href="/collections/lifestyle">{{ 'header.nav.lifestyle' | t }}</a>
-      <a href="/pages/about">{{ 'header.nav.about' | t }}</a>
+      <a href="/collections/all">Shop</a>
+      <a href="/products/mammoth-posture-corrective-wireless-bra">The Bra</a>
+      <a href="/pages/about">The Science</a>
+      <a href="/pages/about">About</a>
     </nav>
 
     {%- comment -%} Right icons {%- endcomment -%}

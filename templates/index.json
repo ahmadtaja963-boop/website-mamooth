@@ -12,64 +12,64 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "heading": "Strength & Vitality For Everyone",
-        "subheading": "Premium wellness, fitness, and lifestyle products curated for people who care.",
-        "button_label": "Shop Now",
-        "button_url": "/collections/all"
+        "heading": "Pilates Princess Posture. Without the Pilates.",
+        "subheading": "Posture care for tech-neck girlies. Zero effort. Three pieces, designed to disappear into your routine.",
+        "button_label": "Shop the Bra",
+        "button_url": "/products/mammoth-posture-corrective-wireless-bra"
       }
     },
     "featured-collections": {
       "type": "featured-collections",
       "blocks": {
-        "wellness": {
+        "the-bra": {
           "type": "collection_card",
           "settings": {
-            "label": "Wellness",
-            "collection_handle": "wellness"
+            "label": "The Bra",
+            "collection_handle": "all"
           }
         },
-        "skincare": {
+        "tech-neck": {
           "type": "collection_card",
           "settings": {
-            "label": "Skincare",
-            "collection_handle": "skincare"
+            "label": "Tech Neck Care",
+            "collection_handle": "all"
           }
         },
-        "fitness": {
+        "sleep": {
           "type": "collection_card",
           "settings": {
-            "label": "Fitness",
-            "collection_handle": "fitness"
+            "label": "Sleep & Recovery",
+            "collection_handle": "all"
           }
         },
-        "lifestyle": {
+        "science": {
           "type": "collection_card",
           "settings": {
-            "label": "Lifestyle",
-            "collection_handle": "lifestyle"
+            "label": "The Science",
+            "collection_handle": "all"
           }
         }
       },
-      "block_order": ["wellness", "skincare", "fitness", "lifestyle"],
+      "block_order": ["the-bra", "tech-neck", "sleep", "science"],
       "settings": {
-        "heading": "Shop by Category"
+        "heading": "The Three-Piece Fix"
       }
     },
     "trust-badges": {
       "type": "trust-badges",
       "settings": {
-        "badge1_title": "Free Shipping on Orders $50+",
-        "badge2_title": "30-Day Money-Back Guarantee",
-        "badge3_title": "Secure Checkout SSL Encrypted",
-        "badge4_title": "Premium Quality Assured"
+        "badge1_title": "Free US Shipping",
+        "badge2_title": "30-Day Try-It Window",
+        "badge3_title": "Developed With Chiropractors",
+        "badge4_title": "Worn & Loved by 1,000+ Women"
       }
     },
     "top-picks": {
       "type": "top-picks",
       "settings": {
-        "heading": "Trending Now",
+        "heading": "What She Said She Uses",
         "products_to_show": 4,
-        "button_label": "View All Products",
+        "button_label": "Shop the System",
         "button_url": "/collections/all"
       }
     },
