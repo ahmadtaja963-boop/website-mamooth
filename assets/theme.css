@@ -170,7 +170,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── Announcement Bar ─── */
 .announcement-bar {
-  background: var(--color-bg-dark);
+  background: var(--color-accent);
   color: #fff;
   padding: 0.6rem 0;
   font-family: var(--font-body);
