@@ -20,7 +20,8 @@
     {{ page_title }}
     {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
     {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
-    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    {%- assign brand_name = 'the pretty fix' -%}
+    {%- unless page_title contains brand_name %} &ndash; {{ brand_name }}{% endunless -%}
   </title>
 
   {% if page_description %}
