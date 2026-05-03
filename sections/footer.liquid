@@ -23,7 +23,7 @@
             </button>
           </div>
           {%- if form.posted_successfully? -%}
-            <p style="color:rgba(255,255,255,0.7);font-size:.875rem;margin-top:.5rem;">
+            <p style="color:var(--color-text-muted);font-size:.875rem;margin-top:.5rem;">
               {{ 'newsletter.success' | t }}
             </p>
           {%- endif -%}

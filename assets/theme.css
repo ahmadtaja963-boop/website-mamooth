@@ -906,9 +906,9 @@ section { display: block; }
 
 /* ─── Footer ─── */
 .site-footer {
-  background: var(--color-black);
-  color: var(--color-white);
-  border-top: 1px solid var(--color-white-10);
+  background: var(--color-bg);
+  color: var(--color-text);
+  border-top: 1px solid var(--color-border);
 }
 
 .footer-inner {
@@ -934,7 +934,7 @@ section { display: block; }
 
 .footer-newsletter p {
   font-size: 0.875rem;
-  color: var(--color-white-60);
+  color: var(--color-text-muted);
   margin-bottom: 1rem;
 }
 
@@ -946,15 +946,15 @@ section { display: block; }
 .footer-newsletter-form input {
   flex: 1;
   padding: 0.625rem 1rem;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--color-white-10);
-  color: var(--color-white);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
   font-size: 0.875rem;
   outline: none;
 }
 
-.footer-newsletter-form input::placeholder { color: var(--color-white-60); }
-.footer-newsletter-form input:focus { border-color: rgba(255,255,255,0.3); }
+.footer-newsletter-form input::placeholder { color: var(--color-text-muted); }
+.footer-newsletter-form input:focus { border-color: var(--color-accent); }
 
 .footer-col h4 {
   font-family: var(--font-sans);
@@ -967,14 +967,14 @@ section { display: block; }
 
 .footer-col ul li a {
   font-size: 0.875rem;
-  color: var(--color-white-60);
+  color: var(--color-text-muted);
   transition: color 0.2s;
 }
 .footer-col ul li a:hover { color: var(--color-accent); }
 
 .footer-bottom {
   padding-top: 1.5rem;
-  border-top: 1px solid var(--color-white-10);
+  border-top: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1000,7 +1000,7 @@ section { display: block; }
 
 .footer-social span {
   font-size: 0.875rem;
-  color: var(--color-white-60);
+  color: var(--color-text-muted);
 }
 
 .footer-social-links {
@@ -1009,17 +1009,17 @@ section { display: block; }
 }
 
 .footer-social-link {
-  color: var(--color-white-60);
+  color: var(--color-text-muted);
   transition: color 0.2s;
   display: flex;
   align-items: center;
 }
-.footer-social-link:hover { color: var(--color-white); }
+.footer-social-link:hover { color: var(--color-text); }
 .footer-social-link svg { width: 20px; height: 20px; }
 
 .footer-copyright {
   font-size: 0.875rem;
-  color: var(--color-white-60);
+  color: var(--color-text-muted);
   text-align: center;
 }
 
