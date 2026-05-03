@@ -17,9 +17,19 @@
 <header class="site-header" id="SiteHeader">
   <div class="container header-inner">
 
-    {%- comment -%} Wordmark — left (forced; ignores stale legacy logo setting) {%- endcomment -%}
+    {%- comment -%} Logo — uploaded image takes priority; falls back to script wordmark {%- endcomment -%}
     <a class="header-logo" href="{{ routes.root_url }}" aria-label="the pretty fix.">
-      <span style="font-family:var(--font-script,'Caveat Brush',cursive);font-weight:400;font-size:2rem;letter-spacing:0.01em;color:var(--color-accent);line-height:1;text-shadow:1px 1px 0 var(--color-accent-hover);transform:rotate(-1.5deg);display:inline-block;">the pretty fix.</span>
+      {%- if section.settings.logo != blank -%}
+        {%- assign logo_w = section.settings.logo_width | default: 200 -%}
+        <img
+          src="{{ section.settings.logo | image_url: width: 600 }}"
+          alt="the pretty fix."
+          style="max-width:{{ logo_w }}px;"
+          loading="eager"
+        >
+      {%- else -%}
+        <span style="font-family:var(--font-script,'Caveat Brush',cursive);font-weight:400;font-size:2rem;letter-spacing:0.01em;color:var(--color-accent);line-height:1;text-shadow:1px 1px 0 var(--color-accent-hover);transform:rotate(-1.5deg);display:inline-block;">the pretty fix.</span>
+      {%- endif -%}
     </a>
 
     {%- comment -%} Center nav (desktop) — pretty fix lineup {%- endcomment -%}
@@ -124,10 +134,10 @@
     {
       "type": "range",
       "id": "logo_width",
-      "min": 60,
-      "max": 220,
+      "min": 80,
+      "max": 360,
       "step": 10,
-      "default": 140,
+      "default": 220,
       "unit": "px",
       "label": "Logo width"
     }
