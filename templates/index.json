@@ -12,9 +12,10 @@
     "hero": {
       "type": "hero",
       "settings": {
+        "image": "shopify://shop_images/remove_the_phrase___the_202605031744.jpg",
         "heading": "Pilates Princess Posture. Without the Pilates.",
         "subheading": "Posture care for tech-neck girlies. Zero effort. Three pieces, designed to disappear into your routine.",
-        "button_label": "Shop the Bra",
+        "button_label": "Explore our community",
         "button_url": "/products/mammoth-posture-corrective-wireless-bra"
       }
     },
@@ -24,6 +25,7 @@
         "the-bra": {
           "type": "collection_card",
           "settings": {
+            "collection": "",
             "label": "The Bra",
             "collection_handle": "all"
           }
@@ -31,6 +33,7 @@
         "tech-neck": {
           "type": "collection_card",
           "settings": {
+            "collection": "",
             "label": "Tech Neck Care",
             "collection_handle": "all"
           }
@@ -38,6 +41,7 @@
         "sleep": {
           "type": "collection_card",
           "settings": {
+            "collection": "",
             "label": "Sleep & Recovery",
             "collection_handle": "all"
           }
@@ -45,14 +49,23 @@
         "science": {
           "type": "collection_card",
           "settings": {
+            "collection": "",
             "label": "The Science",
             "collection_handle": "all"
           }
         }
       },
-      "block_order": ["the-bra", "tech-neck", "sleep", "science"],
+      "block_order": [
+        "the-bra",
+        "tech-neck",
+        "sleep",
+        "science"
+      ],
       "settings": {
-        "heading": "The Three-Piece Fix"
+        "heading": "The Three-Piece Fix",
+        "show_model_image": true,
+        "full_width_heading": "Premium Leather Craftsmanship",
+        "full_width_subheading": "Experience the finest quality leather accessories designed for the modern professional"
       }
     },
     "trust-badges": {
@@ -68,6 +81,8 @@
       "type": "top-picks",
       "settings": {
         "heading": "What She Said She Uses",
+        "collection": "",
+        "collection_handle": "",
         "products_to_show": 4,
         "button_label": "Shop the System",
         "button_url": "/collections/all"
