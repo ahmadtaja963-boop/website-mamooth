@@ -22,9 +22,9 @@
       "header": {
         "type": "header",
         "settings": {
-          "announcement_1": "",
-          "announcement_2": "",
-          "announcement_3": "",
+          "announcement_1": "shipping time 3 to 6 days",
+          "announcement_2": "fast delivery",
+          "announcement_3": "free shipping",
           "logo": "shopify://shop_images/remove_for_lazy_girl_products_202605031726.jpg",
           "logo_width": 190
         }
