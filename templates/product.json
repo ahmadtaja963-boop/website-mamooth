@@ -39,6 +39,21 @@
         "size_chart_label": "Size Chart"
       }
     },
+    "product_carousel_VWzJPE": {
+      "type": "product-carousel",
+      "name": "Product Carousel",
+      "settings": {
+        "heading": "Explore the Collection",
+        "product_1": "mammoth-posture-corrective-wireless-bra",
+        "product_2": "handheld-makeup-mirror-with-hair-eraser-2-in-1-reusable-depilation-tool",
+        "product_3": "shapewear-womens-full-bodysuit",
+        "product_4": "tech-neck-cream",
+        "product_5": "",
+        "product_6": "",
+        "product_7": "",
+        "product_8": ""
+      }
+    },
     "hero_3HeV8E": {
       "type": "hero",
       "name": "Hero",
@@ -48,31 +63,6 @@
         "subheading": "",
         "button_label": "",
         "button_url": ""
-      }
-    },
-    "you_may_also_like_T9ThEC": {
-      "type": "you-may-also-like",
-      "name": "You May Also Like",
-      "settings": {
-        "heading": "You May Also Like",
-        "product_1": "",
-        "product_2": "",
-        "product_3": ""
-      }
-    },
-    "product_carousel_VWzJPE": {
-      "type": "product-carousel",
-      "name": "Product Carousel",
-      "settings": {
-        "heading": "Explore the Collection",
-        "product_1": "professional-hair-dryers-5-in-1-black-1000w",
-        "product_2": "infinity-love-knot-stainless-steel-bracelets",
-        "product_3": "vitamin-c-brightening-face-cream",
-        "product_4": "bamboo-meditation-yoga-mat",
-        "product_5": "",
-        "product_6": "",
-        "product_7": "",
-        "product_8": ""
       }
     },
     "hero_nb3K9G": {
@@ -95,6 +85,17 @@
         "subheading": "",
         "button_label": "",
         "button_url": ""
+      }
+    },
+    "you_may_also_like_T9ThEC": {
+      "type": "you-may-also-like",
+      "custom_css": [],
+      "name": "You May Also Like",
+      "settings": {
+        "heading": "You May Also Like",
+        "product_1": "",
+        "product_2": "mammoth-posture-corrective-wireless-bra",
+        "product_3": ""
       }
     },
     "trust_badges_anUcqq": {
@@ -129,10 +130,10 @@
   "order": [
     "main",
     "hero_3HeV8E",
-    "you_may_also_like_T9ThEC",
-    "product_carousel_VWzJPE",
     "hero_nb3K9G",
     "hero_VkpfcP",
+    "you_may_also_like_T9ThEC",
+    "product_carousel_VWzJPE",
     "trust_badges_anUcqq",
     "judgeme_reviews"
   ]
