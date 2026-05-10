@@ -34,7 +34,20 @@
         "show_upsell": true,
         "upsell_product": "infinity-love-knot-stainless-steel-bracelets",
         "upsell_product_2": "",
-        "upsell_heading": "Others Like You Also Bought:"
+        "upsell_heading": "Others Like You Also Bought:",
+        "size_chart_url": "",
+        "size_chart_label": "Size Chart"
+      }
+    },
+    "hero_3HeV8E": {
+      "type": "hero",
+      "name": "Hero",
+      "settings": {
+        "image": "shopify://shop_images/Study_the_desktop_image_I_202605052310.jpg",
+        "heading": "",
+        "subheading": "",
+        "button_label": "",
+        "button_url": ""
       }
     },
     "you_may_also_like_T9ThEC": {
@@ -60,6 +73,28 @@
         "product_6": "",
         "product_7": "",
         "product_8": ""
+      }
+    },
+    "hero_nb3K9G": {
+      "type": "hero",
+      "name": "Hero",
+      "settings": {
+        "image": "shopify://shop_images/Study_the_desktop_image_I_202605052311.jpg",
+        "heading": "",
+        "subheading": "",
+        "button_label": "",
+        "button_url": ""
+      }
+    },
+    "hero_VkpfcP": {
+      "type": "hero",
+      "name": "Hero",
+      "settings": {
+        "image": "shopify://shop_images/competitors_price_is_79.99___202605052314.jpg",
+        "heading": "",
+        "subheading": "",
+        "button_label": "",
+        "button_url": ""
       }
     },
     "trust_badges_anUcqq": {
@@ -93,8 +128,11 @@
   },
   "order": [
     "main",
+    "hero_3HeV8E",
     "you_may_also_like_T9ThEC",
     "product_carousel_VWzJPE",
+    "hero_nb3K9G",
+    "hero_VkpfcP",
     "trust_badges_anUcqq",
     "judgeme_reviews"
   ]
