@@ -12,11 +12,11 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "image": "shopify://shop_images/remove_the_phrase___the_202605031744.jpg",
+        "image": "shopify:\/\/shop_images\/remove_the_phrase___the_202605031744.jpg",
         "heading": "Pilates Princess Posture. Without the Pilates.",
         "subheading": "Posture care for tech-neck girlies. Zero effort. Three pieces, designed to disappear into your routine.",
         "button_label": "Explore our community",
-        "button_url": "/products/mammoth-posture-corrective-wireless-bra"
+        "button_url": "\/products\/mammoth-posture-corrective-wireless-bra"
       }
     },
     "featured-collections": {
@@ -62,7 +62,7 @@
         "science"
       ],
       "settings": {
-        "heading": "The Three-Piece Fix",
+        "heading": "FUNNEL SMOKE TEST 2026-05-14",
         "show_model_image": true,
         "full_width_heading": "Premium Leather Craftsmanship",
         "full_width_subheading": "Experience the finest quality leather accessories designed for the modern professional"
@@ -85,14 +85,14 @@
         "collection_handle": "",
         "products_to_show": 4,
         "button_label": "Shop the System",
-        "button_url": "/collections/all"
+        "button_url": "\/collections\/all"
       }
     },
     "hero_h6DQBb": {
       "type": "hero",
       "name": "Hero",
       "settings": {
-        "image": "shopify://shop_images/make_the_hats_looks_more_202605031803.jpg",
+        "image": "shopify:\/\/shop_images\/make_the_hats_looks_more_202605031803.jpg",
         "heading": "effortless summer style",
         "subheading": "",
         "button_label": "shop now",
@@ -102,13 +102,13 @@
     "why-brand": {
       "type": "why-brand",
       "settings": {
-        "image": "shopify://shop_images/i_want_you_to_make_202605031552.jpg",
+        "image": "shopify:\/\/shop_images\/i_want_you_to_make_202605031552.jpg",
         "heading": "Why the pretty fix",
         "text1": "She tried braces, reminders, and 5 days of yoga. Nothing stuck — not because she's lazy, but because she's exhausted, and the methods were wrong.",
         "text2": "the pretty fix is the passive way to fix tech neck while you scroll. Three pieces, designed to disappear into your routine. No new habits.",
         "text3": "Rest is the work.",
         "button_label": "Our Story",
-        "button_url": "/pages/about"
+        "button_url": "\/pages\/about"
       }
     }
   },
