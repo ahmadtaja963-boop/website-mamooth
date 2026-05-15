@@ -1,0 +1,104 @@
+
+{%- comment -%} Starter Kit — The Screen Body Set {%- endcomment -%}
+<section style="background:#E8DCC6;padding:clamp(4rem,8vw,6rem) 0;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,4vw,2rem);">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center;">
+
+      {%- comment -%} LEFT: 2x2 product grid {%- endcomment -%}
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+
+        <div style="position:relative;aspect-ratio:3/4;background:#D9C7AC;overflow:hidden;display:flex;align-items:flex-end;padding:0.75rem;">
+          {%- if section.settings.image1 != blank -%}
+            <img src="{{ section.settings.image1 | image_url: width: 500 }}" alt="Product 1" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
+          {%- else -%}
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <span style="font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.15em;color:#9A7E62;text-transform:uppercase;">Product 1</span>
+            </div>
+          {%- endif -%}
+          <span style="position:relative;z-index:1;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;background:rgba(244,236,223,0.7);padding:0.2rem 0.4rem;">{{ section.settings.label1 }}</span>
+        </div>
+
+        <div style="position:relative;aspect-ratio:3/4;background:#D9C7AC;overflow:hidden;display:flex;align-items:flex-end;padding:0.75rem;">
+          {%- if section.settings.image2 != blank -%}
+            <img src="{{ section.settings.image2 | image_url: width: 500 }}" alt="Product 2" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
+          {%- else -%}
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <span style="font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.15em;color:#9A7E62;text-transform:uppercase;">Product 2</span>
+            </div>
+          {%- endif -%}
+          <span style="position:relative;z-index:1;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;background:rgba(244,236,223,0.7);padding:0.2rem 0.4rem;">{{ section.settings.label2 }}</span>
+        </div>
+
+        <div style="position:relative;aspect-ratio:3/4;background:#D9C7AC;overflow:hidden;display:flex;align-items:flex-end;padding:0.75rem;">
+          {%- if section.settings.image3 != blank -%}
+            <img src="{{ section.settings.image3 | image_url: width: 500 }}" alt="Product 3" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
+          {%- else -%}
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <span style="font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.15em;color:#9A7E62;text-transform:uppercase;">Product 3</span>
+            </div>
+          {%- endif -%}
+          <span style="position:relative;z-index:1;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;background:rgba(244,236,223,0.7);padding:0.2rem 0.4rem;">{{ section.settings.label3 }}</span>
+        </div>
+
+        <div style="position:relative;aspect-ratio:3/4;background:#D9C7AC;overflow:hidden;display:flex;align-items:flex-end;padding:0.75rem;">
+          {%- if section.settings.image4 != blank -%}
+            <img src="{{ section.settings.image4 | image_url: width: 500 }}" alt="Product 4" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
+          {%- else -%}
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <span style="font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.15em;color:#9A7E62;text-transform:uppercase;">Product 4</span>
+            </div>
+          {%- endif -%}
+          <span style="position:relative;z-index:1;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;background:rgba(244,236,223,0.7);padding:0.2rem 0.4rem;">{{ section.settings.label4 }}</span>
+        </div>
+
+      </div>
+
+      {%- comment -%} RIGHT: copy block {%- endcomment -%}
+      <div>
+        <p style="font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:#9A7E62;margin:0 0 1rem;">{{ section.settings.eyebrow }}</p>
+        <h2 style="font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:400;color:#2A1D14;line-height:1.1;margin:0 0 1.5rem;">{{ section.settings.heading }}</h2>
+        <p style="font-family:'Montserrat',sans-serif;font-size:0.875rem;line-height:1.8;color:#5C4632;margin:0 0 2rem;font-weight:300;max-width:380px;">{{ section.settings.body }}</p>
+        <div style="margin:0 0 2.5rem;">
+          <span style="font-family:'Playfair Display',Georgia,serif;font-size:2rem;color:#2A1D14;margin-right:0.75rem;">{{ section.settings.price }}</span>
+          {%- if section.settings.price_was != blank -%}
+            <span style="font-family:'Montserrat',sans-serif;font-size:0.875rem;color:#9A7E62;text-decoration:line-through;">{{ section.settings.price_was }}</span>
+          {%- endif -%}
+        </div>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <a href="{{ section.settings.cta_url | default: '/collections/all' }}" style="display:inline-block;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;padding:1rem 2rem;background:#2A1D14;color:#F4ECDF;border:1px solid #2A1D14;">{{ section.settings.cta_label }} &rarr;</a>
+          {%- if section.settings.sec_label != blank -%}
+            <a href="{{ section.settings.sec_url | default: '/collections/all' }}" style="display:inline-block;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;padding:1rem 2rem;background:transparent;color:#2A1D14;border:1px solid #2A1D14;">{{ section.settings.sec_label }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Starter Kit",
+  "tag": "div",
+  "settings": [
+    { "type": "image_picker", "id": "image1", "label": "Product image 1" },
+    { "type": "text", "id": "label1", "label": "Label 1", "default": "Neck Serum" },
+    { "type": "image_picker", "id": "image2", "label": "Product image 2" },
+    { "type": "text", "id": "label2", "label": "Label 2", "default": "Posture Bra" },
+    { "type": "image_picker", "id": "image3", "label": "Product image 3" },
+    { "type": "text", "id": "label3", "label": "Label 3", "default": "Neck Mask" },
+    { "type": "image_picker", "id": "image4", "label": "Product image 4" },
+    { "type": "text", "id": "label4", "label": "Label 4", "default": "Sleep Pillow" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Start with your screen body." },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The Screen Body Set." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "A starter routine for tech neck, soft posture, and a smoother-looking neck — made for girls who live on screens." },
+    { "type": "text", "id": "price", "label": "Price", "default": "$62" },
+    { "type": "text", "id": "price_was", "label": "Compare-at price" },
+    { "type": "text", "id": "cta_label", "label": "Primary CTA", "default": "Add the Set" },
+    { "type": "url", "id": "cta_url", "label": "Primary URL" },
+    { "type": "text", "id": "sec_label", "label": "Secondary CTA", "default": "View Products" },
+    { "type": "url", "id": "sec_url", "label": "Secondary URL" }
+  ],
+  "presets": [{ "name": "Starter Kit" }]
+}
+{% endschema %}
