@@ -10,9 +10,9 @@
 {
   "current": {
     "checkout_logo_image": "shopify://shop_images/mammoth-logo.jpg",
-    "color_primary": "#000000",
+    "color_primary": "#2A1D14",
     "colors_text": "#1a2332",
-    "color_accent": "#c87941",
+    "color_accent": "#F1D9D2",
     "heading_font": "Playfair Display",
     "social_instagram_url": "",
     "social_facebook_url": "",
@@ -51,7 +51,9 @@
         "disabled": false,
         "settings": {}
       }
-    }
+    },
+    "color_secondary": "#5C4632",
+    "color_background": "#F4ECDF"
   },
   "presets": {}
 }
