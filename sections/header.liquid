@@ -1,43 +1,34 @@
-{%- comment -%} Announcement bar — scrolling marquee {%- endcomment -%}
-<div class="announcement-bar">
-  <div class="announcement-marquee">
-    <div class="announcement-marquee__track">
-      {%- for i in (1..2) -%}
-        <span class="announcement-marquee__item">{% if section.settings.announcement_1 != blank %}{{ section.settings.announcement_1 }}{% else %}{{ 'header.announcement_1' | t }}{% endif %}</span>
-        <span class="announcement-marquee__sep">✦</span>
-        <span class="announcement-marquee__item">{% if section.settings.announcement_2 != blank %}{{ section.settings.announcement_2 }}{% else %}{{ 'header.announcement_2' | t }}{% endif %}</span>
-        <span class="announcement-marquee__sep">✦</span>
-        <span class="announcement-marquee__item">{% if section.settings.announcement_3 != blank %}{{ section.settings.announcement_3 }}{% else %}{{ 'header.announcement_3' | t }}{% endif %}</span>
-        <span class="announcement-marquee__sep">✦</span>
-      {%- endfor -%}
-    </div>
-  </div>
+{%- comment -%} Announcement bar — static {%- endcomment -%}
+<div class="announcement-bar" style="background:#F4ECDF;text-align:center;padding:10px 20px;border-bottom:1px solid #E8DCC6;">
+  <p style="margin:0;color:#5C4632;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;">Free shipping on orders $80+</p>
 </div>
 
 <header class="site-header" id="SiteHeader">
   <div class="container header-inner">
 
-    {%- comment -%} Logo — uploaded image takes priority; falls back to script wordmark {%- endcomment -%}
-    <a class="header-logo" href="{{ routes.root_url }}" aria-label="the pretty fix.">
+    {%- comment -%} Logo — left {%- endcomment -%}
+    {%- assign logo_width = section.settings.logo_width | default: 140 -%}
+    <a class="header-logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
       {%- if section.settings.logo != blank -%}
-        {%- assign logo_w = section.settings.logo_width | default: 200 -%}
         <img
-          src="{{ section.settings.logo | image_url: width: 600 }}"
-          alt="the pretty fix."
-          style="max-width:{{ logo_w }}px;"
+          src="{{ section.settings.logo | image_url: width: logo_width }}"
+          alt="{{ shop.name }}"
+          style="width: {{ logo_width }}px; height: auto;"
           loading="eager"
         >
       {%- else -%}
-        <span style="font-family:var(--font-script,'Caveat Brush',cursive);font-weight:400;font-size:2rem;letter-spacing:0.01em;color:var(--color-accent);line-height:1;text-shadow:1px 1px 0 var(--color-accent-hover);transform:rotate(-1.5deg);display:inline-block;">the pretty fix.</span>
+        <span style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:0.15em;color:var(--color-text);text-transform:uppercase;">MAMMOTH</span>
       {%- endif -%}
     </a>
 
-    {%- comment -%} Center nav (desktop) — pretty fix lineup {%- endcomment -%}
+    {%- comment -%} Center nav (desktop) {%- endcomment -%}
     <nav class="header-nav" aria-label="Main navigation">
-      <a href="/collections/all">Shop</a>
-      <a href="/products/mammoth-posture-corrective-wireless-bra">The Bra</a>
-      <a href="/pages/about">The Science</a>
-      <a href="/pages/about">About</a>
+      <a href="/collections/all">{{ 'header.nav.shop' | t }}</a>
+      <a href="/collections/wellness">{{ 'header.nav.wellness' | t }}</a>
+      <a href="/collections/skincare">{{ 'header.nav.skincare' | t }}</a>
+      <a href="/collections/fitness">{{ 'header.nav.fitness' | t }}</a>
+      <a href="/collections/lifestyle">{{ 'header.nav.lifestyle' | t }}</a>
+      <a href="/pages/about">{{ 'header.nav.about' | t }}</a>
     </nav>
 
     {%- comment -%} Right icons {%- endcomment -%}
@@ -112,19 +103,19 @@
       "type": "text",
       "id": "announcement_1",
       "label": "Announcement message 1",
-      "default": "🚚 FREE SHIPPING ON ALL ORDERS — TODAY ONLY"
+      "default": "🚚 LIMITED TIME: FREE SHIPPING ON ALL ORDERS"
     },
     {
       "type": "text",
       "id": "announcement_2",
       "label": "Announcement message 2",
-      "default": ""
+      "default": "⭐ 4.8/5 STARS — 192 VERIFIED BUYERS ⭐"
     },
     {
       "type": "text",
       "id": "announcement_3",
       "label": "Announcement message 3",
-      "default": ""
+      "default": "🛡️ 60-DAY GUARANTEE — KEEP IT OR FULL REFUND 🛡️"
     },
     {
       "type": "image_picker",
@@ -134,10 +125,10 @@
     {
       "type": "range",
       "id": "logo_width",
-      "min": 80,
-      "max": 360,
+      "min": 60,
+      "max": 220,
       "step": 10,
-      "default": 220,
+      "default": 140,
       "unit": "px",
       "label": "Logo width"
     }
