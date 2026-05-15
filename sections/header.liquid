@@ -6,39 +6,29 @@
 <header class="site-header" id="SiteHeader">
   <div class="container header-inner">
 
-    {%- comment -%} Logo — left {%- endcomment -%}
-    {%- assign logo_width = section.settings.logo_width | default: 140 -%}
-    <a class="header-logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
-      {%- if section.settings.logo != blank -%}
-        <img
-          src="{{ section.settings.logo | image_url: width: logo_width }}"
-          alt="{{ shop.name }}"
-          style="width: {{ logo_width }}px; height: auto;"
-          loading="eager"
-        >
-      {%- else -%}
-        <span style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:0.15em;color:var(--color-text);text-transform:uppercase;">MAMMOTH</span>
-      {%- endif -%}
+    {%- comment -%} Logo — text wordmark necked. {%- endcomment -%}
+    <a class="header-logo" href="{{ routes.root_url }}" aria-label="necked." style="text-decoration:none;">
+      <span style="font-family: Montserrat, sans-serif; font-weight: 400; font-size: 1.5rem; letter-spacing: 0.2em; color: #2A1D14; text-transform: lowercase; display: inline-block;">necked.</span>
     </a>
 
     {%- comment -%} Center nav (desktop) {%- endcomment -%}
     <nav class="header-nav" aria-label="Main navigation">
-      <a href="/collections/all">{{ 'header.nav.shop' | t }}</a>
-      <a href="/collections/wellness">{{ 'header.nav.wellness' | t }}</a>
-      <a href="/collections/skincare">{{ 'header.nav.skincare' | t }}</a>
-      <a href="/collections/fitness">{{ 'header.nav.fitness' | t }}</a>
-      <a href="/collections/lifestyle">{{ 'header.nav.lifestyle' | t }}</a>
-      <a href="/pages/about">{{ 'header.nav.about' | t }}</a>
+      <a href="/collections/all">{{ "header.nav.shop" | t }}</a>
+      <a href="/collections/wellness">{{ "header.nav.wellness" | t }}</a>
+      <a href="/collections/skincare">{{ "header.nav.skincare" | t }}</a>
+      <a href="/collections/fitness">{{ "header.nav.fitness" | t }}</a>
+      <a href="/collections/lifestyle">{{ "header.nav.lifestyle" | t }}</a>
+      <a href="/pages/about">{{ "header.nav.about" | t }}</a>
     </nav>
 
     {%- comment -%} Right icons {%- endcomment -%}
     <div class="header-right">
       <a href="{{ routes.search_url }}" class="btn-ghost btn-icon" aria-label="Search">
-        {%- render 'icon-search' -%}
+        {%- render "icon-search" -%}
       </a>
       {%- if shop.customer_accounts_enabled -%}
         <a href="{{ routes.account_url }}" class="btn-ghost btn-icon" aria-label="Account">
-          {%- render 'icon-user' -%}
+          {%- render "icon-user" -%}
         </a>
       {%- endif -%}
       <button
@@ -48,7 +38,7 @@
         aria-expanded="false"
         aria-controls="CartDrawer"
       >
-        {%- render 'icon-cart' -%}
+        {%- render "icon-cart" -%}
         <span class="cart-count-badge" id="CartCount" aria-hidden="true">
           {{- cart.item_count -}}
         </span>
@@ -68,54 +58,50 @@
         </svg>
       </button>
     </div>
-
   </div>
 </header>
 
-{%- comment -%} Collection sub-nav (sticky below header on collection/home pages) {%- endcomment -%}
-{%- if template.name == 'index' or template.name == 'collection' -%}
-  {%- if section.blocks.size > 0 -%}
-    <nav class="collection-nav" aria-label="Category navigation">
-      <div class="collection-nav-inner">
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'collection_link' -%}
-            <a
-              href="/collections/{{ block.settings.collection_handle }}"
-              class="collection-nav-link"
-              {{ block.shopify_attributes }}
-            >
-              {{- block.settings.label -}}
-            </a>
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
-    </nav>
-  {%- endif -%}
-{%- endif -%}
+{%- comment -%} Mobile nav drawer... {%- endcomment -%}
+<div class="mobile-nav" id="MobileNav" aria-hidden="true">
+  <nav aria-label="Mobile navigation">
+    <a href="/collections/all">{{ "header.nav.shop" | t }}</a>
+    <a href="/collections/wellness">{{ "header.nav.wellness" | t }}</a>
+    <a href="/collections/skincare">{{ "header.nav.skincare" | t }}</a>
+    <a href="/collections/fitness">{{ "header.nav.fitness" | t }}</a>
+    <a href="/collections/lifestyle">{{ "header.nav.lifestyle" | t }}</a>
+    <a href="/pages/about">{{ "header.nav.about" | t }}</a>
+  </nav>
+</div>
 
 {% schema %}
 {
   "name": "Header",
-  "tag": "div",
-  "class": "header-group",
   "settings": [
+    {
+      "type": "header",
+      "content": "Announcement Bar"
+    },
     {
       "type": "text",
       "id": "announcement_1",
-      "label": "Announcement message 1",
-      "default": "🚚 LIMITED TIME: FREE SHIPPING ON ALL ORDERS"
+      "label": "Message 1",
+      "default": "Message one"
     },
     {
       "type": "text",
       "id": "announcement_2",
-      "label": "Announcement message 2",
-      "default": "⭐ 4.8/5 STARS — 192 VERIFIED BUYERS ⭐"
+      "label": "Message 2",
+      "default": "Message two"
     },
     {
       "type": "text",
       "id": "announcement_3",
-      "label": "Announcement message 3",
-      "default": "🛡️ 60-DAY GUARANTEE — KEEP IT OR FULL REFUND 🛡️"
+      "label": "Message 3",
+      "default": "Message three"
+    },
+    {
+      "type": "header",
+      "content": "Logo"
     },
     {
       "type": "image_picker",
@@ -126,32 +112,11 @@
       "type": "range",
       "id": "logo_width",
       "min": 60,
-      "max": 220,
+      "max": 250,
       "step": 10,
       "default": 140,
       "unit": "px",
-      "label": "Logo width"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "collection_link",
-      "name": "Sub-nav link",
-      "limit": 12,
-      "settings": [
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Label",
-          "default": "Category"
-        },
-        {
-          "type": "text",
-          "id": "collection_handle",
-          "label": "Collection handle",
-          "default": "all"
-        }
-      ]
+      "label": "Custom logo width"
     }
   ]
 }

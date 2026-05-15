@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "checkout_logo_image": "shopify://shop_images/mammoth-logo.jpg",
+    "checkout_logo_image": "",
     "color_primary": "#2A1D14",
     "colors_text": "#1a2332",
     "color_accent": "#F8EDE9",
@@ -25,8 +25,8 @@
           "announcement_1": "shipping time 3 to 6 days",
           "announcement_2": "fast delivery",
           "announcement_3": "free shipping",
-          "logo": "shopify://shop_images/remove_for_lazy_girl_products_202605031726.jpg",
-          "logo_width": 190
+          "logo": "",
+          "logo_width": 60
         }
       },
       "footer": {
