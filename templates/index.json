@@ -12,112 +12,90 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "image": "shopify:\/\/shop_images\/remove_the_phrase___the_202605031744.jpg",
-        "heading": "Pilates Princess Posture. Without the Pilates.",
-        "subheading": "Posture care for tech-neck girlies. Zero effort. Three pieces, designed to disappear into your routine.",
-        "button_label": "Explore our community",
-        "button_url": "\/products\/mammoth-posture-corrective-wireless-bra"
+        "eyebrow": "Pretty posture for the screen era.",
+        "heading": "Tech neck, but make it cute.",
+        "subheading": "Passive neck and posture care for screen-era girls who want to look longer, smoother, and more put-together.",
+        "button_label": "SHOP NOW",
+        "button_url": "/collections/all"
       }
     },
-    "featured-collections": {
-      "type": "featured-collections",
-      "blocks": {
-        "the-bra": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "",
-            "label": "The Bra",
-            "collection_handle": "all"
-          }
-        },
-        "tech-neck": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "",
-            "label": "Tech Neck Care",
-            "collection_handle": "all"
-          }
-        },
-        "sleep": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "",
-            "label": "Sleep & Recovery",
-            "collection_handle": "all"
-          }
-        },
-        "science": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "",
-            "label": "The Science",
-            "collection_handle": "all"
-          }
-        }
-      },
-      "block_order": [
-        "the-bra",
-        "tech-neck",
-        "sleep",
-        "science"
-      ],
+    "starter-kit": {
+      "type": "starter-kit",
       "settings": {
-        "heading": "The Three-Piece Fix",
-        "show_model_image": true,
-        "full_width_heading": "Premium Leather Craftsmanship",
-        "full_width_subheading": "Experience the finest quality leather accessories designed for the modern professional"
+        "eyebrow": "Start with your screen body.",
+        "heading": "The Screen Body Set.",
+        "body": "A starter routine for tech neck, soft posture, and a smoother-looking neck — made for girls who live on screens.",
+        "price": "$62",
+        "cta_label": "Add the Set",
+        "cta_url": "/collections/all",
+        "sec_label": "View Products",
+        "sec_url": "/collections/all"
       }
     },
-    "trust-badges": {
-      "type": "trust-badges",
+    "lazy-girl": {
+      "type": "lazy-girl",
       "settings": {
-        "badge1_title": "Free US Shipping",
-        "badge2_title": "30-Day Try-It Window",
-        "badge3_title": "Developed With Chiropractors",
-        "badge4_title": "Worn & Loved by 1,000+ Women"
-      }
-    },
-    "top-picks": {
-      "type": "top-picks",
-      "settings": {
-        "heading": "What She Said She Uses",
-        "collection": "",
-        "collection_handle": "",
-        "products_to_show": 4,
-        "button_label": "Shop the System",
-        "button_url": "\/collections\/all"
-      }
-    },
-    "hero_h6DQBb": {
-      "type": "hero",
-      "name": "Hero",
-      "settings": {
-        "image": "shopify:\/\/shop_images\/make_the_hats_looks_more_202605031803.jpg",
-        "heading": "effortless summer style",
-        "subheading": "",
-        "button_label": "shop now",
-        "button_url": ""
+        "eyebrow": "The lazy girl ritual.",
+        "heading": "Low effort. High impact.",
+        "body": "Wear it while working. Smooth it on after showering. Mask while scrolling. Stretch while watching TV. Sleep supported."
       }
     },
     "why-brand": {
       "type": "why-brand",
       "settings": {
-        "image": "shopify:\/\/shop_images\/i_want_you_to_make_202605031552.jpg",
-        "heading": "Why the pretty fix",
-        "text1": "She tried braces, reminders, and 5 days of yoga. Nothing stuck — not because she's lazy, but because she's exhausted, and the methods were wrong.",
-        "text2": "the pretty fix is the passive way to fix tech neck while you scroll. Three pieces, designed to disappear into your routine. No new habits.",
-        "text3": "Rest is the work.",
-        "button_label": "Our Story",
-        "button_url": "\/pages\/about"
+        "eyebrow": "Our Mission",
+        "heading": "Founded by a screen girl.",
+        "text1": "necked. was created by a woman who noticed the same thing every modern girl eventually sees: her phone was changing the way her neck, shoulders, and posture looked.",
+        "text2": "Not overnight. Quietly. A little more tension, a little more folding, a little less lifted in photos.",
+        "button_label": "Read Our Story",
+        "button_url": "/pages/about"
+      }
+    },
+    "journal-cards": {
+      "type": "journal-cards",
+      "blocks": {
+        "article-1": {
+          "type": "article",
+          "settings": {
+            "date": "May 2026",
+            "title": "What Is Screen Body?",
+            "url": "/blogs/journal"
+          }
+        },
+        "article-2": {
+          "type": "article",
+          "settings": {
+            "date": "May 2026",
+            "title": "Tech Neck, But Make It Cute",
+            "url": "/blogs/journal"
+          }
+        },
+        "article-3": {
+          "type": "article",
+          "settings": {
+            "date": "May 2026",
+            "title": "The Lazy Girl Guide to Better Posture",
+            "url": "/blogs/journal"
+          }
+        }
+      },
+      "block_order": [
+        "article-1",
+        "article-2",
+        "article-3"
+      ],
+      "settings": {
+        "heading": "Latest from the journal.",
+        "all_label": "View All",
+        "all_url": "/blogs/journal"
       }
     }
   },
   "order": [
     "hero",
-    "featured-collections",
-    "trust-badges",
-    "top-picks",
-    "hero_h6DQBb",
-    "why-brand"
+    "starter-kit",
+    "lazy-girl",
+    "why-brand",
+    "journal-cards"
   ]
 }
