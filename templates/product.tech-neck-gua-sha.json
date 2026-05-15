@@ -1,0 +1,169 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "stock_main": {
+          "type": "stock_indicator",
+          "settings": {
+            "in_stock_text": "IN STOCK",
+            "low_text": "LOW STOCK",
+            "critical_text": "Only",
+            "critical_suffix": "left",
+            "low_threshold": 50,
+            "critical_threshold": 15
+          }
+        },
+        "funnel_main": {
+          "type": "funnel_image",
+          "name": "A+ Content Funnel",
+          "settings": {
+            "funnel_locale": "en",
+            "funnel_alt": "Tech Neck Gua Sha \u2014 A+ Content"
+          }
+        },
+        "video_showcase_main": {
+          "type": "video_showcase",
+          "settings": {
+            "heading": "SEE IT IN ACTION",
+            "open_in_modal": true,
+            "video_url_1": "",
+            "video_url_2": "",
+            "video_url_3": "",
+            "video_url_4": ""
+          }
+        },
+        "guarantee_main": {
+          "type": "guarantee_promise",
+          "settings": {
+            "label": "\ud83d\udee1\ufe0f THE PROMISE",
+            "headline": "Love It or Your Money Back \u2014 30 Days",
+            "body": "<p>Try it for 30 days. Not completely satisfied? Email us for a full refund. <strong>No questions asked.</strong></p>"
+          }
+        },
+        "offer_main": {
+          "type": "offer_selector",
+          "settings": {
+            "heading": "Choose Your Pack",
+            "option1_label": "1 Gua Sha",
+            "option1_sublabel": "Standard Price + Shipping",
+            "option1_savings": "",
+            "option1_qty": "1",
+            "option1_discount_code": "",
+            "option2_label": "2 Gua Shas",
+            "option2_sublabel": "FREE Shipping + Save More",
+            "option2_savings": "",
+            "option2_badge": "MOST POPULAR",
+            "option2_qty": "2",
+            "option2_discount_code": "",
+            "option3_label": "3 Gua Shas",
+            "option3_sublabel": "FREE Shipping + Best Value",
+            "option3_savings": "",
+            "option3_badge": "BEST VALUE",
+            "option3_qty": "3",
+            "option3_discount_code": "",
+            "show_trust_line": false
+          }
+        },
+        "urgency_main": {
+          "type": "urgency_counter",
+          "settings": {
+            "icon": "",
+            "count": "342",
+            "text": "Sold {count} times this week!"
+          }
+        },
+        "info_tabs_main": {
+          "type": "more_info_tabs",
+          "settings": {
+            "title_1": "Details",
+            "content_1": "<p>A gua sha tool shaped specifically for the neck and jawline \u2014 addresses tech-neck lines, double chin, and jaw tension in one ritual. Pairs with Tech Neck Cream as a 5-minute morning or bedtime stack.</p>",
+            "title_2": "Shipping",
+            "content_2": "<p><strong>Free shipping</strong> on all US orders.<br>Estimated delivery: 5\u20137 business days.</p>",
+            "title_3": "Returns",
+            "content_3": "<p><strong>30-day returns</strong> \u2014 no questions asked.<br>Contact us at hello@theprettyfix.com</p>",
+            "title_4": ""
+          }
+        },
+        "faq_section_main": {
+          "type": "faq_section",
+          "settings": {
+            "q1": "How does Tech Neck Gua Sha work?",
+            "a1": "<p>A gua sha tool shaped specifically for the neck and jawline \u2014 addresses tech-neck lines, double chin, and jaw tension in one ritual. Pairs with Tech Neck Cream as a 5-minute morning or bedtime stack.</p>",
+            "q2": "When will I see results?",
+            "a2": "<p>Most customers notice a difference within the first week of consistent use.</p>",
+            "q3": "What is your return policy?",
+            "a3": "<p>30-day no-questions-asked return policy. Contact hello@theprettyfix.com for a full refund.</p>",
+            "q4": "",
+            "a4": "",
+            "q5": "",
+            "a5": "",
+            "q6": "",
+            "a6": "",
+            "q7": "",
+            "a7": "",
+            "q8": "",
+            "a8": ""
+          }
+        }
+      },
+      "block_order": [
+        "stock_main",
+        "funnel_main",
+        "video_showcase_main",
+        "guarantee_main",
+        "offer_main",
+        "urgency_main",
+        "info_tabs_main",
+        "faq_section_main"
+      ],
+      "settings": {
+        "accent_color": "#EE6B97",
+        "show_judgeme_badge": true,
+        "social_proof_text": "LOVED BY OUR COMMUNITY \u00b7 TECH-NECK SOLUTIONS",
+        "show_delivery_estimate": false,
+        "delivery_business_days": 7,
+        "show_payment_icons": true,
+        "show_upsell": false
+      }
+    },
+    "you_may_also_like": {
+      "type": "you-may-also-like",
+      "settings": {
+        "heading": "You May Also Like"
+      }
+    },
+    "judgeme_reviews": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_review_widget": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 900,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_review_widget"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "you_may_also_like",
+    "judgeme_reviews"
+  ]
+}
