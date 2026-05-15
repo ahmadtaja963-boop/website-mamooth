@@ -1,58 +1,63 @@
-{%- comment -%} Announcement bar — brand {%- endcomment -%}
-<div class="announcement-bar" style="background:#E8DCC6;text-align:center;padding:10px 20px;">
-  <p style="margin:0;color:#2A1D14;font-size:0.85rem;letter-spacing:0.18em;font-weight:400;display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap;">
-    <span>FREE SHIPPING</span>
-    <span style="opacity:0.4;">·</span>
-    <span>FAST DELIVERY</span>
-    <span style="opacity:0.4;">·</span>
-    <span>3–6 DAYS</span>
-  </p>
-</div>
+{%- comment -%} Header wrapper — absolute so hero image goes full-bleed to top {%- endcomment -%}
+<div class="site-header-wrapper" style="position:absolute;top:0;left:0;right:0;width:100%;z-index:200;box-sizing:border-box;">
 
-<header class="site-header" id="SiteHeader" style="background:transparent!important;background-color:transparent!important;">
-  <div class="container header-inner" style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;">
-
-    {%- comment -%} Left — Shop · Wellness · Skincare {%- endcomment -%}
-    <nav class="header-nav" aria-label="Main navigation">
-      <a href="/collections/all">{{ "header.nav.shop" | t }}</a>
-      <a href="/collections/wellness">{{ "header.nav.wellness" | t }}</a>
-      <a href="/collections/skincare">{{ "header.nav.skincare" | t }}</a>
-    </nav>
-
-    {%- comment -%} Center — wordmark necked. {%- endcomment -%}
-    <a class="header-logo" href="{{ routes.root_url }}" aria-label="necked." style="text-decoration:none;display:flex;justify-content:center;">
-      <span style="font-family: Montserrat, sans-serif; font-weight: 400; font-size: 1.5rem; letter-spacing: 0.2em; color: #2A1D14; text-transform: lowercase; display: inline-block;">necked.</span>
-    </a>
-
-    {%- comment -%} Right — Fitness · Lifestyle · About + icons {%- endcomment -%}
-    <div class="header-right" style="justify-self:end;display:flex;align-items:center;">
-      <nav class="header-nav" aria-label="Secondary navigation">
-        <a href="/collections/fitness">{{ "header.nav.fitness" | t }}</a>
-        <a href="/collections/lifestyle">{{ "header.nav.lifestyle" | t }}</a>
-        <a href="/pages/about">{{ "header.nav.about" | t }}</a>
-      </nav>
-      <a href="{{ routes.search_url }}" class="btn-ghost btn-icon" aria-label="Search">
-        {%- render "icon-search" -%}
-      </a>
-      {%- if shop.customer_accounts_enabled -%}
-        <a href="{{ routes.account_url }}" class="btn-ghost btn-icon" aria-label="Account">
-          {%- render "icon-user" -%}
-        </a>
-      {%- endif -%}
-      <button class="btn-ghost btn-icon cart-icon-wrapper" id="CartToggle" aria-label="Open cart" aria-expanded="false" aria-controls="CartDrawer">
-        {%- render "icon-cart" -%}
-        <span class="cart-count-badge" id="CartCount" aria-hidden="true">{{- cart.item_count -}}</span>
-      </button>
-      <button class="mobile-menu-toggle btn-ghost btn-icon" id="MobileMenuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="MobileNav">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="6"  x2="21" y2="6"/>
-          <line x1="3" y1="12" x2="21" y2="12"/>
-          <line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
-      </button>
-    </div>
+  {%- comment -%} Announcement bar — brand {%- endcomment -%}
+  <div class="announcement-bar" style="background:#E8DCC6;text-align:center;padding:10px 20px;">
+    <p style="margin:0;color:#2A1D14;font-size:0.85rem;letter-spacing:0.18em;font-weight:400;display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap;">
+      <span>FREE SHIPPING</span>
+      <span style="opacity:0.4;">·</span>
+      <span>FAST DELIVERY</span>
+      <span style="opacity:0.4;">·</span>
+      <span>3–6 DAYS</span>
+    </p>
   </div>
-</header>
+
+  <header class="site-header" id="SiteHeader" style="background:transparent!important;background-color:transparent!important;">
+    <div class="container header-inner" style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;">
+
+      {%- comment -%} Left — Shop · Wellness · Skincare {%- endcomment -%}
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="/collections/all">{{ "header.nav.shop" | t }}</a>
+        <a href="/collections/wellness">{{ "header.nav.wellness" | t }}</a>
+        <a href="/collections/skincare">{{ "header.nav.skincare" | t }}</a>
+      </nav>
+
+      {%- comment -%} Center — wordmark necked. {%- endcomment -%}
+      <a class="header-logo" href="{{ routes.root_url }}" aria-label="necked." style="text-decoration:none;display:flex;justify-content:center;">
+        <span style="font-family: Montserrat, sans-serif; font-weight: 400; font-size: 1.5rem; letter-spacing: 0.2em; color: #2A1D14; text-transform: lowercase; display: inline-block;">necked.</span>
+      </a>
+
+      {%- comment -%} Right — Fitness · Lifestyle · About + icons {%- endcomment -%}
+      <div class="header-right" style="justify-self:end;display:flex;align-items:center;">
+        <nav class="header-nav" aria-label="Secondary navigation">
+          <a href="/collections/fitness">{{ "header.nav.fitness" | t }}</a>
+          <a href="/collections/lifestyle">{{ "header.nav.lifestyle" | t }}</a>
+          <a href="/pages/about">{{ "header.nav.about" | t }}</a>
+        </nav>
+        <a href="{{ routes.search_url }}" class="btn-ghost btn-icon" aria-label="Search">
+          {%- render "icon-search" -%}
+        </a>
+        {%- if shop.customer_accounts_enabled -%}
+          <a href="{{ routes.account_url }}" class="btn-ghost btn-icon" aria-label="Account">
+            {%- render "icon-user" -%}
+          </a>
+        {%- endif -%}
+        <button class="btn-ghost btn-icon cart-icon-wrapper" id="CartToggle" aria-label="Open cart" aria-expanded="false" aria-controls="CartDrawer">
+          {%- render "icon-cart" -%}
+          <span class="cart-count-badge" id="CartCount" aria-hidden="true">{{- cart.item_count -}}</span>
+        </button>
+        <button class="mobile-menu-toggle btn-ghost btn-icon" id="MobileMenuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="MobileNav">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6"  x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+</div>
 
 <div class="mobile-nav" id="MobileNav" aria-hidden="true">
   <nav aria-label="Mobile navigation">
