@@ -1,0 +1,29 @@
+{%- comment -%} Email Capture — Join the screen body club {%- endcomment -%}
+<section style="background:#F1D9D2;padding:clamp(3rem,6vw,5rem) clamp(1.5rem,5vw,4rem);">
+  <div style="max-width:640px;margin:0 auto;text-align:center;">
+    <p style="margin:0 0 0.75rem;font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:#9A7E62;">{{ section.settings.eyebrow }}</p>
+    <h2 style="margin:0 0 0.85rem;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(1.75rem,4vw,2.6rem);color:#2A1D14;letter-spacing:-0.01em;">{{ section.settings.heading }}</h2>
+    <p style="margin:0 0 clamp(1.5rem,3vw,2rem);font-family:'Inter',sans-serif;font-size:clamp(0.95rem,1.4vw,1.05rem);line-height:1.6;color:#5C4632;">{{ section.settings.body }}</p>
+    {% form 'customer', class: 'necked-newsletter' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div style="display:flex;gap:0.5rem;max-width:480px;margin:0 auto;">
+        <input type="email" name="contact[email]" placeholder="{{ section.settings.placeholder }}" required style="flex:1;padding:0.95rem 1.15rem;border:1px solid #C9A98A;background:#F4ECDF;font-family:'Inter',sans-serif;font-size:0.95rem;color:#2A1D14;outline:none;">
+        <button type="submit" style="padding:0.95rem 1.75rem;background:#2A1D14;color:#F4ECDF;border:none;font-family:'Montserrat',sans-serif;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;">{{ section.settings.cta_label }}</button>
+      </div>
+    {% endform %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Email Capture",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "STAY IN TOUCH" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Join the screen body club." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Soft rituals, posture tips, and new drops for your necked. routine." },
+    { "type": "text", "id": "placeholder", "label": "Input placeholder", "default": "your email" },
+    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Sign Up" }
+  ],
+  "presets": [{ "name": "Email Capture" }]
+}
+{% endschema %}

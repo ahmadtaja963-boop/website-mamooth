@@ -1,0 +1,53 @@
+{%- comment -%} Collections — Choose your edit {%- endcomment -%}
+<section style="background:#F4ECDF;padding:clamp(3rem,6vw,5rem) clamp(1.5rem,5vw,4rem);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:clamp(2rem,4vw,3rem);">
+      <p style="margin:0 0 0.75rem;font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:#9A7E62;">{{ section.settings.eyebrow }}</p>
+      <h2 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(1.75rem,4vw,2.75rem);color:#2A1D14;letter-spacing:-0.01em;">{{ section.settings.heading }}</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1rem,2vw,1.5rem);">
+      {%- for i in (1..4) -%}
+        {%- assign ik = 'image' | append: i -%}
+        {%- assign tk = 'title' | append: i -%}
+        {%- assign sk = 'subtitle' | append: i -%}
+        {%- assign uk = 'url' | append: i -%}
+        <a href="{{ section.settings[uk] }}" style="text-decoration:none;color:inherit;display:block;">
+          <div style="width:100%;aspect-ratio:3/4;overflow:hidden;background:#D9C7AC;">
+            {%- if section.settings[ik] != blank -%}
+              <img src="{{ section.settings[ik] | image_url: width: 700 }}" alt="{{ section.settings[tk] | escape }}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">
+            {%- endif -%}
+          </div>
+          <h3 style="margin:1rem 0 0.35rem;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(1.1rem,1.6vw,1.4rem);color:#2A1D14;text-align:center;">{{ section.settings[tk] }}</h3>
+          <p style="margin:0;font-family:'Inter',sans-serif;font-size:0.8rem;color:#9A7E62;text-align:center;">{{ section.settings[sk] }}</p>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Collections",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "SHOP THE EDITS" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Choose your edit." },
+    { "type": "image_picker", "id": "image1", "label": "Image 1" },
+    { "type": "text", "id": "title1", "label": "Title 1", "default": "The Neck Edit" },
+    { "type": "text", "id": "subtitle1", "label": "Subtitle 1", "default": "Smooth + Lift" },
+    { "type": "url", "id": "url1", "label": "URL 1" },
+    { "type": "image_picker", "id": "image2", "label": "Image 2" },
+    { "type": "text", "id": "title2", "label": "Title 2", "default": "The Posture Edit" },
+    { "type": "text", "id": "subtitle2", "label": "Subtitle 2", "default": "Align" },
+    { "type": "url", "id": "url2", "label": "URL 2" },
+    { "type": "image_picker", "id": "image3", "label": "Image 3" },
+    { "type": "text", "id": "title3", "label": "Title 3", "default": "The Rest Edit" },
+    { "type": "text", "id": "subtitle3", "label": "Subtitle 3", "default": "Rest" },
+    { "type": "url", "id": "url3", "label": "URL 3" },
+    { "type": "image_picker", "id": "image4", "label": "Image 4" },
+    { "type": "text", "id": "title4", "label": "Title 4", "default": "The Full Method" },
+    { "type": "text", "id": "subtitle4", "label": "Subtitle 4", "default": "Smooth · Lift · Align · Rest" },
+    { "type": "url", "id": "url4", "label": "URL 4" }
+  ],
+  "presets": [{ "name": "Collections" }]
+}
+{% endschema %}

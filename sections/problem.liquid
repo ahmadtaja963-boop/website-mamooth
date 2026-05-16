@@ -1,0 +1,37 @@
+{%- comment -%} Problem — Your phone has a posture {%- endcomment -%}
+<section style="background:#F4ECDF;padding:clamp(3rem,6vw,5rem) clamp(1.5rem,5vw,4rem);">
+  <div style="max-width:1100px;margin:0 auto;text-align:center;">
+    <p style="margin:0 0 0.75rem;font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:#9A7E62;">{{ section.settings.eyebrow }}</p>
+    <h2 style="margin:0 0 1rem;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(1.75rem,4vw,2.75rem);color:#2A1D14;letter-spacing:-0.01em;">{{ section.settings.heading }}</h2>
+    <p style="margin:0 auto clamp(2rem,4vw,3rem);max-width:640px;font-family:'Inter',sans-serif;font-size:clamp(0.95rem,1.4vw,1.05rem);line-height:1.65;color:#5C4632;">{{ section.settings.body }}</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1rem,2vw,1.5rem);max-width:900px;margin:0 auto;">
+      {%- for i in (1..6) -%}
+        {%- assign k = 'bullet' | append: i -%}
+        {%- assign v = section.settings[k] -%}
+        {%- if v != blank -%}
+        <div style="background:#E8DCC6;padding:clamp(1.25rem,2vw,1.75rem) 1rem;text-align:center;">
+          <p style="margin:0;font-family:'Inter',sans-serif;font-size:0.85rem;letter-spacing:0.05em;text-transform:lowercase;color:#2A1D14;line-height:1.4;">{{ v }}</p>
+        </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Problem",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "THE SCREEN BODY" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Your phone has a posture." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Hours of scrolling, working, and sleeping wrong show up before you notice: in your neck, shoulders, jawline, and the way your body holds itself." },
+    { "type": "text", "id": "bullet1", "label": "Bullet 1", "default": "neck lines" },
+    { "type": "text", "id": "bullet2", "label": "Bullet 2", "default": "tech neck" },
+    { "type": "text", "id": "bullet3", "label": "Bullet 3", "default": "rounded shoulders" },
+    { "type": "text", "id": "bullet4", "label": "Bullet 4", "default": "double chin appearance" },
+    { "type": "text", "id": "bullet5", "label": "Bullet 5", "default": "collapsed posture" },
+    { "type": "text", "id": "bullet6", "label": "Bullet 6", "default": "tired upper body" }
+  ],
+  "presets": [{ "name": "Problem" }]
+}
+{% endschema %}

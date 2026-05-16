@@ -19,6 +19,17 @@
         "button_url": "/collections/all"
       }
     },
+    "trusted-by": {
+      "type": "trusted-by",
+      "settings": {
+        "eyebrow": "TRUSTED BY WOMEN WHO INVEST IN THEMSELVES",
+        "name1": "Forbes",
+        "name2": "VOGUE",
+        "name3": "well+good",
+        "name4": "BYRDIE",
+        "name5": "Women's Health"
+      }
+    },
     "starter-kit": {
       "type": "starter-kit",
       "settings": {
@@ -29,12 +40,26 @@
         "image3": "shopify://shop_images/Amazon-style_product_hero_image_on_202605052137.jpg",
         "label3": "Shapewear Suit",
         "image4": "shopify://shop_images/Amazon-style_product_hero_image_on_202605132345.jpg",
-        "label4": "Sleep Pillow",
-        "eyebrow": "The Screen Body Set.",
-        "price": "$125",
-        "price_was": "175",
-        "cta_label": "Add to Cart",
+        "label4": "Sleep Pillow"
+      }
+    },
+    "problem": {
+      "type": "problem",
+      "settings": {}
+    },
+    "method": {
+      "type": "method",
+      "settings": {
         "cta_url": "/collections/all"
+      }
+    },
+    "collections": {
+      "type": "collections",
+      "settings": {
+        "url1": "/collections/all",
+        "url2": "/collections/all",
+        "url3": "/collections/all",
+        "url4": "/collections/all"
       }
     },
     "lazy-girl": {
@@ -42,11 +67,15 @@
       "settings": {
         "heading": "Lazy Girl, Locked In.",
         "body": "Low effort.\nHigh impact.",
+        "main_image": "shopify://shop_images/give_me_the_main_image_202605152216.jpg",
         "tile1": "shopify://shop_images/make_it_with_this_size_202605152223.jpg",
         "tile2": "shopify://shop_images/scroll_image_i_want_202605152333.jpg",
-        "tile3": "shopify://shop_images/this_is_looks_not_real_202605152332.jpg",
-        "main_image": "shopify://shop_images/give_me_the_main_image_202605152216.jpg"
+        "tile3": "shopify://shop_images/this_is_looks_not_real_202605152332.jpg"
       }
+    },
+    "identity": {
+      "type": "identity",
+      "settings": {}
     },
     "why-brand": {
       "type": "why-brand",
@@ -97,13 +126,23 @@
         "all_label": "View All",
         "all_url": "/blogs/journal"
       }
+    },
+    "email-capture": {
+      "type": "email-capture",
+      "settings": {}
     }
   },
   "order": [
     "hero",
+    "trusted-by",
     "starter-kit",
+    "problem",
+    "method",
+    "collections",
     "lazy-girl",
+    "identity",
     "why-brand",
-    "journal-cards"
+    "journal-cards",
+    "email-capture"
   ]
 }

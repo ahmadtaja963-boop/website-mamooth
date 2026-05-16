@@ -1,0 +1,39 @@
+{%- comment -%} Trusted By — press logos strip {%- endcomment -%}
+<section style="background:#F1D9D2;padding:clamp(2rem,4vw,3rem) clamp(1.5rem,5vw,3rem);">
+  <p style="margin:0 0 clamp(1.25rem,2.5vw,2rem);font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:#9A7E62;text-align:center;">{{ section.settings.eyebrow }}</p>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(1rem,3vw,2.5rem);align-items:center;justify-items:center;max-width:1200px;margin:0 auto;">
+    {%- for i in (1..5) -%}
+      {%- assign img_key = 'logo' | append: i -%}
+      {%- assign txt_key = 'name' | append: i -%}
+      {%- assign img = section.settings[img_key] -%}
+      {%- assign txt = section.settings[txt_key] -%}
+      <div style="display:flex;align-items:center;justify-content:center;height:48px;">
+        {%- if img != blank -%}
+          <img src="{{ img | image_url: width: 300 }}" alt="{{ txt | escape }}" style="max-height:36px;width:auto;object-fit:contain;opacity:0.75;" loading="lazy">
+        {%- else -%}
+          <span style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.1rem,2vw,1.6rem);color:#C9A98A;letter-spacing:0.02em;">{{ txt }}</span>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Trusted By",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "TRUSTED BY WOMEN WHO INVEST IN THEMSELVES" },
+    { "type": "image_picker", "id": "logo1", "label": "Logo 1" },
+    { "type": "text", "id": "name1", "label": "Name 1", "default": "Forbes" },
+    { "type": "image_picker", "id": "logo2", "label": "Logo 2" },
+    { "type": "text", "id": "name2", "label": "Name 2", "default": "VOGUE" },
+    { "type": "image_picker", "id": "logo3", "label": "Logo 3" },
+    { "type": "text", "id": "name3", "label": "Name 3", "default": "well+good" },
+    { "type": "image_picker", "id": "logo4", "label": "Logo 4" },
+    { "type": "text", "id": "name4", "label": "Name 4", "default": "BYRDIE" },
+    { "type": "image_picker", "id": "logo5", "label": "Logo 5" },
+    { "type": "text", "id": "name5", "label": "Name 5", "default": "Women's Health" }
+  ],
+  "presets": [{ "name": "Trusted By" }]
+}
+{% endschema %}
