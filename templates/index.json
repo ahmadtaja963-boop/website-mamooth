@@ -56,10 +56,10 @@
     "collections": {
       "type": "collections",
       "settings": {
-        "url1": "/collections/all",
-        "url2": "/collections/all",
-        "url3": "/collections/all",
-        "url4": "/collections/all"
+        "url1": "/collections/neck-edit",
+        "url2": "/collections/posture-edit",
+        "url3": "/products/tech-neck-sleep-pillow",
+        "url4": "/collections/full-method"
       }
     },
     "lazy-girl": {
