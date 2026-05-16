@@ -1,16 +1,15 @@
-
 {%- comment -%} Footer — necked. {%- endcomment -%}
-<footer style="background:#2A1D14;color:#F4ECDF;padding:5rem 0 2.5rem;">
+<footer style="background:#2A1D14;color:#F4ECDF;padding:2.5rem 0 1.5rem;">
   <div style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,4vw,2rem);">
 
-    {%- comment -%} Top: brand + newsletter {%- endcomment -%}
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid rgba(244,236,223,0.1);">
+    {%- comment -%} Single row: logo+social | SHOP | BRAND | SUPPORT | LEGAL | newsletter {%- endcomment -%}
+    <div style="display:grid;grid-template-columns:1.8fr 0.8fr 0.5fr 0.8fr 0.5fr 1.8fr;gap:clamp(1.5rem,3vw,2.5rem);align-items:start;margin-bottom:2rem;">
 
       <div>
-        <a href="{{ routes.root_url }}" style="text-decoration:none;display:inline-block;margin-bottom:1rem;">
+        <a href="{{ routes.root_url }}" style="text-decoration:none;display:inline-block;margin-bottom:0.75rem;">
           <span style="font-family:'Montserrat',sans-serif;font-size:1.5rem;font-weight:400;letter-spacing:0.2em;color:#F4ECDF;">necked.</span>
         </a>
-        <p style="font-family:'Montserrat',sans-serif;font-size:0.75rem;letter-spacing:0.06em;color:rgba(244,236,223,0.45);margin:0 0 1.5rem;font-weight:300;">Pretty posture for the screen era.</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:0.75rem;letter-spacing:0.06em;color:rgba(244,236,223,0.45);margin:0 0 1rem;font-weight:300;">Pretty posture for the screen era.</p>
         <div style="display:flex;gap:1.25rem;align-items:center;">
           <a href="#" target="_blank" rel="noopener" aria-label="Instagram" style="color:rgba(244,236,223,0.55);display:flex;">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -20,33 +19,6 @@
           </a>
         </div>
       </div>
-
-      <div>
-        <p style="font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(244,236,223,0.45);margin:0 0 0.75rem;font-weight:400;">Join the screen body club.</p>
-        <p style="font-family:'Montserrat',sans-serif;font-size:0.8rem;line-height:1.7;color:rgba(244,236,223,0.6);margin:0 0 1.25rem;font-weight:300;">Soft rituals, posture tips, and new drops for your necked. routine.</p>
-        {%- form 'customer', id: 'FooterNewsletter' -%}
-          <input type="hidden" name="contact[tags]" value="newsletter">
-          <div style="display:flex;border:1px solid rgba(244,236,223,0.2);">
-            <input
-              type="email"
-              name="contact[email]"
-              placeholder="your@email.com"
-              autocomplete="email"
-              required
-              style="flex:1;background:transparent;border:none;padding:0.85rem 1rem;font-family:'Montserrat',sans-serif;font-size:0.8rem;color:#F4ECDF;outline:none;min-width:0;"
-            >
-            <button type="submit" style="background:#F4ECDF;color:#2A1D14;border:none;padding:0.85rem 1.5rem;font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;white-space:nowrap;flex-shrink:0;">Sign Up</button>
-          </div>
-          {%- if form.posted_successfully? -%}
-            <p style="color:rgba(244,236,223,0.6);font-size:0.75rem;margin-top:0.75rem;font-family:'Montserrat',sans-serif;">You're in.</p>
-          {%- endif -%}
-        {%- endform -%}
-      </div>
-
-    </div>
-
-    {%- comment -%} Links row {%- endcomment -%}
-    <div style="display:flex;gap:clamp(2rem,5vw,4rem);margin-bottom:3rem;flex-wrap:wrap;">
 
       <div>
         <h4 style="font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(244,236,223,0.35);margin:0 0 1rem;font-weight:400;">Shop</h4>
@@ -84,10 +56,32 @@
         </ul>
       </div>
 
+      <div>
+        <p style="font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(244,236,223,0.45);margin:0 0 0.75rem;font-weight:400;">Join the screen body club.</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:0.8rem;line-height:1.7;color:rgba(244,236,223,0.6);margin:0 0 1.25rem;font-weight:300;">Soft rituals, posture tips, and new drops for your necked. routine.</p>
+        {%- form 'customer', id: 'FooterNewsletter' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div style="display:flex;border:1px solid rgba(244,236,223,0.2);">
+            <input
+              type="email"
+              name="contact[email]"
+              placeholder="your@email.com"
+              autocomplete="email"
+              required
+              style="flex:1;background:transparent;border:none;padding:0.85rem 1rem;font-family:'Montserrat',sans-serif;font-size:0.8rem;color:#F4ECDF;outline:none;min-width:0;"
+            >
+            <button type="submit" style="background:#F4ECDF;color:#2A1D14;border:none;padding:0.85rem 1.5rem;font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;white-space:nowrap;flex-shrink:0;">Sign Up</button>
+          </div>
+          {%- if form.posted_successfully? -%}
+            <p style="color:rgba(244,236,223,0.6);font-size:0.75rem;margin-top:0.75rem;font-family:'Montserrat',sans-serif;">You're in.</p>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+
     </div>
 
     {%- comment -%} Copyright bar {%- endcomment -%}
-    <div style="border-top:1px solid rgba(244,236,223,0.08);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+    <div style="border-top:1px solid rgba(244,236,223,0.08);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
       <p style="font-family:'Montserrat',sans-serif;font-size:0.65rem;color:rgba(244,236,223,0.3);letter-spacing:0.06em;margin:0;">&copy; {{ 'now' | date: '%Y' }} necked. All rights reserved.</p>
       <p style="font-family:'Montserrat',sans-serif;font-size:0.65rem;color:rgba(244,236,223,0.3);letter-spacing:0.06em;margin:0;">Pretty posture for the screen era.</p>
     </div>
