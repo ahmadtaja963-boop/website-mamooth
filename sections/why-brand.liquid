@@ -4,7 +4,7 @@
     {%- if section.settings.image != blank -%}
       <img src="{{ section.settings.image | image_url: width: 1400 }}" alt="necked. mission" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;" loading="lazy">
     {%- else -%}
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#2A1D14;font-family:Montserrat,sans-serif;font-size:0.75rem;letter-spacing:0.2em;">Add founder image</div>
+      <img src="{{ 'founder.jpeg' | asset_url }}" alt="necked. founder" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;" loading="lazy">
     {%- endif -%}
   </div>
   <div style="background:#F4ECDF;aspect-ratio:2/1;display:flex;align-items:center;overflow:hidden;">
