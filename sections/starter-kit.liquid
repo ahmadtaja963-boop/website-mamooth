@@ -1,75 +1,55 @@
+{%- comment -%} Starter Kit — top bar + 4-product horizontal row {%- endcomment -%}
+<section style="background:#E8DCC6;padding:2.5rem 0 4rem;">
+  <div style="max-width:1400px;margin:0 auto;padding:0 clamp(1.5rem,4vw,4rem);">
 
-{%- comment -%} Starter Kit — The Screen Body Set {%- endcomment -%}
-<section style="background:#E8DCC6;padding:clamp(4rem,8vw,6rem) 0;">
-  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,4vw,2rem);">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;padding-bottom:1.25rem;border-bottom:1px solid rgba(42,29,20,0.2);margin-bottom:3rem;">
+      <div>
+        <p style="margin:0 0 0.35rem;font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:#2A1D14;">{{ section.settings.eyebrow }}</p>
+        <p style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:1.5rem;color:#2A1D14;line-height:1;">{{ section.settings.price }}</p>
+      </div>
+      <a href="{{ section.settings.cta_url | default: '/collections/all' }}" style="font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#2A1D14;text-decoration:none;white-space:nowrap;">{{ section.settings.cta_label }} &rarr;</a>
+    </div>
 
-      {%- comment -%} LEFT: 2x2 product grid {%- endcomment -%}
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1rem,2vw,2rem);">
 
-        <div style="position:relative;aspect-ratio:3/4;background:#D9C7AC;overflow:hidden;display:flex;align-items:flex-end;padding:0.75rem;">
+      <div style="text-align:center;">
+        <div style="width:100%;aspect-ratio:3/4;background:#D9C7AC;overflow:hidden;margin-bottom:1rem;">
           {%- if section.settings.image1 != blank -%}
-            <img src="{{ section.settings.image1 | image_url: width: 500 }}" alt="Product 1" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
-          {%- else -%}
-            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-              <span style="font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.15em;color:#9A7E62;text-transform:uppercase;">Product 1</span>
-            </div>
+            <img src="{{ section.settings.image1 | image_url: width: 600 }}" alt="{{ section.settings.label1 | escape }}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
           {%- endif -%}
-          <span style="position:relative;z-index:1;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;background:rgba(244,236,223,0.7);padding:0.2rem 0.4rem;">{{ section.settings.label1 }}</span>
         </div>
-
-        <div style="position:relative;aspect-ratio:3/4;background:#D9C7AC;overflow:hidden;display:flex;align-items:flex-end;padding:0.75rem;">
-          {%- if section.settings.image2 != blank -%}
-            <img src="{{ section.settings.image2 | image_url: width: 500 }}" alt="Product 2" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
-          {%- else -%}
-            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-              <span style="font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.15em;color:#9A7E62;text-transform:uppercase;">Product 2</span>
-            </div>
-          {%- endif -%}
-          <span style="position:relative;z-index:1;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;background:rgba(244,236,223,0.7);padding:0.2rem 0.4rem;">{{ section.settings.label2 }}</span>
-        </div>
-
-        <div style="position:relative;aspect-ratio:3/4;background:#D9C7AC;overflow:hidden;display:flex;align-items:flex-end;padding:0.75rem;">
-          {%- if section.settings.image3 != blank -%}
-            <img src="{{ section.settings.image3 | image_url: width: 500 }}" alt="Product 3" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
-          {%- else -%}
-            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-              <span style="font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.15em;color:#9A7E62;text-transform:uppercase;">Product 3</span>
-            </div>
-          {%- endif -%}
-          <span style="position:relative;z-index:1;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;background:rgba(244,236,223,0.7);padding:0.2rem 0.4rem;">{{ section.settings.label3 }}</span>
-        </div>
-
-        <div style="position:relative;aspect-ratio:3/4;background:#D9C7AC;overflow:hidden;display:flex;align-items:flex-end;padding:0.75rem;">
-          {%- if section.settings.image4 != blank -%}
-            <img src="{{ section.settings.image4 | image_url: width: 500 }}" alt="Product 4" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
-          {%- else -%}
-            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-              <span style="font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.15em;color:#9A7E62;text-transform:uppercase;">Product 4</span>
-            </div>
-          {%- endif -%}
-          <span style="position:relative;z-index:1;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;background:rgba(244,236,223,0.7);padding:0.2rem 0.4rem;">{{ section.settings.label4 }}</span>
-        </div>
-
+        <p style="margin:0 0 0.25rem;font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;">{{ section.settings.label1 }}</p>
+        {%- if section.settings.sub1 != blank -%}<p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.08em;color:#9A7E62;">{{ section.settings.sub1 }}</p>{%- endif -%}
       </div>
 
-      {%- comment -%} RIGHT: copy block {%- endcomment -%}
-      <div>
-        <p style="font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:#9A7E62;margin:0 0 1rem;">{{ section.settings.eyebrow }}</p>
-        <h2 style="font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:400;color:#2A1D14;line-height:1.1;margin:0 0 1.5rem;">{{ section.settings.heading }}</h2>
-        <p style="font-family:'Montserrat',sans-serif;font-size:0.875rem;line-height:1.8;color:#5C4632;margin:0 0 2rem;font-weight:300;max-width:380px;">{{ section.settings.body }}</p>
-        <div style="margin:0 0 2.5rem;">
-          <span style="font-family:'Playfair Display',Georgia,serif;font-size:2rem;color:#2A1D14;margin-right:0.75rem;">{{ section.settings.price }}</span>
-          {%- if section.settings.price_was != blank -%}
-            <span style="font-family:'Montserrat',sans-serif;font-size:0.875rem;color:#9A7E62;text-decoration:line-through;">{{ section.settings.price_was }}</span>
+      <div style="text-align:center;">
+        <div style="width:100%;aspect-ratio:3/4;background:#D9C7AC;overflow:hidden;margin-bottom:1rem;">
+          {%- if section.settings.image2 != blank -%}
+            <img src="{{ section.settings.image2 | image_url: width: 600 }}" alt="{{ section.settings.label2 | escape }}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
           {%- endif -%}
         </div>
-        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
-          <a href="{{ section.settings.cta_url | default: '/collections/all' }}" style="display:inline-block;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;padding:1rem 2rem;background:#2A1D14;color:#F4ECDF;border:1px solid #2A1D14;">{{ section.settings.cta_label }} &rarr;</a>
-          {%- if section.settings.sec_label != blank -%}
-            <a href="{{ section.settings.sec_url | default: '/collections/all' }}" style="display:inline-block;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;padding:1rem 2rem;background:transparent;color:#2A1D14;border:1px solid #2A1D14;">{{ section.settings.sec_label }}</a>
+        <p style="margin:0 0 0.25rem;font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;">{{ section.settings.label2 }}</p>
+        {%- if section.settings.sub2 != blank -%}<p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.08em;color:#9A7E62;">{{ section.settings.sub2 }}</p>{%- endif -%}
+      </div>
+
+      <div style="text-align:center;">
+        <div style="width:100%;aspect-ratio:3/4;background:#D9C7AC;overflow:hidden;margin-bottom:1rem;">
+          {%- if section.settings.image3 != blank -%}
+            <img src="{{ section.settings.image3 | image_url: width: 600 }}" alt="{{ section.settings.label3 | escape }}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
           {%- endif -%}
         </div>
+        <p style="margin:0 0 0.25rem;font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;">{{ section.settings.label3 }}</p>
+        {%- if section.settings.sub3 != blank -%}<p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.08em;color:#9A7E62;">{{ section.settings.sub3 }}</p>{%- endif -%}
+      </div>
+
+      <div style="text-align:center;">
+        <div style="width:100%;aspect-ratio:3/4;background:#D9C7AC;overflow:hidden;margin-bottom:1rem;">
+          {%- if section.settings.image4 != blank -%}
+            <img src="{{ section.settings.image4 | image_url: width: 600 }}" alt="{{ section.settings.label4 | escape }}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+          {%- endif -%}
+        </div>
+        <p style="margin:0 0 0.25rem;font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;">{{ section.settings.label4 }}</p>
+        {%- if section.settings.sub4 != blank -%}<p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.08em;color:#9A7E62;">{{ section.settings.sub4 }}</p>{%- endif -%}
       </div>
 
     </div>
@@ -81,23 +61,23 @@
   "name": "Starter Kit",
   "tag": "div",
   "settings": [
-    { "type": "image_picker", "id": "image1", "label": "Product image 1" },
-    { "type": "text", "id": "label1", "label": "Label 1", "default": "Neck Serum" },
-    { "type": "image_picker", "id": "image2", "label": "Product image 2" },
-    { "type": "text", "id": "label2", "label": "Label 2", "default": "Posture Bra" },
-    { "type": "image_picker", "id": "image3", "label": "Product image 3" },
-    { "type": "text", "id": "label3", "label": "Label 3", "default": "Neck Mask" },
-    { "type": "image_picker", "id": "image4", "label": "Product image 4" },
-    { "type": "text", "id": "label4", "label": "Label 4", "default": "Sleep Pillow" },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Start with your screen body." },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "The Screen Body Set." },
-    { "type": "textarea", "id": "body", "label": "Body", "default": "A starter routine for tech neck, soft posture, and a smoother-looking neck — made for girls who live on screens." },
-    { "type": "text", "id": "price", "label": "Price", "default": "$62" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow / set name", "default": "The Screen Body Set." },
+    { "type": "text", "id": "price", "label": "Price", "default": "$125" },
     { "type": "text", "id": "price_was", "label": "Compare-at price" },
-    { "type": "text", "id": "cta_label", "label": "Primary CTA", "default": "Add the Set" },
-    { "type": "url", "id": "cta_url", "label": "Primary URL" },
-    { "type": "text", "id": "sec_label", "label": "Secondary CTA", "default": "View Products" },
-    { "type": "url", "id": "sec_url", "label": "Secondary URL" }
+    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Add to Cart" },
+    { "type": "url", "id": "cta_url", "label": "CTA URL" },
+    { "type": "image_picker", "id": "image1", "label": "Product image 1" },
+    { "type": "text", "id": "label1", "label": "Product name 1", "default": "Neck Cream" },
+    { "type": "text", "id": "sub1", "label": "Subtitle 1", "default": "Lift + Smooth" },
+    { "type": "image_picker", "id": "image2", "label": "Product image 2" },
+    { "type": "text", "id": "label2", "label": "Product name 2", "default": "Posture Bra" },
+    { "type": "text", "id": "sub2", "label": "Subtitle 2", "default": "Firm + Define" },
+    { "type": "image_picker", "id": "image3", "label": "Product image 3" },
+    { "type": "text", "id": "label3", "label": "Product name 3", "default": "Shapewear Suit" },
+    { "type": "text", "id": "sub3", "label": "Subtitle 3", "default": "Sculpt + Support" },
+    { "type": "image_picker", "id": "image4", "label": "Product image 4" },
+    { "type": "text", "id": "label4", "label": "Product name 4", "default": "Sleep Pillow" },
+    { "type": "text", "id": "sub4", "label": "Subtitle 4", "default": "Align + Rest" }
   ],
   "presets": [{ "name": "Starter Kit" }]
 }

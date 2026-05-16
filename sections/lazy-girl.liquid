@@ -1,63 +1,30 @@
+{%- comment -%} Lazy Girl — two full-bleed panels, edge to edge {%- endcomment -%}
+<section style="display:grid;grid-template-columns:1fr 1fr;min-height:75vh;overflow:hidden;">
 
-{%- comment -%} Lazy Girl — necked. {%- endcomment -%}
-<section style="background:#F4ECDF;padding:clamp(4rem,8vw,6rem) 0;">
-  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,4vw,2rem);">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center;">
-
-      {%- comment -%} LEFT: copy + 2x2 tile grid {%- endcomment -%}
-      <div>
-        <p style="font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:#9A7E62;margin:0 0 1rem;">{{ section.settings.eyebrow }}</p>
-        <h2 style="font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:400;color:#2A1D14;line-height:1.1;margin:0 0 1.5rem;">{{ section.settings.heading }}</h2>
-        <p style="font-family:'Montserrat',sans-serif;font-size:0.875rem;line-height:1.8;color:#5C4632;margin:0 0 2.5rem;font-weight:300;">{{ section.settings.body }}</p>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
-
-          <div style="position:relative;aspect-ratio:1;background:#E8DCC6;overflow:hidden;">
-            {%- if section.settings.tile1 != blank -%}
-              <img src="{{ section.settings.tile1 | image_url: width: 400 }}" alt="Work" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
-            {%- endif -%}
-            <div style="position:absolute;inset:0;background:rgba(42,29,20,0.22);"></div>
-            <span style="position:absolute;bottom:0.75rem;left:0.75rem;font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#F4ECDF;">Work</span>
-          </div>
-
-          <div style="position:relative;aspect-ratio:1;background:#E8DCC6;overflow:hidden;">
-            {%- if section.settings.tile2 != blank -%}
-              <img src="{{ section.settings.tile2 | image_url: width: 400 }}" alt="Scroll" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
-            {%- endif -%}
-            <div style="position:absolute;inset:0;background:rgba(42,29,20,0.22);"></div>
-            <span style="position:absolute;bottom:0.75rem;left:0.75rem;font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#F4ECDF;">Scroll</span>
-          </div>
-
-          <div style="position:relative;aspect-ratio:1;background:#E8DCC6;overflow:hidden;">
-            {%- if section.settings.tile3 != blank -%}
-              <img src="{{ section.settings.tile3 | image_url: width: 400 }}" alt="Rest" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
-            {%- endif -%}
-            <div style="position:absolute;inset:0;background:rgba(42,29,20,0.22);"></div>
-            <span style="position:absolute;bottom:0.75rem;left:0.75rem;font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#F4ECDF;">Rest</span>
-          </div>
-
-          <div style="position:relative;aspect-ratio:1;background:#E8DCC6;overflow:hidden;">
-            {%- if section.settings.tile4 != blank -%}
-              <img src="{{ section.settings.tile4 | image_url: width: 400 }}" alt="Sleep" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
-            {%- endif -%}
-            <div style="position:absolute;inset:0;background:rgba(42,29,20,0.22);"></div>
-            <span style="position:absolute;bottom:0.75rem;left:0.75rem;font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#F4ECDF;">Sleep</span>
-          </div>
-
-        </div>
-      </div>
-
-      {%- comment -%} RIGHT: main lifestyle image {%- endcomment -%}
-      <div style="position:relative;aspect-ratio:3/4;background:#D9C7AC;overflow:hidden;display:flex;align-items:center;justify-content:center;">
-        {%- if section.settings.main_image != blank -%}
-          <img src="{{ section.settings.main_image | image_url: width: 800 }}" alt="necked. ritual" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
-        {%- else -%}
-          <span style="font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.25em;color:#9A7E62;text-transform:uppercase;text-align:center;padding:1rem;">Lifestyle image<br>(add in editor)</span>
-        {%- endif -%}
-      </div>
-
+  {%- comment -%} LEFT: lifestyle image + text overlay {%- endcomment -%}
+  <div style="position:relative;overflow:hidden;">
+    {%- if section.settings.main_image != blank -%}
+      <img src="{{ section.settings.main_image | image_url: width: 1400 }}" alt="{{ section.settings.heading | escape }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
+    {%- else -%}
+      <div style="position:absolute;inset:0;background:#4A3728;display:flex;align-items:center;justify-content:center;"><span style="font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#9A7E62;">Add lifestyle image</span></div>
+    {%- endif -%}
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(42,29,20,0.65) 0%,rgba(42,29,20,0.1) 60%,transparent 100%);"></div>
+    <div style="position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(2rem,4vw,4rem);">
+      <h2 style="font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:400;color:#F4ECDF;line-height:1.05;margin:0 0 1rem;">{{ section.settings.heading }}</h2>
+      <p style="font-family:'Montserrat',sans-serif;font-size:0.8rem;letter-spacing:0.03em;color:#E8DCC6;margin:0 0 2rem;line-height:1.9;max-width:320px;">{{ section.settings.body | newline_to_br }}</p>
+      <a href="{{ section.settings.journal_url | default: '/blogs/journal' }}" style="font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:#F4ECDF;text-decoration:none;">{{ section.settings.journal_label | default: 'Our Journal' }} &rarr;</a>
     </div>
   </div>
+
+  {%- comment -%} RIGHT: product flatlay, full bleed {%- endcomment -%}
+  <div style="position:relative;overflow:hidden;">
+    {%- if section.settings.tile1 != blank -%}
+      <img src="{{ section.settings.tile1 | image_url: width: 1400 }}" alt="necked. products" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
+    {%- else -%}
+      <div style="position:absolute;inset:0;background:#D9C7AC;display:flex;align-items:center;justify-content:center;"><span style="font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#9A7E62;">Add product flatlay</span></div>
+    {%- endif -%}
+  </div>
+
 </section>
 
 {% schema %}
@@ -65,14 +32,14 @@
   "name": "Lazy Girl",
   "tag": "div",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The lazy girl ritual." },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Low effort. High impact." },
-    { "type": "textarea", "id": "body", "label": "Body", "default": "Wear it while working. Smooth it on after showering. Mask while scrolling. Stretch while watching TV. Sleep supported." },
-    { "type": "image_picker", "id": "tile1", "label": "Tile — Work" },
-    { "type": "image_picker", "id": "tile2", "label": "Tile — Scroll" },
-    { "type": "image_picker", "id": "tile3", "label": "Tile — Rest" },
-    { "type": "image_picker", "id": "tile4", "label": "Tile — Sleep" },
-    { "type": "image_picker", "id": "main_image", "label": "Main image (right side)" }
+    { "type": "text", "id": "heading", "label": "Heading (overlay)", "default": "Lazy Girl, Locked In." },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "Low effort.\nHigh impact." },
+    { "type": "text", "id": "journal_label", "label": "Link label", "default": "Our Journal" },
+    { "type": "url", "id": "journal_url", "label": "Link URL" },
+    { "type": "image_picker", "id": "main_image", "label": "Left panel — lifestyle photo" },
+    { "type": "image_picker", "id": "tile1", "label": "Right panel — product flatlay" },
+    { "type": "image_picker", "id": "tile2", "label": "Extra image 2 (unused)" },
+    { "type": "image_picker", "id": "tile3", "label": "Extra image 3 (unused)" }
   ],
   "presets": [{ "name": "Lazy Girl" }]
 }

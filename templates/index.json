@@ -27,28 +27,23 @@
         "image2": "shopify://shop_images/Amazon-style_product_hero_202604271852.jpg",
         "label2": "Posture Bra",
         "image3": "shopify://shop_images/Amazon-style_product_hero_image_on_202605052137.jpg",
-        "label3": "Shapewear suit",
+        "label3": "Shapewear Suit",
         "image4": "shopify://shop_images/Amazon-style_product_hero_image_on_202605132345.jpg",
         "label4": "Sleep Pillow",
-        "eyebrow": "Start with your screen body.",
-        "heading": "The Screen Body Set.",
-        "body": "A starter routine for tech neck, soft posture, and a smoother-looking neck — made for girls who live on screens.",
+        "eyebrow": "The Screen Body Set.",
         "price": "$125",
         "price_was": "175",
-        "cta_label": "Add the Set",
-        "cta_url": "/collections/all",
-        "sec_label": "View Products",
-        "sec_url": "/collections/all"
+        "cta_label": "Add to Cart",
+        "cta_url": "/collections/all"
       }
     },
     "lazy-girl": {
       "type": "lazy-girl",
       "settings": {
-        "eyebrow": "The lazy girl ritual.",
-        "heading": "Low effort. High impact.",
-        "body": "Wear it while working. Smooth it on after showering. Mask while scrolling. Stretch while watching TV. Sleep supported.",
+        "heading": "Lazy Girl, Locked In.",
+        "body": "Low effort.\nHigh impact.",
         "tile1": "shopify://shop_images/make_it_with_this_size_202605152223.jpg",
-        "tile2": "shopify://shop_images/scroll_image_i_want_you_202605152333.jpg",
+        "tile2": "shopify://shop_images/scroll_image_i_want_202605152333.jpg",
         "tile3": "shopify://shop_images/this_is_looks_not_real_202605152332.jpg",
         "main_image": "shopify://shop_images/give_me_the_main_image_202605152216.jpg"
       }
