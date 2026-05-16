@@ -8,45 +8,50 @@
    these variables. Nothing is hardcoded below.
    ════════════════════════════════════════════════════════════ */
 :root {
-  /* — Backgrounds — */
-  --color-bg:           #F8F2EB;  /* Warm Cream — page bg */
-  --color-bg-secondary: #F8D8DD;  /* Blush — section bg, badges */
-  --color-bg-card:      #FFFFFF;  /* Card backgrounds */
-  --color-bg-dark:      #1F1A1A;  /* Warm Black — footer, announcement */
+  /* — Backgrounds (cream/oat/beige/nude — 85-90% of surface) — */
+  --color-bg:           #F4ECDF;  /* Warm cream — dominant bg */
+  --color-bg-secondary: #E8DCC6;  /* Oat — section bg */
+  --color-bg-card:      #F4ECDF;  /* Cards on cream */
+  --color-bg-soft:      #D9C7AC;  /* Soft beige — section blocks */
+  --color-bg-nude:      #C9A98A;  /* Skin-tone nude — imagery, accents */
+  --color-bg-dark:      #2A1D14;  /* Espresso — footer, announcement */
 
-  /* — Text — */
-  --color-text:         #1F1A1A;  /* Warm Black — primary text */
-  --color-text-muted:   #6B5D5D;  /* Warm Muted — body, captions */
-  --color-white-90:     rgba(255,255,255,0.90);
-  --color-white-60:     rgba(255,255,255,0.60);
-  --color-white-10:     rgba(255,255,255,0.10);
+  /* — Text (cocoa + espresso — 7-10%) — */
+  --color-text:         #2A1D14;  /* Espresso — body text */
+  --color-text-muted:   #9A7E62;  /* Taupe — muted captions */
+  --color-text-sub:     #5C4632;  /* Cocoa brown — sub-headlines */
+  --color-white-90:     rgba(244,236,223,0.90);
+  --color-white-60:     rgba(244,236,223,0.60);
+  --color-white-10:     rgba(244,236,223,0.10);
 
-  /* — Brand — */
-  --color-accent:       #EE6B97;  /* Pink Script — CTAs, links, accents */
-  --color-accent-hover: #C73E6E;  /* Deep Pink — hover/pressed */
-  --color-script:       #EE6B97;  /* Handwritten brushy pink — wordmark + scripts */
-  --color-script-shadow:#C73E6E;  /* Drop shadow under script */
+  /* — Brand (CTAs use espresso; pink is accent only — 3-5%) — */
+  --color-accent:       #2A1D14;  /* Espresso — primary CTAs */
+  --color-accent-hover: #5C4632;  /* Cocoa — hover */
+  --color-pink:         #F1D9D2;  /* Creamy baby pink — small accent only */
+  --color-pink-soft:    #F1D9D2;
+  --color-script:       #5C4632;  /* Cocoa — script/wordmark */
+  --color-script-shadow:#9A7E62;  /* Taupe — script shadow */
 
   /* — Borders — */
-  --color-border:       #E8DDD5;  /* Warm Cream Border */
+  --color-border:       #D9C7AC;  /* Soft beige border */
 
   /* — Semantic aliases (kept for backwards compat) — */
-  --color-black:        #1F1A1A;
-  --color-white:        #F8F2EB;
-  --color-secondary-bg: #F8D8DD;
-  --color-support:      #EE6B97;
+  --color-black:        #2A1D14;
+  --color-white:        #F4ECDF;
+  --color-secondary-bg: #E8DCC6;
+  --color-support:      #F1D9D2;
 
   /* — Status — */
   --color-success:      #34C759;
   --color-warning:      #F5A623;
   --color-error:        #E53E3E;
 
-  /* — Typography — */
-  --font-heading: 'Inter', system-ui, sans-serif;            /* clean readable sans for headings */
-  --font-body:    'Inter', system-ui, sans-serif;            /* body */
-  --font-sans:    'Inter', system-ui, sans-serif;            /* compat alias */
-  --font-serif:   'Inter', system-ui, sans-serif;            /* redirect serif (no serif used) */
-  --font-script:  'Caveat Brush', 'Caveat', cursive;         /* wordmark + emotional headlines ONLY */
+  /* — Typography (editorial serif headlines + clean sans body) — */
+  --font-heading: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-sans:    'Inter', system-ui, sans-serif;
+  --font-serif:   'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-script:  'Caveat Brush', 'Caveat', cursive;
 
   /* — Layout — */
   --nav-height:     64px;
