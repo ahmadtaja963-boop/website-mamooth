@@ -1,90 +1,59 @@
-{%- comment -%} Starter Kit — compact horizontal strip: text | 4 products | CTA {%- endcomment -%}
-<section style="background:#E8DCC6;overflow:hidden;">
-  <div style="display:grid;grid-template-columns:1fr 3fr 1fr;align-items:stretch;height:clamp(180px,20vw,300px);">
+{%- comment -%} Starter Kit — 4 products, no side columns, no borders {%- endcomment -%}
+<section style="background:#E8DCC6;padding:clamp(2rem,4vw,3.5rem) clamp(2rem,5vw,4rem);">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1rem,2.5vw,2rem);">
 
-    <div style="display:flex;flex-direction:column;justify-content:center;padding:1.5rem clamp(1.25rem,2.5vw,2.5rem);border-right:1px solid rgba(42,29,20,0.15);">
-      {%- if section.settings.eyebrow != blank -%}
-        <p style="margin:0 0 0.5rem;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:#2A1D14;">{{ section.settings.eyebrow }}</p>
-      {%- endif -%}
-      <p style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:clamp(1rem,2vw,1.5rem);color:#2A1D14;line-height:1.1;">{{ section.settings.price }}</p>
-      {%- if section.settings.price_was != blank -%}
-        <p style="margin:0.3rem 0 0;font-family:'Montserrat',sans-serif;font-size:0.65rem;color:#9A7E62;text-decoration:line-through;">{{ section.settings.price_was }}</p>
-      {%- endif -%}
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="width:100%;aspect-ratio:3/4;overflow:hidden;background:#F4ECDF;">
+        {%- if section.settings.image1 != blank -%}
+          <img src="{{ section.settings.image1 | image_url: width: 700 }}" alt="{{ section.settings.label1 | escape }}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">
+        {%- else -%}
+          <div style="width:100%;height:100%;background:#D9C7AC;"></div>
+        {%- endif -%}
+      </div>
+      <p style="margin:0.75rem 0 0.2rem;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;text-align:center;">{{ section.settings.label1 }}</p>
+      {%- if section.settings.sub1 != blank -%}<p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.48rem;color:#9A7E62;text-align:center;">{{ section.settings.sub1 }}</p>{%- endif -%}
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);height:100%;">
-
-      <div style="display:flex;flex-direction:column;overflow:hidden;border-right:1px solid rgba(42,29,20,0.1);">
-        <div style="flex:1;overflow:hidden;min-height:0;">
-          {%- if section.settings.image1 != blank -%}
-            <img src="{{ section.settings.image1 | image_url: width: 600 }}" alt="{{ section.settings.label1 | escape }}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">
-          {%- else -%}
-            <div style="width:100%;height:100%;background:#D9C7AC;"></div>
-          {%- endif -%}
-        </div>
-        <div style="padding:0.4rem 0.5rem;text-align:center;">
-          <p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;color:#2A1D14;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ section.settings.label1 }}</p>
-          {%- if section.settings.sub1 != blank -%}<p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.45rem;color:#9A7E62;">{{ section.settings.sub1 }}</p>{%- endif -%}
-        </div>
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="width:100%;aspect-ratio:3/4;overflow:hidden;background:#F4ECDF;">
+        {%- if section.settings.image2 != blank -%}
+          <img src="{{ section.settings.image2 | image_url: width: 700 }}" alt="{{ section.settings.label2 | escape }}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">
+        {%- else -%}
+          <div style="width:100%;height:100%;background:#D9C7AC;"></div>
+        {%- endif -%}
       </div>
-
-      <div style="display:flex;flex-direction:column;overflow:hidden;border-right:1px solid rgba(42,29,20,0.1);">
-        <div style="flex:1;overflow:hidden;min-height:0;">
-          {%- if section.settings.image2 != blank -%}
-            <img src="{{ section.settings.image2 | image_url: width: 600 }}" alt="{{ section.settings.label2 | escape }}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">
-          {%- else -%}
-            <div style="width:100%;height:100%;background:#D9C7AC;"></div>
-          {%- endif -%}
-        </div>
-        <div style="padding:0.4rem 0.5rem;text-align:center;">
-          <p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;color:#2A1D14;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ section.settings.label2 }}</p>
-          {%- if section.settings.sub2 != blank -%}<p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.45rem;color:#9A7E62;">{{ section.settings.sub2 }}</p>{%- endif -%}
-        </div>
-      </div>
-
-      <div style="display:flex;flex-direction:column;overflow:hidden;border-right:1px solid rgba(42,29,20,0.1);">
-        <div style="flex:1;overflow:hidden;min-height:0;">
-          {%- if section.settings.image3 != blank -%}
-            <img src="{{ section.settings.image3 | image_url: width: 600 }}" alt="{{ section.settings.label3 | escape }}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">
-          {%- else -%}
-            <div style="width:100%;height:100%;background:#D9C7AC;"></div>
-          {%- endif -%}
-        </div>
-        <div style="padding:0.4rem 0.5rem;text-align:center;">
-          <p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;color:#2A1D14;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ section.settings.label3 }}</p>
-          {%- if section.settings.sub3 != blank -%}<p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.45rem;color:#9A7E62;">{{ section.settings.sub3 }}</p>{%- endif -%}
-        </div>
-      </div>
-
-      <div style="display:flex;flex-direction:column;overflow:hidden;">
-        <div style="flex:1;overflow:hidden;min-height:0;">
-          {%- if section.settings.image4 != blank -%}
-            <img src="{{ section.settings.image4 | image_url: width: 600 }}" alt="{{ section.settings.label4 | escape }}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">
-          {%- else -%}
-            <div style="width:100%;height:100%;background:#D9C7AC;"></div>
-          {%- endif -%}
-        </div>
-        <div style="padding:0.4rem 0.5rem;text-align:center;">
-          <p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;color:#2A1D14;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ section.settings.label4 }}</p>
-          {%- if section.settings.sub4 != blank -%}<p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.45rem;color:#9A7E62;">{{ section.settings.sub4 }}</p>{%- endif -%}
-        </div>
-      </div>
-
+      <p style="margin:0.75rem 0 0.2rem;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;text-align:center;">{{ section.settings.label2 }}</p>
+      {%- if section.settings.sub2 != blank -%}<p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.48rem;color:#9A7E62;text-align:center;">{{ section.settings.sub2 }}</p>{%- endif -%}
     </div>
 
-    <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;padding:1.5rem clamp(1rem,2vw,2rem);border-left:1px solid rgba(42,29,20,0.15);">
-      <a href="{{ section.settings.cta_url | default: '/collections/all' }}" style="font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:#2A1D14;text-decoration:none;text-align:center;">{{ section.settings.cta_label | default: 'Add to Cart' }} &rarr;</a>
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="width:100%;aspect-ratio:3/4;overflow:hidden;background:#F4ECDF;">
+        {%- if section.settings.image3 != blank -%}
+          <img src="{{ section.settings.image3 | image_url: width: 700 }}" alt="{{ section.settings.label3 | escape }}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">
+        {%- else -%}
+          <div style="width:100%;height:100%;background:#D9C7AC;"></div>
+        {%- endif -%}
+      </div>
+      <p style="margin:0.75rem 0 0.2rem;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;text-align:center;">{{ section.settings.label3 }}</p>
+      {%- if section.settings.sub3 != blank -%}<p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.48rem;color:#9A7E62;text-align:center;">{{ section.settings.sub3 }}</p>{%- endif -%}
+    </div>
+
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="width:100%;aspect-ratio:3/4;overflow:hidden;background:#F4ECDF;">
+        {%- if section.settings.image4 != blank -%}
+          <img src="{{ section.settings.image4 | image_url: width: 700 }}" alt="{{ section.settings.label4 | escape }}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">
+        {%- else -%}
+          <div style="width:100%;height:100%;background:#D9C7AC;"></div>
+        {%- endif -%}
+      </div>
+      <p style="margin:0.75rem 0 0.2rem;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#2A1D14;text-align:center;">{{ section.settings.label4 }}</p>
+      {%- if section.settings.sub4 != blank -%}<p style="margin:0;font-family:'Montserrat',sans-serif;font-size:0.48rem;color:#9A7E62;text-align:center;">{{ section.settings.sub4 }}</p>{%- endif -%}
     </div>
 
   </div>
 </section>
 {% schema %}
 { "name": "Starter Kit", "tag": "div", "settings": [
-  { "type": "text", "id": "eyebrow", "label": "Set name", "default": "The Screen Body Set." },
-  { "type": "text", "id": "price", "label": "Price", "default": "$125" },
-  { "type": "text", "id": "price_was", "label": "Original price (optional)" },
-  { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Add to Cart" },
-  { "type": "url", "id": "cta_url", "label": "CTA URL" },
   { "type": "image_picker", "id": "image1", "label": "Product 1 image" },
   { "type": "text", "id": "label1", "label": "Product 1 name", "default": "Neck Cream" },
   { "type": "text", "id": "sub1", "label": "Product 1 subtitle", "default": "Lift + Smooth" },
