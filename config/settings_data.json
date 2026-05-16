@@ -11,23 +11,19 @@
   "current": {
     "checkout_logo_image": "",
     "color_primary": "#2A1D14",
-    "colors_text": "#1a2332",
-    "color_accent": "#F8EDE9",
+    "colors_text": "#2A1D14",
+    "color_accent": "#F1D9D2",
     "heading_font": "Playfair Display",
     "social_instagram_url": "",
     "social_facebook_url": "",
     "social_twitter_url": "",
     "social_youtube_url": "",
+    "color_secondary": "#5C4632",
+    "color_background": "#F4ECDF",
     "sections": {
       "header": {
         "type": "header",
-        "settings": {
-          "announcement_1": "shipping time 3 to 6 days",
-          "announcement_2": "fast delivery",
-          "announcement_3": "free shipping",
-          "logo": "",
-          "logo_width": 60
-        }
+        "settings": {}
       },
       "footer": {
         "type": "footer",
@@ -51,9 +47,7 @@
         "disabled": false,
         "settings": {}
       }
-    },
-    "color_secondary": "#5C4632",
-    "color_background": "#F8EDE9"
+    }
   },
   "presets": {}
 }
