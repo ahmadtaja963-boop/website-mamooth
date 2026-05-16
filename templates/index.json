@@ -35,30 +35,69 @@
       "settings": {
         "image1": "shopify://shop_images/change_brand_name___eflhoe_202605132125.jpg",
         "label1": "Neck Cream",
+        "sub1": "Lift + Smooth",
         "image2": "shopify://shop_images/Amazon-style_product_hero_202604271852.jpg",
         "label2": "Posture Bra",
+        "sub2": "Firm + Define",
         "image3": "shopify://shop_images/Amazon-style_product_hero_image_on_202605052137.jpg",
         "label3": "Shapewear Suit",
+        "sub3": "Sculpt + Support",
         "image4": "shopify://shop_images/Amazon-style_product_hero_image_on_202605132345.jpg",
-        "label4": "Sleep Pillow"
+        "label4": "Sleep Pillow",
+        "sub4": "Align + Rest"
       }
     },
     "problem": {
       "type": "problem",
-      "settings": {}
+      "settings": {
+        "eyebrow": "THE SCREEN BODY",
+        "heading": "Your phone has a posture.",
+        "body": "Hours of scrolling, working, and sleeping wrong show up before you notice: in your neck, shoulders, jawline, and the way your body holds itself.",
+        "bullet1": "neck lines",
+        "bullet2": "tech neck",
+        "bullet3": "rounded shoulders",
+        "bullet4": "double chin appearance",
+        "bullet5": "collapsed posture",
+        "bullet6": "tired upper body"
+      }
     },
     "method": {
       "type": "method",
       "settings": {
+        "eyebrow": "THE NECKED. METHOD",
+        "heading": "Meet the necked. method.",
+        "title1": "Smooth",
+        "body1": "For neck lines, texture, and tired-looking skin.",
+        "title2": "Lift",
+        "body2": "For jawline, double chin appearance, and neck definition.",
+        "title3": "Align",
+        "body3": "For pretty posture, shoulders, and the Pilates-princess look.",
+        "title4": "Rest",
+        "body4": "For passive care while you work, scroll, sleep, and recover.",
+        "cta_label": "Find Your Fix",
         "cta_url": "/collections/all"
       }
     },
     "collections": {
       "type": "collections",
       "settings": {
+        "eyebrow": "SHOP THE EDITS",
+        "heading": "Choose your edit.",
+        "image1": "shopify://shop_images/Photorealistic__high-end_editorial_close-up_of_202605161144.jpg",
+        "title1": "The Neck Edit",
+        "subtitle1": "Smooth + Lift",
         "url1": "/collections/neck-edit",
+        "image2": "shopify://shop_images/make_her_wear_this_bra_202605161337.jpg",
+        "title2": "The Posture Edit",
+        "subtitle2": "Align",
         "url2": "/collections/posture-edit",
+        "image3": "shopify://shop_images/i_want_normal_woman_siting_202605161144.jpg",
+        "title3": "The Rest Edit",
+        "subtitle3": "Rest",
         "url3": "/products/tech-neck-sleep-pillow",
+        "image4": "shopify://shop_images/remove_the_cream_box_and_202605161301.jpg",
+        "title4": "The Full Method",
+        "subtitle4": "Smooth · Lift · Align · Rest",
         "url4": "/collections/full-method"
       }
     },
@@ -66,7 +105,9 @@
       "type": "lazy-girl",
       "settings": {
         "heading": "Lazy Girl, Locked In.",
-        "body": "Low effort.\nHigh impact."
+        "body": "Low effort.\nHigh impact.",
+        "journal_label": "Our Journal",
+        "journal_url": ""
       }
     },
     "why-brand": {
@@ -121,7 +162,13 @@
     },
     "email-capture": {
       "type": "email-capture",
-      "settings": {}
+      "settings": {
+        "eyebrow": "STAY IN TOUCH",
+        "heading": "Join the screen body club.",
+        "body": "Soft rituals, posture tips, and new drops for your necked. routine.",
+        "placeholder": "your email",
+        "cta_label": "Sign Up"
+      }
     }
   },
   "order": [
