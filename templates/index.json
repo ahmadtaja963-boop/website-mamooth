@@ -127,6 +127,7 @@
         "article-1": {
           "type": "article",
           "settings": {
+            "image": "shopify://shop_images/A_minimalist__editorial_style_lifestyle_202605161604.jpg",
             "date": "May 2026",
             "title": "What Is Screen Body?",
             "url": "/blogs/journal"
@@ -135,6 +136,7 @@
         "article-2": {
           "type": "article",
           "settings": {
+            "image": "shopify://shop_images/An_elegant__close-up_lifestyle_photograph_202605161605.jpg",
             "date": "May 2026",
             "title": "Tech Neck, But Make It Cute",
             "url": "/blogs/journal"
@@ -143,6 +145,7 @@
         "article-3": {
           "type": "article",
           "settings": {
+            "image": "shopify://shop_images/A_cozy_and_aesthetic_lifestyle_202605161605.jpg",
             "date": "May 2026",
             "title": "The Lazy Girl Guide to Better Posture",
             "url": "/blogs/journal"
