@@ -1,5 +1,6 @@
 {%- comment -%} Trusted By — press logos strip {%- endcomment -%}
 <section style="background:#E8DCC6;padding:clamp(1rem,2vw,1.5rem) clamp(1.5rem,5vw,3rem);">
+  <p style="text-align:center;font-family:sans-serif;font-size:0.65rem;letter-spacing:0.15em;color:#A08060;text-transform:uppercase;margin:0 0 clamp(0.75rem,1.5vw,1.25rem);">{{ section.settings.eyebrow }}</p>
   <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(1rem,3vw,2.5rem);align-items:center;justify-items:center;max-width:1200px;margin:0 auto;">
     {%- for i in (1..5) -%}
       {%- assign img_key = 'logo' | append: i -%}
