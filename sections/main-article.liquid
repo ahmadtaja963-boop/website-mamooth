@@ -1,0 +1,64 @@
+<style>
+  .ja-wrap { max-width: 880px; margin: 0 auto; padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem); color: #2A1D14; }
+  .ja-back { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: #5C4632; text-decoration: none; margin-bottom: 2rem; }
+  .ja-back:hover { color: #2A1D14; }
+  .ja-meta { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: #8a7558; margin-bottom: 1rem; }
+  .ja-title { font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.1; margin: 0 0 1.25rem; letter-spacing: -0.01em; }
+  .ja-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1.05rem, 1.8vw, 1.25rem); color: #5C4632; margin: 0 0 2.5rem; line-height: 1.5; }
+  .ja-cover { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 4px; margin-bottom: 2.75rem; display: block; }
+  .ja-cover-fallback { width: 100%; aspect-ratio: 16/9; background: #E8DCC6; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1.2rem, 2.4vw, 1.75rem); color: #5C4632; text-align: center; padding: 2rem; border-radius: 4px; margin-bottom: 2.75rem; }
+  .ja-body { font-family: 'Inter', -apple-system, sans-serif; font-size: 1.0625rem; line-height: 1.8; color: #2A1D14; }
+  .ja-body p { margin: 0 0 1.4rem; }
+  .ja-body h2 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 1.75rem; line-height: 1.25; margin: 2.75rem 0 1rem; letter-spacing: -0.005em; }
+  .ja-body h3 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 1.35rem; margin: 2.25rem 0 0.85rem; }
+  .ja-body a { color: #5C4632; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .ja-body a:hover { color: #2A1D14; }
+  .ja-body blockquote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.35rem; line-height: 1.55; color: #5C4632; border-left: 2px solid #E8DCC6; padding: 0.25rem 0 0.25rem 1.5rem; margin: 2rem 0; }
+  .ja-body ul, .ja-body ol { padding-left: 1.4rem; margin: 0 0 1.4rem; }
+  .ja-body li { margin: 0 0 0.55rem; }
+  .ja-body img { max-width: 100%; height: auto; border-radius: 4px; margin: 1.5rem 0; }
+  .ja-divider { height: 1px; background: #E8DCC6; border: 0; margin: 3.5rem 0 2rem; }
+  .ja-foot { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center; font-family: 'Montserrat', sans-serif; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: #8a7558; }
+  .ja-foot a { color: #5C4632; text-decoration: none; }
+  .ja-foot a:hover { color: #2A1D14; }
+</style>
+
+<article class="ja-wrap">
+  <a href="{{ blog.url }}" class="ja-back">&larr; Back to The Journal</a>
+
+  <div class="ja-meta">
+    {% if article.published_at %}{{ article.published_at | date: "%B %Y" }}{% endif %}
+    {% if article.author and article.author != blank %} &middot; By {{ article.author }}{% endif %}
+  </div>
+
+  <h1 class="ja-title">{{ article.title }}</h1>
+
+  {% if article.excerpt and article.excerpt != blank %}
+    <div class="ja-sub">{{ article.excerpt | strip_html }}</div>
+  {% endif %}
+
+  {% if article.image %}
+    <img class="ja-cover" src="{{ article.image | image_url: width: 1600 }}" alt="{{ article.title | escape }}" loading="eager">
+  {% else %}
+    <div class="ja-cover-fallback">{{ article.title }}</div>
+  {% endif %}
+
+  <div class="ja-body">
+    {{ article.content }}
+  </div>
+
+  <hr class="ja-divider">
+
+  <div class="ja-foot">
+    <a href="{{ blog.url }}">&larr; All journal entries</a>
+    <span>necked. &middot; the journal</span>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "Article",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

@@ -14,13 +14,15 @@
 
   {%- if settings.favicon != blank -%}
     <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {%- else -%}
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%23F4ECDF'/><text x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Playfair Display, Georgia, serif' font-size='44' font-weight='500' fill='%232A1D14'>n.</text></svg>">
   {%- endif -%}
 
   <title>
     {{ page_title }}
     {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
     {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
-    {%- assign brand_name = 'the pretty fix' -%}
+    {%- assign brand_name = 'necked.' -%}
     {%- unless page_title contains brand_name %} &ndash; {{ brand_name }}{% endunless -%}
   </title>
 
