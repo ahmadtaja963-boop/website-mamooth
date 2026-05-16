@@ -66,16 +66,8 @@
       "type": "lazy-girl",
       "settings": {
         "heading": "Lazy Girl, Locked In.",
-        "body": "Low effort.\nHigh impact.",
-        "main_image": "shopify://shop_images/give_me_the_main_image_202605152216.jpg",
-        "tile1": "shopify://shop_images/make_it_with_this_size_202605152223.jpg",
-        "tile2": "shopify://shop_images/scroll_image_i_want_202605152333.jpg",
-        "tile3": "shopify://shop_images/this_is_looks_not_real_202605152332.jpg"
+        "body": "Low effort.\nHigh impact."
       }
-    },
-    "identity": {
-      "type": "identity",
-      "settings": {}
     },
     "why-brand": {
       "type": "why-brand",
@@ -140,7 +132,6 @@
     "method",
     "collections",
     "lazy-girl",
-    "identity",
     "why-brand",
     "journal-cards",
     "email-capture"
