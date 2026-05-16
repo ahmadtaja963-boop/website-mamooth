@@ -162,16 +162,6 @@
         "all_label": "View All",
         "all_url": "/blogs/journal"
       }
-    },
-    "email-capture": {
-      "type": "email-capture",
-      "settings": {
-        "eyebrow": "STAY IN TOUCH",
-        "heading": "Join the screen body club.",
-        "body": "Soft rituals, posture tips, and new drops for your necked. routine.",
-        "placeholder": "your email",
-        "cta_label": "Sign Up"
-      }
     }
   },
   "order": [
@@ -183,7 +173,6 @@
     "collections",
     "lazy-girl",
     "why-brand",
-    "journal-cards",
-    "email-capture"
+    "journal-cards"
   ]
 }
