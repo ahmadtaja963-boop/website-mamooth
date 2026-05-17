@@ -3036,7 +3036,7 @@ body.has-sticky-cta div[class*="kl-private-reset-css"] {
   justify-content: center;
   padding: 10px 14px;
   min-width: 110px;
-  background: #C4944C;
+  background: var(--color-accent);
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -3053,7 +3053,7 @@ body.has-sticky-cta div[class*="kl-private-reset-css"] {
   text-align: center;
 }
 .sticky-cta-bar__btn:active { transform: scale(0.96); }
-.sticky-cta-bar__btn:hover { background: #A87D3E; }
+.sticky-cta-bar__btn:hover { background: var(--color-accent-hover); }
 
 body.has-sticky-cta { padding-bottom: 80px; }
 @media (min-width: 750px) {
