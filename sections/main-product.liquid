@@ -580,6 +580,98 @@
                   <p class="offer-selector__heading">{{ os.heading }}</p>
                 {%- endif -%}
 
+                {%- comment -%} Top-level color picker — shows above pack selector when product has a colour option {%- endcomment -%}
+                {%- unless product.has_only_default_variant -%}
+                  {%- assign _tcp_opt = nil -%}
+                  {%- assign _tcp_idx = -1 -%}
+                  {%- for _tcp_o in product.options_with_values -%}
+                    {%- assign _tcp_ol = _tcp_o.name | downcase -%}
+                    {%- if _tcp_ol == 'color' or _tcp_ol == 'colour' or _tcp_ol == 'colore' or _tcp_ol == 'couleur' -%}
+                      {%- assign _tcp_opt = _tcp_o -%}
+                      {%- assign _tcp_idx = forloop.index0 -%}
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                  {%- if _tcp_opt != nil -%}
+                    <div class="offer-top-color-picker" id="OfferTopColorPicker" data-color-option-index="{{ _tcp_idx }}" style="margin-bottom:1.5rem;">
+                      <div class="option-label-row" style="margin-bottom:0.5rem;">
+                        <span class="option-label">Color: <span class="offer-top-color__selected">{{ _tcp_opt.selected_value }}</span></span>
+                      </div>
+                      <div class="option-values option-values--color">
+                        {%- for _tcp_v in _tcp_opt.values -%}
+                          <button type="button"
+                            class="option-btn option-btn--color{% if _tcp_opt.selected_value == _tcp_v %} active{% endif %}"
+                            data-color-value="{{ _tcp_v }}"
+                            aria-label="{{ _tcp_opt.name }}: {{ _tcp_v }}"
+                            title="{{ _tcp_v }}"
+                          >
+                            {%- if _tcp_v.swatch.image -%}
+                              <img src="{{ _tcp_v.swatch.image | image_url: width: 120 }}" alt="{{ _tcp_v | escape }}" width="60" height="60" loading="lazy" class="color-swatch-img">
+                            {%- elsif _tcp_v.swatch.color -%}
+                              <span class="color-swatch-img" style="background-color: {{ _tcp_v.swatch.color }};"></span>
+                            {%- else -%}
+                              {%- assign _tcp_vl = _tcp_v | downcase | strip -%}
+                              {%- assign _tcp_hex = '' -%}
+                              {%- case _tcp_vl -%}
+                                {%- when 'black' -%}{%- assign _tcp_hex = '#1A1A1A' -%}
+                                {%- when 'white' -%}{%- assign _tcp_hex = '#F5F5F5' -%}
+                                {%- when 'pink' -%}{%- assign _tcp_hex = '#FFC0CB' -%}
+                                {%- when 'blue' -%}{%- assign _tcp_hex = '#2C5282' -%}
+                                {%- when 'red' -%}{%- assign _tcp_hex = '#D0342C' -%}
+                                {%- when 'green' -%}{%- assign _tcp_hex = '#38A169' -%}
+                                {%- when 'gray' -%}{%- assign _tcp_hex = '#718096' -%}
+                                {%- when 'grey' -%}{%- assign _tcp_hex = '#718096' -%}
+                                {%- when 'nude' -%}{%- assign _tcp_hex = '#E4B590' -%}
+                                {%- when 'beige' -%}{%- assign _tcp_hex = '#E4B590' -%}
+                                {%- when 'gold' -%}{%- assign _tcp_hex = '#C4944C' -%}
+                                {%- when 'silver' -%}{%- assign _tcp_hex = '#C0C0C0' -%}
+                                {%- when 'rose gold' -%}{%- assign _tcp_hex = '#B76E79' -%}
+                                {%- when 'rose' -%}{%- assign _tcp_hex = '#B76E79' -%}
+                                {%- when 'navy' -%}{%- assign _tcp_hex = '#1A365D' -%}
+                                {%- when 'brown' -%}{%- assign _tcp_hex = '#795548' -%}
+                                {%- when 'cream' -%}{%- assign _tcp_hex = '#FFFDD0' -%}
+                                {%- when 'tan' -%}{%- assign _tcp_hex = '#D2B48C' -%}
+                              {%- endcase -%}
+                              {%- if _tcp_hex != '' -%}
+                                <span class="color-swatch-img" style="background-color: {{ _tcp_hex }};"></span>
+                              {%- else -%}
+                                <span class="color-swatch-img color-swatch-img--fallback">{{ _tcp_v | slice: 0, 2 }}</span>
+                              {%- endif -%}
+                            {%- endif -%}
+                          </button>
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                    <script>
+                    (function() {
+                      function initOfferTopColorPicker() {
+                        var picker = document.getElementById('OfferTopColorPicker');
+                        if (!picker) return;
+                        var colorIdx = parseInt(picker.dataset.colorOptionIndex || '0', 10);
+                        picker.querySelectorAll('.option-btn--color').forEach(function(btn) {
+                          btn.addEventListener('click', function() {
+                            var value = btn.dataset.colorValue;
+                            var label = picker.querySelector('.offer-top-color__selected');
+                            if (label) label.textContent = value;
+                            picker.querySelectorAll('.option-btn--color').forEach(function(b) { b.classList.remove('active'); });
+                            btn.classList.add('active');
+                            document.querySelectorAll('.bogo-card__option-select[data-option-index="' + colorIdx + '"]').forEach(function(sel) {
+                              sel.value = value;
+                              sel.dispatchEvent(new Event('change'));
+                            });
+                          });
+                        });
+                      }
+                      if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', initOfferTopColorPicker);
+                      } else {
+                        initOfferTopColorPicker();
+                      }
+                    })();
+                    </script>
+                  {%- endif -%}
+                {%- endunless -%}
+
                 {%- if os_is_tier_mode -%}
                   {%- comment -%} ── 3-Tier Quantity Mode — fully dynamic pricing ── {%- endcomment -%}
                   {%- assign offer_has_options = false -%}
