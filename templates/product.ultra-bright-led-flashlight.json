@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -5,9 +14,9 @@
       "blocks": {
         "funnel_main": {
           "type": "funnel_image",
-          "name": "A+ Content — Flashlight Full Funnel",
+          "name": "A+ Content \u2014 Flashlight Full Funnel",
           "settings": {
-            "funnel_alt": "Ultra Bright LED Flashlight — Full A+ Content",
+            "funnel_alt": "Ultra Bright LED Flashlight \u2014 Full A+ Content",
             "desktop_image": "shopify://shop_images/flashlight-aplus-1-desktop.jpg",
             "mobile_image": "shopify://shop_images/flashlight-aplus-1-mobile.jpg",
             "desktop_image_2": "shopify://shop_images/flashlight-aplus-2-desktop.jpg",
@@ -71,8 +80,8 @@
         "guarantee_main": {
           "type": "guarantee_promise",
           "settings": {
-            "label": "🛡️ THE NEVER-DARK GUARANTEE",
-            "headline": "Brighter and More Reliable Than Anything You Own — Or Your Money Back",
+            "label": "\ud83d\udee1\ufe0f THE NEVER-DARK GUARANTEE",
+            "headline": "Brighter and More Reliable Than Anything You Own \u2014 Or Your Money Back",
             "body": "<p>Use it for 60 days. If it isn't brighter AND more reliable than every flashlight you've ever owned, email us for a full refund. <strong>Keep the flashlight. Keep the bonuses. No questions, no proof, no return shipping.</strong></p>"
           }
         },
@@ -80,26 +89,26 @@
           "type": "more_info_tabs",
           "settings": {
             "title_1": "Specs",
-            "content_1": "<p><strong>Material:</strong> Aerospace aluminum alloy + ABS<br><strong>Lumens:</strong> 100,000 (claimed max)<br><strong>Light:</strong> Dual — front LED + rear COB tail light<br><strong>Range:</strong> 3,280 ft (1,000 m)<br><strong>Battery:</strong> 3× 18650 / 15,000mAh<br><strong>Runtime:</strong> 6-10 hours<br><strong>Charging:</strong> USB-C in (5V/1A)<br><strong>Output:</strong> USB power bank (5V/1A)<br><strong>Modes:</strong> 5 (Low / High / SOS / Strobe / Tail Light)<br><strong>Zoom:</strong> Adjustable wide-to-narrow<br><strong>Waterproof:</strong> IPX6<br><strong>Weight:</strong> 562g (1.24 lb)<br><strong>Size:</strong> 10.4 × 2.8 in</p>"
+            "content_1": "<p><strong>Material:</strong> Aerospace aluminum alloy + ABS<br><strong>Lumens:</strong> 100,000 (claimed max)<br><strong>Light:</strong> Dual \u2014 front LED + rear COB tail light<br><strong>Range:</strong> 3,280 ft (1,000 m)<br><strong>Battery:</strong> 3\u00d7 18650 / 15,000mAh<br><strong>Runtime:</strong> 6-10 hours<br><strong>Charging:</strong> USB-C in (5V/1A)<br><strong>Output:</strong> USB power bank (5V/1A)<br><strong>Modes:</strong> 5 (Low / High / SOS / Strobe / Tail Light)<br><strong>Zoom:</strong> Adjustable wide-to-narrow<br><strong>Waterproof:</strong> IPX6<br><strong>Weight:</strong> 562g (1.24 lb)<br><strong>Size:</strong> 10.4 \u00d7 2.8 in</p>"
           }
         },
         "faq_section_main": {
           "type": "faq_section",
           "settings": {
             "q1": "Is this really 100,000 lumens?",
-            "a1": "<p>The manufacturer-stated max output is 100,000 lumens under ideal lab conditions. Real-world output is still dramatically brighter than any standard flashlight — enough to light an entire backyard or campsite. We're honest: no flashlight at this price point hits lab spec. What you get is the brightest practical beam in the mid-range category.</p>",
+            "a1": "<p>The manufacturer-stated max output is 100,000 lumens under ideal lab conditions. Real-world output is still dramatically brighter than any standard flashlight \u2014 enough to light an entire backyard or campsite. We're honest: no flashlight at this price point hits lab spec. What you get is the brightest practical beam in the mid-range category.</p>",
             "q2": "Does the power bank actually charge a phone?",
-            "a2": "<p>Yes. The built-in 15,000mAh battery outputs 5V/1A via USB — enough to fully charge most phones 2-3 times on a single flashlight charge. Perfect for power outages, camping trips, or roadside emergencies.</p>",
+            "a2": "<p>Yes. The built-in 15,000mAh battery outputs 5V/1A via USB \u2014 enough to fully charge most phones 2-3 times on a single flashlight charge. Perfect for power outages, camping trips, or roadside emergencies.</p>",
             "q3": "Is it really waterproof?",
-            "a3": "<p>IPX6 rated — it handles heavy rain, splashes, and brief submersion. You can use it in storms, on boats, or dropped in a puddle. It's not meant for diving or long underwater use.</p>",
+            "a3": "<p>IPX6 rated \u2014 it handles heavy rain, splashes, and brief submersion. You can use it in storms, on boats, or dropped in a puddle. It's not meant for diving or long underwater use.</p>",
             "q4": "How long does the battery last?",
-            "a4": "<p>6-10 hours of continuous runtime depending on mode. High beam drains faster, Low beam and Tail Light last longer. The LCD display shows exact battery percentage so you always know when to recharge — no more dying flashlight at 3am.</p>",
+            "a4": "<p>6-10 hours of continuous runtime depending on mode. High beam drains faster, Low beam and Tail Light last longer. The LCD display shows exact battery percentage so you always know when to recharge \u2014 no more dying flashlight at 3am.</p>",
             "q5": "Will it survive being dropped?",
             "a5": "<p>Yes. The aerospace aluminum body is drop-tested to 16 feet. The LED and lens are shock-resistant. Drop it on concrete, in your truck bed, or in a tool box without damage.</p>",
             "q6": "What's the difference between the front and rear lights?",
-            "a6": "<p>Front is a focused spotlight (up to 1,000m range) with adjustable zoom — for searching, signaling, or lighting far distances. Rear COB is a wide flood light — for close-range hands-free work like reading a map, changing a tire, or lighting a workspace. Both run independently.</p>",
+            "a6": "<p>Front is a focused spotlight (up to 1,000m range) with adjustable zoom \u2014 for searching, signaling, or lighting far distances. Rear COB is a wide flood light \u2014 for close-range hands-free work like reading a map, changing a tire, or lighting a workspace. Both run independently.</p>",
             "q7": "Is this a good gift?",
-            "a7": "<p>It's one of our top gift items. Comes in a premium gift box with everything included. Perfect for dads, outdoor enthusiasts, preppers, or anyone who values being prepared. Opens to a proper presentation — not a plastic bag.</p>",
+            "a7": "<p>It's one of our top gift items. Comes in a premium gift box with everything included. Perfect for dads, outdoor enthusiasts, preppers, or anyone who values being prepared. Opens to a proper presentation \u2014 not a plastic bag.</p>",
             "q8": "What is your return policy?",
             "a8": "<p>We offer a 60-day no-questions-asked return. If you're not completely satisfied send it back for a full refund. Keep the bonuses. Free shipping on all US orders.</p>"
           }
@@ -127,9 +136,9 @@
         "faq_section_main"
       ],
       "settings": {
-        "accent_color": "#2B8F9E",
+        "accent_color": "",
         "show_judgeme_badge": true,
-        "social_proof_text": "100K LUMENS · BUILT-IN POWER BANK",
+        "social_proof_text": "100K LUMENS \u00b7 BUILT-IN POWER BANK",
         "shipping_text": "",
         "show_delivery_estimate": false,
         "delivery_business_days": 7,

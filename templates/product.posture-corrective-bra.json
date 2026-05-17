@@ -17,7 +17,7 @@
           "name": "A+ Content Funnel",
           "settings": {
             "funnel_locale": "en",
-            "funnel_alt": "Posture Corrective Bra — Full A+ Content",
+            "funnel_alt": "Posture Corrective Bra \u2014 Full A+ Content",
             "desktop_image": "shopify://shop_images/bra-aplus-b1-args-1-2-desktop.png",
             "mobile_image": "shopify://shop_images/bra-aplus-b1-args-1-2-mobile.png",
             "desktop_image_2": "shopify://shop_images/bra-aplus-b1-args-3-4-chest-desktop.png",
@@ -30,10 +30,10 @@
         },
         "funnel_fr": {
           "type": "funnel_image",
-          "name": "A+ Content Funnel — FR",
+          "name": "A+ Content Funnel \u2014 FR",
           "settings": {
             "funnel_locale": "fr",
-            "funnel_alt": "Soutien-gorge correcteur de posture — Contenu A+",
+            "funnel_alt": "Soutien-gorge correcteur de posture \u2014 Contenu A+",
             "desktop_image": "shopify://shop_images/1777425393280-xrpj8n47xy8.jpg",
             "mobile_image": "shopify://shop_images/1777425361086-1uiwbi0wyz7.jpg",
             "desktop_image_2": "shopify://shop_images/1777425349557-sbiuvhk0xk.jpg",
@@ -46,10 +46,10 @@
         },
         "funnel_de": {
           "type": "funnel_image",
-          "name": "A+ Content Funnel — DE",
+          "name": "A+ Content Funnel \u2014 DE",
           "settings": {
             "funnel_locale": "de",
-            "funnel_alt": "Haltungskorrektur-BH — A+ Inhalt",
+            "funnel_alt": "Haltungskorrektur-BH \u2014 A+ Inhalt",
             "desktop_image": "shopify://shop_images/1777425362800-r52wsd6tlwp.jpg",
             "mobile_image": "shopify://shop_images/1777425352922-o64zz0my2gp.jpg",
             "desktop_image_2": "shopify://shop_images/1777425367000-eob0akwdurq.jpg",
@@ -62,10 +62,10 @@
         },
         "funnel_es": {
           "type": "funnel_image",
-          "name": "A+ Content Funnel — ES",
+          "name": "A+ Content Funnel \u2014 ES",
           "settings": {
             "funnel_locale": "es",
-            "funnel_alt": "Sostén corrector de postura — Contenido A+",
+            "funnel_alt": "Sost\u00e9n corrector de postura \u2014 Contenido A+",
             "desktop_image": "shopify://shop_images/posture-bra-es-ap1_desk-img.jpg",
             "mobile_image": "shopify://shop_images/posture-bra-es-ap1_mob-img.jpg",
             "desktop_image_2": "shopify://shop_images/posture-bra-es-ap3_desk-img.jpg",
@@ -127,13 +127,13 @@
           "type": "more_info_tabs",
           "settings": {
             "title_1": "Details",
-            "content_1": "<p><strong>Material:</strong> Soft Breathable Fabric (Nylon blend)<br><strong>Design:</strong> Wireless with moulded non-removable cups<br><strong>Support:</strong> Built-in posture correction back band<br><strong>Closure:</strong> Pull-over style<br><strong>Padding:</strong> Light moulded cups for natural shape<br><strong>Seamless:</strong> Yes — invisible under clothing<br><strong>Adjustable Straps:</strong> Yes</p>",
+            "content_1": "<p><strong>Material:</strong> Soft Breathable Fabric (Nylon blend)<br><strong>Design:</strong> Wireless with moulded non-removable cups<br><strong>Support:</strong> Built-in posture correction back band<br><strong>Closure:</strong> Pull-over style<br><strong>Padding:</strong> Light moulded cups for natural shape<br><strong>Seamless:</strong> Yes \u2014 invisible under clothing<br><strong>Adjustable Straps:</strong> Yes</p>",
             "title_2": "Size Guide",
             "content_2": "<p><strong>Choose by weight:</strong><br><strong>S:</strong> 42.5 to 50 kg (93 to 110 lbs)<br><strong>M:</strong> 50 to 57.5 kg (110 to 127 lbs)<br><strong>L:</strong> 57.5 to 65 kg (127 to 143 lbs)<br><strong>XL:</strong> 65 to 72.5 kg (143 to 160 lbs)<br><br>If between sizes or your daily bra size is larger, choose one size up for maximum comfort.</p><img src=\"https://cdn.shopify.com/s/files/1/0755/4111/9113/files/size-chart.jpg?v=1776789980\" alt=\"Posture Corrective Bra Size Chart\" class=\"more-info-size-chart-img\" loading=\"lazy\">",
             "title_3": "Shipping & Returns",
-            "content_3": "<p><strong>Free shipping</strong> on all US orders.<br>Estimated delivery: 5-7 business days.<br><strong>30-day returns</strong> — no questions asked.<br>Contact us at hello@theprettyfix.com</p>",
+            "content_3": "<p><strong>Free shipping</strong> on all US orders.<br>Estimated delivery: 5-7 business days.<br><strong>30-day returns</strong> \u2014 no questions asked.<br>Contact us at hello@theprettyfix.com</p>",
             "title_4": "Care Instructions",
-            "content_4": "<p><strong>Hand wash</strong> in cold water with mild detergent<br><strong>Air dry</strong> flat — do not tumble dry<br><strong>Do not bleach</strong> or iron<br><strong>Store flat</strong> to maintain shape</p>"
+            "content_4": "<p><strong>Hand wash</strong> in cold water with mild detergent<br><strong>Air dry</strong> flat \u2014 do not tumble dry<br><strong>Do not bleach</strong> or iron<br><strong>Store flat</strong> to maintain shape</p>"
           }
         },
         "faq_section_main": {
@@ -171,7 +171,7 @@
         "value_stack_main": {
           "type": "value_stack",
           "settings": {
-            "heading": "🎁 YOUR 3-PACK INCLUDES",
+            "heading": "\ud83c\udf81 YOUR 3-PACK INCLUDES",
             "item1": "3 Posture Corrective Bras|$89.97",
             "item2": "FREE Posture Correction Tape Strips|$14",
             "item3": "FREE 7-Day Perfect Posture Challenge|$47",
@@ -184,13 +184,12 @@
         "guarantee_main": {
           "type": "guarantee_promise",
           "settings": {
-            "label": "🛡️ THE PROMISE",
+            "label": "\ud83d\udee1\ufe0f THE PROMISE",
             "headline": "Stand Tall or Your Money Back - 60 Days",
             "body": "<p>Wear it for 30 days. If you don't feel your posture improving on the first wear - or at any point in the next 60 days you're not 100% happy - email us for a full refund. <strong>Keep the bras. Keep the bonuses. No questions.</strong></p>"
           }
         }
       },
-
       "block_order": [
         "stock_main",
         "funnel_main",
@@ -205,9 +204,9 @@
         "faq_section_main"
       ],
       "settings": {
-        "accent_color": "#EE6B97",
+        "accent_color": "",
         "show_judgeme_badge": true,
-        "social_proof_text": "LOVED BY 1,000+ WOMEN · TRENDING ON TIKTOK",
+        "social_proof_text": "LOVED BY 1,000+ WOMEN \u00b7 TRENDING ON TIKTOK",
         "shipping_text": "",
         "show_delivery_estimate": false,
         "delivery_business_days": 7,
@@ -248,4 +247,3 @@
     "judgeme_reviews"
   ]
 }
-

@@ -14,63 +14,63 @@
       "blocks": {
         "funnel_gold_1": {
           "type": "funnel_image",
-          "name": "Gold — Args 1+2 Tarnish + Waterproof",
+          "name": "Gold \u2014 Args 1+2 Tarnish + Waterproof",
           "settings": {
             "funnel_color": "Gold",
-            "funnel_alt": "Gold Bracelet — Tarnish-Free Forever + Waterproof Lifestyle",
+            "funnel_alt": "Gold Bracelet \u2014 Tarnish-Free Forever + Waterproof Lifestyle",
             "desktop_image": "shopify://shop_images/bracelet-aplus-b3-1-desktop.png",
             "mobile_image": "shopify://shop_images/bracelet-aplus-b3-1-mobile.png"
           }
         },
         "funnel_gold_2": {
           "type": "funnel_image",
-          "name": "Gold — Args 3+4 Love + Hypoallergenic",
+          "name": "Gold \u2014 Args 3+4 Love + Hypoallergenic",
           "settings": {
             "funnel_color": "Gold",
-            "funnel_alt": "Gold Bracelet — Eternal Love Symbol + Hypoallergenic Safe",
+            "funnel_alt": "Gold Bracelet \u2014 Eternal Love Symbol + Hypoallergenic Safe",
             "desktop_image": "shopify://shop_images/bracelet-aplus-b3-2-desktop.png",
             "mobile_image": "shopify://shop_images/bracelet-aplus-b3-2-mobile.png"
           }
         },
         "funnel_gold_3": {
           "type": "funnel_image",
-          "name": "Gold — Args 5+6 Trending + Sizing",
+          "name": "Gold \u2014 Args 5+6 Trending + Sizing",
           "settings": {
             "funnel_color": "Gold",
-            "funnel_alt": "Gold Bracelet — Trending Social Proof + One Size Fits All",
+            "funnel_alt": "Gold Bracelet \u2014 Trending Social Proof + One Size Fits All",
             "desktop_image": "shopify://shop_images/bracelet-aplus-b3-3-desktop.png",
             "mobile_image": "shopify://shop_images/bracelet-aplus-b3-3-mobile.png"
           }
         },
         "funnel_silver_1": {
           "type": "funnel_image",
-          "name": "Silver — Args 1+2 Tarnish + Waterproof",
+          "name": "Silver \u2014 Args 1+2 Tarnish + Waterproof",
           "disabled": true,
           "settings": {
             "funnel_color": "Silver",
-            "funnel_alt": "Silver Bracelet — Tarnish-Free Forever + Waterproof Lifestyle",
+            "funnel_alt": "Silver Bracelet \u2014 Tarnish-Free Forever + Waterproof Lifestyle",
             "desktop_image": "shopify://shop_images/bracelet-silver-aplus-1-desktop.png",
             "mobile_image": "shopify://shop_images/bracelet-silver-aplus-1-mobile.png"
           }
         },
         "funnel_silver_2": {
           "type": "funnel_image",
-          "name": "Silver — Args 3+4 Love + Hypoallergenic",
+          "name": "Silver \u2014 Args 3+4 Love + Hypoallergenic",
           "disabled": true,
           "settings": {
             "funnel_color": "Silver",
-            "funnel_alt": "Silver Bracelet — Eternal Love Symbol + Hypoallergenic Safe",
+            "funnel_alt": "Silver Bracelet \u2014 Eternal Love Symbol + Hypoallergenic Safe",
             "desktop_image": "shopify://shop_images/bracelet-silver-aplus-2-desktop.png",
             "mobile_image": "shopify://shop_images/bracelet-silver-aplus-2-mobile.png"
           }
         },
         "funnel_silver_3": {
           "type": "funnel_image",
-          "name": "Silver — Args 5+6 Trending + Sizing",
+          "name": "Silver \u2014 Args 5+6 Trending + Sizing",
           "disabled": true,
           "settings": {
             "funnel_color": "Silver",
-            "funnel_alt": "Silver Bracelet — Trending Social Proof + One Size Fits All",
+            "funnel_alt": "Silver Bracelet \u2014 Trending Social Proof + One Size Fits All",
             "desktop_image": "shopify://shop_images/bracelet-silver-aplus-3-desktop.png",
             "mobile_image": "shopify://shop_images/bracelet-silver-aplus-3-mobile.png"
           }
@@ -105,11 +105,11 @@
             "title_1": "Details",
             "content_1": "<p><strong>Material:</strong> Premium Surgical-Grade Steel<br><strong>Finish:</strong> 14K Gold PVD Plating (tarnish-resistant)<br><strong>Design:</strong> Double snake chain with center infinity love knot<br><strong>Length:</strong> 17cm + 5cm extension chain<br><strong>Closure:</strong> Lobster clasp<br><strong>Weight:</strong> ~15-20g (lightweight daily wear)<br><strong>Hypoallergenic:</strong> Yes (nickel-free)<br><strong>Waterproof:</strong> Yes</p>",
             "title_2": "Size Guide",
-            "content_2": "<p><strong>One size fits most</strong> — 17cm base + 5cm extension chain adjusts from 17cm to 22cm.<br><br><strong>XS/S:</strong> 15-17cm wrist — fits snug<br><strong>M:</strong> 17-19cm wrist — perfect fit<br><strong>L/XL:</strong> 19-22cm wrist — relaxed fit<br><br>Measure your wrist with a flexible tape or string for best results.</p>",
+            "content_2": "<p><strong>One size fits most</strong> \u2014 17cm base + 5cm extension chain adjusts from 17cm to 22cm.<br><br><strong>XS/S:</strong> 15-17cm wrist \u2014 fits snug<br><strong>M:</strong> 17-19cm wrist \u2014 perfect fit<br><strong>L/XL:</strong> 19-22cm wrist \u2014 relaxed fit<br><br>Measure your wrist with a flexible tape or string for best results.</p>",
             "title_3": "Shipping & Returns",
-            "content_3": "<p><strong>Free shipping</strong> on all US orders.<br>Estimated delivery: 5-7 business days.<br><strong>30-day returns</strong> — no questions asked.<br>Contact us at support@mammothstore.com</p>",
+            "content_3": "<p><strong>Free shipping</strong> on all US orders.<br>Estimated delivery: 5-7 business days.<br><strong>30-day returns</strong> \u2014 no questions asked.<br>Contact us at support@mammothstore.com</p>",
             "title_4": "Care Instructions",
-            "content_4": "<p>Your bracelet is built to last but a little care goes a long way:<br><br><strong>Daily wear:</strong> Shower swim and exercise — no need to remove<br><strong>Cleaning:</strong> Wipe with soft cloth and warm soapy water<br><strong>Storage:</strong> Store in the included gift box when not wearing<br><strong>Avoid:</strong> Harsh chemicals like bleach or acetone</p>"
+            "content_4": "<p>Your bracelet is built to last but a little care goes a long way:<br><br><strong>Daily wear:</strong> Shower swim and exercise \u2014 no need to remove<br><strong>Cleaning:</strong> Wipe with soft cloth and warm soapy water<br><strong>Storage:</strong> Store in the included gift box when not wearing<br><strong>Avoid:</strong> Harsh chemicals like bleach or acetone</p>"
           }
         },
         "faq_section_main": {
@@ -120,13 +120,13 @@
             "q2": "Can I wear it in the shower or swimming?",
             "a2": "<p>Yes. The stainless steel construction and PVD coating make it fully waterproof. You can shower swim and exercise without ever taking it off.</p>",
             "q3": "Is it safe for sensitive skin?",
-            "a3": "<p>Absolutely. It is 100% hypoallergenic — nickel-free and lead-free. Designed specifically for people with metal sensitivities.</p>",
+            "a3": "<p>Absolutely. It is 100% hypoallergenic \u2014 nickel-free and lead-free. Designed specifically for people with metal sensitivities.</p>",
             "q4": "Will it fit my wrist?",
             "a4": "<p>The bracelet is 17cm with a 5cm extension chain so it adjusts to fit wrists from 17cm to 22cm. This covers most wrist sizes from S to XL.</p>",
             "q5": "What is the difference between Gold and Silver?",
             "a5": "<p>Both are made from the same premium surgical-grade steel. Gold has a 14K gold PVD plating with warm gold tones. Silver has a high-polished chrome finish. Both are equally durable and tarnish-resistant.</p>",
             "q6": "Is this a good gift?",
-            "a6": "<p>It is one of our best-selling gift items. The infinity love knot symbolizes eternal love and connection — perfect for anniversaries birthdays Valentine's Day Mother's Day or bridesmaid gifts. Comes in premium gift-ready packaging.</p>",
+            "a6": "<p>It is one of our best-selling gift items. The infinity love knot symbolizes eternal love and connection \u2014 perfect for anniversaries birthdays Valentine's Day Mother's Day or bridesmaid gifts. Comes in premium gift-ready packaging.</p>",
             "q7": "How does it compare to designer jewelry?",
             "a7": "<p>Similar infinity knot bracelets from designer brands cost $175-$400. This bracelet uses the same 316L stainless steel and delivers the same premium look and durability for under $25. The difference is the brand name not the quality.</p>",
             "q8": "What is your return policy?",
@@ -146,9 +146,9 @@
         "faq_section_main"
       ],
       "settings": {
-        "accent_color": "#C4944C",
+        "accent_color": "",
         "show_judgeme_badge": true,
-        "social_proof_text": "TRENDING — BESTSELLER",
+        "social_proof_text": "TRENDING \u2014 BESTSELLER",
         "shipping_text": "",
         "show_delivery_estimate": true,
         "delivery_business_days": 7,
