@@ -27,8 +27,15 @@
           "type": "funnel_image",
           "name": "A+ Content Funnel",
           "settings": {
+            "funnel_color": "",
             "funnel_locale": "en",
-            "funnel_alt": "Tech Neck Cream \u2014 Anti-Wrinkle Neck Serum \u2014 A+ Content"
+            "funnel_alt": "Tech Neck Cream — Anti-Wrinkle Neck Serum — A+ Content",
+            "desktop_image": "shopify://shop_images/Study_the_desktop_image_I_202605132319.jpg",
+            "mobile_image": "shopify://shop_images/Premium_editorial_skincare_brochure__5_4_202605132257.jpg",
+            "desktop_image_2": "shopify://shop_images/Study_the_desktop_image_I_202605132307.jpg",
+            "mobile_image_2": "shopify://shop_images/The_TOP_EDGE_of_this_202605132252.jpg",
+            "desktop_image_3": "shopify://shop_images/Study_the_desktop_image_I_202605132323.jpg",
+            "mobile_image_3": "shopify://shop_images/A_single_editorial_skincare_magazine_202605132322.jpg"
           }
         },
         "video_showcase_main": {
@@ -45,8 +52,8 @@
         "guarantee_main": {
           "type": "guarantee_promise",
           "settings": {
-            "label": "\ud83d\udee1\ufe0f THE PROMISE",
-            "headline": "Love It or Your Money Back \u2014 30 Days",
+            "label": "🛡️ THE PROMISE",
+            "headline": "Love It or Your Money Back — 30 Days",
             "body": "<p>Try it for 30 days. Not completely satisfied? Email us for a full refund. <strong>No questions asked.</strong></p>"
           }
         },
@@ -54,24 +61,52 @@
           "type": "offer_selector",
           "settings": {
             "heading": "Choose Your Pack",
+            "deal_badge_text": "TODAY'S DEAL",
             "option1_label": "1 Neck Cream",
             "option1_sublabel": "Standard Price + Shipping",
             "option1_savings": "",
             "option1_qty": "1",
+            "option1_price": "",
+            "option1_compare": "",
             "option1_discount_code": "",
             "option2_label": "2 Neck Creams",
             "option2_sublabel": "FREE Shipping + Save More",
             "option2_savings": "",
             "option2_badge": "MOST POPULAR",
             "option2_qty": "2",
+            "option2_price": "",
+            "option2_compare": "",
             "option2_discount_code": "",
             "option3_label": "3 Neck Creams",
             "option3_sublabel": "FREE Shipping + Best Value",
             "option3_savings": "",
             "option3_badge": "BEST VALUE",
             "option3_qty": "3",
+            "option3_price": "",
+            "option3_compare": "",
             "option3_discount_code": "",
-            "show_trust_line": false
+            "option2_bonus1": "",
+            "option2_bonus2": "",
+            "option2_bonus3": "",
+            "option3_bonus1": "",
+            "option3_bonus2": "",
+            "option3_bonus3": "",
+            "option3_bonus4": "",
+            "option3_bonus5": "",
+            "item1_name": "",
+            "item1_value": "",
+            "item1_free_label": "FREE",
+            "item2_name": "",
+            "item2_value": "",
+            "item2_free_label": "FREE",
+            "item3_name": "",
+            "item3_value": "",
+            "item3_free_label": "FREE",
+            "item4_name": "",
+            "item4_value": "",
+            "item4_free_label": "FREE",
+            "show_trust_line": false,
+            "trust_text": "Free Shipping • 30-Day Returns • 1-Year Warranty"
           }
         },
         "urgency_main": {
@@ -88,16 +123,17 @@
             "title_1": "Details",
             "content_1": "<p>Daily neck serum targeting tech-neck lines, horizontal creases, and crepe-y skin from screen-time exposure. Peptides + retinal + ceramides. Non-greasy under jewelry.</p>",
             "title_2": "Shipping",
-            "content_2": "<p><strong>Free shipping</strong> on all US orders.<br>Estimated delivery: 5\u20137 business days.</p>",
+            "content_2": "<p><strong>Free shipping</strong> on all US orders.<br>Estimated delivery: 5–7 business days.</p>",
             "title_3": "Returns",
-            "content_3": "<p><strong>30-day returns</strong> \u2014 no questions asked.<br>Contact us at hello@theprettyfix.com</p>",
-            "title_4": ""
+            "content_3": "<p><strong>30-day returns</strong> — no questions asked.<br>Contact us at hello@theprettyfix.com</p>",
+            "title_4": "",
+            "content_4": ""
           }
         },
         "faq_section_main": {
           "type": "faq_section",
           "settings": {
-            "q1": "How does Tech Neck Cream \u2014 Anti-Wrinkle Neck Serum work?",
+            "q1": "How does Tech Neck Cream — Anti-Wrinkle Neck Serum work?",
             "a1": "<p>Daily neck serum targeting tech-neck lines, horizontal creases, and crepe-y skin from screen-time exposure. Peptides + retinal + ceramides. Non-greasy under jewelry.</p>",
             "q2": "When will I see results?",
             "a2": "<p>Most customers notice a difference within the first week of consistent use.</p>",
@@ -129,17 +165,26 @@
       "settings": {
         "accent_color": "",
         "show_judgeme_badge": true,
-        "social_proof_text": "LOVED BY OUR COMMUNITY \u00b7 TECH-NECK SOLUTIONS",
+        "social_proof_text": "LOVED BY OUR COMMUNITY · TECH-NECK SOLUTIONS",
+        "shipping_text": "",
         "show_delivery_estimate": false,
         "delivery_business_days": 7,
         "show_payment_icons": true,
-        "show_upsell": false
+        "show_upsell": false,
+        "upsell_product": "",
+        "upsell_product_2": "",
+        "upsell_heading": "Others Like You Also Bought:",
+        "size_chart_url": "",
+        "size_chart_label": "Size Chart"
       }
     },
     "you_may_also_like": {
       "type": "you-may-also-like",
       "settings": {
-        "heading": "You May Also Like"
+        "heading": "You May Also Like",
+        "product_1": "",
+        "product_2": "",
+        "product_3": ""
       }
     },
     "judgeme_reviews": {
