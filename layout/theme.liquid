@@ -43,6 +43,16 @@
 
   {% section 'header' %}
 
+  {%- comment -%} Reserve header height on every page except the homepage (which uses a full-bleed hero behind the absolute header). {%- endcomment -%}
+  {%- assign header_overlay = false -%}
+  {%- if template.name == 'index' -%}{%- assign header_overlay = true -%}{%- endif -%}
+  {%- unless header_overlay -%}
+  <style>
+    main#MainContent { padding-top: 118px; }
+    @media (max-width: 768px) { main#MainContent { padding-top: 96px; } }
+  </style>
+  {%- endunless -%}
+
   <main id="MainContent" role="main" tabindex="-1">
     {{ content_for_layout }}
   </main>
